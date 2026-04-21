@@ -226,17 +226,17 @@
     {
       "id": "eef7a4df-18ea-4ab4-9689-343942b45d79",
       "kind": "content",
-      "markdown": "# Junior Engineers\n\n- Junior engineers **write code as told**.\n- They implement tasks from tickets, specs, and examples.\n- The job is clarity, correctness, and steady execution.",
+      "markdown": "# Junior Engineers\n\n- Junior engineers **write code as told**.\n- They implement tasks from tickets, specs, and examples.\n- The job is clarity, correctness, and steady execution.\n- This is **not** meant as a long-term career destination — the goal is to **grow out** of it.\n- It is an **up-or-out** role: learn fast, level up, or move on.",
       "title": "Junior Engineers",
-      "body": "- Junior engineers **write code as told**.\n- They implement tasks from tickets, specs, and examples.\n- The job is clarity, correctness, and steady execution.",
+      "body": "- Junior engineers **write code as told**.\n- They implement tasks from tickets, specs, and examples.\n- The job is clarity, correctness, and steady execution.\n- This is **not** meant as a long-term career destination — the goal is to **grow out** of it.\n- It is an **up-or-out** role: learn fast, level up, or move on.",
       "image_prompt": "A medieval apprentice scribe carefully copies exact instructions from a master's scroll onto parchment, surrounded by ink pots and rulers, focused on faithful execution rather than invention. Warm candlelight, stone workshop, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
       "id": "c6165e55-2057-4668-8f5a-34a4d0d68a1e",
       "kind": "content",
-      "markdown": "# Mid-Level Engineers\n\n- Mid-level engineers **solve problems they are given**.\n- They break work into pieces, choose approaches, and own outcomes within a defined problem space.\n- They coordinate with others and unblock themselves more often.",
+      "markdown": "# Mid-Level Engineers\n\n- Mid-level engineers **solve problems they are given**.\n- They break work into pieces, choose approaches, and own outcomes within a defined problem space.\n- They coordinate with others and unblock themselves more often.\n- This **is** a real career path: solve problems that make the **company better**.\n- Many strong mids **never** become seniors — and that can be **completely fine**.",
       "title": "Mid-Level Engineers",
-      "body": "- Mid-level engineers **solve problems they are given**.\n- They break work into pieces, choose approaches, and own outcomes within a defined problem space.\n- They coordinate with others and unblock themselves more often.",
+      "body": "- Mid-level engineers **solve problems they are given**.\n- They break work into pieces, choose approaches, and own outcomes within a defined problem space.\n- They coordinate with others and unblock themselves more often.\n- This **is** a real career path: solve problems that make the **company better**.\n- Many strong mids **never** become seniors — and that can be **completely fine**.",
       "image_prompt": "A guild journeyman studies a broken mechanism on a wooden table, sketches alternatives, tests fixes with tools, and confers briefly with peers—problem-solving within a clear charter. Medieval workshop, expressive gestures, no readable text, letters, numbers, or logos."
     },
     {
@@ -258,10 +258,18 @@
     {
       "id": "05e7bc73-8136-4773-a9e0-feb8c3581478",
       "kind": "content",
-      "markdown": "# The Pattern Repeats\n\n- LLM tooling can make you **faster**.\n- The **artifact** still demands **deeper** understanding — not shallower.\n- New tools because the **problem got harder** — and the tools **require more** judgment,\n- not less.",
+      "markdown": "# The Pattern Repeats\n\n- This is the **backbone** of our industry — how serious systems actually get built and kept running.\n- Traditionally, industry **trains juniors** to grow into this middle band that carries the load.\n- At **Amazon**, people say the whole of **AWS** stands on the **blood and sweat of SDE2** — mid-level engineers.\n- LLM tooling can make you **faster** — the shipped **artifact** still demands **deeper** understanding, not shallower.",
       "title": "The Pattern Repeats",
-      "body": "- LLM tooling can make you **faster**.\n- The **artifact** still demands **deeper** understanding — not shallower.\n- New tools because the **problem got harder** — and the tools **require more** judgment,\n- not less.",
-      "image_prompt": ""
+      "body": "- This is the **backbone** of our industry — how serious systems actually get built and kept running.\n- Traditionally, industry **trains juniors** to grow into this middle band that carries the load.\n- At **Amazon**, people say the whole of **AWS** stands on the **blood and sweat of SDE2** — mid-level engineers.\n- LLM tooling can make you **faster** — the shipped **artifact** still demands **deeper** understanding, not shallower.",
+      "image_prompt": "A medieval cathedral construction yard where journeyman builders shoulder massive beams and scaffolding while masters plan above; the scene reads as mid-level engineers carrying the real weight of a vast infrastructure. Grit, sweat, teamwork, stone and timber, dramatic light, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "f0604fa8-c9bb-4a3d-a659-44a2a14cb7b9",
+      "kind": "content",
+      "markdown": "# Mid-Level Sooner, Customer-Facing Always\n\n- Industry wants people who can **work at mid-level** sooner.\n- **LLMs** can **mostly** replace the old **junior** execution loop.\n- The bar moves: judgment, integration, ownership, and **shipping** matter more.\n- Teach building **customer-facing** tools.\n- Make them **reliable**, **tested**, **secure**, and **useful**.",
+      "title": "Mid-Level Sooner, Customer-Facing Always",
+      "body": "- Industry wants people who can **work at mid-level** sooner.\n- **LLMs** can **mostly** replace the old **junior** execution loop.\n- The bar moves: judgment, integration, ownership, and **shipping** matter more.\n- Teach building **customer-facing** tools.\n- Make them **reliable**, **tested**, **secure**, and **useful**.",
+      "image_prompt": "A medieval market hall where guild engineers unveil sturdy public works — a bridge gate, a water clock, a notice board — while townspeople test them in plain sight. Emblems suggest reliability, inspection, and guarded locks without readable symbols. Warm light, stone and timber, expressive trust-building mood, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
       "id": "dea4ad64-11a5-4612-b62a-dfab3affc6d1",
