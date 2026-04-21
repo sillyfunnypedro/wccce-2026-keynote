@@ -331,18 +331,18 @@
     {
       "id": "5cde0626-a29e-4359-8a2e-554b4aaaaf65",
       "kind": "content",
-      "markdown": "# The Most Exciting Shift in My Career\n\n- **LLM-assisted coding** is the **most exciting** thing that has happened in my **career**.",
+      "markdown": "# The Most Exciting Shift in My Career\n\n- **LLM-assisted coding** is the **most exciting** thing that has happened in my **career** — I want that **energy** in this room.\n- **Example:** I learned a **new language** and shipped a **functional spreadsheet for children** for my **course** — **four weeks** from cold start to **something they could use**.\n- That **pace**, with me still **owning** design and correctness, is what **rekindled** my joy in **building**.",
       "title": "The Most Exciting Shift in My Career",
-      "body": "- **LLM-assisted coding** is the **most exciting** thing that has happened in my **career**.",
-      "image_prompt": "A seasoned guild artificer's workshop at dawn: new floating luminous drafting quills and cooperative spirit-familiars help sketch mechanisms faster while the master smiles with renewed wonder. Stone walls, timber beams, warm golden light, sense of professional joy and turning point, whimsical medieval style, no readable text, letters, numbers, or logos."
+      "body": "- **LLM-assisted coding** is the **most exciting** thing that has happened in my **career** — I want that **energy** in this room.\n- **Example:** I learned a **new language** and shipped a **functional spreadsheet for children** for my **course** — **four weeks** from cold start to **something they could use**.\n- That **pace**, with me still **owning** design and correctness, is what **rekindled** my joy in **building**.",
+      "image_prompt": "A joyful medieval guild workshop at dawn: a grinning master artificer gestures to excited children gathered around a large glowing counting-table — rows and cells suggested as abstract colored tiles only — while floating luminous quills sketch logic in the air beside a freshly opened phrasebook implying a new language. Warm golden light, wonder and momentum, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
       "id": "2f8eae72-8f58-46e7-8801-3c3f9ed31409",
       "kind": "content",
-      "markdown": "# What Fueled Me Wasn't the Typing\n\n- I loved **solving customer problems**.\n- **Writing the code** was what **slowed me down**.\n- I wrote **tests** because I **had to** — dutifully — but I was **never a fan** of that part of the work.",
-      "title": "What Fueled Me Wasn't the Typing",
-      "body": "- I loved **solving customer problems**.\n- **Writing the code** was what **slowed me down**.\n- I wrote **tests** because I **had to** — dutifully — but I was **never a fan** of that part of the work.",
-      "image_prompt": "A medieval town market: a builder animatedly solves a merchant's real logistical puzzle with chalk diagrams and a half-built crate mechanism, while a tall stack of tedious tally-scrolls waits ignored. Emphasis on customer delight versus paperwork grind, warm daylight, expressive faces, whimsical medieval style, no readable text, letters, numbers, or logos."
+      "markdown": "# Read Code in Systems That Matter\n\n- Help students **learn to read code** by **building systems** that **solve customer problems**.\n- Put them in **problem spaces** they can **grow inside** — where files, APIs, and failures **mean something**.\n- When the **customer** is real, **reading** is not a spelling drill — it is how you **keep the promise** you shipped.",
+      "title": "Read Code in Systems That Matter",
+      "body": "- Help students **learn to read code** by **building systems** that **solve customer problems**.\n- Put them in **problem spaces** they can **grow inside** — where files, APIs, and failures **mean something**.\n- When the **customer** is real, **reading** is not a spelling drill — it is how you **keep the promise** you shipped.",
+      "image_prompt": "A medieval guild workshop opens onto a busy market: apprentices trace glowing scroll-lines of code runes beside a half-built counting-crank and water-clock contraption while a merchant explains a real constraint. Mentors point from symptom to scroll — teaching reading-in-context. Warm daylight, collaborative focus, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
       "id": "60421627-2ee9-451d-b1b8-095110b8f56a",
@@ -359,13 +359,22 @@
       "title": "Stay Builders for the Next Wave",
       "body": "- **Building never ends** — we must be **practitioners of building**, not replayers of the old canon.\n- If we **teach spells**, we can end up like that **colleague**: *I already know it — **I'm done**.*\n- If we **train builders**, every **LLM advance** **excites us more** — and we become **exceptional partners** in our **students'** and **colleagues'** **growth**.",
       "image_prompt": "A wide medieval dawn panorama: on one side a bored master closes a perfect spell codex forever, on the other mentors and students raise new scaffolds together as luminous assistant spirits hand up beams — teamwork, renewal, forward motion. Hopeful epic mood, whimsical medieval style, no readable text, letters, numbers, or logos."
-    }, {
+    }, 
+    {
       "id": "6813fcfd-95d6-4421-827b-534264fec7fe",
       "kind": "content",
       "markdown": "# Reframing\n\n# Not:\n- How do we AI proof our teaching of spells?\n\n# But:\n- How do we teach **building** for problems that won't fit last decade's homework\n\n# Infrastructure for learning\n- Understand the spells\n- Manage the spell writer",
       "title": "Reframing",
       "body": "# Not:\n- How do we AI proof our teaching of spells?\n\n# But:\n- How do we teach **building** for problems that won't fit last decade's homework\n\n# Infrastructure for learning\n- Understand the spells\n- Manage the spell writer",
       "image_prompt": "A medieval workshop filled with whimsical characters, including a jester-like figure dressed as a builder using a quill to sketch a fantastical machine on a wooden table, while a wise-looking wizard observes from the shadows, holding a glowing orb. The scene features rustic stone walls adorned with tools and gadgets that mix ancient and modern elements, illuminated by flickering candlelight casting warm pools of light. The characters express curiosity and camaraderie, highlighting the theme of creative problem-solving and building, with no readable text, letters, or logos in the image."
+    },
+    {
+      "id": "b234d7ad-276e-4014-b6de-265de40a376d",
+      "kind": "content",
+      "markdown": "# Let's Build\n\n- **Dr Richard Caron**, **1983** — numerical analysis: Never before have we been so capable of **computing numbers**, **our job** is to ensure they are **correct**.\n- **Me**, with respect to **Dr Caron**: Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.\n- **Let's build.**",
+      "title": "Let's Build",
+      "body": "- **Dr Richard Caron**, **1983** — numerical analysis: Never before have we been so capable of **computing numbers**, **our job** is to ensure they are **correct**.\n- **Me**, with respect to **Dr Caron**: Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.\n- **Let's build.**",
+      "image_prompt": "A respectful medieval split tableau: left, Dr Richard Caron as a thoughtful scholar-lecturer demonstrates careful verification of glowing abacus-like number engines and brass integrators; right, a modern mentor figure echoes the same posture beside swirling luminous code ribbons and cooperative construct spirits, emphasizing correctness over volume. Stone arches, warm candlelight, bridge across decades, humble tribute mood, whimsical medieval style, no readable text, letters, numbers, or logos."
     }
   ],
   "text_model": "openai/gpt-4o-mini",
