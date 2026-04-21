@@ -82,41 +82,41 @@
     {
       "id": "ccf2dd4c-2b7c-4ce6-b256-25e0969ddb75",
       "kind": "content",
-      "markdown": "# From Spells to Access\n\n- Demystify computer magic\n- for people who could not recite the spells and incantations.\n- computer science = Computer power for everyone.\n- not just the few fluent in ritual syntax.",
+      "markdown": "# From Spells to Access\n\n# Use computer magic\n- For people who could not recite the spells and incantations.\n\n\n# CS for everyone.\n- everyone should be able to build.\n- **NOT** everyone should be able to program.",
       "title": "From Spells to Access",
-      "body": "- Demystify computer magic\n- for people who could not recite the spells and incantations.\n- computer science = Computer power for everyone.\n- not just the few fluent in ritual syntax.",
+      "body": "# Use computer magic\n- For people who could not recite the spells and incantations.\n\n\n# CS for everyone.\n- everyone should be able to build.\n- **NOT** everyone should be able to program.",
       "image_prompt": "A visionary medieval panorama at dawn: a former court magician opens a glowing workshop to ordinary townspeople—builders, farmers, teachers, children, and elders—who are learning to use luminous tools once reserved for elite scribes. Arcane runes transform into simple shared instruments on long wooden tables, symbolizing computer power becoming accessible to everyone. The scene feels hopeful and future-facing, with broad depth, dramatic light rays, expressive faces, and a sense of social transformation. Stone arches, timber beams, parchment, and subtle anachronistic hints of modern computing blended into medieval craft aesthetics. No readable text, letters, numbers, or logos."
     },
     {
       "id": "cb69c653-526f-4718-a43e-fa137e053da0",
       "kind": "content",
-      "markdown": "# Why Computer Science?\n\n- **So we can build things that delight customers**\n- real people with real problems, who should leave **glad** we existed.\n- Everything else is in service of that.\n- ## Basic Theory\n- Need to understand?\n- Need to teach?",
+      "markdown": "# Why Computer Science?\n\n# So we can build things that delight customers\n\n- Real people with real problems, who should leave **glad** we existed.\n- Everything else is in service of that.\n\n# Basic Theory in order to build?\n- Need to understand?\n- Need to teach?",
       "title": "Why Computer Science?",
-      "body": "- **So we can build things that delight customers**\n- real people with real problems, who should leave **glad** we existed.\n- Everything else is in service of that.\n- ## Basic Theory\n- Need to understand?\n- Need to teach?",
+      "body": "# So we can build things that delight customers\n\n- Real people with real problems, who should leave **glad** we existed.\n- Everything else is in service of that.\n\n# Basic Theory in order to build?\n- Need to understand?\n- Need to teach?",
       "image_prompt": ""
     },
     {
       "id": "6ad6d0f3-a810-4064-9134-9e563a919a06",
       "kind": "content",
-      "markdown": "# Mastering the Magic of Code\n\n- programming languages.\n- Think of coding as an ancient art;\n- it requires practice and understanding.\n- Once you grasp these 'incantations,' you'll unlock the power to create amazing things.\n- Dive into the world of programming and turn your ideas into reality!",
+      "markdown": "# Mastering the Magic of Code\n\n# Programming languages\n- First attempt to make the conversation more human\n\n\n# Think of coding as an ancient art;\n- It requires practice and understanding.\n- Once you grasp these 'incantations,' you'll unlock the power to create amazing things.",
       "title": "Mastering the Magic of Code",
-      "body": "- programming languages.\n- Think of coding as an ancient art;\n- it requires practice and understanding.\n- Once you grasp these 'incantations,' you'll unlock the power to create amazing things.\n- Dive into the world of programming and turn your ideas into reality!",
+      "body": "# Programming languages\n- First attempt to make the conversation more human\n\n\n# Think of coding as an ancient art;\n- It requires practice and understanding.\n- Once you grasp these 'incantations,' you'll unlock the power to create amazing things.",
       "image_prompt": "A whimsical medieval workshop scene, with an imaginative blend of old and new. In the center, a jester-like character clad in a tattered robe stands before a wooden table cluttered with mystical scrolls and glowing code snippets represented as glowing runes. Surrounding him are towering stone walls adorned with candlelight that creates warm pools of light, casting playful shadows. Other characters, including a wizened scholar and a curious apprentice, observe eagerly while engaged in animated gestures, demonstrating the essence of coding as an ancient art. Ensure there are no readable text, letters, numbers, or logos in the image.\n\nThisis the slide content\n- programming languages.\n- Think of coding as an ancient art; \n- it requires practice and understanding.\n- Once you grasp these 'incantations,' you'll unlock the power to create amazing things.\n- Dive into the world of programming and turn your ideas into reality!"
     },
     {
       "id": "0bf084e6-e213-4df1-adc3-fc1d786efb4a",
       "kind": "content",
-      "markdown": "# Beyond Coding: The True Essence of Computer Science\n\n- Many believe you can be a computer scientist without programming.\n- It should be about solving actual business life problems.\n- Translating them to an implementation\n- But we only teach programming (magic incantations)\n- Three years of learning all the magic\n- Optionally a project based course in the 4th year.\n- Yup!\n- Optional",
-      "title": "Beyond Coding: The True Essence of Computer Science",
-      "body": "- Many believe you can be a computer scientist without programming.\n- It should be about solving actual business life problems.\n- Translating them to an implementation\n- But we only teach programming (magic incantations)\n- Three years of learning all the magic\n- Optionally a project based course in the 4th year.\n- Yup!\n- Optional",
+      "markdown": "# There are a lot of spells.\n\n# You have to show competency in all of them\n\n# Data \n- Structures\n- Flow\n- Storage\n\n# Optionally a project based course in the 4th year.\n- Yup!\n- Optional",
+      "title": "There are a lot of spells.",
+      "body": "# You have to show competency in all of them\n\n# Data \n- Structures\n- Flow\n- Storage\n\n# Optionally a project based course in the 4th year.\n- Yup!\n- Optional",
       "image_prompt": "In a whimsical medieval workshop scene, a group of expressive characters in period attire gathers around a large, intricately carved wooden table covered with quills, parchment, and old scrolls. One character, a jovial builder, is animatedly demonstrating how to manipulate a bizarre, anachronistic gadget that combines gears and glowing stones, symbolizing modern technology. In the background, rustic stone walls are lined with shelves of scrolls and tools, while candlelight casts warm pools of light. Two other characters, a curious apprentice and an elder sage, observe intently, embodying the transition from traditional craftsmanship to innovative problem-solving. Ensure there are no readable text, letters, numbers, or logos in the image."
     },
     {
       "id": "f5d2cb68-5dc9-4d16-a2ca-ef28e342811f",
       "kind": "content",
-      "markdown": "# From Magic to Mastery\n\n- Computer programming dominating our education.\n- ## Testing for programming is easy\n- Teach known problems and evaluate the solution\n- Teach more languages\n- Mastery of the required incantations",
+      "markdown": "# From Magic to Mastery\n\n- Computer programming dominating our education.\n\n# Testing for programming is easy\n- Teach known spells\n- Teach more languages\n\n# Evaluate\n- Did they repeat the spells correctly",
       "title": "From Magic to Mastery",
-      "body": "- Computer programming dominating our education.\n- ## Testing for programming is easy\n- Teach known problems and evaluate the solution\n- Teach more languages\n- Mastery of the required incantations",
+      "body": "- Computer programming dominating our education.\n\n# Testing for programming is easy\n- Teach known spells\n- Teach more languages\n\n# Evaluate\n- Did they repeat the spells correctly",
       "image_prompt": "A whimsical medieval classroom scene featuring a group of caricatured students gathered around a large chalkboard filled with abstract symbols and programming code, illuminated by warm candlelight casting soft shadows on rustic stone walls. A teacher, dressed in a flowing robe, gestures animatedly while demonstrating a magical programming incantation, complete with playful sparks emerging from a laptop perched on a wooden desk. In the background, medieval tools blend with modern gadgets, creating a unique anachronistic atmosphere. The composition should be centered with ample breathing room, ensuring no readable text, letters, numbers, or logos are present.\n\nSlide content\n\n# Computer programming dominating our education. \n\n## Testing for programming is easy\n- Teach known problems and evaluate the solution\n- Teach more languages\n- Mastery of the required incantations"
     },
     {
@@ -130,9 +130,9 @@
     {
       "id": "c514f72e-77e7-4321-8d00-de4b0c49653e",
       "kind": "content",
-      "markdown": "# The Allure of the Magic\n\n- ## There is just so much to know\n- Every research field had to add their results\n- Data structures\n- Data bases\n- UI\n- Compilers\n- Teaching the tricks and techniques became our primary focus",
+      "markdown": "# The Allure of the Magic\n\n# There is just so much to know\n- Every research field had to add their results\n- Data structures\n- Data bases\n- UI\n- Compilers\n\n# Teaching the spells became the primary focus",
       "title": "The Allure of the Magic",
-      "body": "- ## There is just so much to know\n- Every research field had to add their results\n- Data structures\n- Data bases\n- UI\n- Compilers\n- Teaching the tricks and techniques became our primary focus",
+      "body": "# There is just so much to know\n- Every research field had to add their results\n- Data structures\n- Data bases\n- UI\n- Compilers\n\n# Teaching the spells became the primary focus",
       "image_prompt": "A whimsical medieval scene inside a stone castle, where a group of joyful builders, dressed in period-appropriate attire, are gathered around a large wooden table cluttered with old scrolls, compasses, and peculiar gadgets. Soft candlelight casts warm pools of light, highlighting their animated expressions as they discuss and playfully showcase their innovative inventions. Some work on rudimentary data structures using thick quills, while others analyze scrolls filled with drawn diagrams, merging the old with the new in a lighthearted atmosphere. The surrounding rustic textures, wooden beams, and stone walls enhance the medieval charm, ensuring there are no readable text, letters, numbers, or logos in the image."
     },
     {
@@ -146,18 +146,34 @@
     {
       "id": "a60de312-1f4f-4969-a2ba-e165e370a170",
       "kind": "content",
-      "markdown": "# Magicians were paid very well\n\n- They were paid well not because the work was glamorous — but because **almost no one\n- else could do it**.\n- You had to **master the rites**: the vocabulary, the rituals, the sequence of steps that\n- made the machine obey.\n- If you could not recite the spells, you were stuck — so the guild could charge for\n- access to the magic.",
+      "markdown": "# Magicians were paid very well\n\n# Well paid\n- Because no one else could do it.\n\n# The spells\n- The vocabulary\n- The rituals\n- Tab or {\n\n# Tough stuff",
       "title": "Magicians were paid very well",
-      "body": "- They were paid well not because the work was glamorous — but because **almost no one\n- else could do it**.\n- You had to **master the rites**: the vocabulary, the rituals, the sequence of steps that\n- made the machine obey.\n- If you could not recite the spells, you were stuck — so the guild could charge for\n- access to the magic.",
+      "body": "# Well paid\n- Because no one else could do it.\n\n# The spells\n- The vocabulary\n- The rituals\n- Tab or {\n\n# Tough stuff",
       "image_prompt": "A medieval guild hall where robed magicians count heavy coin purses while townspeople wait outside a barred gate holding broken quills and confused ledgers. The magicians consult ornate ritual books and glowing scrolls of precise formulae, emphasizing exclusive knowledge. Stone arches, candlelight, expressive faces, whimsical tone, no readable text, letters, numbers, or logos."
     },
     {
       "id": "7de99796-eafe-4669-a642-b87f9a99a321",
       "kind": "content",
-      "markdown": "# Industry Needs Builders\n\n- Industry needed **builders**.\n- Simply being a magician was not good enough.\n- In my career, I have had to let **four employees** go — all with **A+ averages** from\n- Waterloo, Toronto, or Alberta.\n- They were fabulous magicians who could parrot their instructors, but they could not\n- transition into **functional magicians** who build and deliver.",
+      "markdown": "# Industry Needs Builders\n\n- Industry needed **builders**.\n- Simply being a magician was not good enough.\n- In my career, I have had to let **four employees** go — all with **A+ averages** from\n- Waterloo, Toronto, or Alberta.\n# They knew the spells, \n- Could not use them\n- Could not progress to problem solving",
       "title": "Industry Needs Builders",
-      "body": "- Industry needed **builders**.\n- Simply being a magician was not good enough.\n- In my career, I have had to let **four employees** go — all with **A+ averages** from\n- Waterloo, Toronto, or Alberta.\n- They were fabulous magicians who could parrot their instructors, but they could not\n- transition into **functional magicians** who build and deliver.",
+      "body": "- Industry needed **builders**.\n- Simply being a magician was not good enough.\n- In my career, I have had to let **four employees** go — all with **A+ averages** from\n- Waterloo, Toronto, or Alberta.\n# They knew the spells, \n- Could not use them\n- Could not progress to problem solving",
       "image_prompt": "A medieval hiring hall where guild masters evaluate candidates: one robed scholar flawlessly recites complex spell scrolls, while another candidate demonstrates a working machine that solves a real workshop problem for townspeople. The guild chooses the practical builder, highlighting that industry needs people who can deliver, not just perform incantations. Stone architecture, wooden tools, expressive faces, warm candlelight, clear narrative composition, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "8eb4334d-5238-45cb-befa-7f103e029b33",
+      "kind": "content",
+      "markdown": "# Making the Spells Easier to Cast\n\n- **Programming** was **hard** — we kept inventing ways to cast with **less pain**.\n- **make** — repeat the same build **ritual** without retyping every command.\n- **IDEs** — edit, navigate, debug, and refactor in **one workshop**.\n- **Tab completion** from **library documentation** — names and signatures **without memorizing the whole scroll**.",
+      "title": "Making the Spells Easier to Cast",
+      "body": "- **Programming** was **hard** — we kept inventing ways to cast with **less pain**.\n- **make** — repeat the same build **ritual** without retyping every command.\n- **IDEs** — edit, navigate, debug, and refactor in **one workshop**.\n- **Tab completion** from **library documentation** — names and signatures **without memorizing the whole scroll**.",
+      "image_prompt": "A medieval workshop evolving into a compact guild hall: a master carpenter stamps repeatable recipe tablets for assembly (make metaphor), apprentices gather around a single large lectern with hinged panels for tools, maps, and inspection slots (IDE metaphor), and a shelf of annotated bestiary-style API phrase-books glows faintly where a scribe’s quill is guided by hovering suggestion wisps (tab completion). Stone walls, timber beams, warm candlelight, busy collaborative mood, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "16ad2e41-4ce5-4c21-af2b-0ab4cba218a3",
+      "kind": "content",
+      "markdown": "# Spells to Ease the Pain\n\n- Each wave still aimed at the same thing: **alleviate** the **excruciating grind** of casting by hand.\n- **LLM line suggestion** — whole **lines** from context and intent, not just tokens.\n- **Agentic conversational programming** — **describe** the goal, **iterate** in dialogue, let a **partner** carry routine spellwork.\n- **Relief** and **speed** — the pattern did not stop; it **accelerated**.",
+      "title": "Spells to Ease the Pain",
+      "body": "- Each wave still aimed at the same thing: **alleviate** the **excruciating grind** of casting by hand.\n- **LLM line suggestion** — whole **lines** from context and intent, not just tokens.\n- **Agentic conversational programming** — **describe** the goal, **iterate** in dialogue, let a **partner** carry routine spellwork.\n- **Relief** and **speed** — the pattern did not stop; it **accelerated**.",
+      "image_prompt": "A medieval scriptorium at twilight: a weary scholar watches glowing full-line sigils appear on parchment as if whispered by an attentive familiar (line suggestion), while a second scene shows the same scholar in animated conversation with a robed assistant-figure who arranges scrolls, mixes ink, and drafts alternate passages (agentic partner). Soft magical light, stone arches, expressive relief and curiosity, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
       "id": "35fdb5ad-ad42-4f24-852f-ac4207c5d229",
@@ -189,7 +205,7 @@
       "markdown": "# A Better Machine — Same Ritual\n\n- Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room\n- of terminals**.\n- The **same professor** had the VAX wired as a **line-editor front end to the 360**: edit\n- like punch cards, **batch to the 360**, pick up printouts at the **IOL window**.\n- The **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
       "title": "A Better Machine — Same Ritual",
       "body": "- Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room\n- of terminals**.\n- The **same professor** had the VAX wired as a **line-editor front end to the 360**: edit\n- like punch cards, **batch to the 360**, pick up printouts at the **IOL window**.\n- The **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
-      "image_prompt": ""
+      "image_prompt": "A whimsical medieval scene depicting a castle workshop filled with a mix of historical and modern technology. In the center, a slightly exaggerated professor character, dressed in traditional medieval robes, interacts with a large, archaic-looking DEC VAX 780 computer adorned with punch card slots, which is humorously wired to a classic, oversized 360 machine. Surrounding the machines are terminals made from wooden desks, with an array of candles casting warm light across stone walls and wooden beams, creating an imaginative juxtaposition of ancient and modern computing. The atmosphere should be lively and engaging, capturing the essence of builders and creators, with no readable text, letters, or logos."
     },
     {
       "id": "0a182380-5fc8-4fcc-8640-ebd38b3c9290",
@@ -197,31 +213,55 @@
       "markdown": "# The Pattern Didn't Stop\n\n- **IDEs:** some faculty banned them — unless you used **vi** and **make**, it wasn't\n- \"real CS.\"\n- **Tab completion:** a senior engineer wanted it **off** for juniors — too easy to tell\n- who had **memorized the library incantations**.\n- Same mistake: **confusing ritual with skill** — difficulty as a **proxy for merit**.",
       "title": "The Pattern Didn't Stop",
       "body": "- **IDEs:** some faculty banned them — unless you used **vi** and **make**, it wasn't\n- \"real CS.\"\n- **Tab completion:** a senior engineer wanted it **off** for juniors — too easy to tell\n- who had **memorized the library incantations**.\n- Same mistake: **confusing ritual with skill** — difficulty as a **proxy for merit**.",
-      "image_prompt": ""
+      "image_prompt": "A medieval scholar sits at a heavy wooden table in a dimly lit stone room, surrounded by scrolls and ancient books. He is using a quill to write on parchment while a jester beside him comically struggles to operate a strange modern device resembling a laptop, its screen illuminated by candlelight. In the background, a group of students observe curiously, one peering over another’s shoulder, all dressed in medieval garb but with subtle anachronistic gadgets at their belts. The scene is infused with whimsical humor, illustrating the clash between traditional and modern learning tools, with warm pools of light highlighting the characters. No readable text, letters, numbers, or logos in the image."
     },
     {
       "id": "a59301cc-5869-4b6a-b2ba-be981c5aeba5",
       "kind": "content",
-      "markdown": "# A Colleague, Early in My Career\n\n- I asked why he didn't program anymore.\n- **\"I don't need to practice.\n- I already know it.\"**\n- In his model, teaching CS was teaching **incantations** — A's meant you'd learned them —\n- so you **were** a computer scientist.\n- **Done.**",
+      "markdown": "# A Colleague, Early in My Career\n\n- I asked why he didn't program anymore.\n\n# I don't need to practice.\n- I already know it.\n\n# In his mind\n- Teaching CS was teaching **the spells**\n\n# You know the spells\n- You are a computer science",
       "title": "A Colleague, Early in My Career",
-      "body": "- I asked why he didn't program anymore.\n- **\"I don't need to practice.\n- I already know it.\"**\n- In his model, teaching CS was teaching **incantations** — A's meant you'd learned them —\n- so you **were** a computer scientist.\n- **Done.**",
-      "image_prompt": ""
+      "body": "- I asked why he didn't program anymore.\n\n# I don't need to practice.\n- I already know it.\n\n# In his mind\n- Teaching CS was teaching **the spells**\n\n# You know the spells\n- You are a computer science",
+      "image_prompt": "A medieval scholar stands in a stone-walled chamber, surrounded by wooden shelves cluttered with scrolls and peculiar gadgets that blend old-world charm with modern technology. He gestures animatedly with one hand while the other cradles a quill, eyes wide in whimsical exasperation at a younger apprentice who looks baffled. The warm glow of torchlight casts playful shadows across their faces, highlighting the scholar's exaggerated expressions as he seems to dismiss the need for practice. The scene captures the humor of the interaction, with medieval elements like a large tome and candlelight echoing the theme of knowledge versus practice. Ensure there are no readable text, letters, numbers, or logos in the image."
     },
     {
       "id": "0c0001e2-be2c-4edd-992f-b43288d0086a",
       "kind": "content",
-      "markdown": "# Magicians and Wizards\n\n- The world doesn't want **magicians who repeat the old magic**.\n- It wants **wizards** who **see problems**, build **solutions**, and leave **people\n- glad**.",
-      "title": "Magicians and Wizards",
-      "body": "- The world doesn't want **magicians who repeat the old magic**.\n- It wants **wizards** who **see problems**, build **solutions**, and leave **people\n- glad**.",
-      "image_prompt": ""
+      "markdown": "# Back to Building\n\n- **Back to building** — what we keep circling.\n- Industry does not want **A+ students** who can only **recite the spells**.\n- It wants **skilled magicians** who **use** them to **delight customers**.",
+      "title": "Back to Building",
+      "body": "- **Back to building** — what we keep circling.\n- Industry does not want **A+ students** who can only **recite the spells**.\n- It wants **skilled magicians** who **use** them to **delight customers**.",
+      "image_prompt": "A medieval town square: one robed scholar flawlessly declaims from a tall stack of spell scrolls to unimpressed guild merchants, while another figure in practical mage attire demonstrates a small finished contraption that makes townspeople smile and trade coin. Emphasis on building something people want versus performing recitation. Stone architecture, market stalls, warm daylight, expressive faces, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
-      "id": "c0575c2a-0009-4b1a-8b77-f7c24219d872",
+      "id": "216604f7-0618-4026-9167-0401a56a55b6",
       "kind": "content",
-      "markdown": "# A Morning in 1905\n\n- A blacksmith didn't wake up one morning to find horses gone and Model Ts parked outside\n- his shop.\n- The change **crept in**.\n- First it was a neighbor asking if he could straighten a bent axle.\n- Then it was fabricating a bracket that didn't exist yet because no parts catalog did\n- either.",
-      "title": "A Morning in 1905",
-      "body": "- A blacksmith didn't wake up one morning to find horses gone and Model Ts parked outside\n- his shop.\n- The change **crept in**.\n- First it was a neighbor asking if he could straighten a bent axle.\n- Then it was fabricating a bracket that didn't exist yet because no parts catalog did\n- either.",
-      "image_prompt": ""
+      "markdown": "# Chisel Builders\n\n- **Heat treating**\n- **Alloys**\n- **Tempering**\n- Depth in **metal** and **process** — how the edge **holds** and **survives** the work.",
+      "title": "Chisel Builders",
+      "body": "- **Heat treating**\n- **Alloys**\n- **Tempering**\n- Depth in **metal** and **process** — how the edge **holds** and **survives** the work.",
+      "image_prompt": "A medieval forge interior: a master smith studies glowing steel bars, quenches with practiced timing, and inspects grain and temper colors while labeled ingots of different alloys sit nearby as abstract shapes only. Sparks, anvil, bellows, sweat and focus, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "cf9ac370-d9e0-4547-baee-1a6acca90587",
+      "kind": "content",
+      "markdown": "# Chisel Users\n\n- **Sharpening**\n- **Hitting** — angle, force, control\n- **Using** — reading the **grain**, stopping cuts, **safety**\n- Mastery at the **bench**, not at the **crucible**.",
+      "title": "Chisel Users",
+      "body": "- **Sharpening**\n- **Hitting** — angle, force, control\n- **Using** — reading the **grain**, stopping cuts, **safety**\n- Mastery at the **bench**, not at the **crucible**.",
+      "image_prompt": "A medieval carpenter’s bench: a craftsperson hones a chisel on a stone, tests the edge, then pairs across visible wood grain with mallet and steady hands. Wood curls, timber frame shop, warm side light, concentrated calm, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "66dde2dc-56e0-4149-98e5-9607989c0418",
+      "kind": "content",
+      "markdown": "# Builders vs Users\n\n- The **chisel builder** needs to understand **what the chisel is for** — the job shapes the steel.\n- The **chisel user** does not need to understand **how the chisel was made** at all.\n- **Two** expertises — both **legitimate** — **not** the same curriculum.",
+      "title": "Builders vs Users",
+      "body": "- The **chisel builder** needs to understand **what the chisel is for** — the job shapes the steel.\n- The **chisel user** does not need to understand **how the chisel was made** at all.\n- **Two** expertises — both **legitimate** — **not** the same curriculum.",
+      "image_prompt": "Split medieval scene: left, a smith holds a half-finished chisel while listening to a carpenter describe joint and timber needs; right, the carpenter works joinery with a finished chisel, unconcerned with the forge behind a closed door. Warm workshop continuity, expressive storytelling poses, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "2381e5f5-6e54-48c1-a351-ff7182ee90ae",
+      "kind": "content",
+      "markdown": "# Young Wizards — Career Path\n\n- Let's look at the **career path** of our **young wizards**.",
+      "title": "Young Wizards — Career Path",
+      "body": "- Let's look at the **career path** of our **young wizards**.",
+      "image_prompt": "A winding cobble path climbs from a village toward a distant wizard academy on a hill: small robed figures with satchels and staves walk together in morning light, symbolic stages ahead (apprentice hall, journeyman bridge, high council spires) suggested without readable signs. Hopeful mood, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
       "id": "eef7a4df-18ea-4ab4-9689-343942b45d79",
