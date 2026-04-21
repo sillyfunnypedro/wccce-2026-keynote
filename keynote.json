@@ -311,46 +311,7 @@
       "body": "- Industry wants people who can **work at mid-level** sooner.\n- **LLMs** can **mostly** replace the old **junior** execution loop.\n- The bar moves: judgment, integration, ownership, and **shipping** matter more.\n- Teach building **customer-facing** tools.\n- Make them **reliable**, **tested**, **secure**, and **useful**.",
       "image_prompt": "A medieval market hall where guild engineers unveil sturdy public works — a bridge gate, a water clock, a notice board — while townspeople test them in plain sight. Emblems suggest reliability, inspection, and guarded locks without readable symbols. Warm light, stone and timber, expressive trust-building mood, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
-    {
-      "id": "dea4ad64-11a5-4612-b62a-dfab3affc6d1",
-      "kind": "quote",
-      "markdown": "# - Mistake the tool for the skill → build fast, debug forever.\n\n# - Refuse the tool entirely → build carefully, ship never.",
-      "title": "Quote: Mistake the tool for the skill → build fast, debug forever.",
-      "body": "- Mistake the tool for the skill → build fast, debug forever.\n- Refuse the tool entirely → build carefully, ship never.",
-      "image_prompt": ""
-    },
-    {
-      "id": "902f21b1-d1c0-40f1-a210-fdf4a16b135a",
-      "kind": "content",
-      "markdown": "# Who Will Thrive\n\n- Not those who think **typing syntax** was the job.\n- Not those who think **prompting** replaces **knowing what the system does**.\n- The skill was always **decomposing problems**, **seeing systems**, knowing what\n- **correct** looks like.",
-      "title": "Who Will Thrive",
-      "body": "- Not those who think **typing syntax** was the job.\n- Not those who think **prompting** replaces **knowing what the system does**.\n- The skill was always **decomposing problems**, **seeing systems**, knowing what\n- **correct** looks like.",
-      "image_prompt": ""
-    },
-    {
-      "id": "b472172b-2d08-4bdf-a3d3-7b8540f1823f",
-      "kind": "content",
-      "markdown": "# The Garage\n\n- The shop became a **garage**.\n- It didn't need **fewer** skills — it needed **different** ones, same foundation,\n- **harder** brief.\n- Same for every IDE with an **AI tab** next to the terminal.",
-      "title": "The Garage",
-      "body": "- The shop became a **garage**.\n- It didn't need **fewer** skills — it needed **different** ones, same foundation,\n- **harder** brief.\n- Same for every IDE with an **AI tab** next to the terminal.",
-      "image_prompt": ""
-    },
-    {
-      "id": "5a1b8aab-beba-48a5-853f-1005d19a6de2",
-      "kind": "quote",
-      "markdown": "# - The question isn't only \"how do we teach when students have AI?\"\n\n# - It's how we prepare them for work that is **fundamentally more complex** than a decade\n\n# - ago.",
-      "title": "Quote: The question isn't only \"how do we teach when students have AI?\"",
-      "body": "- The question isn't only \"how do we teach when students have AI?\"\n- It's how we prepare them for work that is **fundamentally more complex** than a decade\n- ago.",
-      "image_prompt": ""
-    },
-    {
-      "id": "6813fcfd-95d6-4421-827b-534264fec7fe",
-      "kind": "content",
-      "markdown": "# Reframing\n\n- **Not:** How do we teach when students have AI?\n- **But:** How do we teach **building** for problems that won't fit last decade's homework\n- shapes?\n- The transition is **deeper understanding** — with tools that match the **real** problem.\n- That's the transition.\n- That's **always** been the transition.",
-      "title": "Reframing",
-      "body": "- **Not:** How do we teach when students have AI?\n- **But:** How do we teach **building** for problems that won't fit last decade's homework\n- shapes?\n- The transition is **deeper understanding** — with tools that match the **real** problem.\n- That's the transition.\n- That's **always** been the transition.",
-      "image_prompt": ""
-    },
+   
     {
       "id": "856f468e-0e7d-49b5-9def-288074664f56",
       "kind": "content",
@@ -368,20 +329,43 @@
       "image_prompt": "A medieval university gate opens onto a busy town workshop street where students in scholar cloaks carry tools into guild halls and shipyards for long co-op seasons, while professors wave from the lecture tower behind. The scene contrasts classroom theory with hands-on building in the world. Warm light, expressive motion, stone and timber, whimsical medieval-meets-industry apprenticeship tone, no readable text, letters, numbers, or logos."
     },
     {
-      "id": "4033e7f3-d9ed-4b4b-936b-ab3193091a5c",
+      "id": "5cde0626-a29e-4359-8a2e-554b4aaaaf65",
       "kind": "content",
-      "markdown": "# Grade 2 — Multiplication Tables\n\n- The teacher kept the tables on her desk.\n- I went home and taught myself to **read upside down**.\n- My mother asked why.\n- I said: she's showing me the answers — I'll read upside down so I don't have to drill\n- the tables.\n- I still read upside down.\n- I never really memorized the tables.\n- It hasn't hurt my career.",
-      "title": "Grade 2 — Multiplication Tables",
-      "body": "- The teacher kept the tables on her desk.\n- I went home and taught myself to **read upside down**.\n- My mother asked why.\n- I said: she's showing me the answers — I'll read upside down so I don't have to drill\n- the tables.\n- I still read upside down.\n- I never really memorized the tables.\n- It hasn't hurt my career.",
-      "image_prompt": ""
+      "markdown": "# The Most Exciting Shift in My Career\n\n- **LLM-assisted coding** is the **most exciting** thing that has happened in my **career**.",
+      "title": "The Most Exciting Shift in My Career",
+      "body": "- **LLM-assisted coding** is the **most exciting** thing that has happened in my **career**.",
+      "image_prompt": "A seasoned guild artificer's workshop at dawn: new floating luminous drafting quills and cooperative spirit-familiars help sketch mechanisms faster while the master smiles with renewed wonder. Stone walls, timber beams, warm golden light, sense of professional joy and turning point, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
-      "id": "d90c793a-85b2-4c16-b3cc-866ae5ed9f55",
+      "id": "2f8eae72-8f58-46e7-8801-3c3f9ed31409",
       "kind": "content",
-      "markdown": "# My First \"ChatGPT\"\n\n- It wasn't magic — it was figuring out the **prompt**: what to learn, how to position\n- myself, to get the data I needed.",
-      "title": "My First \"ChatGPT\"",
-      "body": "- It wasn't magic — it was figuring out the **prompt**: what to learn, how to position\n- myself, to get the data I needed.",
-      "image_prompt": ""
+      "markdown": "# What Fueled Me Wasn't the Typing\n\n- I loved **solving customer problems**.\n- **Writing the code** was what **slowed me down**.\n- I wrote **tests** because I **had to** — dutifully — but I was **never a fan** of that part of the work.",
+      "title": "What Fueled Me Wasn't the Typing",
+      "body": "- I loved **solving customer problems**.\n- **Writing the code** was what **slowed me down**.\n- I wrote **tests** because I **had to** — dutifully — but I was **never a fan** of that part of the work.",
+      "image_prompt": "A medieval town market: a builder animatedly solves a merchant's real logistical puzzle with chalk diagrams and a half-built crate mechanism, while a tall stack of tedious tally-scrolls waits ignored. Emphasis on customer delight versus paperwork grind, warm daylight, expressive faces, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "60421627-2ee9-451d-b1b8-095110b8f56a",
+      "kind": "content",
+      "markdown": "# Give Them the Messy Charter\n\n- We have the **opportunity** to assign **large, ill-defined problems** — the kind industry actually wrestles with.\n- Students can start performing **at mid-level** sooner when the **brief** is real and **mentors** stay close.",
+      "title": "Give Them the Messy Charter",
+      "body": "- We have the **opportunity** to assign **large, ill-defined problems** — the kind industry actually wrestles with.\n- Students can start performing **at mid-level** sooner when the **brief** is real and **mentors** stay close.",
+      "image_prompt": "A medieval guild hall briefing scene: mentors unfurl an enormous incomplete charter map with smudged margins and contradictory notes while student builders lean in with measuring cords and prototypes rather than perfect spell tablets. Collaborative intensity, stone arches, candlelight, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "0352a509-8b64-4c48-839b-2e2789faff37",
+      "kind": "content",
+      "markdown": "# Stay Builders for the Next Wave\n\n- **Building never ends** — we must be **practitioners of building**, not replayers of the old canon.\n- If we **teach spells**, we can end up like that **colleague**: *I already know it — **I'm done**.*\n- If we **train builders**, every **LLM advance** **excites us more** — and we become **exceptional partners** in our **students'** and **colleagues'** **growth**.",
+      "title": "Stay Builders for the Next Wave",
+      "body": "- **Building never ends** — we must be **practitioners of building**, not replayers of the old canon.\n- If we **teach spells**, we can end up like that **colleague**: *I already know it — **I'm done**.*\n- If we **train builders**, every **LLM advance** **excites us more** — and we become **exceptional partners** in our **students'** and **colleagues'** **growth**.",
+      "image_prompt": "A wide medieval dawn panorama: on one side a bored master closes a perfect spell codex forever, on the other mentors and students raise new scaffolds together as luminous assistant spirits hand up beams — teamwork, renewal, forward motion. Hopeful epic mood, whimsical medieval style, no readable text, letters, numbers, or logos."
+    }, {
+      "id": "6813fcfd-95d6-4421-827b-534264fec7fe",
+      "kind": "content",
+      "markdown": "# Reframing\n\n# Not:\n- How do we AI proof our teaching of spells?\n\n# But:\n- How do we teach **building** for problems that won't fit last decade's homework\n\n# Infrastructure for learning\n- Understand the spells\n- Manage the spell writer",
+      "title": "Reframing",
+      "body": "# Not:\n- How do we AI proof our teaching of spells?\n\n# But:\n- How do we teach **building** for problems that won't fit last decade's homework\n\n# Infrastructure for learning\n- Understand the spells\n- Manage the spell writer",
+      "image_prompt": "A medieval workshop filled with whimsical characters, including a jester-like figure dressed as a builder using a quill to sketch a fantastical machine on a wooden table, while a wise-looking wizard observes from the shadows, holding a glowing orb. The scene features rustic stone walls adorned with tools and gadgets that mix ancient and modern elements, illuminated by flickering candlelight casting warm pools of light. The characters express curiosity and camaraderie, highlighting the theme of creative problem-solving and building, with no readable text, letters, or logos in the image."
     }
   ],
   "text_model": "openai/gpt-4o-mini",
