@@ -1,0 +1,195 @@
+{
+  "model": "google/gemini-2.5-flash-image",
+  "text_model": "openai/gpt-4o-mini",
+  "width": 1024,
+  "height": 1024,
+  "global_style_file": "global_style.md",
+  "output_directory": "slide_images",
+  "slides": [
+    {
+      "title": "From Anvils to APIs",
+      "body": "**Two Transitions, One Pattern**\n\n**WCCCE 2026**",
+      "prompt": ""
+    },
+    {
+      "title": "Why Computer Science?",
+      "body": "**So we can build things that delight customers** \u2014 real people with real problems, who should leave **glad** we existed.\n\nEverything else is in service of that.",
+      "prompt": ""
+    },
+    {
+      "title": "Where We Drifted",
+      "body": "We began to treat **incantations** \u2014 syntax, rituals, the canon \u2014 as if they were **the degree**.\n\nWe **forgot** (or stopped saying out loud) that the mission was **teaching students to build**.\n\n**Knowing the spells is not the same as shipping something that matters.**",
+      "prompt": ""
+    },
+    {
+      "title": "What We Taught Was Incantations",
+      "body": "Computers demanded **precise spells** before anything useful happened: **source \u2192 machine language** \u2014 hence the **compiler** and toolchain.\n\nYear one: **semicolons, tabs, initialization** \u2014 if you're lucky, what happens to **data in memory**.\n\nWe rarely started from **the problem we were solving**.",
+      "prompt": ""
+    },
+    {
+      "title": "The Ladder Goes Up",
+      "body": "**Algorithms, Big-O** \u2014 domain incantations. You learn the **classics**; **previous magicians** wrote them.\n\n**Databases / SQL** \u2014 store data so you can **reach it fast** and **ask questions**. The spells get **closer to English**: *select\u2026 where\u2026*",
+      "prompt": ""
+    },
+    {
+      "title": "The Pinnacle \u2014 and the Trap",
+      "body": "Then the **big magic**: **low-level to machine-level** \u2014 compilers, translation \u2014 often the **crown** of the undergrad program.\n\nWe **digest** the book; you **give it back** looking like our template. Grades reward **mimicry**.\n\nBy **year three**, many students still haven't **built** anything except **proof they echoed the spellbook**.",
+      "prompt": ""
+    },
+    {
+      "title": "Counselors Know the Gap",
+      "body": "They push **final-year** courses where you **finally ship** something the world might want \u2014 as if the first three years were **rehearsal**.\n\nThe job market still asks for people who **delight customers** \u2014 not **only** people who ace the canon.",
+      "prompt": ""
+    },
+    {
+      "title": "CS Was Never Only About Coding",
+      "body": "We taught it that way when we weren't **builders**.\n\n**You** know the incantations. **So does every LLM.**\n\nThe job is no longer **teaching incantations**. It's **teaching how to build**.",
+      "prompt": ""
+    },
+    {
+      "title": "I've Always Been a Builder",
+      "body": "What follows isn't random biography. It's the same instinct over and over: **make something** that **changes what happens next**.\n\nInstitutions kept foregrounding **incantations**. I kept reaching for **builds** \u2014 games, workarounds, tools for real work.",
+      "prompt": ""
+    },
+    {
+      "title": "Grade 2 \u2014 Multiplication Tables",
+      "body": "The teacher kept the tables on her desk. I went home and taught myself to **read upside down**.\n\nMy mother asked why. I said: she's showing me the answers \u2014 I'll read upside down so I don't have to drill the tables.\n\nI still read upside down. I never really memorized the tables. It hasn't hurt my career.",
+      "prompt": ""
+    },
+    {
+      "title": "My First \"ChatGPT\"",
+      "body": "It wasn't magic \u2014 it was figuring out the **prompt**: what to learn, how to position myself, to get the data I needed.",
+      "prompt": ""
+    },
+    {
+      "title": "1977 \u2014 A Game on a Casio",
+      "body": "**Programmable calculator.** A **random** target on a **100\u00d7100** grid. You type **x** and **y**; it answers with **distance** to the ship. You **close in** until you hit it.\n\nCrude **Minesweeper**-style deduction \u2014 tight memory, tiny screen \u2014 and **fun** to play.",
+      "prompt": ""
+    },
+    {
+      "title": "\"That Isn't a Real Computer\"",
+      "body": "University of Windsor \u2014 I wanted to do coursework on my **Z-80** instead of the lab **IBM 360**.\n\nA professor said I didn't have a **real** machine: if it wasn't **32-bit**, it didn't count.\n\nPart of my training, he said, was **punch cards** \u2014 because that's how you drove the **IBM 360**.",
+      "prompt": ""
+    },
+    {
+      "title": "A Better Machine \u2014 Same Ritual",
+      "body": "Year three: Computing Services bought a **DEC VAX 780** \u2014 better than the 360, a **room of terminals**.\n\nThe **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **IOL window**.\n\nThe **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
+      "prompt": ""
+    },
+    {
+      "title": "The Pattern Didn't Stop",
+      "body": "**IDEs:** some faculty banned them \u2014 unless you used **vi** and **make**, it wasn't \"real CS.\"\n\n**Tab completion:** a senior engineer wanted it **off** for juniors \u2014 too easy to tell who had **memorized the library incantations**.\n\nSame mistake: **confusing ritual with skill** \u2014 difficulty as a **proxy for merit**.",
+      "prompt": ""
+    },
+    {
+      "title": "A Colleague, Early in My Career",
+      "body": "I asked why he didn't program anymore.\n\n**\"I don't need to practice. I already know it.\"**\n\nIn his model, teaching CS was teaching **incantations** \u2014 A's meant you'd learned them \u2014 so you **were** a computer scientist. **Done.**",
+      "prompt": ""
+    },
+    {
+      "title": "Magicians and Wizards",
+      "body": "The world doesn't want **magicians who repeat the old magic**.\n\nIt wants **wizards** who **see problems**, build **solutions**, and leave **people glad**.",
+      "prompt": ""
+    },
+    {
+      "title": "That Summer \u2014 Lead\u2013Acid Batteries",
+      "body": "My uncle broke down **forklift batteries** for recycling. We weighed cells (**50\u2013160 kg**), counted cells, tallied, billed the **plant**.\n\nI was the tally. I wrote **BASIC** on a **TRS-80 Model I** \u2014 end-of-day totals, **saved**, **auditable** if we mistyped.",
+      "prompt": ""
+    },
+    {
+      "title": "First Time I Delighted a \"Customer\"",
+      "body": "**Me** \u2014 less pain doing the books. My **uncle** \u2014 faster, more accurate billing.\n\nThe machine the professor said wasn't for **real** CS was for **real** work \u2014 checkable, useful, **human**.",
+      "prompt": ""
+    },
+    {
+      "title": "A Morning in 1905",
+      "body": "A blacksmith didn't wake up one morning to find horses gone and Model Ts parked outside his shop.\n\nThe change **crept in**.\n\nFirst it was a neighbor asking if he could straighten a bent axle.\nThen it was fabricating a bracket that didn't exist yet because no parts catalog did either.",
+      "prompt": ""
+    },
+    {
+      "title": "Running example: a real person with a real problem",
+      "body": "**Summer job \u2014 my uncle\u2019s shop.** Forklift batteries in for recycling.\n\nThe actual work: **weigh** each unit on the scale, **record how many cells**, **tally** everything for the day, **submit the bill** to the recycling plant \u2014 and deal with the fact that people **mistype** and still need the books to **close**.\n\nNot a programming problem on day one. A **human** losing time and trust to arithmetic and paperwork.",
+      "prompt": ""
+    },
+    {
+      "title": "Understand the problem",
+      "body": "What does **done** look like? Faster tally, fewer errors, and numbers you can **defend** if the plant or your own crew asks \u201cwhere did this come from?\u201d\n\nWhat are the **constraints**? Who runs it, on what machine, with what patience \u2014 **no IT department**, no appetite for cleverness that only the author understands.\n\nYou don\u2019t open an editor yet. You **interview the work** until the success criteria are boringly clear.",
+      "prompt": ""
+    },
+    {
+      "title": "Understand how to automate it \u2014 that creates sub-problems",
+      "body": "Automation isn\u2019t one miracle button. It\u2019s **decomposition**.\n\nTypical threads: **capture** weights and counts safely \u2192 **accumulate** totals correctly \u2192 **end-of-day report** the business trusts \u2192 **persist / correct** enough to back out a bad entry without replaying everything.\n\nEach thread is a **small bet** you can test against reality before you pretend you\u2019re \u201cdone.\u201d",
+      "prompt": ""
+    },
+    {
+      "title": "For each sub-problem: code. Then put the pieces together.",
+      "body": "Ship the **smallest proof** per piece (input loop, running totals, printable tally, save or \u201cfix last line\u201d \u2014 tune to your story on stage).\n\n**Integration is the product:** shared data, clear handoffs, and **one error** shouldn\u2019t corrupt the whole day.\n\nGoal: something **they** can run \u2014 and **defend** to the plant \u2014 not a program only you understand.",
+      "prompt": ""
+    },
+    {
+      "title": "Happy customer",
+      "body": "My uncle wasn\u2019t grading my **style**. He wanted the **day closed clean**: less time reconciling, numbers that held up.\n\n**First time I felt what this work is for** \u2014 a **delighted customer** (even when the customer was family).\n\nThat\u2019s the bar we skip when we teach **incantations** instead of **building for someone**.",
+      "prompt": ""
+    },
+    {
+      "title": "The Part We Get Wrong",
+      "body": "The **horseshoe** was a known problem \u2014 heat, shape, nail it on.\n\nThe **automobile** was something else: combustion, drivetrain, electrical systems, tolerances the smith had never seen.",
+      "prompt": ""
+    },
+    {
+      "title": "The Thing Being Built Got Harder",
+      "body": "The **complexity** forced the transition \u2014 not the mere arrival of a new machine.\n\nUnderstanding metal and stress didn't become **less** important. It became **more** \u2014 the automobile demanded a **deeper** version of the same insight.",
+      "prompt": ""
+    },
+    {
+      "title": "Tools That Match the Problem",
+      "body": "The pneumatic press. The torque wrench. The diagnostic gauge.\n\nThey didn't replace expertise. They were **necessary** because the problem **outgrew** the hammer and anvil.",
+      "prompt": ""
+    },
+    {
+      "title": "The Blacksmith Who Thrived",
+      "body": "Not the one who kept shoeing horses from **stubbornness**.\n\nNot the one who **panicked** and threw away what he knew.\n\nThe one who saw the real skill was **how metal behaves under force** \u2014 carried into a **harder** problem with **new tools**.",
+      "prompt": ""
+    },
+    {
+      "title": "Quote: We're living through that same kind of morning right now.",
+      "body": "We're living through that same kind of morning right now.",
+      "prompt": ""
+    },
+    {
+      "title": "The Developer in 2026",
+      "body": "An LLM can emit a function from a prompt \u2014 that doesn't make the work **simple**.\n\nWhat we're asked to build is **more ambitious**: distributed, integrated, cross-platform, **always on**.",
+      "prompt": ""
+    },
+    {
+      "title": "The Pattern Repeats",
+      "body": "LLM tooling can make you **faster**.\n\nThe **artifact** still demands **deeper** understanding \u2014 not shallower.\n\nNew tools because the **problem got harder** \u2014 and the tools **require more** judgment, not less.",
+      "prompt": ""
+    },
+    {
+      "title": "Quote: Mistake the tool for the skill \u2192 build fast, debug forever.",
+      "body": "Mistake the tool for the skill \u2192 build fast, debug forever.\nRefuse the tool entirely \u2192 build carefully, ship never.",
+      "prompt": ""
+    },
+    {
+      "title": "Who Will Thrive",
+      "body": "Not those who think **typing syntax** was the job.\n\nNot those who think **prompting** replaces **knowing what the system does**.\n\nThe skill was always **decomposing problems**, **seeing systems**, knowing what **correct** looks like.",
+      "prompt": ""
+    },
+    {
+      "title": "The Garage",
+      "body": "The shop became a **garage**. It didn't need **fewer** skills \u2014 it needed **different** ones, same foundation, **harder** brief.\n\nSame for every IDE with an **AI tab** next to the terminal.",
+      "prompt": ""
+    },
+    {
+      "title": "Quote: The question isn't only \"how do we teach when students have AI?\"",
+      "body": "The question isn't only \"how do we teach when students have AI?\"\nIt's how we prepare them for work that is **fundamentally more complex** than a decade ago.",
+      "prompt": ""
+    },
+    {
+      "title": "Reframing",
+      "body": "**Not:** How do we teach when students have AI?\n\n**But:** How do we teach **building** for problems that won't fit last decade's homework shapes?\n\nThe transition is **deeper understanding** \u2014 with tools that match the **real** problem.\n\nThat's the transition. That's **always** been the transition.",
+      "prompt": ""
+    }
+  ]
+}
