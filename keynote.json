@@ -1,0 +1,410 @@
+{
+  "version": 1,
+  "frontmatter": {
+    "title": "From Anvils to APIs",
+    "subtitle": "Two Transitions, One Pattern",
+    "author": "WCCCE 2026",
+    "footer": "WCCCE 2026"
+  },
+  "slides": [
+    {
+      "id": "d4b13a60-7827-4c7c-b905-fd953a8dbde1",
+      "kind": "content",
+      "markdown": "# Incantations: Time to Move On\n\n# WCCCE 2026\n\n\n- Juancho Buchanan\n- Professor of The Practice\n- Khoury College of Computer Science\n- Vancouver campus.",
+      "title": "Incantations: Time to Move On",
+      "body": "# WCCCE 2026\n\n\n- Juancho Buchanan\n- Professor of The Practice\n- Khoury College of Computer Science\n- Vancouver campus.",
+      "image_prompt": ""
+    },
+    {
+      "id": "2c155803-8ca0-4672-a9d6-cc8b4fb991cc",
+      "kind": "content",
+      "markdown": "# 1977\n\n**John Loader**, maths teacher — got an account at the **University of Sussex**.\n\nHe taught us programming (I think **FORTRAN**).\n\n- We filled out **mark-sense cards**.\n- We **mailed them in**.\n- I got mine back — my incantation had been **cursed**.\n\n# Curse this computer thing.",
+      "title": "1977",
+      "body": "**John Loader**, maths teacher — got an account at the **University of Sussex**.\n\nHe taught us programming (I think **FORTRAN**).\n\n- We filled out **mark-sense cards**.\n- We **mailed them in**.\n- I got mine back — my incantation had been **cursed**.\n\n# Curse this computer thing.",
+      "image_prompt": "A whimsical medieval classroom scene featuring a slightly exaggerated, expressive teacher standing beside a large stone hearth, gesturing animatedly toward a chalkboard displaying an abstract concept of programming. Students, depicted as curious and engaged figures, sit at rustic wooden desks filled with mark-sense cards and quills, their attention focused on the teacher. In the corner, a small, humorous detail shows a cursed scroll with a ghostly figure swirling around it, symbolizing the frustration of early programming. The lighting comes from candles and torches casting warm shadows on the stone walls, enhancing the imaginative blend of old and new technology. There must be no readable text, letters, numbers, or logos in the image.  The scene shows a student reveiving a failing grade from the wizzard."
+    },
+    {
+      "id": "f663552b-2fb6-4f8d-be50-5c075e7c4a10",
+      "kind": "content",
+      "markdown": "# 1978 — A Game on a Casio\n\n**Programmable calculator.\n\n- A **random** target on a **100×100** grid. \n- You type **x** and **y** \n- it answers with **distance** to the ship. \n- You **close in** until you hit it.\n\nNone of my friends wanted to understand\n- They did like the game\n- it was 1978",
+      "title": "1978 — A Game on a Casio",
+      "body": "**Programmable calculator.\n\n- A **random** target on a **100×100** grid. \n- You type **x** and **y** \n- it answers with **distance** to the ship. \n- You **close in** until you hit it.\n\nNone of my friends wanted to understand\n- They did like the game\n- it was 1978",
+      "image_prompt": "A whimsical medieval setting features a grand stone castle interior illuminated by warm candlelight. In the center, a jester excitedly interacts with an oversized, comically detailed programmable calculator, which rests on a rustic wooden table. Surrounding him are curious knights and peasants peering in fascination, as he points enthusiastically at a 100×100 grid drawn on parchment, while a ship icon is playfully illustrated nearby. The characters have expressive, slightly exaggerated features, blending historical attire with hints of modern tech. The scene captures the joy of building and discovery, evoking a sense of nostalgia for playful learning without any readable text, letters, or logos.\n\nA group of children around a hand held device in obvious awe of the glowing device."
+    },
+    {
+      "id": "eec49a0c-db98-49f4-b4e8-764993ca849a",
+      "kind": "content",
+      "markdown": "# Summer Job 1980-1984\n\n#  Lead–Acid Batteries Tonolli recycling\n\nMy uncle broke down **forklift batteries** for recycling. \n- We weighed cells (**50–160 kg**), \n- counted cells, \n- tallied, billed Tonoly.\n\n# First customer\n- I wrote **BASIC** on a **TRS-80 Model I** \n- End-of-day totals, **saved**, \n- Auditable if we mistyped.",
+      "title": "Summer Job 1980-1984",
+      "body": "#  Lead–Acid Batteries Tonolli recycling\n\nMy uncle broke down **forklift batteries** for recycling. \n- We weighed cells (**50–160 kg**), \n- counted cells, \n- tallied, billed Tonoly.\n\n# First customer\n- I wrote **BASIC** on a **TRS-80 Model I** \n- End-of-day totals, **saved**, \n- Auditable if we mistyped.",
+      "image_prompt": "A medieval workshop scene where a whimsical character, dressed in rustic clothes, is carefully dismantling a large, aged forklift battery. The character is surrounded by stone walls, wooden beams, and warm candlelight casting playful shadows. Nearby, another character is joyfully scribbling on a large piece of parchment with a quill, showing end-of-day totals from a TRS-80 Model I computer, which is humorously designed to look like an ancient tablet. The atmosphere is a mix of historical charm and modern technology, filled with expressive gestures and an imaginative blend of time periods. There must be no readable text, letters, numbers, or logos in the image."
+    },
+    {
+      "id": "e82aae96-dff1-4f99-acd0-bef0031b9739",
+      "kind": "content",
+      "markdown": "# First Time I Delighted a \"Customer\"\n\n**Me** — less pain doing the books. \nMy **uncle** — faster, more accurate billing.\n\n# Problem -> \n\n# Understanding ->\n\n# Do Magic incantations ->\n- Uncle saw them as magical\n\n# Happy Uncle",
+      "title": "First Time I Delighted a \"Customer\"",
+      "body": "**Me** — less pain doing the books. \nMy **uncle** — faster, more accurate billing.\n\n# Problem -> \n\n# Understanding ->\n\n# Do Magic incantations ->\n- Uncle saw them as magical\n\n# Happy Uncle",
+      "image_prompt": "A whimsical medieval scene showing a young person joyfully demonstrating a modern ledger book to their expressive uncle in a cozy stone-walled room. The uncle, with a wide grin, admires the efficient and speedy billing process, surrounded by flickering candlelight that creates warm pools of illumination on rustic wooden beams. The young person's gestures convey excitement as they reveal the magic of simplified accounting. Blend traditional medieval attire with whimsical modern gadgets, making the scene humorous and imaginative, with clear silhouettes and exaggerated expressions. No readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "5a3cc000-4391-4270-9db4-7c1388053fef",
+      "kind": "content",
+      "markdown": "# My Ph.D. Incantation: Faster Convolution\n\nMy Ph.D. was one giant **magic spell** for speed:\n\n- Start with expensive **filter integrals** in convolution.\n- **Decompose the filter** into a **basis representation**.\n- **Precompute** the integral of each **basis function** with the data.\n- Reuse those precomputed pieces to assemble results quickly.\n\nSame math, same answer — dramatically less repeated work.",
+      "title": "My Ph.D. Incantation: Faster Convolution",
+      "body": "My Ph.D. was one giant **magic spell** for speed:\n\n- Start with expensive **filter integrals** in convolution.\n- **Decompose the filter** into a **basis representation**.\n- **Precompute** the integral of each **basis function** with the data.\n- Reuse those precomputed pieces to assemble results quickly.\n\nSame math, same answer — dramatically less repeated work.",
+      "image_prompt": "A whimsical medieval workshop scene where a robe-wearing scholar-magician draws glowing integral curves over a curved surface on a wooden table, while assistants place carved \"basis\" tiles that break the surface into simple components. Nearby, jars of prepared runes symbolize precomputed integrals, and the magician combines these runes into a bright swirling convolution pattern that resolves into the same final shape faster. Stone walls, timber beams, parchment, brass instruments, candlelight pools, expressive gestures, playful anachronistic hints of modern math tools, high visual clarity, centered composition, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "409d7b9b-c6c1-4569-b2d9-48d518aec024",
+      "kind": "content",
+      "markdown": "# Why I Pivoted to NPR Tools\n\n# Non Photorealistic Rendering\n\nAfter my Ph.D., I decided to build tools for **non-CS people**.\n\nMedical imaging felt like a **red sea** to me. I wanted to explore how computers could help **artists**.\n\n#  Photorealism was largely solved.\n- it became magic for magic sake\n- no real visual difference.\n\n# I was more interested in expressive tools that expanded human creativity.",
+      "title": "Why I Pivoted to NPR Tools",
+      "body": "# Non Photorealistic Rendering\n\nAfter my Ph.D., I decided to build tools for **non-CS people**.\n\nMedical imaging felt like a **red sea** to me. I wanted to explore how computers could help **artists**.\n\n#  Photorealism was largely solved.\n- it became magic for magic sake\n- no real visual difference.\n\n# I was more interested in expressive tools that expanded human creativity.",
+      "image_prompt": "A medieval crossroads scene: a scholar leaves a crowded, competitive hall of polished mirror-like realism and walks toward an artist guild workshop filled with expressive sketches, stylized shading, and creative tools for ordinary makers. The mood is intentional pivot and curiosity. Stone architecture, timber beams, parchment and charcoal textures, candlelit warmth, whimsical medieval style blended with modern graphics metaphors, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "1cfed1e1-b4d9-402a-989f-91ef570ae8c8",
+      "kind": "content",
+      "markdown": "# Mario Costa Sousa, Ph.D. — simulating pencil drawing\n\n**Mario Costa Sousa** completed a Ph.D. on **simulating pencil drawing**.\n\nAt first, we thought tools like this might **replace artists**.\n\n**Desmond Rochfort** was on the committee — and as a **pencil artist**, he reframed it as a tool to explore styles before spending 8–10 hours on a final drawing.",
+      "title": "Mario Costa Sousa, Ph.D. — simulating pencil drawing",
+      "body": "**Mario Costa Sousa** completed a Ph.D. on **simulating pencil drawing**.\n\nAt first, we thought tools like this might **replace artists**.\n\n**Desmond Rochfort** was on the committee — and as a **pencil artist**, he reframed it as a tool to explore styles before spending 8–10 hours on a final drawing.",
+      "image_prompt": "A whimsical medieval workshop where Mario Costa Sousa presents his pencil-simulation research to a small committee. Mario stands beside parchment sheets showing progressive graphite rendering stages on a knight-and-castle sketch, while gesturing confidently to a wooden table of drawing tools and an anachronistic mechanical computation device. Desmond Rochfort and other scholars observe closely, impressed but thoughtful. Stone walls, timber beams, candlelit atmosphere, expressive faces, clear silhouettes, playful blend of medieval craft and modern computer graphics concepts, high visual clarity, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "5bbf065a-5a45-46ea-b49b-23dcdd5a697e",
+      "kind": "content",
+      "markdown": "# Desmond’s use for the tool\n\n**Desmond Rochfort** told us he saw a real use for this tool: he could test **possible styles** for a picture before spending **8–10 hours** drawing it and then finding he did not like the result.",
+      "title": "Desmond’s use for the tool",
+      "body": "**Desmond Rochfort** told us he saw a real use for this tool: he could test **possible styles** for a picture before spending **8–10 hours** drawing it and then finding he did not like the result.",
+      "image_prompt": "A whimsical medieval studio scene with Desmond Rochfort, a pencil artist, quietly pondering alternative styles before beginning a long drawing. He studies several small draft sketches pinned to a wooden board, each with different shading and composition moods, while a subtle magical projection device previews variations of the same image in midair. Desmond appears reflective and practical, choosing a direction before committing hours of work. Warm candlelight, stone walls, rustic textures, expressive posture, medieval-meets-modern visual metaphor, centered composition, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "ccf2dd4c-2b7c-4ce6-b256-25e0969ddb75",
+      "kind": "content",
+      "markdown": "# From Spells to Access\n\n# Demystify computer magic\n- for people who could not recite the spells and incantations.\n\n# computer science = Computer power for everyone.\n- not just the few fluent in ritual syntax.",
+      "title": "From Spells to Access",
+      "body": "# Demystify computer magic\n- for people who could not recite the spells and incantations.\n\n# computer science = Computer power for everyone.\n- not just the few fluent in ritual syntax.",
+      "image_prompt": "A visionary medieval panorama at dawn: a former court magician opens a glowing workshop to ordinary townspeople—builders, farmers, teachers, children, and elders—who are learning to use luminous tools once reserved for elite scribes. Arcane runes transform into simple shared instruments on long wooden tables, symbolizing computer power becoming accessible to everyone. The scene feels hopeful and future-facing, with broad depth, dramatic light rays, expressive faces, and a sense of social transformation. Stone arches, timber beams, parchment, and subtle anachronistic hints of modern computing blended into medieval craft aesthetics. No readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "cb69c653-526f-4718-a43e-fa137e053da0",
+      "kind": "content",
+      "markdown": "# Why Computer Science?\n\n**So we can build things that delight customers** \n- real people with real problems, who should leave **glad** we existed.\n\nEverything else is in service of that.\n## Basic Theory\n- Need to understand?\n- Need to teach?",
+      "title": "Why Computer Science?",
+      "body": "**So we can build things that delight customers** \n- real people with real problems, who should leave **glad** we existed.\n\nEverything else is in service of that.\n## Basic Theory\n- Need to understand?\n- Need to teach?",
+      "image_prompt": ""
+    },
+    {
+      "id": "6ad6d0f3-a810-4064-9134-9e563a919a06",
+      "kind": "content",
+      "markdown": "# Mastering the Magic of Code\n\n- programming languages.\n- Think of coding as an ancient art; \n- it requires practice and understanding.\n- Once you grasp these 'incantations,' you'll unlock the power to create amazing things.\n- Dive into the world of programming and turn your ideas into reality!",
+      "title": "Mastering the Magic of Code",
+      "body": "- programming languages.\n- Think of coding as an ancient art; \n- it requires practice and understanding.\n- Once you grasp these 'incantations,' you'll unlock the power to create amazing things.\n- Dive into the world of programming and turn your ideas into reality!",
+      "image_prompt": "A whimsical medieval workshop scene, with an imaginative blend of old and new. In the center, a jester-like character clad in a tattered robe stands before a wooden table cluttered with mystical scrolls and glowing code snippets represented as glowing runes. Surrounding him are towering stone walls adorned with candlelight that creates warm pools of light, casting playful shadows. Other characters, including a wizened scholar and a curious apprentice, observe eagerly while engaged in animated gestures, demonstrating the essence of coding as an ancient art. Ensure there are no readable text, letters, numbers, or logos in the image.\n\nThisis the slide content\n- programming languages.\n- Think of coding as an ancient art; \n- it requires practice and understanding.\n- Once you grasp these 'incantations,' you'll unlock the power to create amazing things.\n- Dive into the world of programming and turn your ideas into reality!"
+    },
+    {
+      "id": "0bf084e6-e213-4df1-adc3-fc1d786efb4a",
+      "kind": "content",
+      "markdown": "# Beyond Coding: The True Essence of Computer Science\n\n- Many believe you can be a computer scientist without programming.  \n- It should be about solving actual business life problems.\n- Translating them to an implementation\n\n# But we only teach programming (magic incantations)\n- Three years of learning all the magic\n- Optionally a project based course in the 4th year.\n\n# Yup!  Optional",
+      "title": "Beyond Coding: The True Essence of Computer Science",
+      "body": "- Many believe you can be a computer scientist without programming.  \n- It should be about solving actual business life problems.\n- Translating them to an implementation\n\n# But we only teach programming (magic incantations)\n- Three years of learning all the magic\n- Optionally a project based course in the 4th year.\n\n# Yup!  Optional",
+      "image_prompt": "In a whimsical medieval workshop scene, a group of expressive characters in period attire gathers around a large, intricately carved wooden table covered with quills, parchment, and old scrolls. One character, a jovial builder, is animatedly demonstrating how to manipulate a bizarre, anachronistic gadget that combines gears and glowing stones, symbolizing modern technology. In the background, rustic stone walls are lined with shelves of scrolls and tools, while candlelight casts warm pools of light. Two other characters, a curious apprentice and an elder sage, observe intently, embodying the transition from traditional craftsmanship to innovative problem-solving. Ensure there are no readable text, letters, numbers, or logos in the image."
+    },
+    {
+      "id": "f5d2cb68-5dc9-4d16-a2ca-ef28e342811f",
+      "kind": "content",
+      "markdown": "# From Magic to Mastery\n\n# Computer programming dominating our education. \n\n## Testing for programming is easy\n- Teach known problems and evaluate the solution\n- Teach more languages\n- Mastery of the required incantations",
+      "title": "From Magic to Mastery",
+      "body": "# Computer programming dominating our education. \n\n## Testing for programming is easy\n- Teach known problems and evaluate the solution\n- Teach more languages\n- Mastery of the required incantations",
+      "image_prompt": "A whimsical medieval classroom scene featuring a group of caricatured students gathered around a large chalkboard filled with abstract symbols and programming code, illuminated by warm candlelight casting soft shadows on rustic stone walls. A teacher, dressed in a flowing robe, gestures animatedly while demonstrating a magical programming incantation, complete with playful sparks emerging from a laptop perched on a wooden desk. In the background, medieval tools blend with modern gadgets, creating a unique anachronistic atmosphere. The composition should be centered with ample breathing room, ensuring no readable text, letters, numbers, or logos are present.\n\nSlide content\n\n# Computer programming dominating our education. \n\n## Testing for programming is easy\n- Teach known problems and evaluate the solution\n- Teach more languages\n- Mastery of the required incantations"
+    },
+    {
+      "id": "38be4b99-67fa-41ef-b47a-f6262f18700e",
+      "kind": "content",
+      "markdown": "# Core Requirements of ACM-Based CS Education\n\n- Strong foundation in programming languages and paradigms.\n- Understanding of algorithms and data structures.\n- Proficiency in software development processes.\n- Knowledge of computer architecture and operating systems.\n- Experience with databases and information management.\n- Familiarity with software engineering principles and best practices.\n- Exposure to networking and cybersecurity concepts.",
+      "title": "Core Requirements of ACM-Based CS Education",
+      "body": "- Strong foundation in programming languages and paradigms.\n- Understanding of algorithms and data structures.\n- Proficiency in software development processes.\n- Knowledge of computer architecture and operating systems.\n- Experience with databases and information management.\n- Familiarity with software engineering principles and best practices.\n- Exposure to networking and cybersecurity concepts.",
+      "image_prompt": "A medieval castle study room filled with a mix of ancient scrolls and modern programming tools like laptops and tablets. An expressive scholar, dressed in a robe, is passionately explaining algorithms while pointing at a large parchment that artistically blends hand-drawn data structures and programming languages. Stone walls adorned with wooden shelves hold both classical books and futuristic gadgets, illuminated by warm candlelight casting intricate shadows. There are scrolls detailing software processes and diagrams of computer architecture scattered around the wooden table. The scene exudes a whimsical blend of old and new, capturing the essence of ACM-based computer science education. Ensure there is no readable text, letters, numbers, or logos in the image.\n\nSlide content\n\n- Strong foundation in programming languages and paradigms.\n- Understanding of algorithms and data structures.\n- Proficiency in software development processes.\n- Knowledge of computer architecture and operating systems.\n- Experience with databases and information management.\n- Familiarity with software engineering principles and best practices.\n- Exposure to networking and cybersecurity concepts."
+    },
+    {
+      "id": "c514f72e-77e7-4321-8d00-de4b0c49653e",
+      "kind": "content",
+      "markdown": "# The Allure of the Magic\n\n## There is just so much to know\n\n- Every research field had to add their results\n- Data structures\n- Data bases\n- UI\n- Compilers\n- \n\n# Teaching the tricks and techniques became our primary focus",
+      "title": "The Allure of the Magic",
+      "body": "## There is just so much to know\n\n- Every research field had to add their results\n- Data structures\n- Data bases\n- UI\n- Compilers\n- \n\n# Teaching the tricks and techniques became our primary focus",
+      "image_prompt": "A whimsical medieval scene inside a stone castle, where a group of joyful builders, dressed in period-appropriate attire, are gathered around a large wooden table cluttered with old scrolls, compasses, and peculiar gadgets. Soft candlelight casts warm pools of light, highlighting their animated expressions as they discuss and playfully showcase their innovative inventions. Some work on rudimentary data structures using thick quills, while others analyze scrolls filled with drawn diagrams, merging the old with the new in a lighthearted atmosphere. The surrounding rustic textures, wooden beams, and stone walls enhance the medieval charm, ensuring there are no readable text, letters, numbers, or logos in the image."
+    },
+    {
+      "id": "cd36d50a-9f69-4c1f-8de8-b64228a02f4a",
+      "kind": "content",
+      "markdown": "# Where We Drifted\n\nWe began to treat **incantations** — syntax, rituals, the canon — as if they were **the degree**.\n\nWe **forgot** (or stopped saying out loud) that the mission was **teaching students to build**.\n\n**Knowing the spells is not the same as shipping something that matters.**",
+      "title": "Where We Drifted",
+      "body": "We began to treat **incantations** — syntax, rituals, the canon — as if they were **the degree**.\n\nWe **forgot** (or stopped saying out loud) that the mission was **teaching students to build**.\n\n**Knowing the spells is not the same as shipping something that matters.**",
+      "image_prompt": "A whimsical black-and-white ink drawing of a medieval workshop with a jester and a scholar collaborating on a large wooden contraption, surrounded by stone walls, wooden beams, and candlelight casting warm pools of light. The jester holds an oversized quill, pretending to cast spells, while the scholar is puzzled over blueprints, highlighting the contrast between magical incantations and practical building. A mix of medieval tools and modern gadgets lie scattered around, symbolizing the fusion of old and new in the quest for creation. The scene captures an imaginative, humorous atmosphere, with clearly defined silhouettes and gestures, ensuring no readable text, letters, numbers, or logos are present."
+    },
+    {
+      "id": "a60de312-1f4f-4969-a2ba-e165e370a170",
+      "kind": "content",
+      "markdown": "# Magicians were paid very well\n\nThey were paid well not because the work was glamorous — but because **almost no one else could do it**.\n\nYou had to **master the rites**: the vocabulary, the rituals, the sequence of steps that made the machine obey.\n\nIf you could not recite the spells, you were stuck — so the guild could charge for access to the magic.",
+      "title": "Magicians were paid very well",
+      "body": "They were paid well not because the work was glamorous — but because **almost no one else could do it**.\n\nYou had to **master the rites**: the vocabulary, the rituals, the sequence of steps that made the machine obey.\n\nIf you could not recite the spells, you were stuck — so the guild could charge for access to the magic.",
+      "image_prompt": "A medieval guild hall where robed magicians count heavy coin purses while townspeople wait outside a barred gate holding broken quills and confused ledgers. The magicians consult ornate ritual books and glowing scrolls of precise formulae, emphasizing exclusive knowledge. Stone arches, candlelight, expressive faces, whimsical tone, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "7de99796-eafe-4669-a642-b87f9a99a321",
+      "kind": "content",
+      "markdown": "# The Ladder Goes Up\n\n**Algorithms, Big-O** — domain incantations. You learn the **classics**; **previous magicians** wrote them.\n\n**Databases / SQL** — store data so you can **reach it fast** and **ask questions**. The spells get **closer to English**: *select… where…*",
+      "title": "The Ladder Goes Up",
+      "body": "**Algorithms, Big-O** — domain incantations. You learn the **classics**; **previous magicians** wrote them.\n\n**Databases / SQL** — store data so you can **reach it fast** and **ask questions**. The spells get **closer to English**: *select… where…*",
+      "image_prompt": ""
+    },
+    {
+      "id": "8837e721-79ad-4463-b05d-a9cff67fd3c9",
+      "kind": "content",
+      "markdown": "# The Pinnacle — and the Trap\n\nThen the **big magic**: **low-level to machine-level** — compilers, translation — often the **crown** of the undergrad program.\n\nWe **digest** the book; you **give it back** looking like our template. Grades reward **mimicry**.\n\nBy **year three**, many students still haven't **built** anything except **proof they echoed the spellbook**.",
+      "title": "The Pinnacle — and the Trap",
+      "body": "Then the **big magic**: **low-level to machine-level** — compilers, translation — often the **crown** of the undergrad program.\n\nWe **digest** the book; you **give it back** looking like our template. Grades reward **mimicry**.\n\nBy **year three**, many students still haven't **built** anything except **proof they echoed the spellbook**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "856f468e-0e7d-49b5-9def-288074664f56",
+      "kind": "content",
+      "markdown": "# Counselors Know the Gap\n\nWe **did** notice the gap between spell-mastery and shipping.\n\nCounselors would say: **do a project** — push **final-year** work where you **finally ship** something the world might want, as if the first three years were **rehearsal**.\n\nThe job market still asks for people who **delight customers** — not **only** people who ace the canon.",
+      "title": "Counselors Know the Gap",
+      "body": "We **did** notice the gap between spell-mastery and shipping.\n\nCounselors would say: **do a project** — push **final-year** work where you **finally ship** something the world might want, as if the first three years were **rehearsal**.\n\nThe job market still asks for people who **delight customers** — not **only** people who ace the canon.",
+      "image_prompt": "A medieval university courtyard where wise counselors in academic robes urge anxious students toward a single looming project gate labeled only by symbols of completion, while scrolls of ritual syntax pile up unused. The mood is well-meaning pressure and late repair. Stone arches, banners, candlelit notice boards, expressive faces, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "31252e4e-d167-4da3-bfd3-7b69bb81227a",
+      "kind": "content",
+      "markdown": "# Co-ops: Industry Teaches What We Didn’t\n\n**Co-operative education** became common because universities struggled to teach **how to build** in the core curriculum.\n\nSo we leaned on **terms in industry** — apprenticeships off-campus — to supply the missing experience.\n\nThat helped. It also quietly admitted the gap: **building** was not what the lecture hall was optimized for.",
+      "title": "Co-ops: Industry Teaches What We Didn’t",
+      "body": "**Co-operative education** became common because universities struggled to teach **how to build** in the core curriculum.\n\nSo we leaned on **terms in industry** — apprenticeships off-campus — to supply the missing experience.\n\nThat helped. It also quietly admitted the gap: **building** was not what the lecture hall was optimized for.",
+      "image_prompt": "A medieval university gate opens onto a busy town workshop street where students in scholar cloaks carry tools into guild halls and shipyards for long co-op seasons, while professors wave from the lecture tower behind. The scene contrasts classroom theory with hands-on building in the world. Warm light, expressive motion, stone and timber, whimsical medieval-meets-industry apprenticeship tone, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "f90edc1e-6519-45c6-bc22-2fcc67ae730e",
+      "kind": "content",
+      "markdown": "# CS Was Never Only About Coding\n\nWe taught it that way when we weren't **builders**.\n\n**You** know the incantations. **So does every LLM.**\n\nThe job is no longer **teaching incantations**. It's **teaching how to build**.",
+      "title": "CS Was Never Only About Coding",
+      "body": "We taught it that way when we weren't **builders**.\n\n**You** know the incantations. **So does every LLM.**\n\nThe job is no longer **teaching incantations**. It's **teaching how to build**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "9143c156-07b1-43ad-ada4-94a9b65bb112",
+      "kind": "content",
+      "markdown": "# I've Always Been a Builder\n\nWhat follows isn't random biography. It's the same instinct over and over: **make something** that **changes what happens next**.\n\nInstitutions kept foregrounding **incantations**. I kept reaching for **builds** — games, workarounds, tools for real work.",
+      "title": "I've Always Been a Builder",
+      "body": "What follows isn't random biography. It's the same instinct over and over: **make something** that **changes what happens next**.\n\nInstitutions kept foregrounding **incantations**. I kept reaching for **builds** — games, workarounds, tools for real work.",
+      "image_prompt": ""
+    },
+    {
+      "id": "4033e7f3-d9ed-4b4b-936b-ab3193091a5c",
+      "kind": "content",
+      "markdown": "# Grade 2 — Multiplication Tables\n\nThe teacher kept the tables on her desk. I went home and taught myself to **read upside down**.\n\nMy mother asked why. I said: she's showing me the answers — I'll read upside down so I don't have to drill the tables.\n\nI still read upside down. I never really memorized the tables. It hasn't hurt my career.",
+      "title": "Grade 2 — Multiplication Tables",
+      "body": "The teacher kept the tables on her desk. I went home and taught myself to **read upside down**.\n\nMy mother asked why. I said: she's showing me the answers — I'll read upside down so I don't have to drill the tables.\n\nI still read upside down. I never really memorized the tables. It hasn't hurt my career.",
+      "image_prompt": ""
+    },
+    {
+      "id": "d90c793a-85b2-4c16-b3cc-866ae5ed9f55",
+      "kind": "content",
+      "markdown": "# My First \"ChatGPT\"\n\nIt wasn't magic — it was figuring out the **prompt**: what to learn, how to position myself, to get the data I needed.",
+      "title": "My First \"ChatGPT\"",
+      "body": "It wasn't magic — it was figuring out the **prompt**: what to learn, how to position myself, to get the data I needed.",
+      "image_prompt": ""
+    },
+    {
+      "id": "2c78bc0a-a3b4-46f3-b764-c31caa559126",
+      "kind": "content",
+      "markdown": "# \"That Isn't a Real Computer\"\n\nUniversity of Windsor — I wanted to do coursework on my **Z-80** instead of the lab **IBM 360**.\n\nA professor said I didn't have a **real** machine: if it wasn't **32-bit**, it didn't count.\n\nPart of my training, he said, was **punch cards** — because that's how you drove the **IBM 360**.",
+      "title": "\"That Isn't a Real Computer\"",
+      "body": "University of Windsor — I wanted to do coursework on my **Z-80** instead of the lab **IBM 360**.\n\nA professor said I didn't have a **real** machine: if it wasn't **32-bit**, it didn't count.\n\nPart of my training, he said, was **punch cards** — because that's how you drove the **IBM 360**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "8d293112-31c6-4da5-9292-ff3a1f0132e8",
+      "kind": "content",
+      "markdown": "# A Better Machine — Same Ritual\n\nYear three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room of terminals**.\n\nThe **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **IOL window**.\n\nThe **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
+      "title": "A Better Machine — Same Ritual",
+      "body": "Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room of terminals**.\n\nThe **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **IOL window**.\n\nThe **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
+      "image_prompt": ""
+    },
+    {
+      "id": "0a182380-5fc8-4fcc-8640-ebd38b3c9290",
+      "kind": "content",
+      "markdown": "# The Pattern Didn't Stop\n\n**IDEs:** some faculty banned them — unless you used **vi** and **make**, it wasn't \"real CS.\"\n\n**Tab completion:** a senior engineer wanted it **off** for juniors — too easy to tell who had **memorized the library incantations**.\n\nSame mistake: **confusing ritual with skill** — difficulty as a **proxy for merit**.",
+      "title": "The Pattern Didn't Stop",
+      "body": "**IDEs:** some faculty banned them — unless you used **vi** and **make**, it wasn't \"real CS.\"\n\n**Tab completion:** a senior engineer wanted it **off** for juniors — too easy to tell who had **memorized the library incantations**.\n\nSame mistake: **confusing ritual with skill** — difficulty as a **proxy for merit**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "a59301cc-5869-4b6a-b2ba-be981c5aeba5",
+      "kind": "content",
+      "markdown": "# A Colleague, Early in My Career\n\nI asked why he didn't program anymore.\n\n**\"I don't need to practice. I already know it.\"**\n\nIn his model, teaching CS was teaching **incantations** — A's meant you'd learned them — so you **were** a computer scientist. **Done.**",
+      "title": "A Colleague, Early in My Career",
+      "body": "I asked why he didn't program anymore.\n\n**\"I don't need to practice. I already know it.\"**\n\nIn his model, teaching CS was teaching **incantations** — A's meant you'd learned them — so you **were** a computer scientist. **Done.**",
+      "image_prompt": ""
+    },
+    {
+      "id": "0c0001e2-be2c-4edd-992f-b43288d0086a",
+      "kind": "content",
+      "markdown": "# Magicians and Wizards\n\nThe world doesn't want **magicians who repeat the old magic**.\n\nIt wants **wizards** who **see problems**, build **solutions**, and leave **people glad**.",
+      "title": "Magicians and Wizards",
+      "body": "The world doesn't want **magicians who repeat the old magic**.\n\nIt wants **wizards** who **see problems**, build **solutions**, and leave **people glad**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "c0575c2a-0009-4b1a-8b77-f7c24219d872",
+      "kind": "content",
+      "markdown": "# A Morning in 1905\n\nA blacksmith didn't wake up one morning to find horses gone and Model Ts parked outside his shop.\n\nThe change **crept in**.\n\nFirst it was a neighbor asking if he could straighten a bent axle.\nThen it was fabricating a bracket that didn't exist yet because no parts catalog did either.",
+      "title": "A Morning in 1905",
+      "body": "A blacksmith didn't wake up one morning to find horses gone and Model Ts parked outside his shop.\n\nThe change **crept in**.\n\nFirst it was a neighbor asking if he could straighten a bent axle.\nThen it was fabricating a bracket that didn't exist yet because no parts catalog did either.",
+      "image_prompt": ""
+    },
+    {
+      "id": "ebc9d04f-8b46-42bc-873c-40fccb277fa4",
+      "kind": "content",
+      "markdown": "# Running example: a real person with a real problem\n\n**Summer job — my uncle’s shop.** Forklift batteries in for recycling.\n\nThe actual work: **weigh** each unit on the scale, **record how many cells**, **tally** everything for the day, **submit the bill** to the recycling plant — and deal with the fact that people **mistype** and still need the books to **close**.\n\nNot a programming problem on day one. A **human** losing time and trust to arithmetic and paperwork.",
+      "title": "Running example: a real person with a real problem",
+      "body": "**Summer job — my uncle’s shop.** Forklift batteries in for recycling.\n\nThe actual work: **weigh** each unit on the scale, **record how many cells**, **tally** everything for the day, **submit the bill** to the recycling plant — and deal with the fact that people **mistype** and still need the books to **close**.\n\nNot a programming problem on day one. A **human** losing time and trust to arithmetic and paperwork.",
+      "image_prompt": ""
+    },
+    {
+      "id": "441e6936-9a9e-4031-9a1c-0771d7196e35",
+      "kind": "content",
+      "markdown": "# Understand the problem\n\nWhat does **done** look like? Faster tally, fewer errors, and numbers you can **defend** if the plant or your own crew asks “where did this come from?”\n\nWhat are the **constraints**? Who runs it, on what machine, with what patience — **no IT department**, no appetite for cleverness that only the author understands.\n\nYou don’t open an editor yet. You **interview the work** until the success criteria are boringly clear.",
+      "title": "Understand the problem",
+      "body": "What does **done** look like? Faster tally, fewer errors, and numbers you can **defend** if the plant or your own crew asks “where did this come from?”\n\nWhat are the **constraints**? Who runs it, on what machine, with what patience — **no IT department**, no appetite for cleverness that only the author understands.\n\nYou don’t open an editor yet. You **interview the work** until the success criteria are boringly clear.",
+      "image_prompt": ""
+    },
+    {
+      "id": "139069e7-6afb-43ac-95a8-bd92cf17f025",
+      "kind": "content",
+      "markdown": "# Understand how to automate it — that creates sub-problems\n\nAutomation isn’t one miracle button. It’s **decomposition**.\n\nTypical threads: **capture** weights and counts safely → **accumulate** totals correctly → **end-of-day report** the business trusts → **persist / correct** enough to back out a bad entry without replaying everything.\n\nEach thread is a **small bet** you can test against reality before you pretend you’re “done.”",
+      "title": "Understand how to automate it — that creates sub-problems",
+      "body": "Automation isn’t one miracle button. It’s **decomposition**.\n\nTypical threads: **capture** weights and counts safely → **accumulate** totals correctly → **end-of-day report** the business trusts → **persist / correct** enough to back out a bad entry without replaying everything.\n\nEach thread is a **small bet** you can test against reality before you pretend you’re “done.”",
+      "image_prompt": ""
+    },
+    {
+      "id": "14b3512e-1646-4a11-a8a3-35895f586e16",
+      "kind": "content",
+      "markdown": "# For each sub-problem: code. Then put the pieces together.\n\nShip the **smallest proof** per piece (input loop, running totals, printable tally, save or “fix last line” — tune to your story on stage).\n\n**Integration is the product:** shared data, clear handoffs, and **one error** shouldn’t corrupt the whole day.\n\nGoal: something **they** can run — and **defend** to the plant — not a program only you understand.",
+      "title": "For each sub-problem: code. Then put the pieces together.",
+      "body": "Ship the **smallest proof** per piece (input loop, running totals, printable tally, save or “fix last line” — tune to your story on stage).\n\n**Integration is the product:** shared data, clear handoffs, and **one error** shouldn’t corrupt the whole day.\n\nGoal: something **they** can run — and **defend** to the plant — not a program only you understand.",
+      "image_prompt": ""
+    },
+    {
+      "id": "b9851894-a1bf-4b7e-9955-73c14bb2d5e9",
+      "kind": "content",
+      "markdown": "# Happy customer\n\nMy uncle wasn’t grading my **style**. He wanted the **day closed clean**: less time reconciling, numbers that held up.\n\n**First time I felt what this work is for** — a **delighted customer** (even when the customer was family).\n\nThat’s the bar we skip when we teach **incantations** instead of **building for someone**.",
+      "title": "Happy customer",
+      "body": "My uncle wasn’t grading my **style**. He wanted the **day closed clean**: less time reconciling, numbers that held up.\n\n**First time I felt what this work is for** — a **delighted customer** (even when the customer was family).\n\nThat’s the bar we skip when we teach **incantations** instead of **building for someone**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "0f53ccd7-3132-40b6-a5cd-f82e88be43c1",
+      "kind": "content",
+      "markdown": "# The Part We Get Wrong\n\nThe **horseshoe** was a known problem — heat, shape, nail it on.\n\nThe **automobile** was something else: combustion, drivetrain, electrical systems, tolerances the smith had never seen.",
+      "title": "The Part We Get Wrong",
+      "body": "The **horseshoe** was a known problem — heat, shape, nail it on.\n\nThe **automobile** was something else: combustion, drivetrain, electrical systems, tolerances the smith had never seen.",
+      "image_prompt": ""
+    },
+    {
+      "id": "7249bc9f-2eda-4220-97f4-195092bae879",
+      "kind": "content",
+      "markdown": "# The Thing Being Built Got Harder\n\nThe **complexity** forced the transition — not the mere arrival of a new machine.\n\nUnderstanding metal and stress didn't become **less** important. It became **more** — the automobile demanded a **deeper** version of the same insight.",
+      "title": "The Thing Being Built Got Harder",
+      "body": "The **complexity** forced the transition — not the mere arrival of a new machine.\n\nUnderstanding metal and stress didn't become **less** important. It became **more** — the automobile demanded a **deeper** version of the same insight.",
+      "image_prompt": ""
+    },
+    {
+      "id": "44fdbee4-d5ed-48b1-808d-3a3831a60dbc",
+      "kind": "content",
+      "markdown": "# Tools That Match the Problem\n\nThe pneumatic press. The torque wrench. The diagnostic gauge.\n\nThey didn't replace expertise. They were **necessary** because the problem **outgrew** the hammer and anvil.",
+      "title": "Tools That Match the Problem",
+      "body": "The pneumatic press. The torque wrench. The diagnostic gauge.\n\nThey didn't replace expertise. They were **necessary** because the problem **outgrew** the hammer and anvil.",
+      "image_prompt": ""
+    },
+    {
+      "id": "f61beadc-a084-49b3-a692-df4f7a2c8cc1",
+      "kind": "content",
+      "markdown": "# The Blacksmith Who Thrived\n\nNot the one who kept shoeing horses from **stubbornness**.\n\nNot the one who **panicked** and threw away what he knew.\n\nThe one who saw the real skill was **how metal behaves under force** — carried into a **harder** problem with **new tools**.",
+      "title": "The Blacksmith Who Thrived",
+      "body": "Not the one who kept shoeing horses from **stubbornness**.\n\nNot the one who **panicked** and threw away what he knew.\n\nThe one who saw the real skill was **how metal behaves under force** — carried into a **harder** problem with **new tools**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "3937ffc1-ba8b-41e0-8b77-c1bedf4a97f3",
+      "kind": "quote",
+      "markdown": "# We're living through that same kind of morning right now.",
+      "title": "Quote: We're living through that same kind of morning right now.",
+      "body": "We're living through that same kind of morning right now.",
+      "image_prompt": ""
+    },
+    {
+      "id": "eef7a4df-18ea-4ab4-9689-343942b45d79",
+      "kind": "content",
+      "markdown": "# The Developer in 2026\n\nAn LLM can emit a function from a prompt — that doesn't make the work **simple**.\n\nWhat we're asked to build is **more ambitious**: distributed, integrated, cross-platform, **always on**.",
+      "title": "The Developer in 2026",
+      "body": "An LLM can emit a function from a prompt — that doesn't make the work **simple**.\n\nWhat we're asked to build is **more ambitious**: distributed, integrated, cross-platform, **always on**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "05e7bc73-8136-4773-a9e0-feb8c3581478",
+      "kind": "content",
+      "markdown": "# The Pattern Repeats\n\nLLM tooling can make you **faster**.\n\nThe **artifact** still demands **deeper** understanding — not shallower.\n\nNew tools because the **problem got harder** — and the tools **require more** judgment, not less.",
+      "title": "The Pattern Repeats",
+      "body": "LLM tooling can make you **faster**.\n\nThe **artifact** still demands **deeper** understanding — not shallower.\n\nNew tools because the **problem got harder** — and the tools **require more** judgment, not less.",
+      "image_prompt": ""
+    },
+    {
+      "id": "dea4ad64-11a5-4612-b62a-dfab3affc6d1",
+      "kind": "quote",
+      "markdown": "# Mistake the tool for the skill → build fast, debug forever.\n\n# Refuse the tool entirely → build carefully, ship never.",
+      "title": "Quote: Mistake the tool for the skill → build fast, debug forever.",
+      "body": "Mistake the tool for the skill → build fast, debug forever.\nRefuse the tool entirely → build carefully, ship never.",
+      "image_prompt": ""
+    },
+    {
+      "id": "902f21b1-d1c0-40f1-a210-fdf4a16b135a",
+      "kind": "content",
+      "markdown": "# Who Will Thrive\n\nNot those who think **typing syntax** was the job.\n\nNot those who think **prompting** replaces **knowing what the system does**.\n\nThe skill was always **decomposing problems**, **seeing systems**, knowing what **correct** looks like.",
+      "title": "Who Will Thrive",
+      "body": "Not those who think **typing syntax** was the job.\n\nNot those who think **prompting** replaces **knowing what the system does**.\n\nThe skill was always **decomposing problems**, **seeing systems**, knowing what **correct** looks like.",
+      "image_prompt": ""
+    },
+    {
+      "id": "b472172b-2d08-4bdf-a3d3-7b8540f1823f",
+      "kind": "content",
+      "markdown": "# The Garage\n\nThe shop became a **garage**. It didn't need **fewer** skills — it needed **different** ones, same foundation, **harder** brief.\n\nSame for every IDE with an **AI tab** next to the terminal.",
+      "title": "The Garage",
+      "body": "The shop became a **garage**. It didn't need **fewer** skills — it needed **different** ones, same foundation, **harder** brief.\n\nSame for every IDE with an **AI tab** next to the terminal.",
+      "image_prompt": ""
+    },
+    {
+      "id": "5a1b8aab-beba-48a5-853f-1005d19a6de2",
+      "kind": "quote",
+      "markdown": "# The question isn't only \"how do we teach when students have AI?\"\n\n# It's how we prepare them for work that is **fundamentally more complex** than a decade ago.",
+      "title": "Quote: The question isn't only \"how do we teach when students have AI?\"",
+      "body": "The question isn't only \"how do we teach when students have AI?\"\nIt's how we prepare them for work that is **fundamentally more complex** than a decade ago.",
+      "image_prompt": ""
+    },
+    {
+      "id": "6813fcfd-95d6-4421-827b-534264fec7fe",
+      "kind": "content",
+      "markdown": "# Reframing\n\n**Not:** How do we teach when students have AI?\n\n**But:** How do we teach **building** for problems that won't fit last decade's homework shapes?\n\nThe transition is **deeper understanding** — with tools that match the **real** problem.\n\nThat's the transition. That's **always** been the transition.",
+      "title": "Reframing",
+      "body": "**Not:** How do we teach when students have AI?\n\n**But:** How do we teach **building** for problems that won't fit last decade's homework shapes?\n\nThe transition is **deeper understanding** — with tools that match the **real** problem.\n\nThat's the transition. That's **always** been the transition.",
+      "image_prompt": ""
+    }
+  ],
+  "text_model": "openai/gpt-4o-mini",
+  "model": "google/gemini-2.5-flash-image",
+  "output_directory": "slide_images",
+  "global_style_file": "global_style.md",
+  "width": 1024,
+  "height": 1024,
+  "content_guide": "This is a keynote lecture where we are advocating a return to thinking about computer science as the preparation of builders, not just certified CS graduates.  In the slide content suggestions please keep this overall theme in mind."
+}
