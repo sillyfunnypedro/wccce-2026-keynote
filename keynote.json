@@ -311,13 +311,12 @@
       "body": "- Industry wants people who can **work at mid-level** sooner.\n- **LLMs** can **mostly** replace the old **junior** execution loop.\n- The bar moves: judgment, integration, ownership, and **shipping** matter more.\n- Teach building **customer-facing** tools.\n- Make them **reliable**, **tested**, **secure**, and **useful**.",
       "image_prompt": "A medieval market hall where guild engineers unveil sturdy public works — a bridge gate, a water clock, a notice board — while townspeople test them in plain sight. Emblems suggest reliability, inspection, and guarded locks without readable symbols. Warm light, stone and timber, expressive trust-building mood, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
-   
     {
       "id": "856f468e-0e7d-49b5-9def-288074664f56",
       "kind": "content",
-      "markdown": "# Counselors Know the Gap\n\n- We **did** notice the gap between spell-mastery and shipping.\n- Counselors would say: **do a project** — push **final-year** work where you **finally\n- ship** something the world might want, as if the first three years were **rehearsal**.\n- The job market still asks for people who **delight customers** — not **only** people who\n- ace the canon.",
+      "markdown": "# Counselors Know the Gap\n\n- We **did** notice the gap between spell-mastery and shipping.\n- Counselors would say: **do a project** — push **final-year** work where you **finally ship** something the world might want, as if the first three years were **rehearsal**.\n- The job market still asks for people who **delight customers** — not **only** people who ace the canon.",
       "title": "Counselors Know the Gap",
-      "body": "- We **did** notice the gap between spell-mastery and shipping.\n- Counselors would say: **do a project** — push **final-year** work where you **finally\n- ship** something the world might want, as if the first three years were **rehearsal**.\n- The job market still asks for people who **delight customers** — not **only** people who\n- ace the canon.",
+      "body": "- We **did** notice the gap between spell-mastery and shipping.\n- Counselors would say: **do a project** — push **final-year** work where you **finally ship** something the world might want, as if the first three years were **rehearsal**.\n- The job market still asks for people who **delight customers** — not **only** people who ace the canon.",
       "image_prompt": "A medieval university courtyard where wise counselors in academic robes urge anxious students toward a single looming project gate labeled only by symbols of completion, while scrolls of ritual syntax pile up unused. The mood is well-meaning pressure and late repair. Stone arches, banners, candlelit notice boards, expressive faces, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
@@ -359,7 +358,7 @@
       "title": "Stay Builders for the Next Wave",
       "body": "- **Building never ends** — we must be **practitioners of building**, not replayers of the old canon.\n- If we **teach spells**, we can end up like that **colleague**: *I already know it — **I'm done**.*\n- If we **train builders**, every **LLM advance** **excites us more** — and we become **exceptional partners** in our **students'** and **colleagues'** **growth**.",
       "image_prompt": "A wide medieval dawn panorama: on one side a bored master closes a perfect spell codex forever, on the other mentors and students raise new scaffolds together as luminous assistant spirits hand up beams — teamwork, renewal, forward motion. Hopeful epic mood, whimsical medieval style, no readable text, letters, numbers, or logos."
-    }, 
+    },
     {
       "id": "6813fcfd-95d6-4421-827b-534264fec7fe",
       "kind": "content",
@@ -371,9 +370,9 @@
     {
       "id": "b234d7ad-276e-4014-b6de-265de40a376d",
       "kind": "content",
-      "markdown": "# Let's Build\n\n- **Dr Richard Caron**, **1983** — numerical analysis: Never before have we been so capable of **computing numbers**, **our job** is to ensure they are **correct**.\n- **Me**, with respect to **Dr Caron**: Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.\n- **Let's build.**",
+      "markdown": "# Let's Build\n\n# Dr Richard Caron\n- **1983** — numerical analysis: Never before have we been so capable of **computing numbers**, **our job** is to ensure they are **correct**.\n\n# Me (with respect to Dr Caron)\n- Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.\n\n# Let us practice building.",
       "title": "Let's Build",
-      "body": "- **Dr Richard Caron**, **1983** — numerical analysis: Never before have we been so capable of **computing numbers**, **our job** is to ensure they are **correct**.\n- **Me**, with respect to **Dr Caron**: Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.\n- **Let's build.**",
+      "body": "# Dr Richard Caron\n- **1983** — numerical analysis: Never before have we been so capable of **computing numbers**, **our job** is to ensure they are **correct**.\n\n# Me (with respect to Dr Caron)\n- Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.\n\n# Let us practice building.",
       "image_prompt": "A respectful medieval split tableau: left, Dr Richard Caron as a thoughtful scholar-lecturer demonstrates careful verification of glowing abacus-like number engines and brass integrators; right, a modern mentor figure echoes the same posture beside swirling luminous code ribbons and cooperative construct spirits, emphasizing correctness over volume. Stone arches, warm candlelight, bridge across decades, humble tribute mood, whimsical medieval style, no readable text, letters, numbers, or logos."
     }
   ],
