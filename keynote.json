@@ -224,85 +224,36 @@
       "image_prompt": ""
     },
     {
-      "id": "ebc9d04f-8b46-42bc-873c-40fccb277fa4",
-      "kind": "content",
-      "markdown": "# Running example: a real person with a real problem\n\n- **Summer job — my uncle’s shop.** Forklift batteries in for recycling.\n- The actual work: **weigh** each unit on the scale, **record how many cells**, **tally**\n- everything for the day, **submit the bill** to the recycling plant — and deal with the\n- fact that people **mistype** and still need the books to **close**.\n- Not a programming problem on day one.\n- A **human** losing time and trust to arithmetic and paperwork.",
-      "title": "Running example: a real person with a real problem",
-      "body": "- **Summer job — my uncle’s shop.** Forklift batteries in for recycling.\n- The actual work: **weigh** each unit on the scale, **record how many cells**, **tally**\n- everything for the day, **submit the bill** to the recycling plant — and deal with the\n- fact that people **mistype** and still need the books to **close**.\n- Not a programming problem on day one.\n- A **human** losing time and trust to arithmetic and paperwork.",
-      "image_prompt": ""
-    },
-    {
-      "id": "441e6936-9a9e-4031-9a1c-0771d7196e35",
-      "kind": "content",
-      "markdown": "# Understand the problem\n\n- What does **done** look like?\n- Faster tally, fewer errors, and numbers you can **defend** if the plant or your own crew\n- asks “where did this come from?”\n- What are the **constraints**?\n- Who runs it, on what machine, with what patience — **no IT department**, no appetite for\n- cleverness that only the author understands.\n- You don’t open an editor yet.\n- You **interview the work** until the success criteria are boringly clear.",
-      "title": "Understand the problem",
-      "body": "- What does **done** look like?\n- Faster tally, fewer errors, and numbers you can **defend** if the plant or your own crew\n- asks “where did this come from?”\n- What are the **constraints**?\n- Who runs it, on what machine, with what patience — **no IT department**, no appetite for\n- cleverness that only the author understands.\n- You don’t open an editor yet.\n- You **interview the work** until the success criteria are boringly clear.",
-      "image_prompt": ""
-    },
-    {
-      "id": "139069e7-6afb-43ac-95a8-bd92cf17f025",
-      "kind": "content",
-      "markdown": "# Understand how to automate it — that creates sub-problems\n\n- Automation isn’t one miracle button.\n- It’s **decomposition**.\n- Typical threads: **capture** weights and counts safely → **accumulate** totals correctly\n- → **end-of-day report** the business trusts → **persist / correct** enough to back out a\n- bad entry without replaying everything.\n- Each thread is a **small bet** you can test against reality before you pretend you’re\n- “done.”",
-      "title": "Understand how to automate it — that creates sub-problems",
-      "body": "- Automation isn’t one miracle button.\n- It’s **decomposition**.\n- Typical threads: **capture** weights and counts safely → **accumulate** totals correctly\n- → **end-of-day report** the business trusts → **persist / correct** enough to back out a\n- bad entry without replaying everything.\n- Each thread is a **small bet** you can test against reality before you pretend you’re\n- “done.”",
-      "image_prompt": ""
-    },
-    {
-      "id": "14b3512e-1646-4a11-a8a3-35895f586e16",
-      "kind": "content",
-      "markdown": "# For each sub-problem: code. Then put the pieces together.\n\n- Ship the **smallest proof** per piece (input loop, running totals, printable tally, save\n- or “fix last line” — tune to your story on stage).\n- **Integration is the product:** shared data, clear handoffs, and **one error** shouldn’t\n- corrupt the whole day.\n- Goal: something **they** can run — and **defend** to the plant — not a program only you\n- understand.",
-      "title": "For each sub-problem: code. Then put the pieces together.",
-      "body": "- Ship the **smallest proof** per piece (input loop, running totals, printable tally, save\n- or “fix last line” — tune to your story on stage).\n- **Integration is the product:** shared data, clear handoffs, and **one error** shouldn’t\n- corrupt the whole day.\n- Goal: something **they** can run — and **defend** to the plant — not a program only you\n- understand.",
-      "image_prompt": ""
-    },
-    {
-      "id": "b9851894-a1bf-4b7e-9955-73c14bb2d5e9",
-      "kind": "content",
-      "markdown": "# Happy customer\n\n- My uncle wasn’t grading my **style**.\n- He wanted the **day closed clean**: less time reconciling, numbers that held up.\n- **First time I felt what this work is for** — a **delighted customer** (even when the\n- customer was family).\n- That’s the bar we skip when we teach **incantations** instead of **building for\n- someone**.",
-      "title": "Happy customer",
-      "body": "- My uncle wasn’t grading my **style**.\n- He wanted the **day closed clean**: less time reconciling, numbers that held up.\n- **First time I felt what this work is for** — a **delighted customer** (even when the\n- customer was family).\n- That’s the bar we skip when we teach **incantations** instead of **building for\n- someone**.",
-      "image_prompt": ""
-    },
-    {
-      "id": "0f53ccd7-3132-40b6-a5cd-f82e88be43c1",
-      "kind": "content",
-      "markdown": "# The Part We Get Wrong\n\n- The **horseshoe** was a known problem — heat, shape, nail it on.\n- The **automobile** was something else: combustion, drivetrain, electrical systems,\n- tolerances the smith had never seen.",
-      "title": "The Part We Get Wrong",
-      "body": "- The **horseshoe** was a known problem — heat, shape, nail it on.\n- The **automobile** was something else: combustion, drivetrain, electrical systems,\n- tolerances the smith had never seen.",
-      "image_prompt": ""
-    },
-    {
-      "id": "7249bc9f-2eda-4220-97f4-195092bae879",
-      "kind": "content",
-      "markdown": "# The Thing Being Built Got Harder\n\n- The **complexity** forced the transition — not the mere arrival of a new machine.\n- Understanding metal and stress didn't become **less** important.\n- It became **more** — the automobile demanded a **deeper** version of the same insight.",
-      "title": "The Thing Being Built Got Harder",
-      "body": "- The **complexity** forced the transition — not the mere arrival of a new machine.\n- Understanding metal and stress didn't become **less** important.\n- It became **more** — the automobile demanded a **deeper** version of the same insight.",
-      "image_prompt": ""
-    },
-    {
-      "id": "44fdbee4-d5ed-48b1-808d-3a3831a60dbc",
-      "kind": "content",
-      "markdown": "# Tools That Match the Problem\n\n- The pneumatic press.\n- The torque wrench.\n- The diagnostic gauge.\n- They didn't replace expertise.\n- They were **necessary** because the problem **outgrew** the hammer and anvil.",
-      "title": "Tools That Match the Problem",
-      "body": "- The pneumatic press.\n- The torque wrench.\n- The diagnostic gauge.\n- They didn't replace expertise.\n- They were **necessary** because the problem **outgrew** the hammer and anvil.",
-      "image_prompt": ""
-    },
-    {
-      "id": "f61beadc-a084-49b3-a692-df4f7a2c8cc1",
-      "kind": "content",
-      "markdown": "# The Blacksmith Who Thrived\n\n- Not the one who kept shoeing horses from **stubbornness**.\n- Not the one who **panicked** and threw away what he knew.\n- The one who saw the real skill was **how metal behaves under force** — carried into a\n- **harder** problem with **new tools**.",
-      "title": "The Blacksmith Who Thrived",
-      "body": "- Not the one who kept shoeing horses from **stubbornness**.\n- Not the one who **panicked** and threw away what he knew.\n- The one who saw the real skill was **how metal behaves under force** — carried into a\n- **harder** problem with **new tools**.",
-      "image_prompt": ""
-    },
-
-    {
       "id": "eef7a4df-18ea-4ab4-9689-343942b45d79",
       "kind": "content",
-      "markdown": "# The Developer in 2026\n\n- An LLM can emit a function from a prompt — that doesn't make the work **simple**.\n- What we're asked to build is **more ambitious**: distributed, integrated,\n- cross-platform, **always on**.",
-      "title": "The Developer in 2026",
-      "body": "- An LLM can emit a function from a prompt — that doesn't make the work **simple**.\n- What we're asked to build is **more ambitious**: distributed, integrated,\n- cross-platform, **always on**.",
-      "image_prompt": ""
+      "markdown": "# Junior Engineers\n\n- Junior engineers **write code as told**.\n- They implement tasks from tickets, specs, and examples.\n- The job is clarity, correctness, and steady execution.",
+      "title": "Junior Engineers",
+      "body": "- Junior engineers **write code as told**.\n- They implement tasks from tickets, specs, and examples.\n- The job is clarity, correctness, and steady execution.",
+      "image_prompt": "A medieval apprentice scribe carefully copies exact instructions from a master's scroll onto parchment, surrounded by ink pots and rulers, focused on faithful execution rather than invention. Warm candlelight, stone workshop, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "c6165e55-2057-4668-8f5a-34a4d0d68a1e",
+      "kind": "content",
+      "markdown": "# Mid-Level Engineers\n\n- Mid-level engineers **solve problems they are given**.\n- They break work into pieces, choose approaches, and own outcomes within a defined problem space.\n- They coordinate with others and unblock themselves more often.",
+      "title": "Mid-Level Engineers",
+      "body": "- Mid-level engineers **solve problems they are given**.\n- They break work into pieces, choose approaches, and own outcomes within a defined problem space.\n- They coordinate with others and unblock themselves more often.",
+      "image_prompt": "A guild journeyman studies a broken mechanism on a wooden table, sketches alternatives, tests fixes with tools, and confers briefly with peers—problem-solving within a clear charter. Medieval workshop, expressive gestures, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "e3010384-7aa6-41cb-816e-a4f8965a57a9",
+      "kind": "content",
+      "markdown": "# Senior Engineers\n\n- Senior engineers think about **business** and **identify problems** worth solving.\n- They set direction, manage risk, and decide what not to build.\n- They translate messy reality into work other engineers can execute.",
+      "title": "Senior Engineers",
+      "body": "- Senior engineers think about **business** and **identify problems** worth solving.\n- They set direction, manage risk, and decide what not to build.\n- They translate messy reality into work other engineers can execute.",
+      "image_prompt": "A senior guild strategist stands before a large map and ledgers, pointing to priorities while merchants explain constraints; the scene emphasizes judgment, trade-offs, and problem discovery rather than typing. Medieval hall, warm light, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "ad7ab361-0568-42b6-8a2b-ba5b0dea51f0",
+      "kind": "content",
+      "markdown": "# From Senior to Junior: How Tasks Flow\n\n- A **senior** frames the problem, constraints, and acceptance criteria.\n- Work is split into tasks with examples, tests, and checkpoints.\n- **Juniors** implement; mids integrate and refine; seniors review and adjust scope.\n- The system is a pipeline of intent — not a solo spellcasting contest.",
+      "title": "From Senior to Junior: How Tasks Flow",
+      "body": "- A **senior** frames the problem, constraints, and acceptance criteria.\n- Work is split into tasks with examples, tests, and checkpoints.\n- **Juniors** implement; mids integrate and refine; seniors review and adjust scope.\n- The system is a pipeline of intent — not a solo spellcasting contest.",
+      "image_prompt": "A medieval command tent showing a clear chain: a senior commander marks priorities on a campaign map, messengers carry sealed task bundles to journeymen, and apprentices execute detailed work at benches. Orderly flow implied by gestures and layout, no readable text, letters, numbers, or logos."
     },
     {
       "id": "05e7bc73-8136-4773-a9e0-feb8c3581478",
