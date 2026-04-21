@@ -168,68 +168,20 @@
       "image_prompt": "A medieval university hall at a crossroads: scholars in academic robes examine new practical tools laid out on a long table while traditional spell scrolls hang on the walls behind them. The mood is reflective and transitional, asking how the academy adapts to help people build. Stone arches, warm candlelight, expressive gestures, balanced composition, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
-      "id": "8837e721-79ad-4463-b05d-a9cff67fd3c9",
-      "kind": "content",
-      "markdown": "# The Pinnacle — and the Trap\n\n- Then the **big magic**: **low-level to machine-level** — compilers, translation — often\n- the **crown** of the undergrad program.\n- We **digest** the book; you **give it back** looking like our template.\n- Grades reward **mimicry**.\n- By **year three**, many students still haven't **built** anything except **proof they\n- echoed the spellbook**.",
-      "title": "The Pinnacle — and the Trap",
-      "body": "- Then the **big magic**: **low-level to machine-level** — compilers, translation — often\n- the **crown** of the undergrad program.\n- We **digest** the book; you **give it back** looking like our template.\n- Grades reward **mimicry**.\n- By **year three**, many students still haven't **built** anything except **proof they\n- echoed the spellbook**.",
-      "image_prompt": ""
-    },
-    {
-      "id": "856f468e-0e7d-49b5-9def-288074664f56",
-      "kind": "content",
-      "markdown": "# Counselors Know the Gap\n\n- We **did** notice the gap between spell-mastery and shipping.\n- Counselors would say: **do a project** — push **final-year** work where you **finally\n- ship** something the world might want, as if the first three years were **rehearsal**.\n- The job market still asks for people who **delight customers** — not **only** people who\n- ace the canon.",
-      "title": "Counselors Know the Gap",
-      "body": "- We **did** notice the gap between spell-mastery and shipping.\n- Counselors would say: **do a project** — push **final-year** work where you **finally\n- ship** something the world might want, as if the first three years were **rehearsal**.\n- The job market still asks for people who **delight customers** — not **only** people who\n- ace the canon.",
-      "image_prompt": "A medieval university courtyard where wise counselors in academic robes urge anxious students toward a single looming project gate labeled only by symbols of completion, while scrolls of ritual syntax pile up unused. The mood is well-meaning pressure and late repair. Stone arches, banners, candlelit notice boards, expressive faces, whimsical medieval style, no readable text, letters, numbers, or logos."
-    },
-    {
-      "id": "31252e4e-d167-4da3-bfd3-7b69bb81227a",
-      "kind": "content",
-      "markdown": "# Co-ops: Industry Teaches What We Didn’t\n\n- **Co-operative education** became common because universities struggled to teach **how\n- to build** in the core curriculum.\n- So we leaned on **terms in industry** — apprenticeships off-campus — to supply the\n- missing experience.\n- That helped.\n- It also quietly admitted the gap: **building** was not what the lecture hall was\n- optimized for.",
-      "title": "Co-ops: Industry Teaches What We Didn’t",
-      "body": "- **Co-operative education** became common because universities struggled to teach **how\n- to build** in the core curriculum.\n- So we leaned on **terms in industry** — apprenticeships off-campus — to supply the\n- missing experience.\n- That helped.\n- It also quietly admitted the gap: **building** was not what the lecture hall was\n- optimized for.",
-      "image_prompt": "A medieval university gate opens onto a busy town workshop street where students in scholar cloaks carry tools into guild halls and shipyards for long co-op seasons, while professors wave from the lecture tower behind. The scene contrasts classroom theory with hands-on building in the world. Warm light, expressive motion, stone and timber, whimsical medieval-meets-industry apprenticeship tone, no readable text, letters, numbers, or logos."
-    },
-    {
-      "id": "f90edc1e-6519-45c6-bc22-2fcc67ae730e",
-      "kind": "content",
-      "markdown": "# CS Was Never Only About Coding\n\n- We taught it that way when we weren't **builders**.\n- **You** know the incantations.\n- **So does every LLM.**\n- The job is no longer **teaching incantations**.\n- It's **teaching how to build**.",
-      "title": "CS Was Never Only About Coding",
-      "body": "- We taught it that way when we weren't **builders**.\n- **You** know the incantations.\n- **So does every LLM.**\n- The job is no longer **teaching incantations**.\n- It's **teaching how to build**.",
-      "image_prompt": ""
-    },
-    {
-      "id": "9143c156-07b1-43ad-ada4-94a9b65bb112",
-      "kind": "content",
-      "markdown": "# I've Always Been a Builder\n\n- What follows isn't random biography.\n- It's the same instinct over and over: **make something** that **changes what happens\n- next**.\n- Institutions kept foregrounding **incantations**.\n- I kept reaching for **builds** — games, workarounds, tools for real work.",
-      "title": "I've Always Been a Builder",
-      "body": "- What follows isn't random biography.\n- It's the same instinct over and over: **make something** that **changes what happens\n- next**.\n- Institutions kept foregrounding **incantations**.\n- I kept reaching for **builds** — games, workarounds, tools for real work.",
-      "image_prompt": ""
-    },
-    {
-      "id": "4033e7f3-d9ed-4b4b-936b-ab3193091a5c",
-      "kind": "content",
-      "markdown": "# Grade 2 — Multiplication Tables\n\n- The teacher kept the tables on her desk.\n- I went home and taught myself to **read upside down**.\n- My mother asked why.\n- I said: she's showing me the answers — I'll read upside down so I don't have to drill\n- the tables.\n- I still read upside down.\n- I never really memorized the tables.\n- It hasn't hurt my career.",
-      "title": "Grade 2 — Multiplication Tables",
-      "body": "- The teacher kept the tables on her desk.\n- I went home and taught myself to **read upside down**.\n- My mother asked why.\n- I said: she's showing me the answers — I'll read upside down so I don't have to drill\n- the tables.\n- I still read upside down.\n- I never really memorized the tables.\n- It hasn't hurt my career.",
-      "image_prompt": ""
-    },
-    {
-      "id": "d90c793a-85b2-4c16-b3cc-866ae5ed9f55",
-      "kind": "content",
-      "markdown": "# My First \"ChatGPT\"\n\n- It wasn't magic — it was figuring out the **prompt**: what to learn, how to position\n- myself, to get the data I needed.",
-      "title": "My First \"ChatGPT\"",
-      "body": "- It wasn't magic — it was figuring out the **prompt**: what to learn, how to position\n- myself, to get the data I needed.",
-      "image_prompt": ""
-    },
-    {
       "id": "2c78bc0a-a3b4-46f3-b764-c31caa559126",
       "kind": "content",
-      "markdown": "# \"That Isn't a Real Computer\"\n\n- University of Windsor — I wanted to do coursework on my **Z-80** instead of the lab\n- **IBM 360**.\n- A professor said I didn't have a **real** machine: if it wasn't **32-bit**, it didn't\n- count.\n- Part of my training, he said, was **punch cards** — because that's how you drove the\n- **IBM 360**.",
+      "markdown": "# \"That Isn't a Real Computer\"\n\n- University of Windsor — I wanted coursework on my **Z-80** instead of the lab **IBM 360**.\n- A professor said I did not have a **real** machine unless it was **32-bit**.\n- **Punch cards** were part of training — that was how you drove the **IBM 360**.\n- You had to program on **cards** to really be a **magician**.",
       "title": "\"That Isn't a Real Computer\"",
-      "body": "- University of Windsor — I wanted to do coursework on my **Z-80** instead of the lab\n- **IBM 360**.\n- A professor said I didn't have a **real** machine: if it wasn't **32-bit**, it didn't\n- count.\n- Part of my training, he said, was **punch cards** — because that's how you drove the\n- **IBM 360**.",
-      "image_prompt": ""
+      "body": "- University of Windsor — I wanted coursework on my **Z-80** instead of the lab **IBM 360**.\n- A professor said I did not have a **real** machine unless it was **32-bit**.\n- **Punch cards** were part of training — that was how you drove the **IBM 360**.\n- You had to program on **cards** to really be a **magician**.",
+      "image_prompt": "A stern medieval guildmaster rejects a student's small mechanical counting device as not a real academy machine, while towering punch-card racks and ritual sorting trays dominate the hall. The student looks frustrated but determined. Stone walls, candlelight, expressive faces, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "4f24956a-5553-4879-833a-a93faa374067",
+      "kind": "content",
+      "markdown": "# Dr Richard Caron — The Other Side\n\n- **Dr Richard Caron** showed the positive side.\n- In **numerical analysis**, he got excited to understand the **8-bit** machine.\n- Same department — a different stance: **curiosity** instead of **gatekeeping**.",
+      "title": "Dr Richard Caron — The Other Side",
+      "body": "- **Dr Richard Caron** showed the positive side.\n- In **numerical analysis**, he got excited to understand the **8-bit** machine.\n- Same department — a different stance: **curiosity** instead of **gatekeeping**.",
+      "image_prompt": "A warm medieval study where an enthusiastic scholar leans over a small eight-cog mechanical computer, eyes bright, animatedly teaching numerical analysis to engaged students. Wooden charts, brass dividers, chalked diagrams without readable symbols, collaborative gestures, candlelit stone walls and timber beams, hopeful mood only — no punch cards, no split panels, no ominous gatekeeping imagery, no readable text, letters, numbers, or logos."
     },
     {
       "id": "8d293112-31c6-4da5-9292-ff3a1f0132e8",
@@ -343,14 +295,7 @@
       "body": "- Not the one who kept shoeing horses from **stubbornness**.\n- Not the one who **panicked** and threw away what he knew.\n- The one who saw the real skill was **how metal behaves under force** — carried into a\n- **harder** problem with **new tools**.",
       "image_prompt": ""
     },
-    {
-      "id": "3937ffc1-ba8b-41e0-8b77-c1bedf4a97f3",
-      "kind": "quote",
-      "markdown": "# - We're living through that same kind of morning right now.",
-      "title": "Quote: We're living through that same kind of morning right now.",
-      "body": "- We're living through that same kind of morning right now.",
-      "image_prompt": ""
-    },
+
     {
       "id": "eef7a4df-18ea-4ab4-9689-343942b45d79",
       "kind": "content",
@@ -405,6 +350,38 @@
       "markdown": "# Reframing\n\n- **Not:** How do we teach when students have AI?\n- **But:** How do we teach **building** for problems that won't fit last decade's homework\n- shapes?\n- The transition is **deeper understanding** — with tools that match the **real** problem.\n- That's the transition.\n- That's **always** been the transition.",
       "title": "Reframing",
       "body": "- **Not:** How do we teach when students have AI?\n- **But:** How do we teach **building** for problems that won't fit last decade's homework\n- shapes?\n- The transition is **deeper understanding** — with tools that match the **real** problem.\n- That's the transition.\n- That's **always** been the transition.",
+      "image_prompt": ""
+    },
+    {
+      "id": "856f468e-0e7d-49b5-9def-288074664f56",
+      "kind": "content",
+      "markdown": "# Counselors Know the Gap\n\n- We **did** notice the gap between spell-mastery and shipping.\n- Counselors would say: **do a project** — push **final-year** work where you **finally\n- ship** something the world might want, as if the first three years were **rehearsal**.\n- The job market still asks for people who **delight customers** — not **only** people who\n- ace the canon.",
+      "title": "Counselors Know the Gap",
+      "body": "- We **did** notice the gap between spell-mastery and shipping.\n- Counselors would say: **do a project** — push **final-year** work where you **finally\n- ship** something the world might want, as if the first three years were **rehearsal**.\n- The job market still asks for people who **delight customers** — not **only** people who\n- ace the canon.",
+      "image_prompt": "A medieval university courtyard where wise counselors in academic robes urge anxious students toward a single looming project gate labeled only by symbols of completion, while scrolls of ritual syntax pile up unused. The mood is well-meaning pressure and late repair. Stone arches, banners, candlelit notice boards, expressive faces, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "31252e4e-d167-4da3-bfd3-7b69bb81227a",
+      "kind": "content",
+      "markdown": "# Co-ops: Industry Teaches What We Didn’t\n\n- **Co-operative education** became common because universities struggled to teach **how\n- to build** in the core curriculum.\n- So we leaned on **terms in industry** — apprenticeships off-campus — to supply the\n- missing experience.\n- That helped.\n- It also quietly admitted the gap: **building** was not what the lecture hall was\n- optimized for.",
+      "title": "Co-ops: Industry Teaches What We Didn’t",
+      "body": "- **Co-operative education** became common because universities struggled to teach **how\n- to build** in the core curriculum.\n- So we leaned on **terms in industry** — apprenticeships off-campus — to supply the\n- missing experience.\n- That helped.\n- It also quietly admitted the gap: **building** was not what the lecture hall was\n- optimized for.",
+      "image_prompt": "A medieval university gate opens onto a busy town workshop street where students in scholar cloaks carry tools into guild halls and shipyards for long co-op seasons, while professors wave from the lecture tower behind. The scene contrasts classroom theory with hands-on building in the world. Warm light, expressive motion, stone and timber, whimsical medieval-meets-industry apprenticeship tone, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "4033e7f3-d9ed-4b4b-936b-ab3193091a5c",
+      "kind": "content",
+      "markdown": "# Grade 2 — Multiplication Tables\n\n- The teacher kept the tables on her desk.\n- I went home and taught myself to **read upside down**.\n- My mother asked why.\n- I said: she's showing me the answers — I'll read upside down so I don't have to drill\n- the tables.\n- I still read upside down.\n- I never really memorized the tables.\n- It hasn't hurt my career.",
+      "title": "Grade 2 — Multiplication Tables",
+      "body": "- The teacher kept the tables on her desk.\n- I went home and taught myself to **read upside down**.\n- My mother asked why.\n- I said: she's showing me the answers — I'll read upside down so I don't have to drill\n- the tables.\n- I still read upside down.\n- I never really memorized the tables.\n- It hasn't hurt my career.",
+      "image_prompt": ""
+    },
+    {
+      "id": "d90c793a-85b2-4c16-b3cc-866ae5ed9f55",
+      "kind": "content",
+      "markdown": "# My First \"ChatGPT\"\n\n- It wasn't magic — it was figuring out the **prompt**: what to learn, how to position\n- myself, to get the data I needed.",
+      "title": "My First \"ChatGPT\"",
+      "body": "- It wasn't magic — it was figuring out the **prompt**: what to learn, how to position\n- myself, to get the data I needed.",
       "image_prompt": ""
     }
   ],
