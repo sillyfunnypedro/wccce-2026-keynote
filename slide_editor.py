@@ -31,6 +31,8 @@ import logging
 import re
 import sys
 from collections import OrderedDict
+from concurrent.futures import ThreadPoolExecutor
+import os
 import threading
 import time
 import tkinter as tk
@@ -105,6 +107,20 @@ def _thumb_photo(path: Path, max_side: int = SLIDE_IMG_PX) -> tuple[object | Non
         return _thumb_cache_store(key, (photo, ""))
     except Exception as e:
         return _thumb_cache_store(key, (None, str(e)[:80]))
+
+
+def _thumb_pil_bytes(path: Path, max_side: int = SLIDE_IMG_PX) -> tuple[bytes | None, tuple[int, int] | None, str]:
+    """Decode, thumbnail, and return raw RGBA bytes. Safe to call off the main thread."""
+    if not path.is_file():
+        return None, None, "No image"
+    if not HAS_PIL:
+        return None, None, "pip install pillow\nfor preview"
+    try:
+        im = Image.open(path).convert("RGBA")
+        im.thumbnail((max_side, max_side), Image.Resampling.LANCZOS)
+        return im.tobytes(), im.size, ""
+    except Exception as e:
+        return None, None, str(e)[:80]
 
 
 def configure_markdown_tags(text_widget: tk.Text, *, base_pt: int = 10) -> None:
@@ -687,6 +703,11 @@ class SlideEditorApp:
         self._autosave_after_id: str | None = None
         self._thumb_refresh_job: str | None = None
         self._thumb_refresh_i = 0
+        self._thumb_gen = 0
+        self._thumb_pending = 0
+        self._thumb_executor = ThreadPoolExecutor(
+            max_workers=min(8, (os.cpu_count() or 4)), thread_name_prefix="thumb"
+        )
         if bool(manifest_path) == bool(deck_path):
             raise ValueError("Provide exactly one of manifest_path or deck_path")
         self.root = root
@@ -1073,23 +1094,79 @@ class SlideEditorApp:
             except tk.TclError:
                 pass
             self._thumb_refresh_job = None
+        self._thumb_gen += 1  # invalidate any in-flight thread callbacks
 
     def _schedule_row_thumbnail_refresh(self) -> None:
-        """Spread PIL thumbnail work across idle ticks so insert/delete stays responsive."""
+        """Submit PIL thumbnail work to a thread pool; callbacks update the canvas on the main thread."""
         self._cancel_thumb_refresh_scheduler()
-        self._thumb_refresh_i = 0
-        self._thumb_refresh_job = self.root.after_idle(self._thumb_refresh_advance)
+        rows = list(self.rows)
+        self._thumb_pending = len(rows)
+        gen = self._thumb_gen
+        if not rows:
+            return
+        for row in rows:
+            self._thumb_executor.submit(self._load_thumb_in_thread, row, gen)
 
-    def _thumb_refresh_advance(self) -> None:
-        self._thumb_refresh_job = None
-        batch = 14
-        n = len(self.rows)
-        while self._thumb_refresh_i < n and batch > 0:
-            self.rows[self._thumb_refresh_i].refresh_preview()
-            self._thumb_refresh_i += 1
-            batch -= 1
-        if self._thumb_refresh_i < n:
-            self._thumb_refresh_job = self.root.after(12, self._thumb_refresh_advance)
+    def _load_thumb_in_thread(self, row: "SlideRow", gen: int) -> None:
+        """PIL decode in background thread; posts raw bytes back to main thread."""
+        if gen != self._thumb_gen:
+            return
+        if row.slide_id:
+            path = self.output_dir / f"{row.slide_id}.png"
+        else:
+            path = self.output_dir / f"{row.index:02d}.png"
+        raw, size, err = _thumb_pil_bytes(path, SLIDE_IMG_PX)
+        if gen != self._thumb_gen:
+            return
+        self.root.after(0, lambda: self._apply_thumb_result(row, raw, size, err, gen))
+
+    def _apply_thumb_result(
+        self,
+        row: "SlideRow",
+        raw: bytes | None,
+        size: tuple[int, int] | None,
+        err: str,
+        gen: int,
+    ) -> None:
+        """Called on main thread: create PhotoImage and update the canvas."""
+        if gen != self._thumb_gen:
+            return
+        photo: object | None = None
+        if raw is not None and size is not None:
+            try:
+                im = Image.frombytes("RGBA", size, raw)
+                photo = ImageTk.PhotoImage(im)
+                if row.slide_id:
+                    path = self.output_dir / f"{row.slide_id}.png"
+                else:
+                    path = self.output_dir / f"{row.index:02d}.png"
+                key = _thumb_cache_key(path, SLIDE_IMG_PX)
+                if key is not None:
+                    _thumb_cache_store(key, (photo, ""))
+            except Exception as e:
+                err = str(e)[:80]
+                photo = None
+        row._photo = photo
+        c = row.preview_canvas
+        c.delete("all")
+        cx, cy = SLIDE_IMG_PX // 2, SLIDE_IMG_PX // 2
+        if photo is not None:
+            c.create_image(cx, cy, image=photo)
+            row._slide_card_text.grid_configure(padx=SLIDE_CARD_TEXT_PADX_WITH_IMG)
+        else:
+            c.create_text(
+                cx,
+                cy,
+                text=err or "No image",
+                fill="#a8a8b8",
+                font=("TkDefaultFont", 11),
+                justify=tk.CENTER,
+                width=SLIDE_IMG_PX - 24,
+            )
+            row._slide_card_text.grid_configure(padx=SLIDE_CARD_TEXT_PADX_NO_IMG)
+        self._thumb_pending -= 1
+        if self._thumb_pending <= 0:
+            self._scroll_canvas.configure(scrollregion=self._scroll_canvas.bbox("all"))
 
     def _rebuild_rows(self) -> None:
         self._cancel_thumb_refresh_scheduler()
