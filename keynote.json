@@ -16,6 +16,14 @@
       "image_prompt": ""
     },
     {
+      "id": "6b18f9d6-fd5b-4056-918a-a75cd0381a45",
+      "kind": "content",
+      "markdown": "# Spells, Magic, and My Journey\n\n- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- What follows is the **story** — from early **incantations** to **today**.",
+      "title": "Spells, Magic, and My Journey",
+      "body": "- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- What follows is the **story** — from early **incantations** to **today**.",
+      "image_prompt": "A medieval split scene at twilight: left, a scholar hunches over glowing scroll-lines and quills suggesting code spells; right, the same figure lifts a finished lantern-bridge or counting device while townspeople smile and reach toward it — customer delight. Visual contrast between ritual glyphs (abstract, no readable symbols) and lived outcome. Stone arches, warm pools of light, whimsical tone, no readable text, letters, numbers, or logos."
+    },
+    {
       "id": "2c155803-8ca0-4672-a9d6-cc8b4fb991cc",
       "kind": "content",
       "markdown": "# 1977\n\n- **John Loader**, maths teacher — got an account at the **University of Sussex**.\n- He taught us programming (I think **FORTRAN**).\n- We filled out **mark-sense cards**.\n- We **mailed them in**.\n- I got mine back — my incantation had been **cursed**.\n- Curse this computer thing.",
@@ -78,6 +86,14 @@
       "title": "Desmond’s use for the tool",
       "body": "# Desmond Rochfort is a pencil artist.\n\n- We were worried he would be threatened.\n- He taught us a lesson\n\n# He did not like\n- Style exploration, it cost too much\n\n# He could use our simulation\n- To get to the fun part",
       "image_prompt": "A whimsical medieval studio scene with Desmond Rochfort, a pencil artist, quietly pondering alternative styles before beginning a long drawing. He studies several small draft sketches pinned to a wooden board, each with different shading and composition moods, while a subtle magical projection device previews variations of the same image in midair. Desmond appears reflective and practical, choosing a direction before committing hours of work. Warm candlelight, stone walls, rustic textures, expressive posture, medieval-meets-modern visual metaphor, centered composition, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "e7d1f1a8-1e2c-494f-951f-58c330ba6b77",
+      "kind": "content",
+      "markdown": "# CMU — Game Sketching\n\n- At **Carnegie Mellon**, I worked on **game sketching** — a story that **dropped out** of how I usually tell this arc.\n- The **game designer** would **converse** with the setup; **characters** in the world **reacted** — **early**, almost **LLM-like** interactivity.\n- Under the hood: **six puppeteers** in a **back room**, **listening** and **driving** the characters from **script** — we could **pivot fast** when the conversation changed.\n- The designer **iterated** about **thirty times** in **two weeks** — **three** runs on a **heavy** day.\n- The honest question: **Can we ship this?** **No** — you still have to **implement** the real thing.",
+      "title": "CMU — Game Sketching",
+      "body": "- At **Carnegie Mellon**, I worked on **game sketching** — a story that **dropped out** of how I usually tell this arc.\n- The **game designer** would **converse** with the setup; **characters** in the world **reacted** — **early**, almost **LLM-like** interactivity.\n- Under the hood: **six puppeteers** in a **back room**, **listening** and **driving** the characters from **script** — we could **pivot fast** when the conversation changed.\n- The designer **iterated** about **thirty times** in **two weeks** — **three** runs on a **heavy** day.\n- The honest question: **Can we ship this?** **No** — you still have to **implement** the real thing.",
+      "image_prompt": "A medieval puppet theater cutaway: on stage a game designer gestures to costumed wooden characters that move as if listening; behind a heavy curtain, six puppeteers with ear-trumpets and rope controls coordinate in frantic harmony, scroll scripts on lap desks with no readable writing. Warm footlights, dust motes, comedic secrecy, sense of wizard-behind-the-curtain prototyping, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
       "id": "ccf2dd4c-2b7c-4ce6-b256-25e0969ddb75",
@@ -178,9 +194,9 @@
     {
       "id": "8d293112-31c6-4da5-9292-ff3a1f0132e8",
       "kind": "content",
-      "markdown": "# A Better Machine — Same Ritual\n\n- Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room of terminals**.\n- The **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **IOL window**.\n- The **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
+      "markdown": "# A Better Machine — Same Ritual\n\n- Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room of terminals**.\n- The **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **I/O window**.\n- The **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
       "title": "A Better Machine — Same Ritual",
-      "body": "- Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room of terminals**.\n- The **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **IOL window**.\n- The **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
+      "body": "- Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room of terminals**.\n- The **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **I/O window**.\n- The **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
       "image_prompt": "A whimsical medieval scene depicting a castle workshop filled with a mix of historical and modern technology. In the center, a slightly exaggerated professor character, dressed in traditional medieval robes, interacts with a large, archaic-looking DEC VAX 780 computer adorned with punch card slots, which is humorously wired to a classic, oversized 360 machine. Surrounding the machines are terminals made from wooden desks, with an array of candles casting warm light across stone walls and wooden beams, creating an imaginative juxtaposition of ancient and modern computing. The atmosphere should be lively and engaging, capturing the essence of builders and creators, with no readable text, letters, or logos."
     },
     {
@@ -350,6 +366,14 @@
       "title": "Let's Build",
       "body": "# Dr Richard Caron\n- **1983** — numerical analysis: Never before have we been so capable of **computing numbers**, **our job** is to ensure they are **correct**.\n\n# Me (with respect to Dr Caron)\n- Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.\n\n# Let us practice building.",
       "image_prompt": "A respectful medieval split tableau: left, Dr Richard Caron as a thoughtful scholar-lecturer demonstrates careful verification of glowing abacus-like number engines and brass integrators; right, a modern mentor figure echoes the same posture beside swirling luminous code ribbons and cooperative construct spirits, emphasizing correctness over volume. Stone arches, warm candlelight, bridge across decades, humble tribute mood, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "44290e10-5a3b-4e20-81f0-ded368595803",
+      "kind": "content",
+      "markdown": "# Our Responsibility\n\n- **Our responsibility** is to **produce builders** — graduates who **ship** work that **holds up** for real people, not only people who **pass** spell exams.\n- **Builders** make the world **better by building**: safer, clearer, more **humane** systems — one **honest** release at a time.\n- When we **train builders**, we give the next generation the habit of **asking what should exist** — and the **craft** to **make it real**.",
+      "title": "Our Responsibility",
+      "body": "- **Our responsibility** is to **produce builders** — graduates who **ship** work that **holds up** for real people, not only people who **pass** spell exams.\n- **Builders** make the world **better by building**: safer, clearer, more **humane** systems — one **honest** release at a time.\n- When we **train builders**, we give the next generation the habit of **asking what should exist** — and the **craft** to **make it real**.",
+      "image_prompt": "A hopeful medieval dawn over a busy town: new guild graduates in simple work cloaks raise bridges, waterworks, and shared tools alongside elders; townspeople carry bread and children toward repaired gates. Mood of civic improvement through competent craft — builders as everyday benefactors. Stone, timber, warm light, expressive cooperation, whimsical medieval style, no readable text, letters, numbers, or logos."
     }
   ],
   "text_model": "openai/gpt-4o-mini",
