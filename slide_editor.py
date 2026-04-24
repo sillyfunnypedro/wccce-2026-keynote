@@ -7,6 +7,13 @@ LLM suggest, OpenRouter render.
 
 Requires Pillow for PNG previews in the right column (pip install pillow).
 
+List previews use ``slide_images/.thumbs/{id}_{size}.png`` when possible; they are
+regenerated when the slide image is newer than the cached thumbnail.
+
+**Paste image:** With focus on the slide's **preview square** (or the **Paste image** button), use
+``Ctrl+V`` / ``Cmd+V`` to save the clipboard image as this slide's ``{id}.png`` (or ``NN.png`` in
+manifest mode), replacing any existing file.
+
 With ``--deck keynote.json``, each slide's title/body/prompt and image path ``{id}.png`` live in the deck.
 
 With ``--manifest …`` (legacy), titles/bodies live in the manifest JSON; images stay ``00.png`` … order.
@@ -20,19 +27,27 @@ Presenter (read-only):
   ``←`` / ``→`` / Space: change slide; ``Esc`` exits fullscreen or closes. Add ``--present-windowed`` to skip fullscreen.
 
 In the editor, use the **Present** toolbar button to open the same presenter in a window; **Quit** / ``Esc`` returns to the editor.
+
+Optional: pass ``--debug`` for scroll/button probe logging and a one-line slide build timing (off by default).
+
+Optional: ``--profile-startup`` runs ``cProfile`` from first slide-row build through the end of the
+thumbnail queue, prints cumulative stats to stderr, and writes ``slide_editor_startup.prof`` in this
+directory (inspect with ``python -m pstats slide_editor_startup.prof`` or snakeviz).
+``--profile-startup-exit`` turns that on as well and closes the app right after the profile is written
+(handy for ``py-spy record …``).
 """
 
 from __future__ import annotations
 
 import argparse
+import cProfile
 import copy
 import json
 import logging
+import pstats
 import re
 import sys
 from collections import OrderedDict
-from concurrent.futures import ThreadPoolExecutor
-import os
 import threading
 import time
 import tkinter as tk
@@ -46,6 +61,23 @@ import keynote_deck as kd
 SCRIPT_DIR = Path(__file__).parent
 LOG = logging.getLogger("slide_editor")
 SCROLL_DEBUG_FILE = SCRIPT_DIR / "scroll_debug.log"
+SETTINGS_PATH = SCRIPT_DIR / "settings.json"
+
+# Set True from CLI ``--debug`` (see ``main()``). When False, skip scroll probe file I/O.
+_SCROLL_DEBUG = False
+
+# Set True from CLI ``--perf-label-body``. Diagnostic: replace the body-preview ``Text``
+# widget with a plain ``Label`` to measure how much of startup is the ``Text`` widget.
+_PERF_LABEL_BODY = False
+
+# Set True from CLI ``--perf-collapsed-rows``. Diagnostic: skip the right-hand editor pane,
+# the image-prompt text box, and the action button column per row. Simulates a collapsed-
+# row design where the editor widgets are created lazily on expand.
+_PERF_COLLAPSED_ROWS = False
+
+
+def _scroll_debug_enabled() -> bool:
+    return _SCROLL_DEBUG
 
 # Slide-card preview (approximates PPTX: text left, square image right)
 SLIDE_BG = "#1a1a2e"
@@ -53,17 +85,77 @@ SLIDE_PANEL_BG = "#16162a"
 SLIDE_TEXT = "#f5f5f5"
 SLIDE_DIM = "#a0a8c0"
 SLIDE_IMG_PX = 240
+# Editor slide-card: text column padx (left, right) — wider left inset when there is no PNG yet.
+SLIDE_CARD_TEXT_PADX_WITH_IMG = (12, 4)
+SLIDE_CARD_TEXT_PADX_NO_IMG = (52, 4)
+# Presenter: md_frame grid padx when split with image vs full-width text only.
+PRESENT_MD_FRAME_PADX_WITH_IMG = (0, 6)
+PRESENT_MD_FRAME_PADX_NO_IMG = (56, 12)
 
 try:
-    from PIL import Image, ImageTk
+    from PIL import Image, ImageGrab, ImageTk
 
     HAS_PIL = True
+    # List previews only — fast downscale (presenter / render still use their own paths).
+    _THUMB_RESAMPLE = Image.Resampling.BILINEAR
 except ImportError:
     HAS_PIL = False
+    ImageGrab = None  # type: ignore[misc, assignment]
+    _THUMB_RESAMPLE = None  # type: ignore[misc, assignment]
 
 # LRU cache: (resolved path, mtime_ns or -1, max_side) -> (PhotoImage|None, err)
 _THUMB_CACHE: OrderedDict[tuple[str, int, int], tuple[object | None, str]] = OrderedDict()
 _THUMB_CACHE_LIMIT = 256
+
+
+def _clipboard_pil_image() -> Image.Image | None:
+    """Return a PIL image from the system clipboard, or None if unavailable or not an image."""
+    if not HAS_PIL or ImageGrab is None:
+        return None
+    try:
+        data = ImageGrab.grabclipboard()
+    except Exception:
+        return None
+    if data is None:
+        return None
+    if isinstance(data, Image.Image):
+        return data
+    if isinstance(data, list):
+        for item in data:
+            path = Path(str(item))
+            if path.suffix.lower() in (
+                ".png",
+                ".jpg",
+                ".jpeg",
+                ".webp",
+                ".gif",
+                ".bmp",
+                ".tif",
+                ".tiff",
+            ):
+                try:
+                    return Image.open(path)
+                except OSError:
+                    continue
+        return None
+    return None
+
+
+def _load_settings() -> dict:
+    if not SETTINGS_PATH.is_file():
+        return {}
+    try:
+        raw = json.loads(SETTINGS_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return raw if isinstance(raw, dict) else {}
+
+
+def _save_settings(data: dict) -> None:
+    try:
+        SETTINGS_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
+    except OSError:
+        LOG.debug("Could not write settings file: %s", SETTINGS_PATH)
 
 
 def _thumb_cache_key(path: Path, max_side: int) -> tuple[str, int, int] | None:
@@ -87,6 +179,38 @@ def _thumb_cache_store(key: tuple[str, int, int], out: tuple[object | None, str]
     return out
 
 
+def _thumb_disk_cache_path(source: Path, max_side: int) -> Path:
+    """Small PNG next to slide images: ``slide_images/.thumbs/{id}_{max_side}.png``."""
+    return source.parent / ".thumbs" / f"{source.stem}_{max_side}{source.suffix}"
+
+
+def _thumb_disk_cache_is_fresh(source: Path, cache_path: Path) -> bool:
+    """True if ``cache_path`` exists and was written at or after the source file's current mtime."""
+    try:
+        if not cache_path.is_file() or not source.is_file():
+            return False
+        return source.stat().st_mtime_ns <= cache_path.stat().st_mtime_ns
+    except OSError:
+        return False
+
+
+def _write_thumb_disk_cache(im: Image.Image, cache_path: Path) -> None:
+    """Write PNG atomically; ignore failures (read-only tree, etc.)."""
+    try:
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+    except OSError:
+        return
+    tmp = cache_path.with_name(cache_path.name + ".tmp")
+    try:
+        im.save(tmp, "PNG", optimize=True)
+        tmp.replace(cache_path)
+    except OSError:
+        try:
+            tmp.unlink(missing_ok=True)
+        except OSError:
+            pass
+
+
 def _thumb_photo(path: Path, max_side: int = SLIDE_IMG_PX) -> tuple[object | None, str]:
     """Return (PhotoImage or None, status text when preview cannot be shown)."""
     key = _thumb_cache_key(path, max_side)
@@ -100,27 +224,23 @@ def _thumb_photo(path: Path, max_side: int = SLIDE_IMG_PX) -> tuple[object | Non
         return _thumb_cache_store(key, (None, "No image"))
     if not HAS_PIL:
         return _thumb_cache_store(key, (None, "pip install pillow\nfor preview"))
+    disk = _thumb_disk_cache_path(path, max_side)
     try:
-        im = Image.open(path).convert("RGBA")
-        im.thumbnail((max_side, max_side), Image.Resampling.LANCZOS)
+        if _thumb_disk_cache_is_fresh(path, disk):
+            im = Image.open(disk)
+            if im.mode != "RGBA":
+                im = im.convert("RGBA")
+            photo = ImageTk.PhotoImage(im)
+            return _thumb_cache_store(key, (photo, ""))
+        im = Image.open(path)
+        im.thumbnail((max_side, max_side), _THUMB_RESAMPLE)
+        if im.mode != "RGBA":
+            im = im.convert("RGBA")
+        _write_thumb_disk_cache(im, disk)
         photo = ImageTk.PhotoImage(im)
         return _thumb_cache_store(key, (photo, ""))
     except Exception as e:
         return _thumb_cache_store(key, (None, str(e)[:80]))
-
-
-def _thumb_pil_bytes(path: Path, max_side: int = SLIDE_IMG_PX) -> tuple[bytes | None, tuple[int, int] | None, str]:
-    """Decode, thumbnail, and return raw RGBA bytes. Safe to call off the main thread."""
-    if not path.is_file():
-        return None, None, "No image"
-    if not HAS_PIL:
-        return None, None, "pip install pillow\nfor preview"
-    try:
-        im = Image.open(path).convert("RGBA")
-        im.thumbnail((max_side, max_side), Image.Resampling.LANCZOS)
-        return im.tobytes(), im.size, ""
-    except Exception as e:
-        return None, None, str(e)[:80]
 
 
 def configure_markdown_tags(text_widget: tk.Text, *, base_pt: int = 10) -> None:
@@ -241,16 +361,20 @@ def _load_scaled_photo(path: Path, max_w: int, max_h: int) -> tuple[object | Non
     if not HAS_PIL:
         return None, "pip install pillow"
     try:
-        im = Image.open(path).convert("RGBA")
+        im = Image.open(path)
         mw, mh = max(1, max_w), max(1, max_h)
         im.thumbnail((mw, mh), Image.Resampling.LANCZOS)
+        if im.mode != "RGBA":
+            im = im.convert("RGBA")
         return ImageTk.PhotoImage(im), ""
     except Exception as e:
         return None, str(e)[:120]
 
 
 def _log_scroll(msg: str) -> None:
-    """Emit scroll debug info even when logging handlers are muted."""
+    """Scroll/input debug (expensive: file + stderr). On only with ``--debug``."""
+    if not _scroll_debug_enabled():
+        return
     LOG.info(msg)
     print(f"[scroll] {msg}", file=sys.stderr, flush=True)
     try:
@@ -261,7 +385,9 @@ def _log_scroll(msg: str) -> None:
 
 
 def _init_scroll_debug_log() -> None:
-    """Create/reset debug log so we can verify logging even without mouse events."""
+    """Reset debug log when scroll debug is enabled."""
+    if not _scroll_debug_enabled():
+        return
     try:
         SCROLL_DEBUG_FILE.write_text("", encoding="utf-8")
         with SCROLL_DEBUG_FILE.open("a", encoding="utf-8") as f:
@@ -292,9 +418,40 @@ class SlideRow(tk.Frame):
         self._photo: object | None = None
         self._preview_title = title
         self._preview_body = body
+        self._prompt_cache = prompt
         self._can_edit_content = can_edit_content
         self._can_reorder = can_reorder
 
+        # Editor widgets are built lazily (see ``ensure_editor``); until then these are None.
+        self._editor_built = False
+        self.title_edit_var = tk.StringVar(value=self._preview_title)
+        self.title_edit: tk.Entry | None = None
+        self.body_edit: scrolledtext.ScrolledText | None = None
+        self.txt: scrolledtext.ScrolledText | None = None
+        self._prompt_label: tk.Label | None = None
+        self._editor_frame: tk.Frame | None = None
+        self._button_frame: tk.Frame | None = None
+        self.btn_suggest: tk.Button | None = None
+        self.btn_preview: tk.Button | None = None
+        self.btn_render: tk.Button | None = None
+        self.btn_paste: tk.Button | None = None
+        self.btn_insert: tk.Button | None = None
+        self.btn_delete: tk.Button | None = None
+
+        self._build_card()
+
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(3, weight=0)
+        self.rowconfigure(3, weight=0)
+
+        if skip_initial_preview:
+            self._show_preview_placeholder()
+            self._slide_card_text.grid_configure(padx=SLIDE_CARD_TEXT_PADX_NO_IMG)
+        else:
+            self.refresh_preview()
+
+    def _build_card(self) -> None:
+        """Build the always-on part of the row: header, slide card, preview canvas, dividers."""
         self._top_title_label = tk.Label(
             self,
             text=self._title_line(),
@@ -311,7 +468,14 @@ class SlideRow(tk.Frame):
         slide_card.columnconfigure(1, weight=0)
 
         left = tk.Frame(slide_card, bg=SLIDE_BG)
-        left.grid(row=0, column=0, sticky="nsew", padx=(12, 4), pady=12)
+        self._slide_card_text = left
+        left.grid(
+            row=0,
+            column=0,
+            sticky="nsew",
+            padx=SLIDE_CARD_TEXT_PADX_NO_IMG,
+            pady=12,
+        )
 
         self._title_preview = tk.Label(
             left,
@@ -325,24 +489,38 @@ class SlideRow(tk.Frame):
         )
         self._title_preview.pack(anchor="w", fill=tk.X, pady=(0, 8))
 
-        self._body_preview = tk.Text(
-            left,
-            height=10,
-            width=40,
-            wrap="word",
-            font=("TkDefaultFont", 10),
-            bg=SLIDE_PANEL_BG,
-            fg=SLIDE_TEXT,
-            relief=tk.FLAT,
-            padx=8,
-            pady=8,
-            highlightthickness=0,
-            cursor="arrow",
-            insertwidth=0,
-        )
+        if _PERF_LABEL_BODY:
+            self._body_preview = tk.Label(
+                left,
+                text="",
+                bg=SLIDE_PANEL_BG,
+                fg=SLIDE_TEXT,
+                font=("TkDefaultFont", 10),
+                anchor="nw",
+                justify="left",
+                wraplength=280,
+                padx=8,
+                pady=8,
+            )
+        else:
+            self._body_preview = tk.Text(
+                left,
+                height=10,
+                width=40,
+                wrap="word",
+                font=("TkDefaultFont", 10),
+                bg=SLIDE_PANEL_BG,
+                fg=SLIDE_TEXT,
+                relief=tk.FLAT,
+                padx=8,
+                pady=8,
+                highlightthickness=0,
+                cursor="arrow",
+                insertwidth=0,
+            )
+            configure_markdown_tags(self._body_preview, base_pt=10)
+            self._body_preview.bind("<Key>", lambda _e: "break")
         self._body_preview.pack(fill=tk.BOTH, expand=True, anchor="nw")
-        configure_markdown_tags(self._body_preview, base_pt=10)
-        self._body_preview.bind("<Key>", lambda _e: "break")
         self._fill_body_preview()
         left.bind("<Configure>", self._on_left_configure)
 
@@ -358,16 +536,61 @@ class SlideRow(tk.Frame):
             highlightthickness=0,
         )
         self.preview_canvas.pack(padx=4, pady=4)
+        for widget in (self.preview_canvas, border, right_wrap):
+            for seq in ("<Control-v>", "<Command-v>"):
+                widget.bind(seq, self._on_paste_image_shortcut)
 
+        # Strong visual divider between slide cards.
+        self._divider = tk.Frame(self, bg="#e94f37", height=3)
+        self._divider.grid(row=4, column=0, columnspan=4, sticky="ew", pady=(8, 2))
+        self._divider_shadow = tk.Frame(self, bg="#3f435f", height=1)
+        self._divider_shadow.grid(row=5, column=0, columnspan=4, sticky="ew", pady=(0, 2))
+
+        # Card-area interactions expedite editor build. Using add="+" keeps any widget-
+        # specific default behavior (text cursor placement, canvas click, etc.).
+        expand_targets = (
+            self._top_title_label,
+            self._title_preview,
+            left,
+            self._body_preview,
+            self.preview_canvas,
+            slide_card,
+        )
+        for w in expand_targets:
+            w.bind("<Button-1>", self._on_card_activate, add="+")
+            w.bind("<FocusIn>", self._on_card_activate, add="+")
+
+    def ensure_editor(self) -> None:
+        """Idempotent; create the editor pane, prompt box, and button column if not yet built.
+
+        Called by the app's idle-time build queue and on first card interaction.
+        """
+        if self._editor_built:
+            return
+        if _PERF_COLLAPSED_ROWS:
+            return
+        self._build_editor()
+        self._editor_built = True
+        bind = getattr(self.app, "_bind_scroll_handlers", None)
+        if bind is not None:
+            bind(self)
+
+    def _on_card_activate(self, _event: tk.Event | None = None) -> None:
+        self.ensure_editor()
+
+    def _build_editor(self) -> None:
+        """Build the right-column content editor + image-prompt textbox + action buttons."""
         editor = tk.Frame(self, relief=tk.GROOVE, borderwidth=1, padx=8, pady=8)
         editor.grid(row=1, column=3, sticky="nsew", padx=(10, 0), pady=(0, 8))
+        self._editor_frame = editor
         tk.Label(editor, text="Content editor", font=("TkDefaultFont", 10, "bold")).pack(anchor="w")
         tk.Label(editor, text="Title", anchor="w").pack(anchor="w", pady=(8, 2))
-        self.title_edit_var = tk.StringVar(value=self._preview_title)
         self.title_edit = tk.Entry(editor, textvariable=self.title_edit_var, width=42)
         self.title_edit.pack(fill=tk.X, anchor="w")
         tk.Label(editor, text="Content (markdown)", anchor="w").pack(anchor="w", pady=(8, 2))
-        self.body_edit = scrolledtext.ScrolledText(editor, height=11, width=42, wrap=tk.WORD, font=("TkDefaultFont", 10))
+        self.body_edit = scrolledtext.ScrolledText(
+            editor, height=11, width=42, wrap=tk.WORD, font=("TkDefaultFont", 10)
+        )
         self.body_edit.pack(fill=tk.BOTH, expand=True, anchor="w")
         self.body_edit.insert("1.0", self._preview_body)
         if self._can_edit_content:
@@ -379,25 +602,27 @@ class SlideRow(tk.Frame):
             self.title_edit.config(state=tk.DISABLED)
             self.body_edit.config(state=tk.DISABLED)
 
-        tk.Label(self, text="Image prompt (LLM → OpenRouter):", anchor="w").grid(
-            row=2, column=0, columnspan=4, sticky="w", pady=(0, 2)
-        )
+        self._prompt_label = tk.Label(self, text="Image prompt (LLM → OpenRouter):", anchor="w")
+        self._prompt_label.grid(row=2, column=0, columnspan=4, sticky="w", pady=(0, 2))
         self.txt = scrolledtext.ScrolledText(
             self, height=4, width=72, wrap=tk.WORD, font=("TkFixedFont", 10)
         )
         self.txt.grid(row=3, column=0, columnspan=3, sticky="nsew", pady=(0, 4))
-        self.txt.insert("1.0", prompt)
-        if app.deck is not None:
-            self.txt.bind("<KeyRelease>", lambda _e: app.schedule_autosave())
+        self.txt.insert("1.0", self._prompt_cache)
+        if self.app.deck is not None:
+            self.txt.bind("<KeyRelease>", lambda _e: self.app.schedule_autosave())
 
         bf = tk.Frame(self)
         bf.grid(row=3, column=3, sticky="ne", padx=(8, 0))
+        self._button_frame = bf
         self.btn_suggest = tk.Button(bf, text="Suggest\n(LLM)", width=10, command=self._on_suggest)
         self.btn_suggest.pack(pady=(0, 4))
         self.btn_preview = tk.Button(bf, text="Preview\nrender", width=10, command=self._on_preview_render_prompt)
         self.btn_preview.pack(pady=(0, 4))
         self.btn_render = tk.Button(bf, text="Render", width=10, command=self._on_render)
         self.btn_render.pack()
+        self.btn_paste = tk.Button(bf, text="Paste\nimage", width=10, command=self._on_paste_image_button)
+        self.btn_paste.pack(pady=(4, 0))
         self.btn_insert = tk.Button(bf, text="Insert\nabove", width=10, command=self._on_insert_above)
         self.btn_insert.pack(pady=(6, 4))
         self.btn_delete = tk.Button(bf, text="Delete", width=10, command=self._on_delete)
@@ -405,21 +630,6 @@ class SlideRow(tk.Frame):
         if not self._can_reorder:
             self.btn_insert.config(state=tk.DISABLED)
             self.btn_delete.config(state=tk.DISABLED)
-
-        # Strong visual divider between slide cards.
-        self._divider = tk.Frame(self, bg="#e94f37", height=3)
-        self._divider.grid(row=4, column=0, columnspan=4, sticky="ew", pady=(8, 2))
-        self._divider_shadow = tk.Frame(self, bg="#3f435f", height=1)
-        self._divider_shadow.grid(row=5, column=0, columnspan=4, sticky="ew", pady=(0, 2))
-
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(3, weight=0)
-        self.rowconfigure(3, weight=0)
-
-        if skip_initial_preview:
-            self._show_preview_placeholder()
-        else:
-            self.refresh_preview()
 
     def _show_preview_placeholder(self) -> None:
         c = self.preview_canvas
@@ -444,6 +654,9 @@ class SlideRow(tk.Frame):
     def _fill_body_preview(self) -> None:
         raw = (self._preview_body or "").strip()
         display = raw if raw else "(no body)"
+        if _PERF_LABEL_BODY:
+            self._body_preview.config(text=display)
+            return
         self._body_preview.config(state=tk.NORMAL)
         self._body_preview.delete("1.0", tk.END)
         self._insert_markdown(display)
@@ -457,15 +670,22 @@ class SlideRow(tk.Frame):
         insert_markdown_lines(self._body_preview, text, base_pt=10)
 
     def get_prompt(self) -> str:
-        return self.txt.get("1.0", "end-1c").strip()
+        if self.txt is not None:
+            return self.txt.get("1.0", "end-1c").strip()
+        return (self._prompt_cache or "").strip()
 
     def get_title_text(self) -> str:
         return self.title_edit_var.get().strip()
 
     def get_body_text(self) -> str:
-        return self.body_edit.get("1.0", "end-1c").strip()
+        if self.body_edit is not None:
+            return self.body_edit.get("1.0", "end-1c").strip()
+        return (self._preview_body or "").strip()
 
     def set_prompt(self, text: str) -> None:
+        self._prompt_cache = text
+        if self.txt is None:
+            return
         self.txt.delete("1.0", tk.END)
         self.txt.insert("1.0", text)
 
@@ -485,11 +705,12 @@ class SlideRow(tk.Frame):
         if body is not None:
             self._preview_body = body
         self.title_edit_var.set(self._preview_title)
-        self.body_edit.config(state=tk.NORMAL)
-        self.body_edit.delete("1.0", tk.END)
-        self.body_edit.insert("1.0", self._preview_body)
-        if not self._can_edit_content:
-            self.body_edit.config(state=tk.DISABLED)
+        if self.body_edit is not None:
+            self.body_edit.config(state=tk.NORMAL)
+            self.body_edit.delete("1.0", tk.END)
+            self.body_edit.insert("1.0", self._preview_body)
+            if not self._can_edit_content:
+                self.body_edit.config(state=tk.DISABLED)
         self._top_title_label.config(text=self._title_line())
         self._title_preview.config(text=self._preview_title)
         self._fill_body_preview()
@@ -499,12 +720,68 @@ class SlideRow(tk.Frame):
 
     def set_busy(self, busy: bool) -> None:
         st = tk.DISABLED if busy else tk.NORMAL
-        self.btn_suggest.config(state=st)
-        self.btn_preview.config(state=st)
-        self.btn_render.config(state=st)
+        for btn in (self.btn_suggest, self.btn_preview, self.btn_render, self.btn_paste):
+            if btn is not None:
+                btn.config(state=st)
         if self._can_reorder:
-            self.btn_insert.config(state=st)
-            self.btn_delete.config(state=st)
+            for btn in (self.btn_insert, self.btn_delete):
+                if btn is not None:
+                    btn.config(state=st)
+
+    def _slide_png_output_path(self) -> Path:
+        if self.slide_id:
+            return self.app.output_dir / f"{self.slide_id}.png"
+        return self.app.output_dir / f"{self.index:02d}.png"
+
+    def _on_paste_image_shortcut(self, _event: tk.Event | None = None) -> str:
+        self._paste_clipboard_image()
+        return "break"
+
+    def _on_paste_image_button(self) -> None:
+        self._paste_clipboard_image()
+
+    def _paste_clipboard_image(self) -> None:
+        if not HAS_PIL:
+            messagebox.showerror("Paste image", "Install Pillow: pip install pillow")
+            return
+        im = _clipboard_pil_image()
+        if im is None:
+            messagebox.showinfo(
+                "Paste image",
+                "No raster image found on the clipboard. Copy an image, click the preview square "
+                "(or use Paste image), then try again.",
+            )
+            return
+        self.app.output_dir.mkdir(parents=True, exist_ok=True)
+        out_path = self._slide_png_output_path()
+        existed_before = out_path.is_file()
+        try:
+            save_im = im
+            if save_im.mode not in ("RGB", "RGBA"):
+                save_im = save_im.convert("RGBA")
+            save_im.save(out_path, "PNG")
+            w, h = self.app.image_wh()
+            gen.maybe_resize_png(out_path, w, h)
+        except Exception as e:
+            messagebox.showerror("Paste image", f"Could not save PNG:\n{e}")
+            return
+        self.refresh_preview()
+        if self.app.deck is not None:
+            self.app.schedule_autosave()
+        try:
+            written_w, written_h = Image.open(out_path).size
+            dim_line = f"\nDimensions: {written_w} × {written_h}"
+        except Exception:
+            dim_line = ""
+        verb = "Overwrote" if existed_before else "Wrote"
+        messagebox.showinfo(
+            "Paste image",
+            f"{verb} slide {self.index:02d} image.\n\n"
+            f"File: {out_path}{dim_line}",
+        )
+        self.app.set_status(
+            f"Slide {self.index:02d}: {verb.lower()} → {out_path.name}"
+        )
 
     def _on_insert_above(self) -> None:
         self.app.insert_slide_above(self.index)
@@ -524,6 +801,7 @@ class SlideRow(tk.Frame):
         cx, cy = SLIDE_IMG_PX // 2, SLIDE_IMG_PX // 2
         if photo is not None:
             c.create_image(cx, cy, image=photo)
+            self._slide_card_text.grid_configure(padx=SLIDE_CARD_TEXT_PADX_WITH_IMG)
         else:
             c.create_text(
                 cx,
@@ -534,6 +812,7 @@ class SlideRow(tk.Frame):
                 justify=tk.CENTER,
                 width=SLIDE_IMG_PX - 24,
             )
+            self._slide_card_text.grid_configure(padx=SLIDE_CARD_TEXT_PADX_NO_IMG)
 
     def _on_suggest(self) -> None:
         key = gen.load_api_key()
@@ -695,6 +974,10 @@ class SlideEditorApp:
         root: tk.Tk,
         manifest_path: Path | None = None,
         deck_path: Path | None = None,
+        *,
+        profile_startup: bool = False,
+        profile_startup_exit: bool = False,
+        perf_minimal_rows: bool = False,
     ):
         _init_scroll_debug_log()
         _log_scroll(f"app start cwd={Path.cwd()} log={SCROLL_DEBUG_FILE}")
@@ -703,11 +986,20 @@ class SlideEditorApp:
         self._autosave_after_id: str | None = None
         self._thumb_refresh_job: str | None = None
         self._thumb_refresh_i = 0
-        self._thumb_gen = 0
-        self._thumb_pending = 0
-        self._thumb_executor = ThreadPoolExecutor(
-            max_workers=min(8, (os.cpu_count() or 4)), thread_name_prefix="thumb"
-        )
+        self._thumb_refresh_t0 = 0.0
+        self._bulk_thumb_refresh = False
+        self._editor_build_job: str | None = None
+        self._editor_build_i = 0
+        self._editor_build_t0 = 0.0
+        self._bulk_editor_build = False
+        self._last_self_mtime_ns: int | None = None
+        self._external_check_job: str | None = None
+        self._external_check_interval_ms = 2000
+        self._profile_startup = profile_startup
+        self._profile_startup_exit = profile_startup_exit
+        self._perf_minimal_rows = perf_minimal_rows
+        self._startup_profiler: cProfile.Profile | None = None
+        self._startup_profiler_wall_t0: float | None = None
         if bool(manifest_path) == bool(deck_path):
             raise ValueError("Provide exactly one of manifest_path or deck_path")
         self.root = root
@@ -715,7 +1007,8 @@ class SlideEditorApp:
         self.manifest: dict | None = None
         self.manifest_path: Path | None = None
         self.deck_path: Path | None = None
-        root.minsize(1200, 700)
+        sw, sh = root.winfo_screenwidth(), root.winfo_screenheight()
+        root.minsize(min(1200, max(720, sw - 48)), min(700, max(480, sh - 100)))
 
         if deck_path is not None:
             self.deck_path = deck_path.resolve()
@@ -866,6 +1159,8 @@ class SlideEditorApp:
             return "break"
 
         def _probe_input(event):
+            if not _scroll_debug_enabled():
+                return None
             # Throttle only extremely noisy move/drag style events.
             noisy = str(getattr(event, "type", "")).lower() in {"motion", "mousemove"}
             now = time.monotonic()
@@ -946,10 +1241,8 @@ class SlideEditorApp:
         self.root.bind_class("WheelCapture", "<ButtonRelease-1>", _probe_input)
         self.root.bind_class("WheelCapture", "<ButtonPress-2>", _probe_input)
         self.root.bind_class("WheelCapture", "<ButtonRelease-2>", _probe_input)
-        self.root.bind_class("WheelCapture", "<FocusIn>", _probe_input)
-        self.root.bind_class("WheelCapture", "<FocusOut>", _probe_input)
-        self.root.bind_class("WheelCapture", "<Enter>", _probe_input)
-        self.root.bind_class("WheelCapture", "<Leave>", _probe_input)
+        # Do not bind Enter/Leave/Focus* to _probe_input: building the slide tree fires
+        # thousands of those events; with --debug each one opened scroll_debug.log (70s+ stalls).
 
         self._scroll_canvas.bind("<Enter>", lambda _e: self._scroll_canvas.focus_set())
         self._scroll_canvas.bind("<MouseWheel>", _scroll)
@@ -962,29 +1255,44 @@ class SlideEditorApp:
         self.root.bind_all("<Button-4>", _scroll, add="+")
         self.root.bind_all("<Button-5>", _scroll, add="+")
         self.root.bind_all("<Button-2>", _middle_up, add="+")
-        self.root.bind_all("<ButtonPress>", _probe_input, add="+")
-        self.root.bind_all("<ButtonRelease>", _probe_input, add="+")
-        self.root.bind_all("<MouseWheel>", _probe_input, add="+")
-        self.root.bind_all("<Shift-MouseWheel>", _probe_input, add="+")
-        self.root.bind_all("<Option-MouseWheel>", _probe_input, add="+")
-        self.root.bind_all("<Control-MouseWheel>", _probe_input, add="+")
-
-        def _on_inner_configure(_event=None):
-            self._scroll_canvas.configure(scrollregion=self._scroll_canvas.bbox("all"))
 
         def _on_canvas_configure(event):
             self._scroll_canvas.itemconfig(self._inner_win, width=event.width)
 
-        self.inner.bind("<Configure>", _on_inner_configure)
+        self.inner.bind("<Configure>", self._on_inner_configure)
         self._scroll_canvas.bind("<Configure>", _on_canvas_configure)
         _bind_scroll_handlers(self._scroll_canvas)
         _bind_scroll_handlers(self.inner)
         self._bind_scroll_handlers = _bind_scroll_handlers
 
         self.rows: list[SlideRow] = []
-        self._rebuild_rows()
+        tk.Label(
+            self.inner,
+            text="Loading slides…",
+            fg=SLIDE_DIM,
+            bg=SLIDE_BG,
+            font=("TkDefaultFont", 12),
+        ).pack(anchor=tk.NW, padx=24, pady=40)
+        self.root.after_idle(self._bootstrap_slide_rows)
+        self.root.update_idletasks()
 
-        
+        # Watch the backing JSON for external edits (another editor, ``git pull``, etc.).
+        self._record_self_mtime()
+        self._schedule_external_check()
+
+    def _bootstrap_slide_rows(self) -> None:
+        """Build slide rows after the root window has mapped (avoids long frozen startup)."""
+        if self._profile_startup:
+            self._startup_profiler_wall_t0 = time.monotonic()
+            self._startup_profiler = cProfile.Profile()
+            self._startup_profiler.enable()
+        self._startup_wall_t0 = time.monotonic()
+        self._rebuild_rows()
+        if _scroll_debug_enabled():
+            _log_scroll(
+                f"slide widgets built in {time.monotonic() - self._startup_wall_t0:.2f}s"
+                " (thumbnails load next)"
+            )
 
     def image_wh(self) -> tuple[int, int]:
         src = self.deck if self.deck is not None else self.manifest
@@ -1080,6 +1388,68 @@ class SlideEditorApp:
             return
         self.save_manifest(autosave=True)
 
+    def _current_data_path(self) -> Path | None:
+        return self.deck_path if self.deck is not None else self.manifest_path
+
+    def _record_self_mtime(self) -> None:
+        """Record the current file mtime so the watcher doesn't treat our own writes as external."""
+        p = self._current_data_path()
+        if p is None:
+            self._last_self_mtime_ns = None
+            return
+        try:
+            self._last_self_mtime_ns = p.stat().st_mtime_ns
+        except OSError:
+            self._last_self_mtime_ns = None
+
+    def _schedule_external_check(self) -> None:
+        self._external_check_job = self.root.after(
+            self._external_check_interval_ms, self._check_external_change
+        )
+
+    def _check_external_change(self) -> None:
+        """Poll the backing JSON; if another process wrote it, offer or auto-apply a reload."""
+        self._external_check_job = None
+        try:
+            p = self._current_data_path()
+            if p is None or not p.is_file():
+                return
+            try:
+                mt = p.stat().st_mtime_ns
+            except OSError:
+                return
+            if self._last_self_mtime_ns is None:
+                self._last_self_mtime_ns = mt
+                return
+            if mt == self._last_self_mtime_ns:
+                return
+            # mtime diverged from our last known self-write: external change.
+            has_pending_autosave = self._autosave_after_id is not None
+            if has_pending_autosave:
+                ok = messagebox.askyesno(
+                    "External change",
+                    f"{p.name} was modified outside the editor while you have unsaved edits.\n\n"
+                    "Reload from disk and discard your pending edits?",
+                    parent=self.root,
+                )
+                if not ok:
+                    # Keep the new mtime as baseline so we don't re-prompt every poll tick
+                    # for the same external write.
+                    self._last_self_mtime_ns = mt
+                    return
+                self.root.after_cancel(self._autosave_after_id)
+                self._autosave_after_id = None
+            self.set_status(f"External change detected; reloading {p.name}…")
+            try:
+                self._reload()
+            except Exception as e:
+                LOG.warning("auto-reload failed: %s", e)
+                # Avoid looping on a broken/partial write; update baseline so next poll
+                # only fires after the file changes again.
+                self._last_self_mtime_ns = mt
+        finally:
+            self._schedule_external_check()
+
     def _current_slides(self) -> list[dict]:
         src = self.deck if self.deck is not None else self.manifest
         if src is None:
@@ -1094,86 +1464,188 @@ class SlideEditorApp:
             except tk.TclError:
                 pass
             self._thumb_refresh_job = None
-        self._thumb_gen += 1  # invalidate any in-flight thread callbacks
+        if self._bulk_thumb_refresh:
+            self._bulk_thumb_refresh = False
+            self._apply_scroll_region()
+
+    def _cancel_editor_build_scheduler(self) -> None:
+        if self._editor_build_job is not None:
+            try:
+                self.root.after_cancel(self._editor_build_job)
+            except tk.TclError:
+                pass
+            self._editor_build_job = None
+        if self._bulk_editor_build:
+            self._bulk_editor_build = False
+            self._apply_scroll_region()
+
+    def _on_inner_configure(self, _event=None) -> None:
+        # During thumbnail refresh / background editor build each preview/widget resize fires
+        # <Configure>; bbox("all") on a large inner window is O(tree) and dominated startup
+        # (~1s × slide count) even with a warm disk cache. Defer scrollregion until bursts end.
+        if self._bulk_thumb_refresh or self._bulk_editor_build:
+            return
+        self._apply_scroll_region()
+
+    def _apply_scroll_region(self) -> None:
+        self._scroll_canvas.configure(scrollregion=self._scroll_canvas.bbox("all"))
+
+    def _finish_startup_profile_if_active(self) -> None:
+        if self._startup_profiler is None:
+            return
+        p = self._startup_profiler
+        self._startup_profiler = None
+        p.disable()
+        out_path = SCRIPT_DIR / "slide_editor_startup.prof"
+        p.dump_stats(str(out_path))
+        wall = (
+            time.monotonic() - self._startup_profiler_wall_t0
+            if self._startup_profiler_wall_t0 is not None
+            else 0.0
+        )
+        self._startup_profiler_wall_t0 = None
+        print(
+            "\nNote: cProfile measures Python CPU only. Tcl/Tk layout, mainloop waits, and "
+            "macOS window compositing do not appear as Python time — wall clock during this "
+            f"window was ~{wall:.1f}s. For native stack samples use py-spy or Instruments.\n",
+            file=sys.stderr,
+        )
+        stats = pstats.Stats(p, stream=sys.stderr)
+        stats.strip_dirs()
+        print("\n======== slide_editor startup profile (cumulative top 50) ========", file=sys.stderr)
+        stats.sort_stats(pstats.SortKey.CUMULATIVE)
+        stats.print_stats(50)
+        print("\n======== same profile by internal time (tottime) top 30 ========", file=sys.stderr)
+        stats.sort_stats(pstats.SortKey.TIME)
+        stats.print_stats(30)
+        print(f"\nWrote {out_path}", file=sys.stderr)
+        if self._profile_startup_exit:
+            # ``destroy`` walks the full slide tree and can take ~60s on macOS Tk; ``quit`` ends
+            # mainloop immediately (this path is only for automated profiling).
+            self.root.after(150, self.root.quit)
 
     def _schedule_row_thumbnail_refresh(self) -> None:
-        """Submit PIL thumbnail work to a thread pool; callbacks update the canvas on the main thread."""
+        """Load all list previews in one ``after_idle`` slice.
+
+        Returning to ``mainloop`` between each slide (e.g. ``after(1)`` per row) lets macOS Tk run a
+        full display/layout pass per image; wall time was ~1s × slide count while Python (cProfile)
+        stayed ~1–2s total. One idle callback keeps compositor work batched.
+        """
         self._cancel_thumb_refresh_scheduler()
-        rows = list(self.rows)
-        self._thumb_pending = len(rows)
-        gen = self._thumb_gen
-        if not rows:
-            return
-        for row in rows:
-            self._thumb_executor.submit(self._load_thumb_in_thread, row, gen)
+        self._thumb_refresh_i = 0
+        self._thumb_refresh_t0 = time.monotonic()
+        self._bulk_thumb_refresh = True
+        self._thumb_refresh_job = self.root.after_idle(self._thumb_refresh_advance)
 
-    def _load_thumb_in_thread(self, row: "SlideRow", gen: int) -> None:
-        """PIL decode in background thread; posts raw bytes back to main thread."""
-        if gen != self._thumb_gen:
+    def _thumb_refresh_advance(self) -> None:
+        self._thumb_refresh_job = None
+        n = len(self.rows)
+        if self._thumb_refresh_i >= n:
+            self._bulk_thumb_refresh = False
+            self._apply_scroll_region()
+            self._schedule_editor_build()
             return
-        if row.slide_id:
-            path = self.output_dir / f"{row.slide_id}.png"
-        else:
-            path = self.output_dir / f"{row.index:02d}.png"
-        raw, size, err = _thumb_pil_bytes(path, SLIDE_IMG_PX)
-        if gen != self._thumb_gen:
-            return
-        self.root.after(0, lambda: self._apply_thumb_result(row, raw, size, err, gen))
+        while self._thumb_refresh_i < n:
+            self.rows[self._thumb_refresh_i].refresh_preview()
+            self._thumb_refresh_i += 1
+        self._bulk_thumb_refresh = False
+        self._apply_scroll_region()
+        dt = time.monotonic() - self._thumb_refresh_t0
+        print(
+            f"[startup] thumbnails: {dt:.2f}s ({n} rows)",
+            file=sys.stderr,
+            flush=True,
+        )
+        if _scroll_debug_enabled():
+            _log_scroll(f"slide preview thumbnails finished in {dt:.2f}s ({n} slides)")
+        self._schedule_editor_build()
 
-    def _apply_thumb_result(
-        self,
-        row: "SlideRow",
-        raw: bytes | None,
-        size: tuple[int, int] | None,
-        err: str,
-        gen: int,
-    ) -> None:
-        """Called on main thread: create PhotoImage and update the canvas."""
-        if gen != self._thumb_gen:
+    def _schedule_editor_build(self) -> None:
+        """Build each row's editor pane in the background, one per idle tick.
+
+        Startup shows all slide cards (title + body preview + image) immediately; editor
+        widgets (``Entry`` + two ``ScrolledText``s + six ``Button``s per row) are heavy on
+        macOS Tk (~1 s/row of layout/compositing). Spreading them across idle ticks keeps
+        the UI responsive while the queue drains.
+        """
+        if _PERF_COLLAPSED_ROWS:
+            # Diagnostic: never build editors. Finish startup profile now.
+            self._finish_startup_profile_if_active()
             return
-        photo: object | None = None
-        if raw is not None and size is not None:
-            try:
-                im = Image.frombytes("RGBA", size, raw)
-                photo = ImageTk.PhotoImage(im)
-                if row.slide_id:
-                    path = self.output_dir / f"{row.slide_id}.png"
-                else:
-                    path = self.output_dir / f"{row.index:02d}.png"
-                key = _thumb_cache_key(path, SLIDE_IMG_PX)
-                if key is not None:
-                    _thumb_cache_store(key, (photo, ""))
-            except Exception as e:
-                err = str(e)[:80]
-                photo = None
-        row._photo = photo
-        c = row.preview_canvas
-        c.delete("all")
-        cx, cy = SLIDE_IMG_PX // 2, SLIDE_IMG_PX // 2
-        if photo is not None:
-            c.create_image(cx, cy, image=photo)
-            row._slide_card_text.grid_configure(padx=SLIDE_CARD_TEXT_PADX_WITH_IMG)
-        else:
-            c.create_text(
-                cx,
-                cy,
-                text=err or "No image",
-                fill="#a8a8b8",
-                font=("TkDefaultFont", 11),
-                justify=tk.CENTER,
-                width=SLIDE_IMG_PX - 24,
+        self._cancel_editor_build_scheduler()
+        self._editor_build_i = 0
+        self._editor_build_t0 = time.monotonic()
+        self._bulk_editor_build = True
+        # ``after(1, …)`` rather than ``after_idle`` so scroll/click events queued by the
+        # user interleave between rows instead of being starved by the idle queue.
+        self._editor_build_job = self.root.after(1, self._editor_build_advance)
+
+    def _editor_build_advance(self) -> None:
+        self._editor_build_job = None
+        n = len(self.rows)
+        if self._editor_build_i >= n:
+            self._bulk_editor_build = False
+            self._apply_scroll_region()
+            dt = time.monotonic() - self._editor_build_t0
+            print(
+                f"[startup] editors: {dt:.2f}s ({n} rows)",
+                file=sys.stderr,
+                flush=True,
             )
-            row._slide_card_text.grid_configure(padx=SLIDE_CARD_TEXT_PADX_NO_IMG)
-        self._thumb_pending -= 1
-        if self._thumb_pending <= 0:
-            self._scroll_canvas.configure(scrollregion=self._scroll_canvas.bbox("all"))
+            startup_t0 = getattr(self, "_startup_wall_t0", None)
+            if startup_t0 is not None:
+                print(
+                    f"[startup] total: {time.monotonic() - startup_t0:.2f}s",
+                    file=sys.stderr,
+                    flush=True,
+                )
+            if _scroll_debug_enabled():
+                _log_scroll(f"editor build finished in {dt:.2f}s ({n} rows)")
+            self._finish_startup_profile_if_active()
+            return
+        row = self.rows[self._editor_build_i]
+        try:
+            row.ensure_editor()
+        except Exception as e:  # build should be robust; one bad row shouldn't stall queue
+            LOG.warning("ensure_editor failed for row %d: %s", self._editor_build_i, e)
+        self._editor_build_i += 1
+        self._editor_build_job = self.root.after(1, self._editor_build_advance)
 
     def _rebuild_rows(self) -> None:
+        self._bulk_thumb_refresh = False
         self._cancel_thumb_refresh_scheduler()
+        self._cancel_editor_build_scheduler()
+        build_t0 = time.monotonic()
         for child in list(self.inner.winfo_children()):
             child.destroy()
         self.rows = []
         slides = self._current_slides()
+        if self._perf_minimal_rows:
+            for i, spec in enumerate(slides):
+                if not isinstance(spec, dict):
+                    continue
+                title = str(spec.get("title", f"Slide {i}"))
+                lbl = tk.Label(
+                    self.inner,
+                    text=f"[{i:02d}]  {title}",
+                    anchor="w",
+                    justify="left",
+                    font=("TkDefaultFont", 12),
+                    padx=8,
+                    pady=6,
+                )
+                lbl.pack(fill=tk.X, expand=True, padx=4, pady=2)
+            self._bind_scroll_handlers(self.inner)
+            self._last_build_wall_s = time.monotonic() - build_t0
+            print(
+                f"[startup] widgets: {self._last_build_wall_s:.2f}s"
+                f" ({len(slides)} minimal rows)",
+                file=sys.stderr,
+                flush=True,
+            )
+            self._apply_scroll_region()
+            self.root.after_idle(self._perf_minimal_idle_done)
+            return
         for i, spec in enumerate(slides):
             if not isinstance(spec, dict):
                 continue
@@ -1204,7 +1676,24 @@ class SlideEditorApp:
             row.pack(fill=tk.X, expand=True, padx=4, pady=10)
             self.rows.append(row)
         self._bind_scroll_handlers(self.inner)
+        self._last_build_wall_s = time.monotonic() - build_t0
+        print(
+            f"[startup] widgets: {self._last_build_wall_s:.2f}s ({len(self.rows)} rows)",
+            file=sys.stderr,
+            flush=True,
+        )
         self._schedule_row_thumbnail_refresh()
+
+    def _perf_minimal_idle_done(self) -> None:
+        """Minimal-rows mode: report layout-settled time, then exit if profiling."""
+        startup_t0 = getattr(self, "_startup_wall_t0", None)
+        if startup_t0 is not None:
+            print(
+                f"[startup] idle-settled: {time.monotonic() - startup_t0:.2f}s",
+                file=sys.stderr,
+                flush=True,
+            )
+        self._finish_startup_profile_if_active()
 
     def insert_slide_above(self, index: int) -> None:
         if self.deck is None:
@@ -1347,6 +1836,7 @@ class SlideEditorApp:
                     spec["markdown"] = f"# {title}\n\n{body}".strip()
                 spec["image_prompt"] = row.get_prompt()
             kd.save_deck(self.deck_path, self.deck)
+            self._record_self_mtime()
             self.set_status(
                 f"Auto-saved {self.deck_path.name}" if autosave else f"Saved {self.deck_path.name}"
             )
@@ -1359,6 +1849,7 @@ class SlideEditorApp:
             spec = self.manifest["slides"][row.index]
             spec["prompt"] = row.get_prompt()
         gen.save_manifest(self.manifest_path, self.manifest)
+        self._record_self_mtime()
         self.set_status(f"Saved {self.manifest_path.name}")
 
     def _save_manifest_as(self) -> None:
@@ -1427,6 +1918,7 @@ class SlideEditorApp:
             self.style_excerpt = self.style_full[:4000]
             self._sync_content_guide_widget_from_json()
             self._rebuild_rows()
+            self._record_self_mtime()
             self.set_status(f"Reloaded {self.deck_path.name}.")
             return
 
@@ -1442,6 +1934,7 @@ class SlideEditorApp:
         self.style_excerpt = self.style_full[:4000]
         self._sync_content_guide_widget_from_json()
         self._rebuild_rows()
+        self._record_self_mtime()
         self.set_status(f"Reloaded {self.manifest_path.name}.")
 
 
@@ -1520,9 +2013,13 @@ class PresentModeApp:
             else "← / PgUp  previous   → / Space / PgDn  next   Home / End   F5  reload from disk   Esc  exit fullscreen or quit   − / +  text size"
         )
         self._hint = tk.StringVar(value=hint)
-        self._present_body_pt = 14
         self._present_body_pt_min = 9
         self._present_body_pt_max = 30
+        self._present_settings = _load_settings()
+        saved_pt = self._present_settings.get("present_body_pt", 14)
+        if not isinstance(saved_pt, int):
+            saved_pt = 14
+        self._present_body_pt = max(self._present_body_pt_min, min(self._present_body_pt_max, saved_pt))
 
         top = tk.Frame(win, bg=SLIDE_BG)
         top.pack(fill=tk.X, padx=12, pady=(8, 4))
@@ -1625,13 +2122,19 @@ class PresentModeApp:
         if self._present_body_pt <= self._present_body_pt_min:
             return
         self._present_body_pt -= 1
+        self._persist_present_settings()
         self._show_slide()
 
     def _present_font_larger(self) -> None:
         if self._present_body_pt >= self._present_body_pt_max:
             return
         self._present_body_pt += 1
+        self._persist_present_settings()
         self._show_slide()
+
+    def _persist_present_settings(self) -> None:
+        self._present_settings["present_body_pt"] = int(self._present_body_pt)
+        _save_settings(self._present_settings)
 
     def _reload_from_disk(self) -> None:
         """Re-read ``keynote.json`` or manifest from disk; keep slide index when possible."""
@@ -1744,14 +2247,25 @@ class PresentModeApp:
         if img_path is not None:
             self.center.columnconfigure(0, weight=1, uniform="slide")
             self.center.columnconfigure(1, weight=1, uniform="slide")
-            self.md_frame.grid(row=0, column=0, sticky="nsew", padx=(0, 6))
+            self.md_frame.grid(
+                row=0,
+                column=0,
+                sticky="nsew",
+                padx=PRESENT_MD_FRAME_PADX_WITH_IMG,
+            )
             self.img_frame.grid(row=0, column=1, sticky="nsew", padx=(6, 0))
             self.win.update_idletasks()
             self._schedule_image_resize()
         else:
             self.center.columnconfigure(0, weight=1)
             self.center.columnconfigure(1, weight=0)
-            self.md_frame.grid(row=0, column=0, columnspan=2, sticky="nsew")
+            self.md_frame.grid(
+                row=0,
+                column=0,
+                columnspan=2,
+                sticky="nsew",
+                padx=PRESENT_MD_FRAME_PADX_NO_IMG,
+            )
             if self._img_job is not None:
                 try:
                     self.win.after_cancel(self._img_job)
@@ -1804,10 +2318,7 @@ class PresentModeApp:
 
 
 def main() -> None:
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
-    )
+    global _SCROLL_DEBUG, _PERF_LABEL_BODY, _PERF_COLLAPSED_ROWS
     parser = argparse.ArgumentParser(description="Slide image prompt editor + preview + OpenRouter.")
     parser.add_argument(
         "--deck",
@@ -1831,7 +2342,46 @@ def main() -> None:
         action="store_true",
         help="With --present: use a normal window instead of fullscreen.",
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Scroll/button probe logging + slide build timing (see scroll_debug.log).",
+    )
+    parser.add_argument(
+        "--profile-startup",
+        action="store_true",
+        help="cProfile from first slide build through thumbnail queue end; stderr + slide_editor_startup.prof",
+    )
+    parser.add_argument(
+        "--profile-startup-exit",
+        action="store_true",
+        help="Same as --profile-startup, then close shortly after writing slide_editor_startup.prof (e.g. py-spy).",
+    )
+    parser.add_argument(
+        "--perf-minimal-rows",
+        action="store_true",
+        help="Diagnostic: replace each slide row with a single Label (no editor widgets, no thumbnails).",
+    )
+    parser.add_argument(
+        "--perf-label-body",
+        action="store_true",
+        help="Diagnostic: use a plain Label (no markdown) for each row's body preview; keep the rest of the row intact.",
+    )
+    parser.add_argument(
+        "--perf-collapsed-rows",
+        action="store_true",
+        help="Diagnostic: skip the per-row editor pane, prompt textbox, and button column (simulates lazy-expand rows).",
+    )
     args = parser.parse_args()
+    if args.profile_startup_exit:
+        args.profile_startup = True
+    _SCROLL_DEBUG = bool(args.debug)
+    _PERF_LABEL_BODY = bool(args.perf_label_body)
+    _PERF_COLLAPSED_ROWS = bool(args.perf_collapsed_rows)
+    logging.basicConfig(
+        level=logging.INFO if _SCROLL_DEBUG else logging.WARNING,
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    )
 
     root = tk.Tk()
     try:
@@ -1862,13 +2412,25 @@ def main() -> None:
                 print(f"Error: deck not found: {args.deck}", file=sys.stderr)
                 print("Create with: python keynote_deck.py import talk.md keynote.json", file=sys.stderr)
                 sys.exit(1)
-            SlideEditorApp(root, deck_path=args.deck)
+            SlideEditorApp(
+                root,
+                deck_path=args.deck,
+                profile_startup=args.profile_startup,
+                profile_startup_exit=args.profile_startup_exit,
+                perf_minimal_rows=args.perf_minimal_rows,
+            )
         else:
             if not args.manifest.is_file():
                 print(f"Error: manifest not found: {args.manifest}", file=sys.stderr)
                 print("Prefer: python slide_editor.py --deck keynote.json", file=sys.stderr)
                 sys.exit(1)
-            SlideEditorApp(root, manifest_path=args.manifest)
+            SlideEditorApp(
+                root,
+                manifest_path=args.manifest,
+                profile_startup=args.profile_startup,
+                profile_startup_exit=args.profile_startup_exit,
+                perf_minimal_rows=args.perf_minimal_rows,
+            )
     except FileNotFoundError as e:
         messagebox.showerror("File", str(e))
         sys.exit(1)
