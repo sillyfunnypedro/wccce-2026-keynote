@@ -1,7 +1,7 @@
 {
   "version": 1,
   "frontmatter": {
-    "title": "Incantations: Time to Move On",
+    "title": "Bringing Big into the classroom",
     "subtitle": "Builders, not just graduates — spells, tools, and what we owe students",
     "author": "WCCCE 2026",
     "footer": "WCCCE 2026"
@@ -10,18 +10,114 @@
     {
       "id": "d4b13a60-7827-4c7c-b905-fd953a8dbde1",
       "kind": "content",
-      "markdown": "# Incantations: Time to Move On\n\n- WCCCE 2026\n- Juancho Buchanan\n- Professor of The Practice\n- Khoury College of Computer Science\n- Vancouver campus.",
-      "title": "Incantations: Time to Move On",
+      "markdown": "# Bringing Big into the classroom\n\n- WCCCE 2026\n- Juancho Buchanan\n- Professor of The Practice\n- Khoury College of Computer Science\n- Vancouver campus.",
+      "title": "Bringing Big into the classroom",
       "body": "- WCCCE 2026\n- Juancho Buchanan\n- Professor of The Practice\n- Khoury College of Computer Science\n- Vancouver campus.",
+      "image_prompt": ""
+    },
+    {
+      "id": "28572fab-d726-4fce-94c5-b4d857bbcd84",
+      "kind": "content",
+      "markdown": "# Never before at classroom scale\n\n# Students can sit inside\n- multi-file, \n- multi-language, \n- **production-shaped** work **while** they learn.\n# The emerging LLM landscape\n- reading code easier\n- navigating large codebases\n# Taking liberty\n- Coding is casting spells\n- Delighting customers is pure magic.",
+      "title": "Never before at classroom scale",
+      "body": "# Students can sit inside\n- multi-file, \n- multi-language, \n- **production-shaped** work **while** they learn.\n# The emerging LLM landscape\n- reading code easier\n- navigating large codebases\n# Taking liberty\n- Coding is casting spells\n- Delighting customers is pure magic.",
+      "image_prompt": "A university-scale workshop imagined as a vast stone hall: one entire wall is covered by a single enormous interconnected diagram — many linked parchment panels, ropes, pulleys, and seams so the assembly reads as one huge system, far too large for any one person to hold alone. A mentor gestures along long pathways on the diagram while a small team of students stations at different stations along the wall — tracing connections, comparing notes, adjusting small clamps or markers — conveying collaborative sensemaking inside a real-sized project rather than a single exercise tablet on a desk. Strong scale contrast (tiny figures, huge system), center-weighted composition, expressive silhouettes, clear focal story: teaching and learning in the context of a large project. Warm directional light, rich texture, no readable letters, numbers, logos, or UI text."
+    },
+    {
+      "id": "3be918fc-120b-47e8-bc33-b1ec8979f334",
+      "kind": "content",
+      "markdown": "# What Have I Tried?\n\n- How I am **trying to incorporate** these **opportunities** into my classes.\n- **Through-line:** help students **build large systems** — real scope, many moving parts, integration — not isolated drills.\n- **Aim:** prepare them for **industry**, where **most** graduates go and where the work already looks like this.",
+      "title": "What Have I Tried?",
+      "body": "- How I am **trying to incorporate** these **opportunities** into my classes.\n- **Through-line:** help students **build large systems** — real scope, many moving parts, integration — not isolated drills.\n- **Aim:** prepare them for **industry**, where **most** graduates go and where the work already looks like this.",
+      "image_prompt": "A medieval archive room where a mentor unrolls a timeline of project scrolls year by year, each wax-sealed bundle tied with different colored ribbons for different courses. Apprentices gather around, curious and energized. Warm lamp light, wood shelves, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "7c72bed1-4006-400d-9d72-4ae6df7c23b7",
+      "kind": "content",
+      "markdown": "# 2023 — Line Completion in Software Engineering\n\nI wanted the students to think about \n- The recalc engine\n- The end to end testing\n\n# LLM generated \n- test-button0\n- ...\n- test-button9\n- test-button10",
+      "title": "2023 — Line Completion in Software Engineering",
+      "body": "I wanted the students to think about \n- The recalc engine\n- The end to end testing\n\n# LLM generated \n- test-button0\n- ...\n- test-button9\n- test-button10",
+      "image_prompt": "A medieval testing bench with apprentices checking ten carved button tiles against a control board while one mislabeled tile causes debate; a mentor points to a glowing oracle scroll to question its output. Focus on critical thinking over obedience. Whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "87a9d1e3-b29b-406c-acd9-9d73268876b0",
+      "kind": "content",
+      "markdown": "# Diving Deep into Testing\n\nLet's challenge students to think critically about unit tests.\n\n- Instead of just checking boxes, we can immerse them.\n- Plunge them into code that demands understanding or they risk sinking.\n- Then, we throw them lifelines—structured guidance and support.\n\nThis way, they learn not just to test, but to truly understand the impact of their work.",
+      "title": "Diving Deep into Testing",
+      "body": "Let's challenge students to think critically about unit tests.\n\n- Instead of just checking boxes, we can immerse them.\n- Plunge them into code that demands understanding or they risk sinking.\n- Then, we throw them lifelines—structured guidance and support.\n\nThis way, they learn not just to test, but to truly understand the impact of their work.",
+      "image_prompt": "A whimsical medieval scene in a stone-walled classroom, where an expressive teacher points to a large scroll depicting intricate code while students, dressed in period clothing, attentively surround a wooden table filled with anachronistic gadgets like quills and ink pots transformed into small computing devices. One student, looking confused, is dramatically sinking into a huge puddle of ink, while another reaches out towards him with a lifeline made of rope, symbolizing structured guidance. Candlelight flickers, casting warm pools of light as they work together to understand the testing process. No readable text, letters, numbers, or logos in the image."
+    },
+    {
+      "id": "298ac503-9342-40af-b83a-534bd3e8c41a",
+      "kind": "content",
+      "markdown": "# 2024 — Beginning of Agentic Work\n\n- In a **TypeScript graphics** course, students built two systems in parallel:\n- a software renderer, and an **OpenGL scene renderer**.\n- The point was orchestration: compare approaches, iterate, and keep both tracks moving.",
+      "title": "2024 — Beginning of Agentic Work",
+      "body": "- In a **TypeScript graphics** course, students built two systems in parallel:\n- a software renderer, and an **OpenGL scene renderer**.\n- The point was orchestration: compare approaches, iterate, and keep both tracks moving.",
+      "image_prompt": "A medieval workshop split into two synchronized stations: one team hand-renders scenes on illuminated vellum while another drives a crystal projection apparatus for real-time scenes. A lead apprentice coordinates both with gesture signals. Parallel experimentation mood, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "22e2b7c5-e7a8-4967-b51b-a097b5c81362",
+      "kind": "content",
+      "markdown": "# Tough Choice\n\n# Teach cutting-edge hardware  \n- OpenGL is messy \n- Highlevel gets lost in the tedium\n- What the machine does is not clear\n# Write software renderer\n- Took a long time, no fun graphics\n\n# We can do both\n- The tedium of OpenGl is handed to LLM\n- The tedium of writing software rendering is lessened.",
+      "title": "Tough Choice",
+      "body": "# Teach cutting-edge hardware  \n- OpenGL is messy \n- Highlevel gets lost in the tedium\n- What the machine does is not clear\n# Write software renderer\n- Took a long time, no fun graphics\n\n# We can do both\n- The tedium of OpenGl is handed to LLM\n- The tedium of writing software rendering is lessened.",
+      "image_prompt": ""
+    },
+    {
+      "id": "a26362d3-08e7-4245-8f4e-0db9a0891bf3",
+      "kind": "content",
+      "markdown": "# 2025 — Software Engineering (BC Cancer Foundation)\n\n- Real project context: **BC Cancer Foundation**.\n- Students built a **four-language REST API** system.\n- Emphasis: interoperability, contracts, and shipping across language boundaries.",
+      "title": "2025 — Software Engineering (BC Cancer Foundation)",
+      "body": "- Real project context: **BC Cancer Foundation**.\n- Students built a **four-language REST API** system.\n- Emphasis: interoperability, contracts, and shipping across language boundaries.",
+      "image_prompt": "A medieval civic infirmary commission scene: four guild teams speaking different craft dialects deliver interchangeable components that lock into one shared service gate. Mentors inspect interfaces and seals for compatibility. Purposeful, mission-driven atmosphere, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "8b3b0619-254b-477d-aaef-ded5df8bded9",
+      "kind": "content",
+      "markdown": "# 2025 — Game Engine Programming\n\n- Students worked across **four languages**.\n- They were **reading systems**, **using systems**, and **building games while learning** those systems.\n- Weekly ritual: **How did we do with LLM?** sharing circle on wins, misses, and adjustments.",
+      "title": "2025 — Game Engine Programming",
+      "body": "- Students worked across **four languages**.\n- They were **reading systems**, **using systems**, and **building games while learning** those systems.\n- Weekly ritual: **How did we do with LLM?** sharing circle on wins, misses, and adjustments.",
+      "image_prompt": "A medieval guild game hall where apprentices test playable mechanical mini-worlds while cross-checking four different codexes; nearby, a weekly circle of stools hosts reflective discussion with a glowing assistant spirit at the center. Collaborative iteration vibe, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "e98a6215-fa52-4fe9-860d-ac4eae3f6cf0",
+      "kind": "content",
+      "markdown": "# 2026 — 5001/5002 (Intro CS + Discrete Math)\n\n- Students received a **large existing codebase** to explore.\n- Project: build educational software that explains a **discrete math** topic.\n- LLMs were encouraged as **tutors** during exploration and implementation.",
+      "title": "2026 — 5001/5002 (Intro CS + Discrete Math)",
+      "body": "- Students received a **large existing codebase** to explore.\n- Project: build educational software that explains a **discrete math** topic.\n- LLMs were encouraged as **tutors** during exploration and implementation.",
+      "image_prompt": "A medieval library-lab with towering shelves of inherited scroll systems; apprentices map pathways with string, then build teaching devices that explain abstract patterns to younger students. A calm tutor-spirit offers hints beside them. Discovery-and-teaching mood, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "c10fad7d-99ae-4c0b-a078-6c1e40100221",
+      "kind": "content",
+      "markdown": "# 2026 — OO Programming (Shape Editor)\n\n- Build tasks were small: implement **Square** and **Circle** in ~50 lines each.\n- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).\n- Testing literacy was larger still: explain unit tests across ~**2000 lines**.\n- Goal: tiny feature work plus deep system reading and explanation.",
+      "title": "2026 — OO Programming (Shape Editor)",
+      "body": "- Build tasks were small: implement **Square** and **Circle** in ~50 lines each.\n- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).\n- Testing literacy was larger still: explain unit tests across ~**2000 lines**.\n- Goal: tiny feature work plus deep system reading and explanation.",
+      "image_prompt": "A medieval drafting studio where apprentices quickly carve simple square and circle stamps at one table, then move to a vast layered mural mechanism and stacks of test scrolls at larger tables for guided code-walk explanations. Contrast of small implementation and deep comprehension, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "4f6dc626-83d5-43e2-8ba4-14d61f676cd8",
+      "kind": "content",
+      "markdown": "# How I got here — and why this talk",
+      "title": "How I got here — and why this talk",
+      "body": "",
       "image_prompt": ""
     },
     {
       "id": "6b18f9d6-fd5b-4056-918a-a75cd0381a45",
       "kind": "content",
-      "markdown": "# Spells, Magic, and My Journey\n\n- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- What follows is the **story** — from early **incantations** to **today**.",
+      "markdown": "# Spells, Magic, and My Journey\n\n- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.",
       "title": "Spells, Magic, and My Journey",
-      "body": "- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- What follows is the **story** — from early **incantations** to **today**.",
+      "body": "- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.",
       "image_prompt": "A medieval split scene at twilight: left, a scholar hunches over glowing scroll-lines and quills suggesting code spells; right, the same figure lifts a finished lantern-bridge or counting device while townspeople smile and reach toward it — customer delight. Visual contrast between ritual glyphs (abstract, no readable symbols) and lived outcome. Stone arches, warm pools of light, whimsical tone, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "121d9e95-4b96-48a1-a552-e61f91c2568b",
+      "kind": "content",
+      "markdown": "# Part one: The personal story",
+      "title": "Part one: The personal story",
+      "body": "",
+      "image_prompt": ""
     },
     {
       "id": "2c155803-8ca0-4672-a9d6-cc8b4fb991cc",
@@ -54,6 +150,14 @@
       "title": "First Time I Delighted a \"Customer\"",
       "body": "- **Me** — less pain doing the books.\n- My **uncle** — faster, more accurate billing.\n- Problem ->\n- Understanding ->\n- Do Magic incantations ->\n- Uncle saw them as magical\n- Happy Uncle",
       "image_prompt": "A whimsical medieval scene showing a young person joyfully demonstrating a modern ledger book to their expressive uncle in a cozy stone-walled room. The uncle, with a wide grin, admires the efficient and speedy billing process, surrounded by flickering candlelight that creates warm pools of illumination on rustic wooden beams. The young person's gestures convey excitement as they reveal the magic of simplified accounting. Blend traditional medieval attire with whimsical modern gadgets, making the scene humorous and imaginative, with clear silhouettes and exaggerated expressions. No readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "0ce10e4a-ca60-4a4a-a281-f022c5f2c615",
+      "kind": "content",
+      "markdown": "# Research and collaborators",
+      "title": "Research and collaborators",
+      "body": "",
+      "image_prompt": ""
     },
     {
       "id": "5a3cc000-4391-4270-9db4-7c1388053fef",
@@ -94,6 +198,14 @@
       "title": "CMU — Game Sketching",
       "body": "- At **Carnegie Mellon**, I worked on **game sketching** — a story that **dropped out** of how I usually tell this arc.\n- The **game designer** would **converse** with the setup; **characters** in the world **reacted** — **early**, almost **LLM-like** interactivity.\n- Under the hood: **six puppeteers** in a **back room**, **listening** and **driving** the characters from **script** — we could **pivot fast** when the conversation changed.\n- The designer **iterated** about **thirty times** in **two weeks** — **three** runs on a **heavy** day.\n- The honest question: **Can we ship this?** **No** — you still have to **implement** the real thing.",
       "image_prompt": "A medieval puppet theater cutaway: on stage a game designer gestures to costumed wooden characters that move as if listening; behind a heavy curtain, six puppeteers with ear-trumpets and rope controls coordinate in frantic harmony, scroll scripts on lap desks with no readable writing. Warm footlights, dust motes, comedic secrecy, sense of wizard-behind-the-curtain prototyping, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "64cc806e-fcfc-41a0-8c1d-6cfb4191204b",
+      "kind": "content",
+      "markdown": "# From story to curriculum",
+      "title": "From story to curriculum",
+      "body": "",
+      "image_prompt": ""
     },
     {
       "id": "ccf2dd4c-2b7c-4ce6-b256-25e0969ddb75",
@@ -170,10 +282,18 @@
     {
       "id": "35fdb5ad-ad42-4f24-852f-ac4207c5d229",
       "kind": "content",
-      "markdown": "# So How Has the Academy Responded?\n\n- So how has the academy responded to this challenge?\n- How do we incorporate tools that actually help people build?\n- A strong reaction has been: **We know our magic — leave us alone.**\n- Next I'll share my experiences with how the academy responded when pushed beyond **pure magic**.",
+      "markdown": "# So How Has the Academy Responded?\n\n- So how has the academy responded to this challenge?\n- How do we incorporate tools that actually help people build?\n- A strong reaction has been: **We know our magic — leave us alone.**\n- I have **lived** the pushback — policies, habits, and hallway arguments — when we tried to move beyond **pure magic**.",
       "title": "So How Has the Academy Responded?",
-      "body": "- So how has the academy responded to this challenge?\n- How do we incorporate tools that actually help people build?\n- A strong reaction has been: **We know our magic — leave us alone.**\n- Next I'll share my experiences with how the academy responded when pushed beyond **pure magic**.",
+      "body": "- So how has the academy responded to this challenge?\n- How do we incorporate tools that actually help people build?\n- A strong reaction has been: **We know our magic — leave us alone.**\n- I have **lived** the pushback — policies, habits, and hallway arguments — when we tried to move beyond **pure magic**.",
       "image_prompt": "A medieval university hall at a crossroads: scholars in academic robes examine new practical tools laid out on a long table while traditional spell scrolls hang on the walls behind them. The mood is reflective and transitional, asking how the academy adapts to help people build. Stone arches, warm candlelight, expressive gestures, balanced composition, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "3796416b-05af-466e-b80e-0e4a662e3219",
+      "kind": "content",
+      "markdown": "# How the academy pushed back",
+      "title": "How the academy pushed back",
+      "body": "",
+      "image_prompt": ""
     },
     {
       "id": "2c78bc0a-a3b4-46f3-b764-c31caa559126",
@@ -222,6 +342,14 @@
       "title": "Back to Building",
       "body": "- **Back to building** — what we keep circling.\n- Industry does not want **A+ students** who can only **recite the spells**.\n- It wants **skilled magicians** who **use** them to **delight customers**.",
       "image_prompt": "A medieval town square: one robed scholar flawlessly declaims from a tall stack of spell scrolls to unimpressed guild merchants, while another figure in practical mage attire demonstrates a small finished contraption that makes townspeople smile and trade coin. Emphasis on building something people want versus performing recitation. Stone architecture, market stalls, warm daylight, expressive faces, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "e86832cb-bf36-49cc-8003-a53943110e56",
+      "kind": "content",
+      "markdown": "# Builders, users, and ranks",
+      "title": "Builders, users, and ranks",
+      "body": "",
+      "image_prompt": ""
     },
     {
       "id": "216604f7-0618-4026-9167-0401a56a55b6",
@@ -280,6 +408,14 @@
       "image_prompt": "A senior guild strategist stands before a large map and ledgers, pointing to priorities while merchants explain constraints; the scene emphasizes judgment, trade-offs, and problem discovery rather than typing. Medieval hall, warm light, no readable text, letters, numbers, or logos."
     },
     {
+      "id": "018dcb1e-eb8b-4062-9833-8cd359640b59",
+      "kind": "content",
+      "markdown": "# Plain engineering language",
+      "title": "Plain engineering language",
+      "body": "",
+      "image_prompt": ""
+    },
+    {
       "id": "945af64a-5f1b-4aee-bb89-657cc130d054",
       "kind": "content",
       "markdown": "# Back to Programming\n\n- **Same ranks** — **youngens**, **midlings**, and **elders** were just **story names**.\n- From here on: **junior**, **mid-level**, and **senior** engineers — **programming**, **shipping**, and **teams** in plain language.",
@@ -328,6 +464,14 @@
       "image_prompt": "A medieval workshop filled with whimsical characters, including a jester-like figure dressed as a builder using a quill to sketch a fantastical machine on a wooden table, while a wise-looking wizard observes from the shadows, holding a glowing orb. The scene features rustic stone walls adorned with tools and gadgets that mix ancient and modern elements, illuminated by flickering candlelight casting warm pools of light. The characters express curiosity and camaraderie, highlighting the theme of creative problem-solving and building, with no readable text, letters, or logos in the image."
     },
     {
+      "id": "b10ea8e4-aeb2-44f9-9feb-ef3881021b10",
+      "kind": "content",
+      "markdown": "# What we can do now",
+      "title": "What we can do now",
+      "body": "",
+      "image_prompt": ""
+    },
+    {
       "id": "5cde0626-a29e-4359-8a2e-554b4aaaaf65",
       "kind": "content",
       "markdown": "# The Most Exciting Shift in My Career\n\n- **LLM-assisted coding** is the **most exciting** thing that has happened in my **career** — I want that **energy** in this room.\n- **Example:** I learned a **new language** and shipped a **functional spreadsheet for children** for my **course** — **four weeks** from cold start to **something they could use**.\n- That **pace**, with me still **owning** design and correctness, is what **rekindled** my joy in **building**.\n- I want students to see that **speed is possible** — with **standards**, **tests**, and **honesty** — not magic without responsibility.",
@@ -366,6 +510,14 @@
       "title": "Let's Build",
       "body": "# Dr Richard Caron\n- **1983** — numerical analysis: Never before have we been so capable of **computing numbers**, **our job** is to ensure they are **correct**.\n\n# Me (with respect to Dr Caron)\n- Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.\n\n# Let us practice building.",
       "image_prompt": "A respectful medieval split tableau: left, Dr Richard Caron as a thoughtful scholar-lecturer demonstrates careful verification of glowing abacus-like number engines and brass integrators; right, a modern mentor figure echoes the same posture beside swirling luminous code ribbons and cooperative construct spirits, emphasizing correctness over volume. Stone arches, warm candlelight, bridge across decades, humble tribute mood, whimsical medieval style, no readable text, letters, numbers, or logos."
+    },
+    {
+      "id": "30de3cb1-0c39-4090-a506-ea9eec58bf00",
+      "kind": "content",
+      "markdown": "# A Student Asked: Vibe Coding vs Us?\n\n- A student asked: **What's the difference between vibe coding and us?**\n- My answer: we **understand the machine**.\n- We can **examine** what was produced, trace why it works (or fails), and fix it with intent.\n- That is the difference between **guessing output** and **building systems**.",
+      "title": "A Student Asked: Vibe Coding vs Us?",
+      "body": "- A student asked: **What's the difference between vibe coding and us?**\n- My answer: we **understand the machine**.\n- We can **examine** what was produced, trace why it works (or fails), and fix it with intent.\n- That is the difference between **guessing output** and **building systems**.",
+      "image_prompt": "A medieval workshop contrast scene: one apprentice waves at a glowing oracle and celebrates random sparks, while a seasoned builder opens the mechanism, inspects gears, traces fault lines, and deliberately repairs it. Clear theme of understanding and examination over guesswork. Warm lamplight, stone and timber, expressive faces, whimsical medieval style, no readable text, letters, numbers, or logos."
     },
     {
       "id": "44290e10-5a3b-4e20-81f0-ded368595803",
