@@ -11,4 +11,7 @@ slide_editor_startup.prof
 # Editor-generated slide list previews (rebuilt from slide PNG mtime)
 **/.thumbs/
 
+# Claude Code agent worktrees / sandbox
+.claude/
+
 ~$*.pptx
