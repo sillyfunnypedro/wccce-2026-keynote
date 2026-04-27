@@ -11,18 +11,15 @@ List previews use ``slide_images/.thumbs/{id}_{size}.png`` when possible; they a
 regenerated when the slide image is newer than the cached thumbnail.
 
 **Paste image:** With focus on the slide's **preview square** (or the **Paste image** button), use
-``Ctrl+V`` / ``Cmd+V`` to save the clipboard image as this slide's ``{id}.png`` (or ``NN.png`` in
-manifest mode), replacing any existing file.
+``Ctrl+V`` / ``Cmd+V`` to save the clipboard image as this slide's ``{id}.png``, replacing any
+existing file.
 
-With ``--deck keynote.json``, each slide's title/body/prompt and image path ``{id}.png`` live in the deck.
-
-With ``--manifest …`` (legacy), titles/bodies live in the manifest JSON; images stay ``00.png`` … order.
-Render/suggest use generator.py and OPENROUTER_API_KEY (or .env key files).
+Each slide's title, body, and image_prompt — plus its image at ``{id}.png`` — live in
+``keynote.json``. Render/suggest use generator.py and OPENROUTER_API_KEY (or .env key files).
 
 Presenter (read-only):
 
   python slide_editor.py --present --deck keynote.json
-  python slide_editor.py --present --manifest slide_images_manifest.json
 
   ``←`` / ``→`` / Space: change slide; ``Esc`` exits fullscreen or closes. Add ``--present-windowed`` to skip fullscreen.
 
@@ -337,18 +334,13 @@ def _strip_leading_title_heading_for_present(markdown: str, slide_title: str) ->
     return rest if rest else "(no body)"
 
 
-def _present_slide_image_path(output_dir: Path, spec: dict, index: int, *, use_slide_id: bool) -> Path | None:
-    exts = (".png", ".jpg", ".jpeg", ".webp")
-    if use_slide_id:
-        sid = str(spec.get("id", "")).strip()
-        if sid:
-            for ext in exts:
-                p = output_dir / f"{sid}{ext}"
-                if p.is_file():
-                    return p
+def _present_slide_image_path(output_dir: Path, spec: dict) -> Path | None:
+    """Resolve the rendered image for one deck slide (``{id}.png``)."""
+    sid = str(spec.get("id", "")).strip()
+    if not sid:
         return None
-    for ext in exts:
-        p = output_dir / f"{index:02d}{ext}"
+    for ext in (".png", ".jpg", ".jpeg", ".webp"):
+        p = output_dir / f"{sid}{ext}"
         if p.is_file():
             return p
     return None
@@ -406,9 +398,7 @@ class SlideRow(tk.Frame):
         body: str,
         prompt: str,
         *,
-        slide_id: str | None = None,
-        can_edit_content: bool = True,
-        can_reorder: bool = True,
+        slide_id: str,
         skip_initial_preview: bool = False,
     ):
         super().__init__(master)
@@ -419,8 +409,6 @@ class SlideRow(tk.Frame):
         self._preview_title = title
         self._preview_body = body
         self._prompt_cache = prompt
-        self._can_edit_content = can_edit_content
-        self._can_reorder = can_reorder
 
         # Editor widgets are built lazily (see ``ensure_editor``); until then these are None.
         self._editor_built = False
@@ -597,14 +585,10 @@ class SlideRow(tk.Frame):
         )
         self.body_edit.pack(fill=tk.BOTH, expand=True, anchor="w")
         self.body_edit.insert("1.0", self._preview_body)
-        if self._can_edit_content:
-            self.title_edit.bind("<KeyRelease>", self._on_content_edit)
-            self.body_edit.bind("<KeyRelease>", self._on_content_edit)
-            self.title_edit.bind("<FocusOut>", self._on_content_edit)
-            self.body_edit.bind("<FocusOut>", self._on_content_edit)
-        else:
-            self.title_edit.config(state=tk.DISABLED)
-            self.body_edit.config(state=tk.DISABLED)
+        self.title_edit.bind("<KeyRelease>", self._on_content_edit)
+        self.body_edit.bind("<KeyRelease>", self._on_content_edit)
+        self.title_edit.bind("<FocusOut>", self._on_content_edit)
+        self.body_edit.bind("<FocusOut>", self._on_content_edit)
 
         self._prompt_label = tk.Label(self, text="Image prompt (LLM → OpenRouter):", anchor="w")
         self._prompt_label.grid(row=2, column=0, columnspan=4, sticky="w", pady=(0, 2))
@@ -613,8 +597,7 @@ class SlideRow(tk.Frame):
         )
         self.txt.grid(row=3, column=0, columnspan=3, sticky="nsew", pady=(0, 4))
         self.txt.insert("1.0", self._prompt_cache)
-        if self.app.deck is not None:
-            self.txt.bind("<KeyRelease>", lambda _e: self.app.schedule_autosave())
+        self.txt.bind("<KeyRelease>", lambda _e: self.app.schedule_autosave())
 
         bf = tk.Frame(self)
         bf.grid(row=3, column=3, sticky="ne", padx=(8, 0))
@@ -645,9 +628,6 @@ class SlideRow(tk.Frame):
         self.btn_insert.pack(pady=(6, 4))
         self.btn_delete = tk.Button(bf, text="Delete", width=10, command=self._on_delete)
         self.btn_delete.pack()
-        if not self._can_reorder:
-            self.btn_insert.config(state=tk.DISABLED)
-            self.btn_delete.config(state=tk.DISABLED)
 
     def _show_preview_placeholder(self) -> None:
         c = self.preview_canvas
@@ -715,8 +695,7 @@ class SlideRow(tk.Frame):
         self._top_title_label.config(text=self._title_line())
         self._title_preview.config(text=self._preview_title)
         self._fill_body_preview()
-        if self.app.deck is not None:
-            self.app.schedule_autosave()
+        self.app.schedule_autosave()
 
     def update_slide_preview(self, title: str, body: str | None = None) -> None:
         self._preview_title = title
@@ -727,8 +706,6 @@ class SlideRow(tk.Frame):
             self.body_edit.config(state=tk.NORMAL)
             self.body_edit.delete("1.0", tk.END)
             self.body_edit.insert("1.0", self._preview_body)
-            if not self._can_edit_content:
-                self.body_edit.config(state=tk.DISABLED)
         self._top_title_label.config(text=self._title_line())
         self._title_preview.config(text=self._preview_title)
         self._fill_body_preview()
@@ -750,15 +727,12 @@ class SlideRow(tk.Frame):
         ):
             if btn is not None:
                 btn.config(state=st)
-        if self._can_reorder:
-            for btn in (self.btn_insert, self.btn_delete):
-                if btn is not None:
-                    btn.config(state=st)
+        for btn in (self.btn_insert, self.btn_delete):
+            if btn is not None:
+                btn.config(state=st)
 
     def _slide_png_output_path(self) -> Path:
-        if self.slide_id:
-            return self.app.output_dir / f"{self.slide_id}.png"
-        return self.app.output_dir / f"{self.index:02d}.png"
+        return self.app.output_dir / f"{self.slide_id}.png"
 
     def _on_paste_image_shortcut(self, _event: tk.Event | None = None) -> str:
         self._paste_clipboard_image()
@@ -793,8 +767,7 @@ class SlideRow(tk.Frame):
             messagebox.showerror("Paste image", f"Could not save PNG:\n{e}")
             return
         self.refresh_preview()
-        if self.app.deck is not None:
-            self.app.schedule_autosave()
+        self.app.schedule_autosave()
         try:
             written_w, written_h = Image.open(out_path).size
             dim_line = f"\nDimensions: {written_w} × {written_h}"
@@ -842,8 +815,7 @@ class SlideRow(tk.Frame):
             self.app.set_status(f"Slide {self.index:02d}: no image to delete.")
             return
         self.refresh_preview()
-        if self.app.deck is not None:
-            self.app.schedule_autosave()
+        self.app.schedule_autosave()
         bits = []
         if removed_main:
             bits.append(out_path.name)
@@ -858,18 +830,11 @@ class SlideRow(tk.Frame):
         self.app._open_present_mode(start_index=self.index)
 
     def _on_copy_ai_locator(self) -> None:
-        """Copy a stable slide locator to the clipboard for chat with the assistant.
+        """Copy this slide's UUID to the clipboard for chat with the assistant.
 
-        In deck mode the locator is the slide's UUID (the AI can grep ``keynote.json``
-        for it). In legacy manifest mode the locator falls back to the zero-padded
-        slide index, which is what manifest entries are keyed by.
+        The assistant can grep ``keynote.json`` for the id to find the exact slide.
         """
-        if self.slide_id:
-            locator = self.slide_id
-            label = "slide id"
-        else:
-            locator = f"{self.index:02d}"
-            label = "slide index"
+        locator = self.slide_id
         try:
             r = self.app.root
             r.clipboard_clear()
@@ -882,7 +847,7 @@ class SlideRow(tk.Frame):
             )
             return
         self.app.set_status(
-            f"Slide {self.index:02d}: copied {label} → {locator}"
+            f"Slide {self.index:02d}: copied slide id → {locator}"
         )
 
     def _on_insert_above(self) -> None:
@@ -892,10 +857,7 @@ class SlideRow(tk.Frame):
         self.app.delete_slide(self.index)
 
     def refresh_preview(self) -> None:
-        if self.slide_id:
-            out = self.app.output_dir / f"{self.slide_id}.png"
-        else:
-            out = self.app.output_dir / f"{self.index:02d}.png"
+        out = self.app.output_dir / f"{self.slide_id}.png"
         photo, err = _thumb_photo(out, SLIDE_IMG_PX)
         self._photo = photo
         c = self.preview_canvas
@@ -953,21 +915,15 @@ class SlideRow(tk.Frame):
             self.app.set_status("Suggest failed.")
             return
         self.set_prompt(text)
-        if self.app.deck is not None:
-            self.app.deck["slides"][self.index]["image_prompt"] = text
-            self.app.schedule_autosave()
-        else:
-            self.app.manifest["slides"][self.index]["prompt"] = text
+        self.app.deck["slides"][self.index]["image_prompt"] = text
+        self.app.schedule_autosave()
         self.app.set_status(f"Slide {self.index:02d}: prompt updated from LLM.")
 
     def _slide_edit_context(self) -> tuple[str, str, str]:
         """Talk title, talk subtitle, and content guide — empty strings if unavailable."""
-        talk_title = ""
-        talk_subtitle = ""
-        if self.app.deck is not None:
-            fm = self.app.deck.get("frontmatter") or {}
-            talk_title = (fm.get("title") or "").strip()
-            talk_subtitle = (fm.get("subtitle") or "").strip()
+        fm = self.app.deck.get("frontmatter") or {}
+        talk_title = (fm.get("title") or "").strip()
+        talk_subtitle = (fm.get("subtitle") or "").strip()
         content_guide = self.app.get_content_guide_text() or ""
         return talk_title, talk_subtitle, content_guide
 
@@ -1224,8 +1180,7 @@ class SlideRow(tk.Frame):
                 new_title or self._preview_title,
                 new_body if new_body else None,
             )
-            if self.app.deck is not None:
-                self.app.schedule_autosave()
+            self.app.schedule_autosave()
 
     def _on_preview_render_prompt(self) -> None:
         prompt = self.get_prompt()
@@ -1322,17 +1277,10 @@ class SlideRow(tk.Frame):
             messagebox.showerror("Render failed", "API returned no image (see terminal).")
             self.app.set_status("Render failed.")
             return
-        if self.app.deck is not None:
-            self.app.deck["slides"][self.index]["image_prompt"] = self.get_prompt()
-            self.app.schedule_autosave()
-        else:
-            self.app.manifest["slides"][self.index]["prompt"] = self.get_prompt()
+        self.app.deck["slides"][self.index]["image_prompt"] = self.get_prompt()
+        self.app.schedule_autosave()
         self.refresh_preview()
-        out = (
-            self.app.output_dir / f"{self.slide_id}.png"
-            if self.slide_id
-            else self.app.output_dir / f"{self.index:02d}.png"
-        )
+        out = self.app.output_dir / f"{self.slide_id}.png"
         self.app.set_status(f"Slide {self.index:02d}: saved {out.name}")
 
 
@@ -1340,8 +1288,7 @@ class SlideEditorApp:
     def __init__(
         self,
         root: tk.Tk,
-        manifest_path: Path | None = None,
-        deck_path: Path | None = None,
+        deck_path: Path,
         *,
         profile_startup: bool = False,
         profile_startup_exit: bool = False,
@@ -1368,62 +1315,30 @@ class SlideEditorApp:
         self._perf_minimal_rows = perf_minimal_rows
         self._startup_profiler: cProfile.Profile | None = None
         self._startup_profiler_wall_t0: float | None = None
-        if bool(manifest_path) == bool(deck_path):
-            raise ValueError("Provide exactly one of manifest_path or deck_path")
         self.root = root
-        self.deck: dict | None = None
-        self.manifest: dict | None = None
-        self.manifest_path: Path | None = None
-        self.deck_path: Path | None = None
         sw, sh = root.winfo_screenwidth(), root.winfo_screenheight()
         root.minsize(min(1200, max(720, sw - 48)), min(700, max(480, sh - 100)))
 
-        if deck_path is not None:
-            self.deck_path = deck_path.resolve()
-            if not self.deck_path.is_file():
-                raise FileNotFoundError(str(self.deck_path))
-            self.deck = kd.load_deck(self.deck_path)
-            slides = self.deck.get("slides")
-            if not isinstance(slides, list) or not slides:
-                raise ValueError("Deck has no slides[]")
-            root.title(f"Slide images — {self.deck_path.name}")
-            self.output_dir = SCRIPT_DIR / str(self.deck.get("output_directory", "slide_images"))
-            style_path = gen.resolve_style_path(self.deck, None)
-            self.style_full = gen.load_global_style(style_path, self.deck)
-            self.style_excerpt = self.style_full[:4000]
-            _sync_msg = "Deck mode — prompts and images keyed by slide id; reorder slides in JSON safely."
-            path_label = "Deck:"
-            path_initial = str(self.deck_path)
-            source_hint = "keynote.json (markdown + prompts in one file)"
-            text_model = str(self.deck.get("text_model", "openai/gpt-4o-mini"))
-            image_model = str(self.deck.get("model", gen.DEFAULT_MODEL))
-        else:
-            assert manifest_path is not None
-            self.manifest_path = manifest_path.resolve()
-            if not self.manifest_path.is_file():
-                raise FileNotFoundError(str(self.manifest_path))
-            self.manifest = json.loads(self.manifest_path.read_text(encoding="utf-8"))
-            slides = self.manifest.get("slides")
-            if not isinstance(slides, list) or not slides:
-                raise ValueError("Manifest has no slides[]")
-            root.title(f"Slide images — {self.manifest_path.name}")
-            self.output_dir = SCRIPT_DIR / self.manifest.get("output_directory", "slide_images")
-            style_path = gen.resolve_style_path(self.manifest, None)
-            self.style_full = gen.load_global_style(style_path, self.manifest)
-            self.style_excerpt = self.style_full[:4000]
-            _sync_msg = "Manifest mode — titles/bodies in JSON; edit prompts here (legacy 00.png order)."
-            path_label = "Manifest:"
-            path_initial = str(self.manifest_path)
-            source_hint = self.manifest_path.name
-            text_model = str(self.manifest.get("text_model", "openai/gpt-4o-mini"))
-            image_model = str(self.manifest.get("model", gen.DEFAULT_MODEL))
+        self.deck_path = deck_path.resolve()
+        if not self.deck_path.is_file():
+            raise FileNotFoundError(str(self.deck_path))
+        self.deck = kd.load_deck(self.deck_path)
+        slides = self.deck.get("slides")
+        if not isinstance(slides, list) or not slides:
+            raise ValueError("Deck has no slides[]")
+        root.title(f"Slide images — {self.deck_path.name}")
+        self.output_dir = SCRIPT_DIR / str(self.deck.get("output_directory", "slide_images"))
+        style_path = gen.resolve_style_path(self.deck, None)
+        self.style_full = gen.load_global_style(style_path, self.deck)
+        _sync_msg = "Deck loaded — prompts and images keyed by slide id; reorder slides in JSON safely."
+        text_model = str(self.deck.get("text_model", "openai/gpt-4o-mini"))
+        image_model = str(self.deck.get("model", gen.DEFAULT_MODEL))
 
         menubar = tk.Menu(root)
         fm = tk.Menu(menubar, tearoff=0)
-        open_label = "Open deck…" if self.deck else "Open manifest…"
-        fm.add_command(label=open_label, command=self._open_data)
-        fm.add_command(label="Save", command=self.save_manifest)
-        fm.add_command(label="Save as…", command=self._save_manifest_as)
+        fm.add_command(label="Open deck…", command=self._open_data)
+        fm.add_command(label="Save", command=self.save_deck)
+        fm.add_command(label="Save as…", command=self._save_deck_as)
         fm.add_separator()
         fm.add_command(label="Quit", command=root.quit)
         menubar.add_cascade(label="File", menu=fm)
@@ -1432,14 +1347,14 @@ class SlideEditorApp:
         top = tk.Frame(root)
         top.pack(fill=tk.X, padx=8, pady=6)
 
-        tk.Label(top, text=path_label).pack(side=tk.LEFT)
-        self.path_var = tk.StringVar(value=path_initial)
+        tk.Label(top, text="Deck:").pack(side=tk.LEFT)
+        self.path_var = tk.StringVar(value=str(self.deck_path))
         tk.Entry(top, textvariable=self.path_var, width=70).pack(side=tk.LEFT, fill=tk.X, expand=True, padx=4)
         tk.Button(top, text="Browse…", command=self._browse_data).pack(side=tk.LEFT)
         tk.Button(top, text="Reload", command=self._reload).pack(side=tk.LEFT, padx=4)
-        tk.Button(top, text="Save", command=self.save_manifest, width=8).pack(side=tk.LEFT, padx=(8, 0))
+        tk.Button(top, text="Save", command=self.save_deck, width=8).pack(side=tk.LEFT, padx=(8, 0))
         tk.Button(top, text="Present", command=self._open_present_mode, width=8).pack(side=tk.LEFT, padx=(8, 0))
-        tk.Label(top, text=f"Source: {source_hint}", fg="#246").pack(side=tk.RIGHT, padx=8)
+        tk.Label(top, text="Source: keynote.json (markdown + prompts in one file)", fg="#246").pack(side=tk.RIGHT, padx=8)
 
         theme = tk.LabelFrame(
             root,
@@ -1455,8 +1370,7 @@ class SlideEditorApp:
         self._sync_content_guide_widget_from_json()
 
         def _on_content_guide_edit(_event=None) -> None:
-            if self.deck is not None:
-                self.schedule_autosave()
+            self.schedule_autosave()
 
         self.content_guide.bind("<KeyRelease>", _on_content_guide_edit)
         self.content_guide.bind("<FocusOut>", _on_content_guide_edit)
@@ -1663,9 +1577,7 @@ class SlideEditorApp:
             )
 
     def image_wh(self) -> tuple[int, int]:
-        src = self.deck if self.deck is not None else self.manifest
-        assert src is not None
-        return int(src.get("width", 1024)), int(src.get("height", 1024))
+        return int(self.deck.get("width", 1024)), int(self.deck.get("height", 1024))
 
     def set_status(self, msg: str) -> None:
         self.status.set(msg)
@@ -1674,9 +1586,7 @@ class SlideEditorApp:
         return self.content_guide.get("1.0", "end-1c").strip()
 
     def _sync_content_guide_widget_from_json(self) -> None:
-        src = self.deck if self.deck is not None else self.manifest
-        assert src is not None
-        raw = src.get("content_guide")
+        raw = self.deck.get("content_guide")
         text = gen.DEFAULT_CONTENT_GUIDE
         if isinstance(raw, str) and raw.strip():
             text = raw
@@ -1685,8 +1595,6 @@ class SlideEditorApp:
 
     def _neighbor_slides_markdown_for_insert(self, insert_at: int) -> str:
         """Title + body of slides around the insertion point for LLM continuity."""
-        if self.deck is None:
-            return ""
         slides = self.deck.get("slides")
         if not isinstance(slides, list):
             return ""
@@ -1711,7 +1619,7 @@ class SlideEditorApp:
         return "\n\n---\n\n".join(parts) if parts else ""
 
     def _open_present_mode(self, start_index: int = 0) -> None:
-        """Open read-only presenter in a ``Toplevel`` (current in-memory deck/manifest).
+        """Open read-only presenter in a ``Toplevel`` (current in-memory deck).
 
         ``start_index`` jumps the presenter to that slide (clamped). The toolbar
         button passes 0 (start at the beginning); per-row Present buttons pass
@@ -1723,26 +1631,14 @@ class SlideEditorApp:
         top.minsize(800, 500)
         top.geometry("1280x820")
         try:
-            if self.deck is not None:
-                assert self.deck_path is not None
-                PresentModeApp(
-                    top,
-                    deck_data=copy.deepcopy(self.deck),
-                    deck_path=self.deck_path,
-                    fullscreen=False,
-                    embedded=True,
-                    start_index=start_index,
-                )
-            else:
-                assert self.manifest is not None and self.manifest_path is not None
-                PresentModeApp(
-                    top,
-                    manifest_data=copy.deepcopy(self.manifest),
-                    manifest_path=self.manifest_path,
-                    fullscreen=False,
-                    embedded=True,
-                    start_index=start_index,
-                )
+            PresentModeApp(
+                top,
+                deck_data=copy.deepcopy(self.deck),
+                deck_path=self.deck_path,
+                fullscreen=False,
+                embedded=True,
+                start_index=start_index,
+            )
         except ValueError as e:
             messagebox.showerror("Present", str(e), parent=self.root)
             top.destroy()
@@ -1750,30 +1646,22 @@ class SlideEditorApp:
         top.focus_set()
 
     def schedule_autosave(self) -> None:
-        """Deck only: debounced write to ``keynote.json`` after edits."""
-        if self.deck is None:
-            return
+        """Debounced write to ``keynote.json`` after edits."""
         if self._autosave_after_id is not None:
             self.root.after_cancel(self._autosave_after_id)
         self._autosave_after_id = self.root.after(1200, self._flush_autosave)
 
     def _flush_autosave(self) -> None:
         self._autosave_after_id = None
-        if self.deck is None:
-            return
-        self.save_manifest(autosave=True)
+        self.save_deck(autosave=True)
 
-    def _current_data_path(self) -> Path | None:
-        return self.deck_path if self.deck is not None else self.manifest_path
+    def _current_data_path(self) -> Path:
+        return self.deck_path
 
     def _record_self_mtime(self) -> None:
         """Record the current file mtime so the watcher doesn't treat our own writes as external."""
-        p = self._current_data_path()
-        if p is None:
-            self._last_self_mtime_ns = None
-            return
         try:
-            self._last_self_mtime_ns = p.stat().st_mtime_ns
+            self._last_self_mtime_ns = self._current_data_path().stat().st_mtime_ns
         except OSError:
             self._last_self_mtime_ns = None
 
@@ -1787,7 +1675,7 @@ class SlideEditorApp:
         self._external_check_job = None
         try:
             p = self._current_data_path()
-            if p is None or not p.is_file():
+            if not p.is_file():
                 return
             try:
                 mt = p.stat().st_mtime_ns
@@ -1826,10 +1714,7 @@ class SlideEditorApp:
             self._schedule_external_check()
 
     def _current_slides(self) -> list[dict]:
-        src = self.deck if self.deck is not None else self.manifest
-        if src is None:
-            return []
-        slides = src.get("slides")
+        slides = self.deck.get("slides")
         return slides if isinstance(slides, list) else []
 
     def _cancel_thumb_refresh_scheduler(self) -> None:
@@ -2026,16 +1911,11 @@ class SlideEditorApp:
                 continue
             title = str(spec.get("title", f"Slide {i}"))
             body = str(spec.get("body", ""))
-            if self.deck is not None:
-                prompt = str(spec.get("image_prompt", spec.get("prompt", "")))
-                sid = str(spec.get("id", "")).strip() or None
-                can_edit_content = True
-                can_reorder = True
-            else:
-                prompt = str(spec.get("prompt", ""))
-                sid = None
-                can_edit_content = False
-                can_reorder = False
+            prompt = str(spec.get("image_prompt", ""))
+            sid = str(spec.get("id", "")).strip()
+            if not sid:
+                # Deck slides must have a stable id; surface the bad row instead of silently skipping.
+                raise ValueError(f"Slide [{i:02d}] is missing a non-empty 'id' in the deck.")
             row = SlideRow(
                 self.inner,
                 self,
@@ -2044,8 +1924,6 @@ class SlideEditorApp:
                 body,
                 prompt,
                 slide_id=sid,
-                can_edit_content=can_edit_content,
-                can_reorder=can_reorder,
                 skip_initial_preview=True,
             )
             row.pack(fill=tk.X, expand=True, padx=4, pady=10)
@@ -2071,9 +1949,6 @@ class SlideEditorApp:
         self._finish_startup_profile_if_active()
 
     def insert_slide_above(self, index: int) -> None:
-        if self.deck is None:
-            self.set_status("Insert/delete only available in deck mode.")
-            return
         slides = self.deck.get("slides")
         if not isinstance(slides, list):
             return
@@ -2126,7 +2001,7 @@ class SlideEditorApp:
             }
             slides_now.insert(insert_at, new_slide)
             self._rebuild_rows()
-            self.save_manifest(autosave=True)
+            self.save_deck(autosave=True)
             self.set_status(f"Inserted new slide above [{insert_at:02d}].")
             dlg.destroy()
 
@@ -2172,9 +2047,6 @@ class SlideEditorApp:
         btn_create.config(command=_on_create)
 
     def delete_slide(self, index: int) -> None:
-        if self.deck is None:
-            self.set_status("Insert/delete only available in deck mode.")
-            return
         slides = self.deck.get("slides")
         if not isinstance(slides, list):
             return
@@ -2188,63 +2060,45 @@ class SlideEditorApp:
             return
         slides.pop(index)
         self._rebuild_rows()
-        self.save_manifest(autosave=True)
+        self.save_deck(autosave=True)
         self.set_status(f"Deleted slide [{index:02d}].")
 
-    def save_manifest(self, *, autosave: bool = False) -> None:
-        if self.deck is not None:
-            assert self.deck_path is not None
-            self.deck["text_model"] = self.text_model_var.get().strip()
-            self.deck["model"] = self.image_model_var.get().strip()
-            self.deck["content_guide"] = self.get_content_guide_text()
-            for row in self.rows:
-                spec = self.deck["slides"][row.index]
-                title = row.get_title_text() or str(spec.get("title", f"Slide {row.index}"))
-                body = row.get_body_text()
-                spec["title"] = title
-                spec["body"] = body
-                kind = str(spec.get("kind", "content")).strip().lower()
-                if kind == "quote":
-                    quote_lines = [ln.strip() for ln in body.splitlines() if ln.strip()]
-                    spec["markdown"] = "\n\n".join(f"# {ln}" for ln in quote_lines) if quote_lines else f"# {title}"
-                else:
-                    spec["markdown"] = f"# {title}\n\n{body}".strip()
-                spec["image_prompt"] = row.get_prompt()
-            kd.save_deck(self.deck_path, self.deck)
-            self._record_self_mtime()
-            self.set_status(
-                f"Auto-saved {self.deck_path.name}" if autosave else f"Saved {self.deck_path.name}"
-            )
-            return
-        assert self.manifest is not None and self.manifest_path is not None
-        self.manifest["text_model"] = self.text_model_var.get().strip()
-        self.manifest["model"] = self.image_model_var.get().strip()
-        self.manifest["content_guide"] = self.get_content_guide_text()
+    def save_deck(self, *, autosave: bool = False) -> None:
+        """Flush in-memory edits back to ``keynote.json``."""
+        self.deck["text_model"] = self.text_model_var.get().strip()
+        self.deck["model"] = self.image_model_var.get().strip()
+        self.deck["content_guide"] = self.get_content_guide_text()
         for row in self.rows:
-            spec = self.manifest["slides"][row.index]
-            spec["prompt"] = row.get_prompt()
-        gen.save_manifest(self.manifest_path, self.manifest)
+            spec = self.deck["slides"][row.index]
+            title = row.get_title_text() or str(spec.get("title", f"Slide {row.index}"))
+            body = row.get_body_text()
+            spec["title"] = title
+            spec["body"] = body
+            kind = str(spec.get("kind", "content")).strip().lower()
+            if kind == "quote":
+                quote_lines = [ln.strip() for ln in body.splitlines() if ln.strip()]
+                spec["markdown"] = "\n\n".join(f"# {ln}" for ln in quote_lines) if quote_lines else f"# {title}"
+            else:
+                spec["markdown"] = f"# {title}\n\n{body}".strip()
+            spec["image_prompt"] = row.get_prompt()
+        kd.save_deck(self.deck_path, self.deck)
         self._record_self_mtime()
-        self.set_status(f"Saved {self.manifest_path.name}")
-
-    def _save_manifest_as(self) -> None:
-        initial = (
-            self.deck_path.name if self.deck_path is not None else self.manifest_path.name
+        self.set_status(
+            f"Auto-saved {self.deck_path.name}" if autosave else f"Saved {self.deck_path.name}"
         )
+
+    def _save_deck_as(self) -> None:
         p = filedialog.asksaveasfilename(
             defaultextension=".json",
             filetypes=[("JSON", "*.json"), ("All", "*")],
-            initialfile=initial,
+            initialfile=self.deck_path.name,
         )
         if not p:
             return
         new_p = Path(p)
         self.path_var.set(str(new_p))
-        if self.deck is not None:
-            self.deck_path = new_p
-        else:
-            self.manifest_path = new_p
-        self.save_manifest()
+        self.deck_path = new_p
+        self.save_deck()
 
     def _is_deck_json(self, data: dict) -> bool:
         return isinstance(data.get("frontmatter"), dict) and isinstance(data.get("slides"), list)
@@ -2260,7 +2114,7 @@ class SlideEditorApp:
         self._open_data()
 
     def _reload(self) -> None:
-        """Re-read JSON from path_var and refresh rows."""
+        """Re-read keynote.json from path_var and refresh rows."""
         if self._autosave_after_id is not None:
             self.root.after_cancel(self._autosave_after_id)
             self._autosave_after_id = None
@@ -2273,44 +2127,19 @@ class SlideEditorApp:
         except json.JSONDecodeError as e:
             messagebox.showerror("JSON", str(e))
             return
-        slides = data.get("slides")
-        if not isinstance(slides, list):
-            messagebox.showerror(
-                "File",
-                "Invalid slides[] in JSON.",
-            )
+        if not self._is_deck_json(data):
+            messagebox.showerror("File", "Not a keynote deck (expected frontmatter + slides).")
             return
-        if self.deck is not None:
-            if not self._is_deck_json(data):
-                messagebox.showerror("File", "Not a keynote deck (expected frontmatter + slides).")
-                return
-            self.deck_path = p.resolve()
-            self.deck = data
-            self.text_model_var.set(str(data.get("text_model", "openai/gpt-4o-mini")))
-            self.image_model_var.set(str(data.get("model", gen.DEFAULT_MODEL)))
-            style_path = gen.resolve_style_path(self.deck, None)
-            self.style_full = gen.load_global_style(style_path, self.deck)
-            self.style_excerpt = self.style_full[:4000]
-            self._sync_content_guide_widget_from_json()
-            self._rebuild_rows()
-            self._record_self_mtime()
-            self.set_status(f"Reloaded {self.deck_path.name}.")
-            return
-
-        if self._is_deck_json(data):
-            messagebox.showerror("File", "This looks like keynote.json; restart with --deck.")
-            return
-        self.manifest_path = p.resolve()
-        self.manifest = data
+        self.deck_path = p.resolve()
+        self.deck = data
         self.text_model_var.set(str(data.get("text_model", "openai/gpt-4o-mini")))
         self.image_model_var.set(str(data.get("model", gen.DEFAULT_MODEL)))
-        style_path = gen.resolve_style_path(self.manifest, None)
-        self.style_full = gen.load_global_style(style_path, self.manifest)
-        self.style_excerpt = self.style_full[:4000]
+        style_path = gen.resolve_style_path(self.deck, None)
+        self.style_full = gen.load_global_style(style_path, self.deck)
         self._sync_content_guide_widget_from_json()
         self._rebuild_rows()
         self._record_self_mtime()
-        self.set_status(f"Reloaded {self.manifest_path.name}.")
+        self.set_status(f"Reloaded {self.deck_path.name}.")
 
 
 class PresentModeApp:
@@ -2321,18 +2150,14 @@ class PresentModeApp:
         win: tk.Misc,
         *,
         deck_path: Path | None = None,
-        manifest_path: Path | None = None,
         deck_data: dict | None = None,
-        manifest_data: dict | None = None,
         fullscreen: bool = True,
         embedded: bool = False,
         start_index: int = 0,
     ):
-        deck_src = bool(deck_path or deck_data)
-        man_src = bool(manifest_path or manifest_data)
-        if deck_src == man_src:
+        if not (deck_path or deck_data):
             raise ValueError(
-                "PresentModeApp: provide exactly one of deck (path or data) or manifest (path or data)."
+                "PresentModeApp: provide deck_path or deck_data."
             )
         self.win = win
         self.embedded = embedded
@@ -2340,43 +2165,23 @@ class PresentModeApp:
         self._photo: object | None = None
         self._img_job: str | None = None
         self._pending_image_path: Path | None = None
-        self.manifest: dict | None = None
-        self.manifest_path: Path | None = None
-        self.deck: dict | None = None
+        self.deck: dict
         self.deck_path: Path | None = None
 
-        if deck_src:
-            if deck_data is not None:
-                self.deck = deck_data
-                self.deck_path = deck_path.resolve() if deck_path is not None else None
-            else:
-                assert deck_path is not None
-                self.deck_path = deck_path.resolve()
-                self.deck = kd.load_deck(self.deck_path)
-            slides = self.deck.get("slides")
-            if not isinstance(slides, list) or not slides:
-                raise ValueError("Deck has no slides[]")
-            self.slides: list[dict] = [s for s in slides if isinstance(s, dict)]
-            self.output_dir = SCRIPT_DIR / str(self.deck.get("output_directory", "slide_images"))
-            self.use_slide_id = True
-            label = self.deck_path.name if self.deck_path else "deck"
-            win.title(f"Present — {label}")
+        if deck_data is not None:
+            self.deck = deck_data
+            self.deck_path = deck_path.resolve() if deck_path is not None else None
         else:
-            if manifest_data is not None:
-                self.manifest = manifest_data
-                self.manifest_path = manifest_path.resolve() if manifest_path is not None else None
-            else:
-                assert manifest_path is not None
-                self.manifest_path = manifest_path.resolve()
-                self.manifest = json.loads(self.manifest_path.read_text(encoding="utf-8"))
-            slides = self.manifest.get("slides")
-            if not isinstance(slides, list) or not slides:
-                raise ValueError("Manifest has no slides[]")
-            self.slides = [s for s in slides if isinstance(s, dict)]
-            self.output_dir = SCRIPT_DIR / str(self.manifest.get("output_directory", "slide_images"))
-            self.use_slide_id = False
-            label = self.manifest_path.name if self.manifest_path else "manifest"
-            win.title(f"Present — {label}")
+            assert deck_path is not None
+            self.deck_path = deck_path.resolve()
+            self.deck = kd.load_deck(self.deck_path)
+        slides = self.deck.get("slides")
+        if not isinstance(slides, list) or not slides:
+            raise ValueError("Deck has no slides[]")
+        self.slides: list[dict] = [s for s in slides if isinstance(s, dict)]
+        self.output_dir = SCRIPT_DIR / str(self.deck.get("output_directory", "slide_images"))
+        label = self.deck_path.name if self.deck_path else "deck"
+        win.title(f"Present — {label}")
 
         if not self.slides:
             self.index = 0
@@ -2516,33 +2321,23 @@ class PresentModeApp:
         _save_settings(self._present_settings)
 
     def _reload_from_disk(self) -> None:
-        """Re-read ``keynote.json`` or manifest from disk; keep slide index when possible."""
-        if self.deck_path is None and self.manifest_path is None:
+        """Re-read ``keynote.json`` from disk; keep slide index when possible."""
+        if self.deck_path is None:
             messagebox.showinfo(
                 "Reload",
-                "No JSON path is associated with this presenter (in-memory only). "
+                "No deck path is associated with this presenter (in-memory only). "
                 "Close and use Present again from the editor after saving.",
                 parent=self.win,
             )
             return
         try:
-            if self.deck_path is not None:
-                self.deck = kd.load_deck(self.deck_path)
-                slides = self.deck.get("slides")
-                if not isinstance(slides, list) or not slides:
-                    messagebox.showwarning("Reload", "Deck has no slides after reload.", parent=self.win)
-                    return
-                self.slides = [s for s in slides if isinstance(s, dict)]
-                self.output_dir = SCRIPT_DIR / str(self.deck.get("output_directory", "slide_images"))
-            else:
-                assert self.manifest_path is not None
-                self.manifest = json.loads(self.manifest_path.read_text(encoding="utf-8"))
-                slides = self.manifest.get("slides")
-                if not isinstance(slides, list) or not slides:
-                    messagebox.showwarning("Reload", "Manifest has no slides after reload.", parent=self.win)
-                    return
-                self.slides = [s for s in slides if isinstance(s, dict)]
-                self.output_dir = SCRIPT_DIR / str(self.manifest.get("output_directory", "slide_images"))
+            self.deck = kd.load_deck(self.deck_path)
+            slides = self.deck.get("slides")
+            if not isinstance(slides, list) or not slides:
+                messagebox.showwarning("Reload", "Deck has no slides after reload.", parent=self.win)
+                return
+            self.slides = [s for s in slides if isinstance(s, dict)]
+            self.output_dir = SCRIPT_DIR / str(self.deck.get("output_directory", "slide_images"))
         except OSError as e:
             messagebox.showerror("Reload", str(e), parent=self.win)
             return
@@ -2618,7 +2413,7 @@ class PresentModeApp:
         insert_markdown_lines(self.md_text, md, base_pt=self._present_body_pt)
         self.md_text.config(state=tk.DISABLED)
 
-        img_path = _present_slide_image_path(self.output_dir, spec, self.index, use_slide_id=self.use_slide_id)
+        img_path = _present_slide_image_path(self.output_dir, spec)
         self._pending_image_path = img_path
 
         self.md_frame.grid_forget()
@@ -2702,14 +2497,8 @@ def main() -> None:
     parser.add_argument(
         "--deck",
         type=Path,
-        default=None,
-        help="Edit keynote.json (stable slide ids, {id}.png)",
-    )
-    parser.add_argument(
-        "--manifest",
-        type=Path,
-        default=SCRIPT_DIR / "slide_images_manifest.json",
-        help="Path to slide_images_manifest.json (legacy)",
+        default=SCRIPT_DIR / "keynote.json",
+        help="Path to keynote.json (default: keynote.json next to this script).",
     )
     parser.add_argument(
         "--present",
@@ -2762,50 +2551,24 @@ def main() -> None:
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
 
+    if not args.deck.is_file():
+        print(f"Error: deck not found: {args.deck}", file=sys.stderr)
+        print("Create with: python keynote_deck.py import talk.md keynote.json", file=sys.stderr)
+        sys.exit(1)
+
     root = tk.Tk()
     try:
         if args.present:
-            fullscreen = not args.present_windowed
-            if args.deck is not None:
-                if not args.deck.is_file():
-                    print(f"Error: deck not found: {args.deck}", file=sys.stderr)
-                    sys.exit(1)
-                PresentModeApp(
-                    root,
-                    deck_path=args.deck.resolve(),
-                    fullscreen=fullscreen,
-                    embedded=False,
-                )
-            else:
-                if not args.manifest.is_file():
-                    print(f"Error: manifest not found: {args.manifest}", file=sys.stderr)
-                    sys.exit(1)
-                PresentModeApp(
-                    root,
-                    manifest_path=args.manifest.resolve(),
-                    fullscreen=fullscreen,
-                    embedded=False,
-                )
-        elif args.deck is not None:
-            if not args.deck.is_file():
-                print(f"Error: deck not found: {args.deck}", file=sys.stderr)
-                print("Create with: python keynote_deck.py import talk.md keynote.json", file=sys.stderr)
-                sys.exit(1)
+            PresentModeApp(
+                root,
+                deck_path=args.deck.resolve(),
+                fullscreen=not args.present_windowed,
+                embedded=False,
+            )
+        else:
             SlideEditorApp(
                 root,
                 deck_path=args.deck,
-                profile_startup=args.profile_startup,
-                profile_startup_exit=args.profile_startup_exit,
-                perf_minimal_rows=args.perf_minimal_rows,
-            )
-        else:
-            if not args.manifest.is_file():
-                print(f"Error: manifest not found: {args.manifest}", file=sys.stderr)
-                print("Prefer: python slide_editor.py --deck keynote.json", file=sys.stderr)
-                sys.exit(1)
-            SlideEditorApp(
-                root,
-                manifest_path=args.manifest,
                 profile_startup=args.profile_startup,
                 profile_startup_exit=args.profile_startup_exit,
                 perf_minimal_rows=args.perf_minimal_rows,
