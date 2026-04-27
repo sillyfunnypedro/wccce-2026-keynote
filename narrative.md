@@ -67,6 +67,13 @@ I came back to academia excited about LLM influence on software developers
 
 ## Section 2 — My history of building stuff
 
+### Arthur C. Clarke's Third Law
+<!-- slide: f37b2620-3fa0-4a58-b09d-154230b886ff -->
+
+> "Any sufficiently advanced technology is indistinguishable from magic."
+>
+> — **Arthur C. Clarke**, *Profiles of the Future* (1973)
+
 ### Spells, Magic, and My Journey
 <!-- slide: 6b18f9d6-fd5b-4056-918a-a75cd0381a45 -->
 
