@@ -431,10 +431,14 @@ class SlideRow(tk.Frame):
         self._prompt_label: tk.Label | None = None
         self._editor_frame: tk.Frame | None = None
         self._button_frame: tk.Frame | None = None
+        self.btn_request_edit: tk.Button | None = None
         self.btn_suggest: tk.Button | None = None
         self.btn_preview: tk.Button | None = None
         self.btn_render: tk.Button | None = None
         self.btn_paste: tk.Button | None = None
+        self.btn_delete_image: tk.Button | None = None
+        self.btn_present: tk.Button | None = None
+        self.btn_copy_locator: tk.Button | None = None
         self.btn_insert: tk.Button | None = None
         self.btn_delete: tk.Button | None = None
 
@@ -615,7 +619,17 @@ class SlideRow(tk.Frame):
         bf = tk.Frame(self)
         bf.grid(row=3, column=3, sticky="ne", padx=(8, 0))
         self._button_frame = bf
-        self.btn_suggest = tk.Button(bf, text="Suggest\n(LLM)", width=10, command=self._on_suggest)
+        self.btn_present = tk.Button(
+            bf, text="Present\nfrom here", width=10, command=self._on_present_from_here
+        )
+        self.btn_present.pack(pady=(0, 4))
+        self.btn_copy_locator = tk.Button(
+            bf, text="Copy AI\nlocator", width=10, command=self._on_copy_ai_locator
+        )
+        self.btn_copy_locator.pack(pady=(0, 6))
+        self.btn_request_edit = tk.Button(bf, text="Suggest", width=10, command=self._on_suggest_edit)
+        self.btn_request_edit.pack(pady=(0, 4))
+        self.btn_suggest = tk.Button(bf, text="Image\nprompt", width=10, command=self._on_suggest)
         self.btn_suggest.pack(pady=(0, 4))
         self.btn_preview = tk.Button(bf, text="Preview\nrender", width=10, command=self._on_preview_render_prompt)
         self.btn_preview.pack(pady=(0, 4))
@@ -623,6 +637,10 @@ class SlideRow(tk.Frame):
         self.btn_render.pack()
         self.btn_paste = tk.Button(bf, text="Paste\nimage", width=10, command=self._on_paste_image_button)
         self.btn_paste.pack(pady=(4, 0))
+        self.btn_delete_image = tk.Button(
+            bf, text="Delete\nimage", width=10, command=self._on_delete_image
+        )
+        self.btn_delete_image.pack(pady=(4, 0))
         self.btn_insert = tk.Button(bf, text="Insert\nabove", width=10, command=self._on_insert_above)
         self.btn_insert.pack(pady=(6, 4))
         self.btn_delete = tk.Button(bf, text="Delete", width=10, command=self._on_delete)
@@ -720,7 +738,16 @@ class SlideRow(tk.Frame):
 
     def set_busy(self, busy: bool) -> None:
         st = tk.DISABLED if busy else tk.NORMAL
-        for btn in (self.btn_suggest, self.btn_preview, self.btn_render, self.btn_paste):
+        for btn in (
+            self.btn_present,
+            self.btn_copy_locator,
+            self.btn_request_edit,
+            self.btn_suggest,
+            self.btn_preview,
+            self.btn_render,
+            self.btn_paste,
+            self.btn_delete_image,
+        ):
             if btn is not None:
                 btn.config(state=st)
         if self._can_reorder:
@@ -783,6 +810,81 @@ class SlideRow(tk.Frame):
             f"Slide {self.index:02d}: {verb.lower()} → {out_path.name}"
         )
 
+    def _on_delete_image(self) -> None:
+        """Remove this slide's rendered PNG and any cached thumbnails, then autosave."""
+        out_path = self._slide_png_output_path()
+        thumbs_dir = out_path.parent / ".thumbs"
+        removed_main = False
+        try:
+            if out_path.is_file():
+                out_path.unlink()
+                removed_main = True
+        except OSError as e:
+            messagebox.showerror(
+                "Delete image",
+                f"Could not remove image:\n{out_path}\n\n{e}",
+            )
+            return
+        removed_thumbs = 0
+        if thumbs_dir.is_dir():
+            stem = out_path.stem
+            for tp in thumbs_dir.iterdir():
+                if not tp.is_file():
+                    continue
+                tname = tp.name
+                if tname == stem or tname.startswith(f"{stem}_") or tname.startswith(f"{stem}."):
+                    try:
+                        tp.unlink()
+                        removed_thumbs += 1
+                    except OSError:
+                        pass
+        if not removed_main and removed_thumbs == 0:
+            self.app.set_status(f"Slide {self.index:02d}: no image to delete.")
+            return
+        self.refresh_preview()
+        if self.app.deck is not None:
+            self.app.schedule_autosave()
+        bits = []
+        if removed_main:
+            bits.append(out_path.name)
+        if removed_thumbs:
+            bits.append(f"{removed_thumbs} thumbnail{'s' if removed_thumbs != 1 else ''}")
+        self.app.set_status(
+            f"Slide {self.index:02d}: deleted {' + '.join(bits)}."
+        )
+
+    def _on_present_from_here(self) -> None:
+        """Open the presenter starting at this slide."""
+        self.app._open_present_mode(start_index=self.index)
+
+    def _on_copy_ai_locator(self) -> None:
+        """Copy a stable slide locator to the clipboard for chat with the assistant.
+
+        In deck mode the locator is the slide's UUID (the AI can grep ``keynote.json``
+        for it). In legacy manifest mode the locator falls back to the zero-padded
+        slide index, which is what manifest entries are keyed by.
+        """
+        if self.slide_id:
+            locator = self.slide_id
+            label = "slide id"
+        else:
+            locator = f"{self.index:02d}"
+            label = "slide index"
+        try:
+            r = self.app.root
+            r.clipboard_clear()
+            r.clipboard_append(locator)
+            r.update()
+        except tk.TclError as e:
+            messagebox.showerror(
+                "Copy AI locator",
+                f"Could not write to the clipboard:\n{e}",
+            )
+            return
+        self.app.set_status(
+            f"Slide {self.index:02d}: copied {label} → {locator}"
+        )
+
     def _on_insert_above(self) -> None:
         self.app.insert_slide_above(self.index)
 
@@ -835,7 +937,6 @@ class SlideRow(tk.Frame):
                     text_model=model,
                     slide_title=slide_title,
                     slide_body=slide_body,
-                    style_excerpt=self.app.style_excerpt,
                     current_prompt=self.get_prompt(),
                     content_guide=self.app.get_content_guide_text(),
                 )
@@ -858,6 +959,273 @@ class SlideRow(tk.Frame):
         else:
             self.app.manifest["slides"][self.index]["prompt"] = text
         self.app.set_status(f"Slide {self.index:02d}: prompt updated from LLM.")
+
+    def _slide_edit_context(self) -> tuple[str, str, str]:
+        """Talk title, talk subtitle, and content guide — empty strings if unavailable."""
+        talk_title = ""
+        talk_subtitle = ""
+        if self.app.deck is not None:
+            fm = self.app.deck.get("frontmatter") or {}
+            talk_title = (fm.get("title") or "").strip()
+            talk_subtitle = (fm.get("subtitle") or "").strip()
+        content_guide = self.app.get_content_guide_text() or ""
+        return talk_title, talk_subtitle, content_guide
+
+    def _neighbor_slides(
+        self, before: int = 2, after: int = 2
+    ) -> tuple[list[dict], list[dict]]:
+        """Compact ``{index, title, body}`` dicts for the rows around this one.
+
+        Reads live row state (``get_title_text``/``get_body_text``) so unsaved
+        edits in adjacent rows are reflected.
+        """
+        rows = getattr(self.app, "rows", None) or []
+        n = len(rows)
+        prev: list[dict] = []
+        nxt: list[dict] = []
+        if n == 0 or self.index < 0:
+            return prev, nxt
+        start = max(0, self.index - before)
+        for i in range(start, self.index):
+            row = rows[i]
+            prev.append({
+                "index": i,
+                "title": row.get_title_text(),
+                "body": row.get_body_text(),
+            })
+        end = min(n, self.index + 1 + after)
+        for i in range(self.index + 1, end):
+            row = rows[i]
+            nxt.append({
+                "index": i,
+                "title": row.get_title_text(),
+                "body": row.get_body_text(),
+            })
+        return prev, nxt
+
+    def _build_slide_edit_messages(self, user_request: str) -> tuple[str, str]:
+        talk_title, talk_subtitle, content_guide = self._slide_edit_context()
+        prev_slides, next_slides = self._neighbor_slides()
+        return gen.compose_slide_edit_prompt(
+            talk_title=talk_title,
+            talk_subtitle=talk_subtitle,
+            content_guide=content_guide,
+            slide_index=self.index,
+            slide_title=self.get_title_text(),
+            slide_body=self.get_body_text(),
+            user_request=user_request,
+            prev_slides=prev_slides,
+            next_slides=next_slides,
+        )
+
+    def _on_suggest_edit(self) -> None:
+        self.ensure_editor()
+        self._open_slide_edit_dialog()
+
+    def _open_slide_edit_dialog(self) -> None:
+        dlg = tk.Toplevel(self.app.root)
+        dlg.title(f"Suggest edits — slide {self.index:02d}")
+        dlg.transient(self.app.root)
+        dlg.geometry("680x460")
+
+        header_title = self._preview_title or "(untitled)"
+        tk.Label(
+            dlg,
+            text=f"Slide {self.index:02d}: {header_title}",
+            font=("TkDefaultFont", 11, "bold"),
+            anchor="w",
+        ).pack(fill=tk.X, padx=12, pady=(12, 4))
+
+        tk.Label(
+            dlg,
+            text=(
+                "What change do you want? "
+                "(e.g. \"tighten the opening\", \"add the 75% Google data point\", "
+                "\"rewrite the body in plain language\")"
+            ),
+            anchor="w",
+            wraplength=640,
+            justify=tk.LEFT,
+        ).pack(fill=tk.X, padx=12, pady=(4, 4))
+
+        request_box = scrolledtext.ScrolledText(
+            dlg, wrap=tk.WORD, height=10, font=("TkDefaultFont", 11)
+        )
+        request_box.pack(fill=tk.BOTH, expand=True, padx=12, pady=(2, 8))
+        request_box.focus_set()
+
+        status_var = tk.StringVar(value="")
+        tk.Label(dlg, textvariable=status_var, anchor="w", fg="#5a5a5a").pack(
+            fill=tk.X, padx=12
+        )
+
+        bf = tk.Frame(dlg)
+        bf.pack(fill=tk.X, padx=12, pady=(6, 12))
+
+        state = {"applying": False}
+
+        def get_request() -> str:
+            return request_box.get("1.0", "end-1c").strip()
+
+        def on_preview() -> None:
+            try:
+                system, user_msg = self._build_slide_edit_messages(get_request())
+            except Exception as e:
+                messagebox.showerror("Preview prompt", str(e), parent=dlg)
+                return
+            self._show_slide_edit_preview(dlg, system, user_msg)
+
+        def on_cancel() -> None:
+            dlg.destroy()
+
+        def on_apply() -> None:
+            if state["applying"]:
+                return
+            request = get_request()
+            if not request:
+                messagebox.showwarning(
+                    "Suggest edits",
+                    "Please describe the change you want.",
+                    parent=dlg,
+                )
+                return
+            key = gen.load_api_key()
+            if not key:
+                messagebox.showerror(
+                    "API key",
+                    "Set OPENROUTER_API_KEY or .env/OpenRouter.md",
+                    parent=dlg,
+                )
+                return
+            model = self.app.text_model_var.get().strip()
+            if not model:
+                messagebox.showerror(
+                    "Model",
+                    "Set a text model (e.g. openai/gpt-4o-mini).",
+                    parent=dlg,
+                )
+                return
+            state["applying"] = True
+            btn_apply.config(state=tk.DISABLED, text="Working…")
+            btn_preview.config(state=tk.DISABLED)
+            btn_cancel.config(state=tk.DISABLED)
+            request_box.config(state=tk.DISABLED)
+            status_var.set("Calling LLM…")
+            self.set_busy(True)
+            self.app.set_status(f"Slide {self.index:02d}: requesting edit…")
+
+            talk_title, talk_subtitle, content_guide = self._slide_edit_context()
+            slide_title = self.get_title_text()
+            slide_body = self.get_body_text()
+            slide_index = self.index
+            prev_slides, next_slides = self._neighbor_slides()
+
+            def work():
+                try:
+                    result = gen.suggest_slide_edit(
+                        api_key=key,
+                        text_model=model,
+                        talk_title=talk_title,
+                        talk_subtitle=talk_subtitle,
+                        content_guide=content_guide,
+                        slide_index=slide_index,
+                        slide_title=slide_title,
+                        slide_body=slide_body,
+                        user_request=request,
+                        prev_slides=prev_slides,
+                        next_slides=next_slides,
+                    )
+                    self.app.root.after(0, lambda: done(result, None))
+                except Exception as e:
+                    self.app.root.after(0, lambda: done(None, e))
+
+            def done(result, err):
+                self.set_busy(False)
+                state["applying"] = False
+                if err is not None:
+                    messagebox.showerror(
+                        "Suggest edits failed", str(err), parent=dlg
+                    )
+                    self.app.set_status("Suggest edits failed.")
+                    btn_apply.config(state=tk.NORMAL, text="Apply")
+                    btn_preview.config(state=tk.NORMAL)
+                    btn_cancel.config(state=tk.NORMAL)
+                    request_box.config(state=tk.NORMAL)
+                    status_var.set("")
+                    return
+                self._apply_slide_edit_result(result)
+                self.app.set_status(f"Slide {self.index:02d}: applied LLM edit.")
+                dlg.destroy()
+
+            threading.Thread(target=work, daemon=True).start()
+
+        btn_preview = tk.Button(bf, text="Preview prompt", command=on_preview, width=14)
+        btn_preview.pack(side=tk.LEFT)
+        btn_cancel = tk.Button(bf, text="Cancel", command=on_cancel, width=10)
+        btn_cancel.pack(side=tk.RIGHT)
+        btn_apply = tk.Button(bf, text="Apply", command=on_apply, width=10)
+        btn_apply.pack(side=tk.RIGHT, padx=(0, 8))
+
+    def _show_slide_edit_preview(
+        self, parent: tk.Toplevel, system: str, user_msg: str
+    ) -> None:
+        win = tk.Toplevel(parent)
+        win.title(f"Prompt preview — slide {self.index:02d}")
+        win.transient(parent)
+        win.geometry("820x620")
+
+        model = self.app.text_model_var.get().strip() or "(no text model set)"
+        tk.Label(win, text=f"Text model: {model}", anchor="w").pack(
+            fill=tk.X, padx=10, pady=(10, 4)
+        )
+
+        tk.Label(
+            win,
+            text="System message:",
+            anchor="w",
+            font=("TkDefaultFont", 10, "bold"),
+        ).pack(fill=tk.X, padx=10, pady=(6, 2))
+        sys_box = scrolledtext.ScrolledText(
+            win, wrap=tk.WORD, height=6, font=("TkFixedFont", 10)
+        )
+        sys_box.pack(fill=tk.X, padx=10, pady=(0, 6))
+        sys_box.insert("1.0", system)
+        sys_box.config(state=tk.DISABLED)
+
+        tk.Label(
+            win,
+            text="User message:",
+            anchor="w",
+            font=("TkDefaultFont", 10, "bold"),
+        ).pack(fill=tk.X, padx=10, pady=(6, 2))
+        user_box = scrolledtext.ScrolledText(
+            win, wrap=tk.WORD, font=("TkFixedFont", 10)
+        )
+        user_box.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 6))
+        user_box.insert("1.0", user_msg)
+        user_box.config(state=tk.DISABLED)
+
+        bf = tk.Frame(win)
+        bf.pack(fill=tk.X, padx=10, pady=(4, 10))
+        tk.Button(bf, text="Close", command=win.destroy, width=12).pack(side=tk.RIGHT)
+
+    def _apply_slide_edit_result(self, result: dict) -> None:
+        """Push LLM-suggested ``{title, body}`` into the row's widgets and trigger autosave.
+
+        Empty fields in ``result`` are treated as "leave unchanged" so a partial reply does
+        not wipe out existing content. The slide's image prompt is intentionally untouched
+        by this flow.
+        """
+        new_title = (result.get("title") or "").strip()
+        new_body = (result.get("body") or "").strip()
+
+        if new_title or new_body:
+            self.update_slide_preview(
+                new_title or self._preview_title,
+                new_body if new_body else None,
+            )
+            if self.app.deck is not None:
+                self.app.schedule_autosave()
 
     def _on_preview_render_prompt(self) -> None:
         prompt = self.get_prompt()
@@ -1342,8 +1710,13 @@ class SlideEditorApp:
                 )
         return "\n\n---\n\n".join(parts) if parts else ""
 
-    def _open_present_mode(self) -> None:
-        """Open read-only presenter in a ``Toplevel`` (current in-memory deck/manifest)."""
+    def _open_present_mode(self, start_index: int = 0) -> None:
+        """Open read-only presenter in a ``Toplevel`` (current in-memory deck/manifest).
+
+        ``start_index`` jumps the presenter to that slide (clamped). The toolbar
+        button passes 0 (start at the beginning); per-row Present buttons pass
+        their own index so the speaker can rehearse from the current spot.
+        """
         top = tk.Toplevel(self.root)
         top.transient(self.root)
         top.title("Present")
@@ -1358,6 +1731,7 @@ class SlideEditorApp:
                     deck_path=self.deck_path,
                     fullscreen=False,
                     embedded=True,
+                    start_index=start_index,
                 )
             else:
                 assert self.manifest is not None and self.manifest_path is not None
@@ -1367,6 +1741,7 @@ class SlideEditorApp:
                     manifest_path=self.manifest_path,
                     fullscreen=False,
                     embedded=True,
+                    start_index=start_index,
                 )
         except ValueError as e:
             messagebox.showerror("Present", str(e), parent=self.root)
@@ -1951,6 +2326,7 @@ class PresentModeApp:
         manifest_data: dict | None = None,
         fullscreen: bool = True,
         embedded: bool = False,
+        start_index: int = 0,
     ):
         deck_src = bool(deck_path or deck_data)
         man_src = bool(manifest_path or manifest_data)
@@ -2002,7 +2378,10 @@ class PresentModeApp:
             label = self.manifest_path.name if self.manifest_path else "manifest"
             win.title(f"Present — {label}")
 
-        self.index = 0
+        if not self.slides:
+            self.index = 0
+        else:
+            self.index = max(0, min(int(start_index or 0), len(self.slides) - 1))
         win.configure(bg=SLIDE_BG)
         if fullscreen:
             win.attributes("-fullscreen", True)

@@ -516,17 +516,34 @@ def suggest_slide_prompt(
     text_model: str,
     slide_title: str,
     slide_body: str,
-    style_excerpt: str,
     current_prompt: str = "",
     content_guide: str = "",
 ) -> str:
-    """Ask an LLM for a short image prompt for one slide (title + keynote body)."""
+    """Ask an LLM for a content-only image prompt for one slide.
+
+    The output describes WHAT the picture is — subject, scene, action,
+    composition — and deliberately contains NO visual-style language.
+    The deck's global visual style (medium, line quality, palette, mood,
+    text-rendering rules, dimensions, etc.) lives in ``global_style.md``
+    and is prepended at render time by :func:`compose_render_image_prompt`.
+    Mixing styles into per-slide prompts causes the deck to drift.
+    """
     system = (
-        "You write concise prompts for an AI image generator. "
-        "Reply with ONLY the prompt text: no title, no quotes, no markdown fences, "
-        "no bullet list wrapper. One or two short paragraphs max. "
-        "Describe a single clear visual scene that illustrates the slide content. "
-        "Say explicitly that there must be no readable text, letters, numbers, or logos in the image."
+        "You write concise CONTENT-ONLY image briefs for one keynote slide. "
+        "Reply with ONLY the brief text: no title, no quotes, no markdown fences, no bullet wrapper. "
+        "One or two short paragraphs, ~3-6 sentences total. "
+        "Describe a single clear visual SCENE that illustrates the slide's idea: "
+        "the subject(s), what they are doing, the setting/objects that matter, posture, "
+        "and roughly where things sit in the frame. "
+        "Strict prohibitions — DO NOT mention any visual style. That includes: "
+        "art movements or genres (medieval, fantasy, cyberpunk, anime, XKCD, etc.); "
+        "media or technique (line drawing, watercolor, oil, vector, 3D render, photo); "
+        "color or palette (black-and-white, monochrome, vivid, pastel, sepia); "
+        "lighting/mood adjectives (cinematic, dramatic, moody, whimsical); "
+        "rendering quality phrases (highly detailed, photorealistic, hand-drawn); "
+        "aspect ratio, resolution, camera, lens, or framing terminology. "
+        "Do not reference the deck's global style file; assume style is applied separately. "
+        "Do not invent on-image text, logos, captions, or UI."
     )
     body = (slide_body or "").strip()
     if len(body) > 8000:
@@ -539,29 +556,30 @@ def suggest_slide_prompt(
             cg = cg[:6000] + "\n…(truncated)"
         user_parts.extend(
             [
-                "Overall keynote theme and content guidance (align the metaphor and mood with this):\n",
+                "Overall keynote theme and content guidance (align the metaphor and subject matter with this — do NOT borrow style words from it):\n",
                 cg,
                 "\n\n",
             ]
         )
     user_parts.extend(
         [
-        "Generate a single image-generation prompt for an illustration that captures this slide.\n\n",
-        "Slide title:\n",
-        slide_title.strip(),
-        "\n\nSlide content (speaker notes / body — illustrate these ideas):\n",
-        body if body else "(no body text for this slide)",
-        "\n\nGlobal visual style (reference — follow this mood and constraints):\n",
-        style_excerpt[:4000],
+            "Write a single content-only image brief for this slide.\n\n",
+            "Slide title:\n",
+            slide_title.strip(),
+            "\n\nSlide content (speaker notes / body — illustrate these ideas):\n",
+            body if body else "(no body text for this slide)",
         ]
     )
     if current_prompt.strip():
         user_parts.extend(
-            ["\n\nCurrent image-prompt draft (improve or replace if weak):\n", current_prompt.strip()]
+            [
+                "\n\nCurrent image-brief draft (improve or replace if weak; strip any style language it contains):\n",
+                current_prompt.strip(),
+            ]
         )
     user_parts.append(
-        "\n\nWrite ONLY the final image prompt for this slide. "
-        "It must be consistent with the global style and illustrate the title and content above."
+        "\n\nReturn ONLY the final content brief. "
+        "Subject, action, setting, composition — no style, no medium, no palette, no lighting words."
     )
     user = "".join(user_parts)
     messages = [
@@ -632,6 +650,152 @@ def suggest_new_slide_content(
     title = str(obj.get("title", "")).strip() or "New slide"
     body = str(obj.get("body", "")).strip()
     return {"title": title, "body": body}
+
+
+def _format_neighbor_slide(slide: dict, *, max_body: int = 500) -> str:
+    """Compact rendering of one neighbor slide for slide-edit context."""
+    idx = slide.get("index")
+    label = f"Slide {idx:02d}" if isinstance(idx, int) else "Slide"
+    title = (slide.get("title") or "").strip() or "(untitled)"
+    body = (slide.get("body") or "").strip()
+    if len(body) > max_body:
+        body = body[:max_body].rstrip() + " …(truncated)"
+    if body:
+        return f"### {label}: {title}\n{body}"
+    return f"### {label}: {title}"
+
+
+def compose_slide_edit_prompt(
+    *,
+    talk_title: str,
+    talk_subtitle: str,
+    content_guide: str,
+    slide_index: int | None,
+    slide_title: str,
+    slide_body: str,
+    user_request: str,
+    prev_slides: list[dict] | None = None,
+    next_slides: list[dict] | None = None,
+) -> tuple[str, str]:
+    """Build (system, user) messages for an LLM-driven slide-content edit.
+
+    The image prompt is intentionally NOT included — this helper revises slide
+    text only. ``prev_slides`` and ``next_slides`` are compact dicts
+    (``{"index", "title", "body"}``) supplied for tone/flow continuity; they
+    are truncated and included in a dedicated context section so the LLM does
+    not duplicate or contradict adjacent slides. Returned as plain strings so
+    callers (e.g. the editor's "Preview prompt" button) can show the speaker
+    exactly what will be sent.
+    """
+    system = (
+        "You revise the text of a single keynote slide based on the speaker's request. "
+        "Return ONLY valid JSON with keys: title, body. "
+        "Keep the slide grounded in the talk's stated purpose. "
+        "Tone is conversational and speaker-friendly, not academic. "
+        "Title is concise and punchy. Body is concise — short paragraphs and "
+        "bullet lists are fine. Body uses lightweight markdown: section headings "
+        "starting with '# ', '**bold**' for emphasis, and bullets with '- '. "
+        "Surrounding slides are provided for context only — use them to keep tone, "
+        "flow, and terminology consistent, but do not duplicate or paraphrase their content. "
+        "Do not invent or modify the slide's image prompt. "
+        "Do not wrap your reply in markdown code fences."
+    )
+    chunks: list[str] = ["# Talk purpose"]
+    if talk_title.strip():
+        chunks.append(f"Title: {talk_title.strip()}")
+    if talk_subtitle.strip():
+        chunks.append(f"Subtitle: {talk_subtitle.strip()}")
+    cg = (content_guide or "").strip()
+    if cg:
+        if len(cg) > 6000:
+            cg = cg[:6000] + "\n…(truncated)"
+        chunks.append(f"Content guide:\n{cg}")
+
+    label = f"Slide {slide_index:02d}" if slide_index is not None else "Slide"
+    chunks.append(f"\n# Current slide ({label})")
+    chunks.append(f"Title:\n{slide_title.strip() or '(empty)'}")
+    body_text = slide_body.strip() or "(empty)"
+    if len(body_text) > 8000:
+        body_text = body_text[:8000] + "\n…(truncated)"
+    chunks.append(f"\nBody (markdown):\n{body_text}")
+
+    prev_list = prev_slides or []
+    next_list = next_slides or []
+    if prev_list or next_list:
+        chunks.append("\n# Surrounding slides (context only — do NOT duplicate)")
+        if prev_list:
+            chunks.append("## Previous slides (in order)")
+            for s in prev_list:
+                chunks.append(_format_neighbor_slide(s))
+        if next_list:
+            chunks.append("## Next slides (in order)")
+            for s in next_list:
+                chunks.append(_format_neighbor_slide(s))
+
+    chunks.append("\n# Speaker's edit request")
+    chunks.append(user_request.strip() or "(no request — propose a small clarity improvement)")
+
+    chunks.append("\n# Output")
+    chunks.append('Return JSON only:\n{"title":"...","body":"..."}')
+    user = "\n\n".join(chunks)
+    return system, user
+
+
+def suggest_slide_edit(
+    *,
+    api_key: str,
+    text_model: str,
+    talk_title: str,
+    talk_subtitle: str,
+    content_guide: str,
+    slide_index: int | None,
+    slide_title: str,
+    slide_body: str,
+    user_request: str,
+    prev_slides: list[dict] | None = None,
+    next_slides: list[dict] | None = None,
+) -> dict:
+    """Call the LLM to revise one slide's text. Returns ``{title, body}`` or raises.
+
+    The slide's image prompt is deliberately not part of this round-trip.
+    """
+    system, user = compose_slide_edit_prompt(
+        talk_title=talk_title,
+        talk_subtitle=talk_subtitle,
+        content_guide=content_guide,
+        slide_index=slide_index,
+        slide_title=slide_title,
+        slide_body=slide_body,
+        user_request=user_request,
+        prev_slides=prev_slides,
+        next_slides=next_slides,
+    )
+    raw = openrouter_chat_text(
+        api_key=api_key,
+        model=text_model,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        timeout=120,
+    ).strip()
+
+    payload = raw
+    if not payload.startswith("{"):
+        m = re.search(r"\{.*\}", payload, flags=re.DOTALL)
+        if m:
+            payload = m.group(0)
+    try:
+        obj = json.loads(payload)
+    except json.JSONDecodeError as e:
+        snippet = raw[:220].replace("\n", " ")
+        raise RuntimeError(f"Could not parse slide edit JSON: {e}. Raw: {snippet}") from e
+    if not isinstance(obj, dict):
+        raise RuntimeError("Slide edit response is not a JSON object.")
+    return {
+        "title": str(obj.get("title", "")).strip(),
+        "body": str(obj.get("body", "")).strip(),
+    }
 
 
 # ── Main pipeline ─────────────────────────────────────────────────────────────

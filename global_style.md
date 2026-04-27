@@ -1,6 +1,6 @@
 # Global image style (whole deck)
 
-The generator prepends this file to each slide’s prompt.
+The generator prepends this file to each slide's prompt.
 
 ---
 
@@ -11,10 +11,11 @@ The generator prepends this file to each slide’s prompt.
 
 ## Visual style
 
-- **Black-and-white ink drawing** with **hand-drawn crosshatching** (print / editorial ink look, not smooth digital gradients).
-- **Medieval setting** with **rustic textures:** stone walls, wooden beams, **candle or torch** lighting (warm pools of light on monochrome ink).
-- **Characters:** expressive, **slightly exaggerated for humor**; readable silhouettes and gesture.
-- **Story mix:** **historical medieval** elements blended with **modern technology** (old-meets-new, whimsical, imaginative — like anachronistic props or gadgets in a castle scene).
-- **Tone:** whimsical, imaginative **visual storytelling**; one clear scene per image.
-- **Composition:** subject **center-weighted** inside the square with **even breathing room** at all edges.
-- **No text:** do not render readable letters, words, numbers, logos, or UI chrome.
+- **XKCD-style line drawing** — Randall Munroe webcomic look.
+- **Stick figures** for people: line limbs, simple round heads, **no detailed faces**. Expressive **posture and gesture** carry meaning, not facial features.
+- **Thin, slightly imperfect black ink lines** on a **plain white background**. Hand-drawn feel, not vector-clean.
+- **Minimal, suggested scenery:** a few quick lines hint at a desk, doorway, screen, machine, etc. **No textures, no shading fills, no gradients, no color** — pure black on white.
+- **Lots of negative space.** The drawing should feel **sparse**, not packed.
+- **Dry, observational humor:** the joke comes from **posture, juxtaposition, and what the figures are doing** — never from facial detail.
+- **One clear idea per image**, **center-weighted** in the square with **even breathing room** at all edges.
+- **No text:** do not render readable letters, words, numbers, captions, logos, speech bubbles, or UI chrome — even though XKCD normally uses text. Tell the story through gesture and simple object shapes only.
