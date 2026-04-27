@@ -45,6 +45,7 @@ import pstats
 import re
 import sys
 from collections import OrderedDict
+from collections.abc import Callable
 import threading
 import time
 import tkinter as tk
@@ -602,32 +603,50 @@ class SlideRow(tk.Frame):
         bf = tk.Frame(self)
         bf.grid(row=3, column=3, sticky="ne", padx=(8, 0))
         self._button_frame = bf
-        self.btn_present = tk.Button(
-            bf, text="Present\nfrom here", width=10, command=self._on_present_from_here
+        # Buttons in a 2-column grid so each slide row is roughly half as tall.
+        # Left column = content/LLM actions; right column = image/file actions.
+        self.btn_request_edit = tk.Button(
+            bf, text="Suggest", width=9, command=self._on_suggest_edit
         )
-        self.btn_present.pack(pady=(0, 4))
-        self.btn_copy_locator = tk.Button(
-            bf, text="Copy AI\nlocator", width=10, command=self._on_copy_ai_locator
+        self.btn_suggest = tk.Button(
+            bf, text="Image\nprompt", width=9, command=self._on_suggest
         )
-        self.btn_copy_locator.pack(pady=(0, 6))
-        self.btn_request_edit = tk.Button(bf, text="Suggest", width=10, command=self._on_suggest_edit)
-        self.btn_request_edit.pack(pady=(0, 4))
-        self.btn_suggest = tk.Button(bf, text="Image\nprompt", width=10, command=self._on_suggest)
-        self.btn_suggest.pack(pady=(0, 4))
-        self.btn_preview = tk.Button(bf, text="Preview\nrender", width=10, command=self._on_preview_render_prompt)
-        self.btn_preview.pack(pady=(0, 4))
-        self.btn_render = tk.Button(bf, text="Render", width=10, command=self._on_render)
-        self.btn_render.pack()
-        self.btn_paste = tk.Button(bf, text="Paste\nimage", width=10, command=self._on_paste_image_button)
-        self.btn_paste.pack(pady=(4, 0))
+        self.btn_preview = tk.Button(
+            bf, text="Preview\nrender", width=9, command=self._on_preview_render_prompt
+        )
+        self.btn_render = tk.Button(
+            bf, text="Render", width=9, command=self._on_render
+        )
+        self.btn_paste = tk.Button(
+            bf, text="Paste\nimage", width=9, command=self._on_paste_image_button
+        )
         self.btn_delete_image = tk.Button(
-            bf, text="Delete\nimage", width=10, command=self._on_delete_image
+            bf, text="Delete\nimage", width=9, command=self._on_delete_image
         )
-        self.btn_delete_image.pack(pady=(4, 0))
-        self.btn_insert = tk.Button(bf, text="Insert\nabove", width=10, command=self._on_insert_above)
-        self.btn_insert.pack(pady=(6, 4))
-        self.btn_delete = tk.Button(bf, text="Delete", width=10, command=self._on_delete)
-        self.btn_delete.pack()
+        self.btn_present = tk.Button(
+            bf, text="Present\nfrom here", width=9, command=self._on_present_from_here
+        )
+        self.btn_copy_locator = tk.Button(
+            bf, text="Copy AI\nlocator", width=9, command=self._on_copy_ai_locator
+        )
+        self.btn_insert = tk.Button(
+            bf, text="Insert\nabove", width=9, command=self._on_insert_above
+        )
+        self.btn_delete = tk.Button(
+            bf, text="Delete", width=9, command=self._on_delete
+        )
+        grid = (
+            (self.btn_request_edit, self.btn_suggest),
+            (self.btn_preview,      self.btn_render),
+            (self.btn_paste,        self.btn_delete_image),
+            (self.btn_present,      self.btn_copy_locator),
+            (self.btn_insert,       self.btn_delete),
+        )
+        for r, (left, right) in enumerate(grid):
+            left.grid(row=r, column=0, sticky="ew", padx=(0, 3), pady=2)
+            right.grid(row=r, column=1, sticky="ew", padx=(3, 0), pady=2)
+        bf.columnconfigure(0, weight=1)
+        bf.columnconfigure(1, weight=1)
 
     def _show_preview_placeholder(self) -> None:
         c = self.preview_canvas
@@ -885,7 +904,7 @@ class SlideRow(tk.Frame):
             return
         model = self.app.text_model_var.get().strip()
         if not model:
-            messagebox.showerror("Model", "Set a text model for Suggest (e.g. openai/gpt-4o-mini).")
+            messagebox.showerror("Model", "Set a text model for Suggest (e.g. anthropic/claude-haiku-4.5).")
             return
         self.set_busy(True)
         self.app.set_status(f"Suggesting slide {self.index:02d}…")
@@ -1057,7 +1076,7 @@ class SlideRow(tk.Frame):
             if not model:
                 messagebox.showerror(
                     "Model",
-                    "Set a text model (e.g. openai/gpt-4o-mini).",
+                    "Set a text model (e.g. anthropic/claude-haiku-4.5).",
                     parent=dlg,
                 )
                 return
@@ -1231,7 +1250,7 @@ class SlideRow(tk.Frame):
             return
         model = self.app.image_model_var.get().strip()
         if not model:
-            messagebox.showerror("Model", "Set an image model (e.g. google/gemini-2.5-flash-image).")
+            messagebox.showerror("Model", "Set an image model (e.g. google/gemini-3.1-flash-image-preview).")
             return
         self.set_busy(True)
         self.app.set_status(f"Rendering slide {self.index:02d}…")
@@ -1331,7 +1350,7 @@ class SlideEditorApp:
         style_path = gen.resolve_style_path(self.deck, None)
         self.style_full = gen.load_global_style(style_path, self.deck)
         _sync_msg = "Deck loaded — prompts and images keyed by slide id; reorder slides in JSON safely."
-        text_model = str(self.deck.get("text_model", "openai/gpt-4o-mini"))
+        text_model = str(self.deck.get("text_model", "anthropic/claude-haiku-4.5"))
         image_model = str(self.deck.get("model", gen.DEFAULT_MODEL))
 
         menubar = tk.Menu(root)
@@ -1638,6 +1657,7 @@ class SlideEditorApp:
                 fullscreen=False,
                 embedded=True,
                 start_index=start_index,
+                on_slide_change=self._scroll_to_slide_id,
             )
         except ValueError as e:
             messagebox.showerror("Present", str(e), parent=self.root)
@@ -1749,6 +1769,71 @@ class SlideEditorApp:
 
     def _apply_scroll_region(self) -> None:
         self._scroll_canvas.configure(scrollregion=self._scroll_canvas.bbox("all"))
+
+    def _capture_focus_slide_id(self) -> str | None:
+        """Best-guess id of the slide the user is "on" right now.
+
+        Preference order: (1) the row that contains keyboard focus, (2) the topmost
+        row that's scrolled into view. Used so reload + presenter-sync can re-anchor
+        on the same slide even if its index shifts.
+        """
+        rows = getattr(self, "rows", None) or []
+        if not rows:
+            return None
+        try:
+            focused = self.root.focus_get()
+        except (KeyError, tk.TclError):
+            focused = None
+        if focused is not None:
+            w: tk.Misc | None = focused
+            while w is not None and not isinstance(w, SlideRow):
+                w = getattr(w, "master", None)
+            if isinstance(w, SlideRow) and w.slide_id:
+                return w.slide_id
+        canvas = self._scroll_canvas
+        try:
+            canvas.update_idletasks()
+            view_top = canvas.canvasy(0)
+        except tk.TclError:
+            return rows[0].slide_id or None
+        best: str | None = rows[0].slide_id or None
+        for r in rows:
+            try:
+                y = r.winfo_y()
+            except tk.TclError:
+                continue
+            if y <= view_top + 8:
+                if r.slide_id:
+                    best = r.slide_id
+            else:
+                break
+        return best
+
+    def _scroll_to_slide_id(self, sid: str | None) -> None:
+        """Scroll the editor so the row with ``sid`` is at (or near) the viewport top.
+
+        No-op if the deck doesn't contain that slide. Doesn't steal keyboard focus.
+        """
+        if not sid:
+            return
+        rows = getattr(self, "rows", None) or []
+        target = next((r for r in rows if r.slide_id == sid), None)
+        if target is None:
+            return
+        canvas = self._scroll_canvas
+        try:
+            canvas.update_idletasks()
+            self._apply_scroll_region()
+            bbox = canvas.bbox("all")
+            if not bbox:
+                return
+            total_h = bbox[3] - bbox[1]
+            if total_h <= 0:
+                return
+            y = max(0, target.winfo_y() - 8)
+            canvas.yview_moveto(max(0.0, min(1.0, y / total_h)))
+        except tk.TclError:
+            pass
 
     def _finish_startup_profile_if_active(self) -> None:
         if self._startup_profiler is None:
@@ -2014,7 +2099,7 @@ class SlideEditorApp:
             if not api_key:
                 messagebox.showerror("API key", "Set OPENROUTER_API_KEY or .env/OpenRouter.md")
                 return
-            model = self.text_model_var.get().strip() or "openai/gpt-4o-mini"
+            model = self.text_model_var.get().strip() or "anthropic/claude-haiku-4.5"
             _set_busy(True)
             status.set("Asking LLM for title + content…")
 
@@ -2130,15 +2215,20 @@ class SlideEditorApp:
         if not self._is_deck_json(data):
             messagebox.showerror("File", "Not a keynote deck (expected frontmatter + slides).")
             return
+        # Preserve the user's place across reload (external write, manual reload, etc.)
+        focus_sid = self._capture_focus_slide_id()
         self.deck_path = p.resolve()
         self.deck = data
-        self.text_model_var.set(str(data.get("text_model", "openai/gpt-4o-mini")))
+        self.text_model_var.set(str(data.get("text_model", "anthropic/claude-haiku-4.5")))
         self.image_model_var.set(str(data.get("model", gen.DEFAULT_MODEL)))
         style_path = gen.resolve_style_path(self.deck, None)
         self.style_full = gen.load_global_style(style_path, self.deck)
         self._sync_content_guide_widget_from_json()
         self._rebuild_rows()
         self._record_self_mtime()
+        if focus_sid is not None:
+            # Defer until row geometry settles; otherwise winfo_y() is stale/zero.
+            self.root.after_idle(lambda sid=focus_sid: self._scroll_to_slide_id(sid))
         self.set_status(f"Reloaded {self.deck_path.name}.")
 
 
@@ -2154,6 +2244,7 @@ class PresentModeApp:
         fullscreen: bool = True,
         embedded: bool = False,
         start_index: int = 0,
+        on_slide_change: Callable[[str], None] | None = None,
     ):
         if not (deck_path or deck_data):
             raise ValueError(
@@ -2162,6 +2253,7 @@ class PresentModeApp:
         self.win = win
         self.embedded = embedded
         self.fullscreen = fullscreen
+        self._on_slide_change = on_slide_change
         self._photo: object | None = None
         self._img_job: str | None = None
         self._pending_image_path: Path | None = None
@@ -2450,6 +2542,14 @@ class PresentModeApp:
             self._photo = None
 
         self.counter_lbl.config(text=f"Slide {self.index + 1} / {n}")
+
+        if self._on_slide_change is not None:
+            sid = str(spec.get("id", "")).strip()
+            if sid:
+                try:
+                    self._on_slide_change(sid)
+                except Exception:
+                    LOG.warning("present on_slide_change callback failed", exc_info=True)
 
     def _prev(self) -> None:
         if self.index > 0:

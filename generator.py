@@ -34,7 +34,7 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).parent
 DEFAULT_GLOBAL_STYLE_FILE = SCRIPT_DIR / "global_style.md"
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
-DEFAULT_MODEL = "google/gemini-2.5-flash-image"
+DEFAULT_MODEL = "google/gemini-3.1-flash-image-preview"  # previous default: google/gemini-2.5-flash-image
 
 DEFAULT_CONTENT_GUIDE = (
     "This is a keynote lecture where we are advocating a return to thinking about "
@@ -47,11 +47,13 @@ Output: 1024x1024 pixels, square 1:1 aspect ratio.
 Black-and-white ink with crosshatching; medieval + modern tech blend; whimsical; no text."""
 
 KNOWN_MODELS = {
-    "google/gemini-2.5-flash-image": "Default — fast Nano Banana style",
-    "google/gemini-2.5-flash-image-preview": "Preview variant",
-    "google/gemini-3-pro-image-preview": "Higher quality / resolution options",
-    "openai/gpt-5-image": "OpenAI image (often strong composition)",
-    "openai/gpt-5-image-mini": "Cheaper OpenAI image",
+    "google/gemini-3.1-flash-image-preview": "Default — Nano Banana 2; Pro-level quality at Flash speed",
+    "google/gemini-2.5-flash-image": "Previous default — original Nano Banana (kept for reproducibility)",
+    "openai/gpt-5.4-image-2": "OpenAI GPT-5.4 + Image 2; strong composition, premium price",
+    "black-forest-labs/flux.2-klein-4b": "FLUX.2 [klein] — fastest, cheapest ($0.014/MP)",
+    "bytedance-seed/seedream-4.5": "Seedream 4.5 — flat $0.04/image; good text + edit consistency",
+    "sourceful/riverflow-v2-pro": "Riverflow V2 Pro — best for embedded text rendering",
+    "sourceful/riverflow-v2-fast": "Riverflow V2 Fast — production-speed, $0.02/image",
 }
 
 
