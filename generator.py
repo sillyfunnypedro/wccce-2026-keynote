@@ -3,9 +3,8 @@
 Generate square slide images for the WCCCE keynote via OpenRouter.
 
 - **`global_style.md`** — global background / palette / art direction (read every run).
-  Override path with manifest key `global_style_file` or CLI `--global-style`.
+  Override path with deck key `global_style_file` or CLI `--global-style`.
   Each render also appends optional ``content_guide`` plus slide title/body (when present), then the slide image prompt.
-- **`slide_images_manifest.json`** — per-slide `prompt` plus output settings (legacy).
 - **`keynote.json`** — canonical deck: stable slide `id`, `markdown`, `image_prompt`; images as `{id}.png`.
   Optional ``content_guide`` — overall keynote theme passed to LLM suggest / new-slide drafts.
 
@@ -13,13 +12,11 @@ API key: `OPENROUTER_API_KEY` or `.env/OpenRouter.md` (see `load_api_key`).
 
 Usage:
   python generator.py --deck keynote.json --dry-run
-  python generator.py --manifest slide_images_manifest.json --dry-run
 
 Markdown → JSON (one-time): ``python keynote_deck.py import talk.md keynote.json``
 
 GUI (per-slide preview, LLM suggest, render):
   python slide_editor.py --deck keynote.json
-  python slide_editor.py --manifest slide_images_manifest.json
 """
 
 from __future__ import annotations
@@ -37,24 +34,26 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).parent
 DEFAULT_GLOBAL_STYLE_FILE = SCRIPT_DIR / "global_style.md"
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
-DEFAULT_MODEL = "google/gemini-2.5-flash-image"
+DEFAULT_MODEL = "google/gemini-3.1-flash-image-preview"  # previous default: google/gemini-2.5-flash-image
 
 DEFAULT_CONTENT_GUIDE = (
     "This is a keynote lecture where we are advocating a return to thinking about "
     "computer science as the preparation of builders, not just certified CS graduates."
 )
 
-# Used only if no global_style file exists and manifest has no style_prompt
+# Used only if no global_style file exists and the deck has no inline style_prompt
 DEFAULT_STYLE_FALLBACK = """\
 Output: 1024x1024 pixels, square 1:1 aspect ratio.
 Black-and-white ink with crosshatching; medieval + modern tech blend; whimsical; no text."""
 
 KNOWN_MODELS = {
-    "google/gemini-2.5-flash-image": "Default — fast Nano Banana style",
-    "google/gemini-2.5-flash-image-preview": "Preview variant",
-    "google/gemini-3-pro-image-preview": "Higher quality / resolution options",
-    "openai/gpt-5-image": "OpenAI image (often strong composition)",
-    "openai/gpt-5-image-mini": "Cheaper OpenAI image",
+    "google/gemini-3.1-flash-image-preview": "Default — Nano Banana 2; Pro-level quality at Flash speed",
+    "google/gemini-2.5-flash-image": "Previous default — original Nano Banana (kept for reproducibility)",
+    "openai/gpt-5.4-image-2": "OpenAI GPT-5.4 + Image 2; strong composition, premium price",
+    "black-forest-labs/flux.2-klein-4b": "FLUX.2 [klein] — fastest, cheapest ($0.014/MP)",
+    "bytedance-seed/seedream-4.5": "Seedream 4.5 — flat $0.04/image; good text + edit consistency",
+    "sourceful/riverflow-v2-pro": "Riverflow V2 Pro — best for embedded text rendering",
+    "sourceful/riverflow-v2-fast": "Riverflow V2 Fast — production-speed, $0.02/image",
 }
 
 
@@ -408,35 +407,33 @@ def maybe_resize_png(path: Path, width: int, height: int) -> None:
         im.save(path, "PNG")
 
 
-# ── Manifest ──────────────────────────────────────────────────────────────────
+# ── Deck helpers ──────────────────────────────────────────────────────────────
 
-def resolve_style_path(manifest: dict, cli_style: Path | None) -> Path:
+def resolve_style_path(deck: dict, cli_style: Path | None) -> Path:
     """Path to the markdown file containing the global style prompt."""
     if cli_style is not None:
         p = cli_style.expanduser()
         return p if p.is_absolute() else SCRIPT_DIR / p
-    rel = (manifest.get("global_style_file") or "").strip()
+    rel = (deck.get("global_style_file") or "").strip()
     if rel:
         p = Path(rel).expanduser()
         return p if p.is_absolute() else SCRIPT_DIR / p
     return DEFAULT_GLOBAL_STYLE_FILE
 
 
-def load_global_style(style_path: Path, manifest: dict) -> str:
-    """
-    Read global style from markdown file. If missing, use manifest ``style_prompt``
-    (legacy) or built-in fallback, and print a short warning when using fallback.
-    """
+def load_global_style(style_path: Path, deck: dict) -> str:
+    """Read global style from markdown file, falling back to the deck's inline
+    ``style_prompt`` (legacy) or a built-in fallback."""
     if style_path.is_file():
         text = style_path.read_text(encoding="utf-8").strip()
         if text:
             return text
         print(f"Warning: {style_path} is empty; using fallback style.", file=sys.stderr)
 
-    legacy = str(manifest.get("style_prompt", "")).strip()
+    legacy = str(deck.get("style_prompt", "")).strip()
     if legacy:
         print(
-            f"Warning: using manifest \"style_prompt\" (deprecated). Prefer {style_path.name}.",
+            f"Warning: using deck \"style_prompt\" (deprecated). Prefer {style_path.name}.",
             file=sys.stderr,
         )
         return legacy
@@ -446,17 +443,6 @@ def load_global_style(style_path: Path, manifest: dict) -> str:
         file=sys.stderr,
     )
     return DEFAULT_STYLE_FALLBACK
-
-
-def load_manifest(path: Path) -> dict:
-    if not path.exists():
-        print(f"Error: manifest not found: {path}", file=sys.stderr)
-        sys.exit(1)
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def save_manifest(path: Path, manifest: dict) -> None:
-    path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def _assistant_text(message: dict) -> str:
@@ -802,20 +788,14 @@ def suggest_slide_edit(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Generate keynote slide images via OpenRouter (manifest-driven).",
-    )
-    parser.add_argument(
-        "--manifest",
-        type=Path,
-        default=SCRIPT_DIR / "slide_images_manifest.json",
-        help="Path to slide_images_manifest.json",
+        description="Generate keynote slide images via OpenRouter (deck-driven).",
     )
     parser.add_argument(
         "--deck",
         type=Path,
-        default=None,
+        default=SCRIPT_DIR / "keynote.json",
         metavar="KEYNOTE.JSON",
-        help="Batch-generate images from keynote.json (writes {id}.png, uses image_prompt)",
+        help="Path to keynote.json (default: keynote.json next to this script).",
     )
     parser.add_argument("--dry-run", action="store_true", help="Print plan only")
     parser.add_argument("--force", action="store_true", help="Regenerate even if PNG exists")
@@ -823,14 +803,14 @@ def main() -> None:
     parser.add_argument(
         "--require-all-prompts",
         action="store_true",
-        help="Exit with error if any slide has an empty prompt (before API calls)",
+        help="Exit with error if any slide has an empty image_prompt (before API calls)",
     )
     parser.add_argument(
         "--global-style",
         type=Path,
         default=None,
         metavar="FILE.md",
-        help="Override global style markdown (default: manifest global_style_file or global_style.md)",
+        help="Override global style markdown (default: deck global_style_file or global_style.md)",
     )
     parser.add_argument(
         "--list-models",
@@ -845,118 +825,31 @@ def main() -> None:
             print(f"  {mid:<50} {desc}{tag}")
         return
 
-    if args.deck is not None:
-        import keynote_deck as kd
-
-        deck_path = args.deck.resolve()
-        deck = kd.load_deck(deck_path)
-        slides = deck.get("slides")
-        if not isinstance(slides, list) or not slides:
-            print('Error: deck must contain a non-empty "slides" array', file=sys.stderr)
-            sys.exit(1)
-
-        style_path = resolve_style_path(deck, args.global_style)
-        style = load_global_style(style_path, deck)
-        out_dir = SCRIPT_DIR / str(deck.get("output_directory", "slide_images"))
-        w = int(deck.get("width", 1024))
-        h = int(deck.get("height", 1024))
-        model = args.model or deck.get("model") or DEFAULT_MODEL
-
-        if args.require_all_prompts:
-            missing = [i for i, s in enumerate(slides) if not str(s.get("image_prompt", s.get("prompt", ""))).strip()]
-            if missing:
-                print(f"Error: empty image_prompt for slide indices: {missing}", file=sys.stderr)
-                sys.exit(1)
-
-        api_key = load_api_key()
-        if not api_key and not args.dry_run:
-            print("Error: set OPENROUTER_API_KEY or add .env/OpenRouter.md", file=sys.stderr)
-            sys.exit(1)
-
-        if not args.dry_run:
-            out_dir.mkdir(parents=True, exist_ok=True)
-
-        print(f"Deck:    {deck_path}")
-        print(f"Model:   {model}")
-        print(f"Style:   {style_path}")
-        print(f"Output:  {out_dir} ({w}x{h})\n")
-
-        deck_content_guide = str(deck.get("content_guide", "")).strip()
-        ok = skip = fail = 0
-        for i, spec in enumerate(slides):
-            if not isinstance(spec, dict):
-                continue
-            sid = str(spec.get("id", "")).strip()
-            title = str(spec.get("title", f"slide-{i}"))
-            slide_body = str(spec.get("body", ""))
-            prompt = str(spec.get("image_prompt", spec.get("prompt", ""))).strip()
-            if not sid:
-                print(f"  [{i:02d}] SKIP (no id) — {title[:50]}", file=sys.stderr)
-                skip += 1
-                continue
-            out_path = out_dir / f"{sid}.png"
-
-            if not prompt:
-                if args.dry_run:
-                    print(f"  [{i:02d}] SKIP (empty image_prompt) — {title[:60]}")
-                    skip += 1
-                else:
-                    print(f"  [{i:02d}] SKIP (empty image_prompt) — {title[:60]}")
-                    skip += 1
-                continue
-
-            if args.dry_run:
-                print(f"  [{i:02d}] {title[:55]}…")
-                print(f"        → {out_path.name}")
-                ok += 1
-                continue
-
-            if out_path.exists() and not args.force:
-                print(f"  [{i:02d}] SKIP (exists) {out_path.name}")
-                ok += 1
-                continue
-
-            print(f"  [{i:02d}] Generating… {title[:50]}", end=" ", flush=True)
-
-            if generate_image_api(
-                user_prompt=prompt,
-                style_prompt=style,
-                output_path=out_path,
-                api_key=api_key,
-                model=model,
-                width=w,
-                height=h,
-                content_guide=deck_content_guide,
-                slide_title=title,
-                slide_body=slide_body,
-            ):
-                maybe_resize_png(out_path, w, h)
-                print(f"OK → {out_path.name}")
-                ok += 1
-            else:
-                print("FAILED")
-                fail += 1
-
-        print(f"\nDone: {ok} ok, {skip} skipped, {fail} failed")
-        return
-
-    manifest = load_manifest(args.manifest.resolve())
-
-    model = args.model or manifest.get("model") or DEFAULT_MODEL
-    w = int(manifest.get("width", 1024))
-    h = int(manifest.get("height", 1024))
-    style_path = resolve_style_path(manifest, args.global_style)
-    style = load_global_style(style_path, manifest)
-    out_dir = SCRIPT_DIR / manifest.get("output_directory", "slide_images")
-    slides = manifest.get("slides")
-    if not isinstance(slides, list) or not slides:
-        print("Error: manifest must contain a non-empty \"slides\" array", file=sys.stderr)
+    if not args.deck.is_file():
+        print(f"Error: deck not found: {args.deck}", file=sys.stderr)
+        print("Create with: python keynote_deck.py import talk.md keynote.json", file=sys.stderr)
         sys.exit(1)
 
+    import keynote_deck as kd
+
+    deck_path = args.deck.resolve()
+    deck = kd.load_deck(deck_path)
+    slides = deck.get("slides")
+    if not isinstance(slides, list) or not slides:
+        print('Error: deck must contain a non-empty "slides" array', file=sys.stderr)
+        sys.exit(1)
+
+    style_path = resolve_style_path(deck, args.global_style)
+    style = load_global_style(style_path, deck)
+    out_dir = SCRIPT_DIR / str(deck.get("output_directory", "slide_images"))
+    w = int(deck.get("width", 1024))
+    h = int(deck.get("height", 1024))
+    model = args.model or deck.get("model") or DEFAULT_MODEL
+
     if args.require_all_prompts:
-        missing = [i for i, s in enumerate(slides) if not str(s.get("prompt", "")).strip()]
+        missing = [i for i, s in enumerate(slides) if not str(s.get("image_prompt", "")).strip()]
         if missing:
-            print(f"Error: empty prompt for slide indices: {missing}", file=sys.stderr)
+            print(f"Error: empty image_prompt for slide indices: {missing}", file=sys.stderr)
             sys.exit(1)
 
     api_key = load_api_key()
@@ -967,25 +860,28 @@ def main() -> None:
     if not args.dry_run:
         out_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"Manifest: {args.manifest.resolve()}")
+    print(f"Deck:    {deck_path}")
     print(f"Model:   {model}")
     print(f"Style:   {style_path}")
     print(f"Output:  {out_dir} ({w}x{h})\n")
 
-    manifest_content_guide = str(manifest.get("content_guide", "")).strip()
+    deck_content_guide = str(deck.get("content_guide", "")).strip()
     ok = skip = fail = 0
     for i, spec in enumerate(slides):
-        title = spec.get("title", f"slide-{i}")
+        if not isinstance(spec, dict):
+            continue
+        sid = str(spec.get("id", "")).strip()
+        title = str(spec.get("title", f"slide-{i}"))
         slide_body = str(spec.get("body", ""))
-        prompt = str(spec.get("prompt", "")).strip()
-        out_path = out_dir / f"{i:02d}.png"
+        prompt = str(spec.get("image_prompt", "")).strip()
+        if not sid:
+            print(f"  [{i:02d}] SKIP (no id) — {title[:50]}", file=sys.stderr)
+            skip += 1
+            continue
+        out_path = out_dir / f"{sid}.png"
 
         if not prompt:
-            if args.dry_run:
-                print(f"  [{i:02d}] SKIP (empty prompt) — {title[:60]}")
-                skip += 1
-                continue
-            print(f"  [{i:02d}] SKIP (empty prompt) — {title[:60]}")
+            print(f"  [{i:02d}] SKIP (empty image_prompt) — {title[:60]}")
             skip += 1
             continue
 
@@ -1010,8 +906,8 @@ def main() -> None:
             model=model,
             width=w,
             height=h,
-            content_guide=manifest_content_guide,
-            slide_title=str(title),
+            content_guide=deck_content_guide,
+            slide_title=title,
             slide_body=slide_body,
         ):
             maybe_resize_png(out_path, w, h)

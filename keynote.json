@@ -50,17 +50,17 @@
     {
       "id": "3be918fc-120b-47e8-bc33-b1ec8979f334",
       "kind": "content",
-      "markdown": "# Harnessing Big Systems in Education\n\n# From Industry to Classroom\nI transitioned from the tech industry in 2023 after serving as VP of Engineering at Staffbase, where I led a team of **80 engineers**.  \n\n- My last project involved deploying **Copilot**. \n- It excelled in supporting **unit tests**, which was impressive.  \n- We had **89 repositories** lacking unit test coverage.  \n\n**Result:** \n- This experience led to a **weekly increase in unit tests** across our projects.",
+      "markdown": "# Harnessing Big Systems in Education\n\n# From Industry to Classroom\nI transitioned from the tech industry in 2023 after serving as VP of Engineering at Staffbase\n- team of **80 engineers**.  \n\nWe had **89 repositories** lacking unit test coverage.  \n\n- we deployed **Copilot**. \n- It excelled in supporting **unit tests**, which was impressive.  \n\n**Result:** \n- led to a **weekly increase in unit tests** across our projects.",
       "title": "Harnessing Big Systems in Education",
-      "body": "# From Industry to Classroom\nI transitioned from the tech industry in 2023 after serving as VP of Engineering at Staffbase, where I led a team of **80 engineers**.  \n\n- My last project involved deploying **Copilot**. \n- It excelled in supporting **unit tests**, which was impressive.  \n- We had **89 repositories** lacking unit test coverage.  \n\n**Result:** \n- This experience led to a **weekly increase in unit tests** across our projects.",
+      "body": "# From Industry to Classroom\nI transitioned from the tech industry in 2023 after serving as VP of Engineering at Staffbase\n- team of **80 engineers**.  \n\nWe had **89 repositories** lacking unit test coverage.  \n\n- we deployed **Copilot**. \n- It excelled in supporting **unit tests**, which was impressive.  \n\n**Result:** \n- led to a **weekly increase in unit tests** across our projects.",
       "image_prompt": ""
     },
     {
       "id": "3f26df8b-61b9-4cfb-9eb6-7796406882ab",
       "kind": "content",
-      "markdown": "# My Journey in Education Innovation\n\n# What I've Been Up To\n\nOver the last three years, I’ve been thinking of how we can **reshape education** with conversational programming.\n\n- I've focused on creating spaces where students are **builders** of the future, not just learners.\n- This journey has led me to rethink our teaching strategies in coding and software engineering.",
-      "title": "My Journey in Education Innovation",
-      "body": "# What I've Been Up To\n\nOver the last three years, I’ve been thinking of how we can **reshape education** with conversational programming.\n\n- I've focused on creating spaces where students are **builders** of the future, not just learners.\n- This journey has led me to rethink our teaching strategies in coding and software engineering.",
+      "markdown": "# Back to academia, teaching LLM-forward\n\nI came back to academia excited about LLM influence on software developers\n\n# I believe we need to teach how to use\n\n- industry is moving there\n- i want to know how to use\n- so i can help my students learn.",
+      "title": "Back to academia, teaching LLM-forward",
+      "body": "I came back to academia excited about LLM influence on software developers\n\n# I believe we need to teach how to use\n\n- industry is moving there\n- i want to know how to use\n- so i can help my students learn.",
       "image_prompt": ""
     },
     {
@@ -568,8 +568,8 @@
       "image_prompt": ""
     }
   ],
-  "text_model": "openai/gpt-4o-mini",
-  "model": "google/gemini-2.5-flash-image",
+  "text_model": "anthropic/claude-haiku-4.5",
+  "model": "google/gemini-3.1-flash-image-preview",
   "output_directory": "slide_images",
   "global_style_file": "global_style.md",
   "width": 1024,

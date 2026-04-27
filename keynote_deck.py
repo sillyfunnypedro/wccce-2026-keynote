@@ -75,7 +75,7 @@ def default_deck_shell(frontmatter: dict, slides: list[dict]) -> dict:
         "version": DECK_VERSION,
         "frontmatter": frontmatter,
         "slides": slides,
-        "text_model": "openai/gpt-4o-mini",
+        "text_model": "anthropic/claude-haiku-4.5",
         "model": DEFAULT_MODEL,
         "output_directory": "slide_images",
         "global_style_file": "global_style.md",
