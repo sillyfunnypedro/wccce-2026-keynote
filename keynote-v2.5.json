@@ -32,6 +32,110 @@
       "image_prompt": "In a modern office setting, a group of engineers is gathered around a large screen displaying an intricate flowchart of AI-generated code processes. One engineer points to the screen, while others take notes and discuss strategies for integrating AI with human oversight. On a nearby table, laptops are open to different coding platforms, with snippets of AI-generated code visible. In the foreground, a playful model of a robot stands beside a stack of programming books, symbolizing the bridge between traditional coding and AI adoption. The overall composition captures a collaborative atmosphere of innovation and learning."
     },
     {
+      "id": "2dbda6fb-1308-4821-b553-a0c7f4de660e",
+      "kind": "content",
+      "markdown": "# Future Classroom Dynamics\n\n# Rethinking Our Approach  \n- AI now drives most new code, with engineers giving the thumbs up.  \n\n# Key skills becoming essential: \n- **reading code** \n- **design**\n- **testing**\n- **security** \n\n# Solid CS foundations remain crucial\n# Understanding is key to good approvals.  \n- This is the change we need in education.",
+      "title": "Future Classroom Dynamics",
+      "body": "# Rethinking Our Approach  \n- AI now drives most new code, with engineers giving the thumbs up.  \n\n# Key skills becoming essential: \n- **reading code** \n- **design**\n- **testing**\n- **security** \n\n# Solid CS foundations remain crucial\n# Understanding is key to good approvals.  \n- This is the change we need in education.",
+      "image_prompt": "A modern classroom filled with diverse students collaborating at tables, laptops open in front of them. Some are intently reading code on their screens, while others sketch designs on paper or whiteboards, and a few discuss testing strategies. In the background, a teacher engages with a group, facilitating discussions about security measures and the importance of a strong foundation in computer science. The scene captures a dynamic, interactive learning environment that emphasizes teamwork and practical skills, highlighting both the process of building and the foundation of knowledge essential for approvals."
+    },
+    {
+      "id": "28572fab-d726-4fce-94c5-b4d857bbcd84",
+      "kind": "content",
+      "markdown": "# Empowering Students Through Big Projects\n\n# Unlocking Tools for Builders\n- **Big projects** give students access to all the tools they need.\n- Work with **large code bases** that reflect real-world scenarios.\n\n# Collaborating with Technology\n- Partner with **LLMs** to expand problem-solving capabilities.\n- Experience the fusion of creativity and technical skills.\n\n# A Pathway to Mastery\n- Foster **hands-on experiences** that ignite inspiration.\n- Focus on building a strong foundation in **CS fundamentals**!",
+      "title": "Empowering Students Through Big Projects",
+      "body": "# Unlocking Tools for Builders\n- **Big projects** give students access to all the tools they need.\n- Work with **large code bases** that reflect real-world scenarios.\n\n# Collaborating with Technology\n- Partner with **LLMs** to expand problem-solving capabilities.\n- Experience the fusion of creativity and technical skills.\n\n# A Pathway to Mastery\n- Foster **hands-on experiences** that ignite inspiration.\n- Focus on building a strong foundation in **CS fundamentals**!",
+      "image_prompt": ""
+    },
+    {
+      "id": "3be918fc-120b-47e8-bc33-b1ec8979f334",
+      "kind": "content",
+      "markdown": "# Harnessing Big Systems in Education\n\n# From Industry to Classroom\nI transitioned from the tech industry in 2023 after serving as VP of Engineering at Staffbase\n- team of **80 engineers**.  \n\nWe had **89 repositories** lacking unit test coverage.  \n\n- we deployed **Copilot**. \n- It excelled in supporting **unit tests**, which was impressive.  \n\n**Result:** \n- led to a **weekly increase in unit tests** across our projects.",
+      "title": "Harnessing Big Systems in Education",
+      "body": "# From Industry to Classroom\nI transitioned from the tech industry in 2023 after serving as VP of Engineering at Staffbase\n- team of **80 engineers**.  \n\nWe had **89 repositories** lacking unit test coverage.  \n\n- we deployed **Copilot**. \n- It excelled in supporting **unit tests**, which was impressive.  \n\n**Result:** \n- led to a **weekly increase in unit tests** across our projects.",
+      "image_prompt": ""
+    },
+    {
+      "id": "3f26df8b-61b9-4cfb-9eb6-7796406882ab",
+      "kind": "content",
+      "markdown": "# Back to academia, teaching LLM-forward\n\nI came back to academia excited about LLM influence on software developers\n\n# I believe we need to teach how to use\n\n- industry is moving there\n- i want to know how to use\n- so i can help my students learn.",
+      "title": "Back to academia, teaching LLM-forward",
+      "body": "I came back to academia excited about LLM influence on software developers\n\n# I believe we need to teach how to use\n\n- industry is moving there\n- i want to know how to use\n- so i can help my students learn.",
+      "image_prompt": ""
+    },
+    {
+      "id": "7c72bed1-4006-400d-9d72-4ae6df7c23b7",
+      "kind": "content",
+      "markdown": "# 2023 — Line Completion in Software Engineering\n\nI wanted the students to think about \n- The recalc engine\n- The end to end testing\n\n# LLM generated \n- test-button0\n- ...\n- test-button9\n- test-button10",
+      "title": "2023 — Line Completion in Software Engineering",
+      "body": "I wanted the students to think about \n- The recalc engine\n- The end to end testing\n\n# LLM generated \n- test-button0\n- ...\n- test-button9\n- test-button10",
+      "image_prompt": ""
+    },
+    {
+      "id": "87a9d1e3-b29b-406c-acd9-9d73268876b0",
+      "kind": "content",
+      "markdown": "# Diving Deep into Testing\n\nLet's challenge students to think critically about unit tests.\n\n- Instead of just checking boxes, we can immerse them.\n- Plunge them into code that demands understanding or they risk sinking.\n- Then, we throw them lifelines—structured guidance and support.\n\nThis way, they learn not just to test, but to truly understand the impact of their work.",
+      "title": "Diving Deep into Testing",
+      "body": "Let's challenge students to think critically about unit tests.\n\n- Instead of just checking boxes, we can immerse them.\n- Plunge them into code that demands understanding or they risk sinking.\n- Then, we throw them lifelines—structured guidance and support.\n\nThis way, they learn not just to test, but to truly understand the impact of their work.",
+      "image_prompt": ""
+    },
+    {
+      "id": "bf2aae11-b08a-47ba-bf57-900ceeee852a",
+      "kind": "content",
+      "markdown": "# Students extended the platform\n\n# Students kept building\n- A **chat feature** — added by students so students could **ask the teacher questions** right inside the system.\n- A **tutorial mode** — also student-built, to onboard the next cohort.\n- **Extensive functions** layered on top of the core — well beyond what the assignment asked for.\n\n# What that told me\n- Given the right scaffolding, students do not stop at the rubric.\n- They extend the platform for **each other**.\n- That is the kind of ownership we want — and it is exactly what conversational programming makes reachable.",
+      "title": "Students extended the platform",
+      "body": "# Students kept building\n- A **chat feature** — added by students so students could **ask the teacher questions** right inside the system.\n- A **tutorial mode** — also student-built, to onboard the next cohort.\n- **Extensive functions** layered on top of the core — well beyond what the assignment asked for.\n\n# What that told me\n- Given the right scaffolding, students do not stop at the rubric.\n- They extend the platform for **each other**.\n- That is the kind of ownership we want — and it is exactly what conversational programming makes reachable.",
+      "image_prompt": ""
+    },
+    {
+      "id": "298ac503-9342-40af-b83a-534bd3e8c41a",
+      "kind": "content",
+      "markdown": "# 2024 — Beginning of Agentic Work\n\n- In a **TypeScript graphics** course, students built two systems in parallel:\n- a software renderer, and an **OpenGL scene renderer**.\n- The point was orchestration: compare approaches, iterate, and keep both tracks moving.",
+      "title": "2024 — Beginning of Agentic Work",
+      "body": "- In a **TypeScript graphics** course, students built two systems in parallel:\n- a software renderer, and an **OpenGL scene renderer**.\n- The point was orchestration: compare approaches, iterate, and keep both tracks moving.",
+      "image_prompt": ""
+    },
+    {
+      "id": "22e2b7c5-e7a8-4967-b51b-a097b5c81362",
+      "kind": "content",
+      "markdown": "# Tough Choice\n\n# Teach cutting-edge hardware  \n- OpenGL is messy \n- Highlevel gets lost in the tedium\n- What the machine does is not clear\n# Write software renderer\n- Took a long time, no fun graphics\n\n# We can do both\n- The tedium of OpenGl is handed to LLM\n- The tedium of writing software rendering is lessened.",
+      "title": "Tough Choice",
+      "body": "# Teach cutting-edge hardware  \n- OpenGL is messy \n- Highlevel gets lost in the tedium\n- What the machine does is not clear\n# Write software renderer\n- Took a long time, no fun graphics\n\n# We can do both\n- The tedium of OpenGl is handed to LLM\n- The tedium of writing software rendering is lessened.",
+      "image_prompt": ""
+    },
+    {
+      "id": "a26362d3-08e7-4245-8f4e-0db9a0891bf3",
+      "kind": "content",
+      "markdown": "# 2025 — Software Engineering (BC Cancer Foundation)\n\n- Real project context: **BC Cancer Foundation**.\n- Students built a **four-language REST API** system.\n- Emphasis: interoperability, contracts, and shipping across language boundaries.",
+      "title": "2025 — Software Engineering (BC Cancer Foundation)",
+      "body": "- Real project context: **BC Cancer Foundation**.\n- Students built a **four-language REST API** system.\n- Emphasis: interoperability, contracts, and shipping across language boundaries.",
+      "image_prompt": ""
+    },
+    {
+      "id": "8b3b0619-254b-477d-aaef-ded5df8bded9",
+      "kind": "content",
+      "markdown": "# 2025 — Game Engine Programming\n\n- Students worked across **four languages**.\n- They were **reading systems**, **using systems**, and **building games while learning** those systems.\n- Weekly ritual: **How did we do with LLM?** sharing circle on wins, misses, and adjustments.",
+      "title": "2025 — Game Engine Programming",
+      "body": "- Students worked across **four languages**.\n- They were **reading systems**, **using systems**, and **building games while learning** those systems.\n- Weekly ritual: **How did we do with LLM?** sharing circle on wins, misses, and adjustments.",
+      "image_prompt": ""
+    },
+    {
+      "id": "e98a6215-fa52-4fe9-860d-ac4eae3f6cf0",
+      "kind": "content",
+      "markdown": "# 2026 — 5001/5002 (Intro CS + Discrete Math)\n\n- Students received a **large existing codebase** to explore.\n- Project: build educational software that explains a **discrete math** topic.\n- LLMs were encouraged as **tutors** during exploration and implementation.",
+      "title": "2026 — 5001/5002 (Intro CS + Discrete Math)",
+      "body": "- Students received a **large existing codebase** to explore.\n- Project: build educational software that explains a **discrete math** topic.\n- LLMs were encouraged as **tutors** during exploration and implementation.",
+      "image_prompt": ""
+    },
+    {
+      "id": "c10fad7d-99ae-4c0b-a078-6c1e40100221",
+      "kind": "content",
+      "markdown": "# 2026 — OO Programming (Shape Editor)\n\n- Build tasks were small: implement **Square** and **Circle** in ~50 lines each.\n- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).\n- Testing literacy was larger still: explain unit tests across ~**2000 lines**.\n- Goal: tiny feature work plus deep system reading and explanation.",
+      "title": "2026 — OO Programming (Shape Editor)",
+      "body": "- Build tasks were small: implement **Square** and **Circle** in ~50 lines each.\n- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).\n- Testing literacy was larger still: explain unit tests across ~**2000 lines**.\n- Goal: tiny feature work plus deep system reading and explanation.",
+      "image_prompt": ""
+    },
+    {
       "id": "4f6dc626-83d5-43e2-8ba4-14d61f676cd8",
       "kind": "content",
       "markdown": "# How I got here — and why this talk",
@@ -45,14 +149,6 @@
       "markdown": "# Spells, Magic, and My Journey\n\n- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.",
       "title": "Spells, Magic, and My Journey",
       "body": "- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.",
-      "image_prompt": ""
-    },
-    {
-      "id": "3f26df8b-61b9-4cfb-9eb6-7796406882ab",
-      "kind": "content",
-      "markdown": "# Back to academia, teaching LLM-forward\n\nI came back to academia excited about LLM influence on software developers\n\n# I believe we need to teach how to use\n\n- industry is moving there\n- i want to know how to use\n- so i can help my students learn.",
-      "title": "Back to academia, teaching LLM-forward",
-      "body": "I came back to academia excited about LLM influence on software developers\n\n# I believe we need to teach how to use\n\n- industry is moving there\n- i want to know how to use\n- so i can help my students learn.",
       "image_prompt": ""
     },
     {
@@ -152,118 +248,6 @@
       "image_prompt": ""
     },
     {
-      "id": "3796416b-05af-466e-b80e-0e4a662e3219",
-      "kind": "content",
-      "markdown": "# How the academy pushed back",
-      "title": "How the academy pushed back",
-      "body": "",
-      "image_prompt": ""
-    },
-    {
-      "id": "2c78bc0a-a3b4-46f3-b764-c31caa559126",
-      "kind": "content",
-      "markdown": "# \"That Isn't a Real Computer\"\n\n- University of Windsor — I wanted coursework on my **Z-80** instead of the lab **IBM 360**.\n- A professor said I did not have a **real** machine unless it was **32-bit**.\n- **Punch cards** were part of training — that was how you drove the **IBM 360**.\n- You had to program on **cards** to really be a **magician**.",
-      "title": "\"That Isn't a Real Computer\"",
-      "body": "- University of Windsor — I wanted coursework on my **Z-80** instead of the lab **IBM 360**.\n- A professor said I did not have a **real** machine unless it was **32-bit**.\n- **Punch cards** were part of training — that was how you drove the **IBM 360**.\n- You had to program on **cards** to really be a **magician**.",
-      "image_prompt": ""
-    },
-    {
-      "id": "0a182380-5fc8-4fcc-8640-ebd38b3c9290",
-      "kind": "content",
-      "markdown": "# The Pattern Didn't Stop\n\n- **IDEs:** some faculty banned them — unless you used **vi** and **make**, it wasn't \"real CS.\"\n- **Tab completion:** a senior engineer wanted it **off** for juniors — too easy to tell who had **memorized the library incantations**.\n- Same mistake: **confusing ritual with skill** — difficulty as a **proxy for merit**.",
-      "title": "The Pattern Didn't Stop",
-      "body": "- **IDEs:** some faculty banned them — unless you used **vi** and **make**, it wasn't \"real CS.\"\n- **Tab completion:** a senior engineer wanted it **off** for juniors — too easy to tell who had **memorized the library incantations**.\n- Same mistake: **confusing ritual with skill** — difficulty as a **proxy for merit**.",
-      "image_prompt": ""
-    },
-    {
-      "id": "a59301cc-5869-4b6a-b2ba-be981c5aeba5",
-      "kind": "content",
-      "markdown": "# A Colleague, Early in My Career\n\n- I asked why he didn't program anymore.\n\n# I don't need to practice.\n- I already know it.\n\n# In his mind\n- Teaching CS was teaching **the spells**\n\n# You know the spells\n- **That**, to him, **was** computer science — **done**.",
-      "title": "A Colleague, Early in My Career",
-      "body": "- I asked why he didn't program anymore.\n\n# I don't need to practice.\n- I already know it.\n\n# In his mind\n- Teaching CS was teaching **the spells**\n\n# You know the spells\n- **That**, to him, **was** computer science — **done**.",
-      "image_prompt": ""
-    },
-    {
-      "id": "3be918fc-120b-47e8-bc33-b1ec8979f334",
-      "kind": "content",
-      "markdown": "# Harnessing Big Systems in Education\n\n# From Industry to Classroom\nI transitioned from the tech industry in 2023 after serving as VP of Engineering at Staffbase\n- team of **80 engineers**.  \n\nWe had **89 repositories** lacking unit test coverage.  \n\n- we deployed **Copilot**. \n- It excelled in supporting **unit tests**, which was impressive.  \n\n**Result:** \n- led to a **weekly increase in unit tests** across our projects.",
-      "title": "Harnessing Big Systems in Education",
-      "body": "# From Industry to Classroom\nI transitioned from the tech industry in 2023 after serving as VP of Engineering at Staffbase\n- team of **80 engineers**.  \n\nWe had **89 repositories** lacking unit test coverage.  \n\n- we deployed **Copilot**. \n- It excelled in supporting **unit tests**, which was impressive.  \n\n**Result:** \n- led to a **weekly increase in unit tests** across our projects.",
-      "image_prompt": ""
-    },
-    {
-      "id": "7c72bed1-4006-400d-9d72-4ae6df7c23b7",
-      "kind": "content",
-      "markdown": "# 2023 — Line Completion in Software Engineering\n\nI wanted the students to think about \n- The recalc engine\n- The end to end testing\n\n# LLM generated \n- test-button0\n- ...\n- test-button9\n- test-button10",
-      "title": "2023 — Line Completion in Software Engineering",
-      "body": "I wanted the students to think about \n- The recalc engine\n- The end to end testing\n\n# LLM generated \n- test-button0\n- ...\n- test-button9\n- test-button10",
-      "image_prompt": ""
-    },
-    {
-      "id": "87a9d1e3-b29b-406c-acd9-9d73268876b0",
-      "kind": "content",
-      "markdown": "# Diving Deep into Testing\n\nLet's challenge students to think critically about unit tests.\n\n- Instead of just checking boxes, we can immerse them.\n- Plunge them into code that demands understanding or they risk sinking.\n- Then, we throw them lifelines—structured guidance and support.\n\nThis way, they learn not just to test, but to truly understand the impact of their work.",
-      "title": "Diving Deep into Testing",
-      "body": "Let's challenge students to think critically about unit tests.\n\n- Instead of just checking boxes, we can immerse them.\n- Plunge them into code that demands understanding or they risk sinking.\n- Then, we throw them lifelines—structured guidance and support.\n\nThis way, they learn not just to test, but to truly understand the impact of their work.",
-      "image_prompt": ""
-    },
-    {
-      "id": "bf2aae11-b08a-47ba-bf57-900ceeee852a",
-      "kind": "content",
-      "markdown": "# Students extended the platform\n\n# Students kept building\n- A **chat feature** — added by students so students could **ask the teacher questions** right inside the system.\n- A **tutorial mode** — also student-built, to onboard the next cohort.\n- **Extensive functions** layered on top of the core — well beyond what the assignment asked for.\n\n# What that told me\n- Given the right scaffolding, students do not stop at the rubric.\n- They extend the platform for **each other**.\n- That is the kind of ownership we want — and it is exactly what conversational programming makes reachable.",
-      "title": "Students extended the platform",
-      "body": "# Students kept building\n- A **chat feature** — added by students so students could **ask the teacher questions** right inside the system.\n- A **tutorial mode** — also student-built, to onboard the next cohort.\n- **Extensive functions** layered on top of the core — well beyond what the assignment asked for.\n\n# What that told me\n- Given the right scaffolding, students do not stop at the rubric.\n- They extend the platform for **each other**.\n- That is the kind of ownership we want — and it is exactly what conversational programming makes reachable.",
-      "image_prompt": ""
-    },
-    {
-      "id": "298ac503-9342-40af-b83a-534bd3e8c41a",
-      "kind": "content",
-      "markdown": "# 2024 — Beginning of Agentic Work\n\n- In a **TypeScript graphics** course, students built two systems in parallel:\n- a software renderer, and an **OpenGL scene renderer**.\n- The point was orchestration: compare approaches, iterate, and keep both tracks moving.",
-      "title": "2024 — Beginning of Agentic Work",
-      "body": "- In a **TypeScript graphics** course, students built two systems in parallel:\n- a software renderer, and an **OpenGL scene renderer**.\n- The point was orchestration: compare approaches, iterate, and keep both tracks moving.",
-      "image_prompt": ""
-    },
-    {
-      "id": "22e2b7c5-e7a8-4967-b51b-a097b5c81362",
-      "kind": "content",
-      "markdown": "# Tough Choice\n\n# Teach cutting-edge hardware  \n- OpenGL is messy \n- Highlevel gets lost in the tedium\n- What the machine does is not clear\n# Write software renderer\n- Took a long time, no fun graphics\n\n# We can do both\n- The tedium of OpenGl is handed to LLM\n- The tedium of writing software rendering is lessened.",
-      "title": "Tough Choice",
-      "body": "# Teach cutting-edge hardware  \n- OpenGL is messy \n- Highlevel gets lost in the tedium\n- What the machine does is not clear\n# Write software renderer\n- Took a long time, no fun graphics\n\n# We can do both\n- The tedium of OpenGl is handed to LLM\n- The tedium of writing software rendering is lessened.",
-      "image_prompt": ""
-    },
-    {
-      "id": "a26362d3-08e7-4245-8f4e-0db9a0891bf3",
-      "kind": "content",
-      "markdown": "# 2025 — Software Engineering (BC Cancer Foundation)\n\n- Real project context: **BC Cancer Foundation**.\n- Students built a **four-language REST API** system.\n- Emphasis: interoperability, contracts, and shipping across language boundaries.",
-      "title": "2025 — Software Engineering (BC Cancer Foundation)",
-      "body": "- Real project context: **BC Cancer Foundation**.\n- Students built a **four-language REST API** system.\n- Emphasis: interoperability, contracts, and shipping across language boundaries.",
-      "image_prompt": ""
-    },
-    {
-      "id": "8b3b0619-254b-477d-aaef-ded5df8bded9",
-      "kind": "content",
-      "markdown": "# 2025 — Game Engine Programming\n\n- Students worked across **four languages**.\n- They were **reading systems**, **using systems**, and **building games while learning** those systems.\n- Weekly ritual: **How did we do with LLM?** sharing circle on wins, misses, and adjustments.",
-      "title": "2025 — Game Engine Programming",
-      "body": "- Students worked across **four languages**.\n- They were **reading systems**, **using systems**, and **building games while learning** those systems.\n- Weekly ritual: **How did we do with LLM?** sharing circle on wins, misses, and adjustments.",
-      "image_prompt": ""
-    },
-    {
-      "id": "e98a6215-fa52-4fe9-860d-ac4eae3f6cf0",
-      "kind": "content",
-      "markdown": "# 2026 — 5001/5002 (Intro CS + Discrete Math)\n\n- Students received a **large existing codebase** to explore.\n- Project: build educational software that explains a **discrete math** topic.\n- LLMs were encouraged as **tutors** during exploration and implementation.",
-      "title": "2026 — 5001/5002 (Intro CS + Discrete Math)",
-      "body": "- Students received a **large existing codebase** to explore.\n- Project: build educational software that explains a **discrete math** topic.\n- LLMs were encouraged as **tutors** during exploration and implementation.",
-      "image_prompt": ""
-    },
-    {
-      "id": "c10fad7d-99ae-4c0b-a078-6c1e40100221",
-      "kind": "content",
-      "markdown": "# 2026 — OO Programming (Shape Editor)\n\n- Build tasks were small: implement **Square** and **Circle** in ~50 lines each.\n- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).\n- Testing literacy was larger still: explain unit tests across ~**2000 lines**.\n- Goal: tiny feature work plus deep system reading and explanation.",
-      "title": "2026 — OO Programming (Shape Editor)",
-      "body": "- Build tasks were small: implement **Square** and **Circle** in ~50 lines each.\n- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).\n- Testing literacy was larger still: explain unit tests across ~**2000 lines**.\n- Goal: tiny feature work plus deep system reading and explanation.",
-      "image_prompt": ""
-    },
-    {
       "id": "ccf2dd4c-2b7c-4ce6-b256-25e0969ddb75",
       "kind": "content",
       "markdown": "# From Spells to Access\n\n# Use computer magic\n- For people who could not recite the spells and incantations.\n\n\n# CS for everyone.\n- **Everyone** should be able to build.\n- **NOT** everyone should be able to program.",
@@ -341,6 +325,62 @@
       "markdown": "# So How Has the Academy Responded?\n\n- So how has the academy responded to this challenge?\n- How do we incorporate tools that actually help people build?\n- A strong reaction has been: **We know our magic — leave us alone.**\n- I have **lived** the pushback — policies, habits, and hallway arguments — when we tried to move beyond **pure magic**.",
       "title": "So How Has the Academy Responded?",
       "body": "- So how has the academy responded to this challenge?\n- How do we incorporate tools that actually help people build?\n- A strong reaction has been: **We know our magic — leave us alone.**\n- I have **lived** the pushback — policies, habits, and hallway arguments — when we tried to move beyond **pure magic**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "3796416b-05af-466e-b80e-0e4a662e3219",
+      "kind": "content",
+      "markdown": "# How the academy pushed back",
+      "title": "How the academy pushed back",
+      "body": "",
+      "image_prompt": ""
+    },
+    {
+      "id": "2c78bc0a-a3b4-46f3-b764-c31caa559126",
+      "kind": "content",
+      "markdown": "# \"That Isn't a Real Computer\"\n\n- University of Windsor — I wanted coursework on my **Z-80** instead of the lab **IBM 360**.\n- A professor said I did not have a **real** machine unless it was **32-bit**.\n- **Punch cards** were part of training — that was how you drove the **IBM 360**.\n- You had to program on **cards** to really be a **magician**.",
+      "title": "\"That Isn't a Real Computer\"",
+      "body": "- University of Windsor — I wanted coursework on my **Z-80** instead of the lab **IBM 360**.\n- A professor said I did not have a **real** machine unless it was **32-bit**.\n- **Punch cards** were part of training — that was how you drove the **IBM 360**.\n- You had to program on **cards** to really be a **magician**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "4f24956a-5553-4879-833a-a93faa374067",
+      "kind": "content",
+      "markdown": "# Dr Richard Caron — The Other Side\n\n- **Dr Richard Caron** showed the positive side.\n- In **numerical analysis**, he got excited to understand the **8-bit** machine.\n- Same department — a different stance: **curiosity** instead of **gatekeeping**.",
+      "title": "Dr Richard Caron — The Other Side",
+      "body": "- **Dr Richard Caron** showed the positive side.\n- In **numerical analysis**, he got excited to understand the **8-bit** machine.\n- Same department — a different stance: **curiosity** instead of **gatekeeping**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "8d293112-31c6-4da5-9292-ff3a1f0132e8",
+      "kind": "content",
+      "markdown": "# A Better Machine — Same Ritual\n\n- Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room of terminals**.\n- The **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **I/O window**.\n- The **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
+      "title": "A Better Machine — Same Ritual",
+      "body": "- Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room of terminals**.\n- The **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **I/O window**.\n- The **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
+      "image_prompt": ""
+    },
+    {
+      "id": "0a182380-5fc8-4fcc-8640-ebd38b3c9290",
+      "kind": "content",
+      "markdown": "# The Pattern Didn't Stop\n\n- **IDEs:** some faculty banned them — unless you used **vi** and **make**, it wasn't \"real CS.\"\n- **Tab completion:** a senior engineer wanted it **off** for juniors — too easy to tell who had **memorized the library incantations**.\n- Same mistake: **confusing ritual with skill** — difficulty as a **proxy for merit**.",
+      "title": "The Pattern Didn't Stop",
+      "body": "- **IDEs:** some faculty banned them — unless you used **vi** and **make**, it wasn't \"real CS.\"\n- **Tab completion:** a senior engineer wanted it **off** for juniors — too easy to tell who had **memorized the library incantations**.\n- Same mistake: **confusing ritual with skill** — difficulty as a **proxy for merit**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "a59301cc-5869-4b6a-b2ba-be981c5aeba5",
+      "kind": "content",
+      "markdown": "# A Colleague, Early in My Career\n\n- I asked why he didn't program anymore.\n\n# I don't need to practice.\n- I already know it.\n\n# In his mind\n- Teaching CS was teaching **the spells**\n\n# You know the spells\n- **That**, to him, **was** computer science — **done**.",
+      "title": "A Colleague, Early in My Career",
+      "body": "- I asked why he didn't program anymore.\n\n# I don't need to practice.\n- I already know it.\n\n# In his mind\n- Teaching CS was teaching **the spells**\n\n# You know the spells\n- **That**, to him, **was** computer science — **done**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "0c0001e2-be2c-4edd-992f-b43288d0086a",
+      "kind": "content",
+      "markdown": "# Back to Building\n\n- **Back to building** — what we keep circling.\n- Industry does not want **A+ students** who can only **recite the spells**.\n- It wants **skilled magicians** who **use** them to **delight customers**.",
+      "title": "Back to Building",
+      "body": "- **Back to building** — what we keep circling.\n- Industry does not want **A+ students** who can only **recite the spells**.\n- It wants **skilled magicians** who **use** them to **delight customers**.",
       "image_prompt": ""
     },
     {
@@ -525,54 +565,6 @@
       "markdown": "# Our Responsibility\n\n- **Teach the spells** — still essential. Our students cannot converse with an engineering partner without them.\n- **Also teach the craft** — the magic that **delights the customer**: design, review, tests, security, shipping with intent.\n- **Builders** make the world **better by building**: safer, clearer, more **humane** systems — one **honest** release at a time.\n- When we **train builders**, we give the next generation the habit of **asking what should exist** — and the **craft** to **make it real**.",
       "title": "Our Responsibility",
       "body": "- **Teach the spells** — still essential. Our students cannot converse with an engineering partner without them.\n- **Also teach the craft** — the magic that **delights the customer**: design, review, tests, security, shipping with intent.\n- **Builders** make the world **better by building**: safer, clearer, more **humane** systems — one **honest** release at a time.\n- When we **train builders**, we give the next generation the habit of **asking what should exist** — and the **craft** to **make it real**.",
-      "image_prompt": ""
-    },
-    {
-      "id": "2639e4d2-f521-4f94-8207-12cb35268cf0",
-      "kind": "content",
-      "markdown": "# Abandoned slides\n\nThe slides after this point are no longer part of the active arc.\nKept here so we can mine them for content if needed.",
-      "title": "Abandoned slides",
-      "body": "The slides after this point are no longer part of the active arc.\nKept here so we can mine them for content if needed.",
-      "image_prompt": ""
-    },
-    {
-      "id": "2dbda6fb-1308-4821-b553-a0c7f4de660e",
-      "kind": "content",
-      "markdown": "# Future Classroom Dynamics\n\n# Rethinking Our Approach  \n- AI now drives most new code, with engineers giving the thumbs up.  \n\n# Key skills becoming essential: \n- **reading code** \n- **design**\n- **testing**\n- **security** \n\n# Solid CS foundations remain crucial\n# Understanding is key to good approvals.  \n- This is the change we need in education.",
-      "title": "Future Classroom Dynamics",
-      "body": "# Rethinking Our Approach  \n- AI now drives most new code, with engineers giving the thumbs up.  \n\n# Key skills becoming essential: \n- **reading code** \n- **design**\n- **testing**\n- **security** \n\n# Solid CS foundations remain crucial\n# Understanding is key to good approvals.  \n- This is the change we need in education.",
-      "image_prompt": "A modern classroom filled with diverse students collaborating at tables, laptops open in front of them. Some are intently reading code on their screens, while others sketch designs on paper or whiteboards, and a few discuss testing strategies. In the background, a teacher engages with a group, facilitating discussions about security measures and the importance of a strong foundation in computer science. The scene captures a dynamic, interactive learning environment that emphasizes teamwork and practical skills, highlighting both the process of building and the foundation of knowledge essential for approvals."
-    },
-    {
-      "id": "28572fab-d726-4fce-94c5-b4d857bbcd84",
-      "kind": "content",
-      "markdown": "# Empowering Students Through Big Projects\n\n# Unlocking Tools for Builders\n- **Big projects** give students access to all the tools they need.\n- Work with **large code bases** that reflect real-world scenarios.\n\n# Collaborating with Technology\n- Partner with **LLMs** to expand problem-solving capabilities.\n- Experience the fusion of creativity and technical skills.\n\n# A Pathway to Mastery\n- Foster **hands-on experiences** that ignite inspiration.\n- Focus on building a strong foundation in **CS fundamentals**!",
-      "title": "Empowering Students Through Big Projects",
-      "body": "# Unlocking Tools for Builders\n- **Big projects** give students access to all the tools they need.\n- Work with **large code bases** that reflect real-world scenarios.\n\n# Collaborating with Technology\n- Partner with **LLMs** to expand problem-solving capabilities.\n- Experience the fusion of creativity and technical skills.\n\n# A Pathway to Mastery\n- Foster **hands-on experiences** that ignite inspiration.\n- Focus on building a strong foundation in **CS fundamentals**!",
-      "image_prompt": ""
-    },
-    {
-      "id": "4f24956a-5553-4879-833a-a93faa374067",
-      "kind": "content",
-      "markdown": "# Dr Richard Caron — The Other Side\n\n- **Dr Richard Caron** showed the positive side.\n- In **numerical analysis**, he got excited to understand the **8-bit** machine.\n- Same department — a different stance: **curiosity** instead of **gatekeeping**.",
-      "title": "Dr Richard Caron — The Other Side",
-      "body": "- **Dr Richard Caron** showed the positive side.\n- In **numerical analysis**, he got excited to understand the **8-bit** machine.\n- Same department — a different stance: **curiosity** instead of **gatekeeping**.",
-      "image_prompt": ""
-    },
-    {
-      "id": "8d293112-31c6-4da5-9292-ff3a1f0132e8",
-      "kind": "content",
-      "markdown": "# A Better Machine — Same Ritual\n\n- Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room of terminals**.\n- The **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **I/O window**.\n- The **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
-      "title": "A Better Machine — Same Ritual",
-      "body": "- Year three: Computing Services bought a **DEC VAX 780** — better than the 360, a **room of terminals**.\n- The **same professor** had the VAX wired as a **line-editor front end to the 360**: edit like punch cards, **batch to the 360**, pick up printouts at the **I/O window**.\n- The **VAX still wasn't \"real.\"** The **360** stayed the center of gravity.",
-      "image_prompt": ""
-    },
-    {
-      "id": "0c0001e2-be2c-4edd-992f-b43288d0086a",
-      "kind": "content",
-      "markdown": "# Back to Building\n\n- **Back to building** — what we keep circling.\n- Industry does not want **A+ students** who can only **recite the spells**.\n- It wants **skilled magicians** who **use** them to **delight customers**.",
-      "title": "Back to Building",
-      "body": "- **Back to building** — what we keep circling.\n- Industry does not want **A+ students** who can only **recite the spells**.\n- It wants **skilled magicians** who **use** them to **delight customers**.",
       "image_prompt": ""
     }
   ],
