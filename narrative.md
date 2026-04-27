@@ -47,15 +47,6 @@ Editing freely is the point: rewrite, merge, split, reorder, delete. Beats witho
 <!-- slide: 4f6dc626-83d5-43e2-8ba4-14d61f676cd8 -->
 
 
-### Spells, Magic, and My Journey
-<!-- slide: 6b18f9d6-fd5b-4056-918a-a75cd0381a45 -->
-
-- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.
-- **Magic** is what **delights the customer** — the outcome only **building** can produce.
-- I fell in love with that **magic**, not with collecting **spells** for their own sake.
-- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.
-
-
 ---
 
 ## Section 1 — Return to academia
@@ -75,6 +66,14 @@ I came back to academia excited about LLM influence on software developers
 ---
 
 ## Section 2 — My history of building stuff
+
+### Spells, Magic, and My Journey
+<!-- slide: 6b18f9d6-fd5b-4056-918a-a75cd0381a45 -->
+
+- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.
+- **Magic** is what **delights the customer** — the outcome only **building** can produce.
+- I fell in love with that **magic**, not with collecting **spells** for their own sake.
+- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.
 
 ### Why I'm Here
 <!-- slide: 121d9e95-4b96-48a1-a552-e61f91c2568b -->

@@ -40,14 +40,6 @@
       "image_prompt": ""
     },
     {
-      "id": "6b18f9d6-fd5b-4056-918a-a75cd0381a45",
-      "kind": "content",
-      "markdown": "# Spells, Magic, and My Journey\n\n- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.",
-      "title": "Spells, Magic, and My Journey",
-      "body": "- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.",
-      "image_prompt": ""
-    },
-    {
       "id": "3f26df8b-61b9-4cfb-9eb6-7796406882ab",
       "kind": "content",
       "markdown": "# Back to academia, teaching LLM-forward\n\nI came back to academia excited about LLM influence on software developers\n\n# I believe we need to teach how to use\n\n- industry is moving there\n- i want to know how to use\n- so i can help my students learn.",
@@ -56,12 +48,20 @@
       "image_prompt": ""
     },
     {
+      "id": "6b18f9d6-fd5b-4056-918a-a75cd0381a45",
+      "kind": "content",
+      "markdown": "# Spells, Magic, and My Journey\n\n- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.",
+      "title": "Spells, Magic, and My Journey",
+      "body": "- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.",
+      "image_prompt": ""
+    },
+    {
       "id": "121d9e95-4b96-48a1-a552-e61f91c2568b",
       "kind": "content",
-      "markdown": "# Part one: The personal story",
-      "title": "Part one: The personal story",
-      "body": "",
-      "image_prompt": ""
+      "markdown": "# Why I'm Here\n\nI fell in love with **building things**.\n\nNot with collecting spells. Not with syntax or frameworks or the latest tools.\n\nWith the **magic** — that moment when something you made delights someone else. When code becomes craft.\n\nThat's what I want for my students. Not just certified graduates. **Builders.**\n\nAnd that's the thread running through everything I'm about to share with you.",
+      "title": "Why I'm Here",
+      "body": "I fell in love with **building things**.\n\nNot with collecting spells. Not with syntax or frameworks or the latest tools.\n\nWith the **magic** — that moment when something you made delights someone else. When code becomes craft.\n\nThat's what I want for my students. Not just certified graduates. **Builders.**\n\nAnd that's the thread running through everything I'm about to share with you.",
+      "image_prompt": "A person sits at a workbench surrounded by the physical evidence of making—tools scattered across the surface, half-finished objects, sketches pinned nearby. Their hands are engaged with something tangible they've constructed, turning it over or assembling it. In the background or middle distance, another figure holds or examines what the maker created, their face showing genuine delight or satisfaction. The scene captures the moment of connection between creator and user, where the practical act of building meets its purpose: bringing joy to someone else through something made real."
     },
     {
       "id": "2c155803-8ca0-4672-a9d6-cc8b4fb991cc",
@@ -157,7 +157,7 @@
       "markdown": "# How the academy pushed back",
       "title": "How the academy pushed back",
       "body": "",
-      "image_prompt": ""
+      "image_prompt": "A figure stands at a drafting table or workbench, surrounded by scattered blueprints, sketches, and building models. Behind them, a brick wall or institutional building looms large. The person holds a pencil or tool, studying their work with focus, while in the background other figures gesture in disagreement or turn away. The workspace is filled with tangible objects of creation—half-finished designs, measurement tools, structural prototypes—emphasizing the practical act of building and designing rather than abstract certification. The composition shows the builder persisting at their work despite institutional resistance around them."
     },
     {
       "id": "2c78bc0a-a3b4-46f3-b764-c31caa559126",
