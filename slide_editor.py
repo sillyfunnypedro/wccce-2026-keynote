@@ -247,10 +247,16 @@ def configure_markdown_tags(text_widget: tk.Text, *, base_pt: int = 10) -> None:
     fi = ("TkDefaultFont", base_pt, "italic")
     fc = ("TkFixedFont", base_pt)
     fs = tkfont.Font(family="TkDefaultFont", size=base_pt, overstrike=1)
+    fs_h1 = tkfont.Font(family="TkDefaultFont", size=base_pt + 2, weight="bold", overstrike=1)
+    fs_h2 = tkfont.Font(family="TkDefaultFont", size=base_pt, weight="bold", overstrike=1)
+    fs_h3 = tkfont.Font(family="TkDefaultFont", size=base_pt, weight="bold", overstrike=1)
     text_widget.tag_configure("md_base", foreground=SLIDE_TEXT, font=f)
     text_widget.tag_configure("md_bold", foreground=SLIDE_TEXT, font=fb)
     text_widget.tag_configure("md_italic", foreground=SLIDE_TEXT, font=fi)
     text_widget.tag_configure("md_strike", foreground=SLIDE_TEXT, font=fs)
+    text_widget.tag_configure("md_strike_h1", foreground=SLIDE_TEXT, font=fs_h1)
+    text_widget.tag_configure("md_strike_h2", foreground=SLIDE_TEXT, font=fs_h2)
+    text_widget.tag_configure("md_strike_h3", foreground="#d7d7df", font=fs_h3)
     text_widget.tag_configure(
         "md_code", foreground="#d7d7df", font=fc, background="#22263d"
     )
@@ -287,7 +293,12 @@ def insert_markdown_lines(text_widget: tk.Text, text: str, *, base_pt: int = 10)
             if part.startswith("**") and part.endswith("**") and len(part) >= 4:
                 text_widget.insert(tk.END, part[2:-2], ("md_bold",))
             elif part.startswith("~~") and part.endswith("~~") and len(part) >= 5:
-                text_widget.insert(tk.END, part[2:-2], ("md_strike",))
+                strike_tag = {
+                    "md_h1": "md_strike_h1",
+                    "md_h2": "md_strike_h2",
+                    "md_h3": "md_strike_h3",
+                }.get(line_tag, "md_strike")
+                text_widget.insert(tk.END, part[2:-2], (strike_tag,))
             elif part.startswith("*") and part.endswith("*") and len(part) >= 3:
                 text_widget.insert(tk.END, part[1:-1], ("md_italic",))
             elif part.startswith("`") and part.endswith("`") and len(part) >= 3:
@@ -296,6 +307,40 @@ def insert_markdown_lines(text_widget: tk.Text, text: str, *, base_pt: int = 10)
                 text_widget.insert(tk.END, part, (line_tag,))
         if i < len(lines) - 1:
             text_widget.insert(tk.END, "\n", ("md_base",))
+
+
+_INLINE_MD_STRIP_PAT = re.compile(r"\*\*([^*]+)\*\*|~~([^~]+)~~|\*([^*]+)\*|`([^`]+)`")
+
+
+def strip_inline_markdown(text: str) -> str:
+    """Remove inline markdown markers (bold/strike/italic/code) for plain display."""
+    def _sub(m: re.Match) -> str:
+        return next(g for g in m.groups() if g is not None)
+    return _INLINE_MD_STRIP_PAT.sub(_sub, text)
+
+
+def insert_title_markdown(text_widget: tk.Text, text: str, *, base_pt: int = 12) -> None:
+    """Render a slide title with inline markdown — bold by default, plus strike/italic."""
+    fb = tkfont.Font(family="TkDefaultFont", size=base_pt, weight="bold")
+    fi = tkfont.Font(family="TkDefaultFont", size=base_pt, weight="bold", slant="italic")
+    fs = tkfont.Font(family="TkDefaultFont", size=base_pt, weight="bold", overstrike=1)
+    text_widget.tag_configure("title_base", foreground=SLIDE_TEXT, font=fb)
+    text_widget.tag_configure("title_italic", foreground=SLIDE_TEXT, font=fi)
+    text_widget.tag_configure("title_strike", foreground=SLIDE_TEXT, font=fs)
+
+    inline_pat = re.compile(r"(\*\*[^*]+\*\*|\*[^*]+\*|~~[^~]+~~)")
+    parts = inline_pat.split(text)
+    for part in parts:
+        if not part:
+            continue
+        if part.startswith("**") and part.endswith("**") and len(part) >= 4:
+            text_widget.insert(tk.END, part[2:-2], ("title_base",))
+        elif part.startswith("~~") and part.endswith("~~") and len(part) >= 5:
+            text_widget.insert(tk.END, part[2:-2], ("title_strike",))
+        elif part.startswith("*") and part.endswith("*") and len(part) >= 3:
+            text_widget.insert(tk.END, part[1:-1], ("title_italic",))
+        else:
+            text_widget.insert(tk.END, part, ("title_base",))
 
 
 def _present_slide_markdown(spec: dict, index: int) -> str:
@@ -474,17 +519,22 @@ class SlideRow(tk.Frame):
             pady=12,
         )
 
-        self._title_preview = tk.Label(
+        self._title_preview = tk.Text(
             left,
-            text=self._preview_title,
+            height=2,
             bg=SLIDE_BG,
             fg=SLIDE_TEXT,
-            font=("TkDefaultFont", 12, "bold"),
-            anchor="w",
-            justify="left",
-            wraplength=280,
+            relief=tk.FLAT,
+            borderwidth=0,
+            highlightthickness=0,
+            wrap=tk.WORD,
+            cursor="arrow",
+            takefocus=0,
+            padx=0,
+            pady=0,
         )
         self._title_preview.pack(anchor="w", fill=tk.X, pady=(0, 8))
+        self._render_title_preview()
 
         if _PERF_LABEL_BODY:
             self._body_preview = tk.Label(
@@ -670,7 +720,7 @@ class SlideRow(tk.Frame):
         return f"[{self.index:02d}]"
 
     def _title_line(self) -> str:
-        return f"{self._header_line()}  {self._preview_title}"
+        return f"{self._header_line()}  {strip_inline_markdown(self._preview_title)}"
 
     def _fill_body_preview(self) -> None:
         raw = (self._preview_body or "").strip()
@@ -710,13 +760,19 @@ class SlideRow(tk.Frame):
         self.txt.delete("1.0", tk.END)
         self.txt.insert("1.0", text)
 
+    def _render_title_preview(self) -> None:
+        self._title_preview.config(state=tk.NORMAL)
+        self._title_preview.delete("1.0", tk.END)
+        insert_title_markdown(self._title_preview, self._preview_title or "")
+        self._title_preview.config(state=tk.DISABLED)
+
     def _on_content_edit(self, _event=None):
         title = self.get_title_text() or "(untitled)"
         body = self.get_body_text()
         self._preview_title = title
         self._preview_body = body
         self._top_title_label.config(text=self._title_line())
-        self._title_preview.config(text=self._preview_title)
+        self._render_title_preview()
         self._fill_body_preview()
         self.app.schedule_autosave()
 
@@ -730,7 +786,7 @@ class SlideRow(tk.Frame):
             self.body_edit.delete("1.0", tk.END)
             self.body_edit.insert("1.0", self._preview_body)
         self._top_title_label.config(text=self._title_line())
-        self._title_preview.config(text=self._preview_title)
+        self._render_title_preview()
         self._fill_body_preview()
 
     def set_slide_title(self, title: str) -> None:
