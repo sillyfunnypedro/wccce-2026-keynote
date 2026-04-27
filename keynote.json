@@ -10,9 +10,25 @@
     {
       "id": "d4b13a60-7827-4c7c-b905-fd953a8dbde1",
       "kind": "content",
-      "markdown": "# Bringing Big into the classroom\n\n- WCCCE 2026\n- Juancho Buchanan\n- Professor of The Practice\n- Khoury College of Computer Science\n- Vancouver campus.",
-      "title": "Bringing Big into the classroom",
+      "markdown": "# A case for focusing on magic.\n\n- WCCCE 2026\n- Juancho Buchanan\n- Professor of The Practice\n- Khoury College of Computer Science\n- Vancouver campus.",
+      "title": "A case for focusing on magic.",
       "body": "- WCCCE 2026\n- Juancho Buchanan\n- Professor of The Practice\n- Khoury College of Computer Science\n- Vancouver campus.",
+      "image_prompt": ""
+    },
+    {
+      "id": "23518dfd-9014-4371-9b99-14ef36c149dc",
+      "kind": "content",
+      "markdown": "# Juancho Buchanan\n\n# A career back-and-forth: building, then teaching builders.\n\n- **U of Alberta**, Professor — NPR research\n- **Electronic Arts**, Head of Research\n- **Carnegie Mellon**, Professor — game sketching\n- **THQ**, VP Engineering\n- **Amazon**, Engineering leader\n- **Staffbase**, VP Engineering\n- **Khoury Vancouver**, Professor of the Practice.",
+      "title": "Juancho Buchanan",
+      "body": "# A career back-and-forth: building, then teaching builders.\n\n- **U of Alberta**, Professor — NPR research\n- **Electronic Arts**, Head of Research\n- **Carnegie Mellon**, Professor — game sketching\n- **THQ**, VP Engineering\n- **Amazon**, Engineering leader\n- **Staffbase**, VP Engineering\n- **Khoury Vancouver**, Professor of the Practice.",
+      "image_prompt": ""
+    },
+    {
+      "id": "3f26df8b-61b9-4cfb-9eb6-7796406882ab",
+      "kind": "content",
+      "markdown": "# Back to academia, thinking LLM-forward together\n\nI came back to academia excited about how LLMs are reshaping what it means to write code.\n\n# I believe we need to teach how to use them\n\n- Industry is moving there\n- I want to know how to use them\n- So I can help my students learn\n\n**But here's what really energizes me:** I get to think through all of this **with my colleagues**. We're figuring out together what it means to prepare builders for this new landscape. That collaboration — wrestling with these questions as a community — that's where the real teaching happens.",
+      "title": "Back to academia, thinking LLM-forward together",
+      "body": "I came back to academia excited about how LLMs are reshaping what it means to write code.\n\n# I believe we need to teach how to use them\n\n- Industry is moving there\n- I want to know how to use them\n- So I can help my students learn\n\n**But here's what really energizes me:** I get to think through all of this **with my colleagues**. We're figuring out together what it means to prepare builders for this new landscape. That collaboration — wrestling with these questions as a community — that's where the real teaching happens.",
       "image_prompt": ""
     },
     {
@@ -34,138 +50,138 @@
     {
       "id": "4f6dc626-83d5-43e2-8ba4-14d61f676cd8",
       "kind": "content",
-      "markdown": "# How I got here — and why this talk",
+      "markdown": "# How I got here — and why this talk\n\n- Surrounded by curious faculty here\n\n- We are all trying to figure this out\n\n\n- I have been learning how to use",
       "title": "How I got here — and why this talk",
-      "body": "",
-      "image_prompt": ""
-    },
-    {
-      "id": "3f26df8b-61b9-4cfb-9eb6-7796406882ab",
-      "kind": "content",
-      "markdown": "# Back to academia, teaching LLM-forward\n\nI came back to academia excited about LLM influence on software developers\n\n# I believe we need to teach how to use\n\n- industry is moving there\n- i want to know how to use\n- so i can help my students learn.",
-      "title": "Back to academia, teaching LLM-forward",
-      "body": "I came back to academia excited about LLM influence on software developers\n\n# I believe we need to teach how to use\n\n- industry is moving there\n- i want to know how to use\n- so i can help my students learn.",
-      "image_prompt": ""
+      "body": "- Surrounded by curious faculty here\n\n- We are all trying to figure this out\n\n\n- I have been learning how to use",
+      "image_prompt": "A person sits at a workbench surrounded by half-finished projects—a partially assembled machine, scattered tools, notebooks filled with sketches and notes, and a computer screen displaying incomplete code. They lean back in their chair, looking thoughtful, with one hand on their chin, gazing upward as if considering the next problem. The workbench is cluttered but purposeful, with projects in various stages of completion suggesting a journey of making, learning, and building rather than just studying or certifying."
     },
     {
       "id": "f37b2620-3fa0-4a58-b09d-154230b886ff",
       "kind": "content",
-      "markdown": "# Arthur C. Clarke\n\n> \"Any sufficiently advanced technology is indistinguishable from magic.\"\n>\n> — **Arthur C. Clarke**, *Profiles of the Future* (1973)",
+      "markdown": "# Arthur C. Clarke’s Third Law\n\n# Any sufficiently advanced technology is indistinguishable from magic.\n\n\n **Arthur C. Clarke**, *Profiles of the Future* (1973)",
       "title": "Arthur C. Clarke’s Third Law",
-      "body": "> \"Any sufficiently advanced technology is indistinguishable from magic.\"\n>\n> — **Arthur C. Clarke**, *Profiles of the Future* (1973)",
-      "image_prompt": ""
+      "body": "# Any sufficiently advanced technology is indistinguishable from magic.\n\n\n **Arthur C. Clarke**, *Profiles of the Future* (1973)",
+      "image_prompt": "A person stands in a workshop or maker space, holding an intricate mechanical or electronic device they have just built or assembled. Their hands are positioned to show both the object and their own craftsmanship—palms slightly open, shoulders relaxed with satisfaction. Around them on workbenches sit tools, components, sketches, and half-finished projects. The person gazes at their creation with a mixture of wonder and understanding, as if recognizing that what they've built—though grounded in concrete principles and deliberate construction—appears almost inexplicable to someone unfamiliar with how it works. The scene captures the moment where disciplined building meets the observer's sense of awe."
     },
     {
       "id": "6b18f9d6-fd5b-4056-918a-a75cd0381a45",
       "kind": "content",
-      "markdown": "# Spells, Magic, and My Journey\n\n- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.",
-      "title": "Spells, Magic, and My Journey",
-      "body": "- In this talk, **spells** mean **coding** — languages, rituals, the work at the keyboard.\n- **Magic** is what **delights the customer** — the outcome only **building** can produce.\n- I fell in love with that **magic**, not with collecting **spells** for their own sake.\n- You just saw **what I have been trying** in my courses since **2023**; what follows is **how I got here** — and **why** I care about **builders**, not just **spells**.",
+      "markdown": "# The Spells, The Incantations\n\n# Programming as Incantation\n\n- Non programmers see spells\n\n- Non programmers see incantations\n\n- Non programmers see rituals.",
+      "title": "The Spells, The Incantations",
+      "body": "# Programming as Incantation\n\n- Non programmers see spells\n\n- Non programmers see incantations\n\n- Non programmers see rituals.",
       "image_prompt": ""
+    },
+    {
+      "id": "01c7d8ab-e976-4cc0-842b-052e977c0658",
+      "kind": "content",
+      "markdown": "# The Magic\n\n- But the magic isn't in the spell.\n\n# The magic is what happens when someone uses what we built.\n\n- We cast spells.\n- We create magic..\n\n# They only care that it works, that it helps them!",
+      "title": "The Magic",
+      "body": "- But the magic isn't in the spell.\n\n# The magic is what happens when someone uses what we built.\n\n- We cast spells.\n- We create magic..\n\n# They only care that it works, that it helps them!",
+      "image_prompt": "A builder stands in a workshop surrounded by tools, materials, and half-finished projects scattered across workbenches. In the foreground, another person uses one of the completed creations—operating it with focus and satisfaction, completely absorbed in solving their own problem or task. The builder watches from the background, slightly apart, observing the moment of utility and impact. The scene emphasizes the gap between the maker's effort and intention versus the user's simple need for something that works, with the real value residing in that moment of use rather than in the construction itself."
     },
     {
       "id": "121d9e95-4b96-48a1-a552-e61f91c2568b",
       "kind": "content",
-      "markdown": "# Why I'm Here\n\nI fell in love with **building things**.\n\nNot with collecting spells. Not with syntax or frameworks or the latest tools.\n\nWith the **magic** — that moment when something you made delights someone else. When code becomes craft.\n\nThat's what I want for my students. Not just certified graduates. **Builders.**\n\nAnd that's the thread running through everything I'm about to share with you.",
+      "markdown": "# Why I'm Here\n\nI fell in love with **building things**.\n\nNot with collecting spells.\n\nNot with syntax or frameworks or the latest tools.",
       "title": "Why I'm Here",
-      "body": "I fell in love with **building things**.\n\nNot with collecting spells. Not with syntax or frameworks or the latest tools.\n\nWith the **magic** — that moment when something you made delights someone else. When code becomes craft.\n\nThat's what I want for my students. Not just certified graduates. **Builders.**\n\nAnd that's the thread running through everything I'm about to share with you.",
+      "body": "I fell in love with **building things**.\n\nNot with collecting spells.\n\nNot with syntax or frameworks or the latest tools.",
       "image_prompt": "A person sits at a workbench surrounded by the physical evidence of making—tools scattered across the surface, half-finished objects, sketches pinned nearby. Their hands are engaged with something tangible they've constructed, turning it over or assembling it. In the background or middle distance, another figure holds or examines what the maker created, their face showing genuine delight or satisfaction. The scene captures the moment of connection between creator and user, where the practical act of building meets its purpose: bringing joy to someone else through something made real."
     },
     {
-      "id": "2c155803-8ca0-4672-a9d6-cc8b4fb991cc",
+      "id": "93d3a434-b84a-493f-bd17-76145e479d84",
       "kind": "content",
-      "markdown": "# 1977\n\n- **John Loader**, maths teacher — got an account at the **University of Sussex**.\n- He taught us programming (I think **FORTRAN**).\n- We filled out **mark-sense cards**.\n- We **mailed them in**.\n- I got mine back — my incantation had been **cursed**.\n- Curse this computer thing.",
-      "title": "1977",
-      "body": "- **John Loader**, maths teacher — got an account at the **University of Sussex**.\n- He taught us programming (I think **FORTRAN**).\n- We filled out **mark-sense cards**.\n- We **mailed them in**.\n- I got mine back — my incantation had been **cursed**.\n- Curse this computer thing.",
-      "image_prompt": ""
+      "markdown": "# Builders Magicians\n\n**Magic** — When you delight!\n\n-When code becomes magic.\n\nLets give this to our students! \n- Not just certified graduates. \n\n- **Builders.**\n- **Magicians**",
+      "title": "Builders Magicians",
+      "body": "**Magic** — When you delight!\n\n-When code becomes magic.\n\nLets give this to our students! \n- Not just certified graduates. \n\n- **Builders.**\n- **Magicians**",
+      "image_prompt": "A person stands at a workbench surrounded by tools, materials, and half-finished objects—wooden pieces, mechanical parts, wires, sketches. They hold up something they've just completed, examining it with focus and satisfaction. In the foreground, another person reaches toward the creation with genuine delight and wonder on their face, their hand extended as if to touch or receive it. The moment captures the exchange between maker and user, the spark of connection when something crafted meets someone who values it. The workspace behind them shows evidence of iteration and learning—mistakes visible alongside successes—suggesting this is not about perfection but about the authentic process of making something real."
+    },
+    {
+      "id": "adc40861-f585-48d7-83ab-e064a0cf6a1d",
+      "kind": "content",
+      "markdown": "# My personal journey with spells and magic\n\nCreating things that delight \n\nIve become hooked.\n\nits.......\n\n\nWell it is magic.",
+      "title": "My personal journey with spells and magic",
+      "body": "Creating things that delight \n\nIve become hooked.\n\nits.......\n\n\nWell it is magic.",
+      "image_prompt": "A magician casting a spell before an audience who is enthralled."
     },
     {
       "id": "f663552b-2fb6-4f8d-be50-5c075e7c4a10",
       "kind": "content",
-      "markdown": "# 1978 — A Game on a Casio\n\n# Programmable calculator.\n- A **random** target on a **100×100** grid.\n\n- You type **x** and **y**\n- it answers with **distance** to the ship.\n- You **close in** until you hit it.\n- None of my friends wanted to understand\n- They did like the game\n- it was 1978",
+      "markdown": "# 1978 — A Game on a Casio\n\n# Programmable calculator.\n\n- A **random** target on a **100×100** grid.\n- You type **x** and **y**\n- it answers with **distance** to the ship.\n- You **close in** until you hit it.\n\nIt was 1978.",
       "title": "1978 — A Game on a Casio",
-      "body": "# Programmable calculator.\n- A **random** target on a **100×100** grid.\n\n- You type **x** and **y**\n- it answers with **distance** to the ship.\n- You **close in** until you hit it.\n- None of my friends wanted to understand\n- They did like the game\n- it was 1978",
+      "body": "# Programmable calculator.\n\n- A **random** target on a **100×100** grid.\n- You type **x** and **y**\n- it answers with **distance** to the ship.\n- You **close in** until you hit it.\n\nIt was 1978.",
       "image_prompt": ""
+    },
+    {
+      "id": "7f6fad16-0155-4b84-bb11-8a11bad7da59",
+      "kind": "content",
+      "markdown": "# 1978 — My first audience\n\n# My first audience.\n\n- None of my friends wanted to understand the spell.\n- They did **like** the game.\n\nThe spell was invisible to them. The game was the whole point.",
+      "title": "1978 — My first audience",
+      "body": "# My first audience.\n\n- None of my friends wanted to understand the spell.\n- They did **like** the game.\n\nThe spell was invisible to them. The game was the whole point.",
+      "image_prompt": "Me standing in the corner watching my friends play the game on my calculator."
     },
     {
       "id": "eec49a0c-db98-49f4-b4e8-764993ca849a",
       "kind": "content",
-      "markdown": "# Summer Job 1980-1984\n\n- Lead–Acid Batteries Tonolli recycling\n- My uncle broke down **forklift batteries** for recycling.\n- We weighed cells (**50–160 kg**),\n- counted cells,\n- tallied, billed Tonoly.\n- First customer\n- I wrote **BASIC** on a **TRS-80 Model I**\n- End-of-day totals, **saved**,\n- Auditable if we mistyped.",
-      "title": "Summer Job 1980-1984",
-      "body": "- Lead–Acid Batteries Tonolli recycling\n- My uncle broke down **forklift batteries** for recycling.\n- We weighed cells (**50–160 kg**),\n- counted cells,\n- tallied, billed Tonoly.\n- First customer\n- I wrote **BASIC** on a **TRS-80 Model I**\n- End-of-day totals, **saved**,\n- Auditable if we mistyped.",
+      "markdown": "# Tonolli at the battery yard\n\n# 1981-1985 — Lead-Acid Batteries Tonolli\n\nMy uncle broke down **forklift batteries** for recycling. We weighed cells (50–160 kg), counted, tallied, billed Tonolli.\n\n# The spell (in 1982)\n\n**BASIC on a TRS-80 Model I.** End-of-day totals, saved, auditable if we mistyped.",
+      "title": "Tonolli at the battery yard",
+      "body": "# 1981-1985 — Lead-Acid Batteries Tonolli\n\nMy uncle broke down **forklift batteries** for recycling. We weighed cells (50–160 kg), counted, tallied, billed Tonolli.\n\n# The spell (in 1982)\n\n**BASIC on a TRS-80 Model I.** End-of-day totals, saved, auditable if we mistyped.",
       "image_prompt": ""
     },
     {
-      "id": "e82aae96-dff1-4f99-acd0-bef0031b9739",
+      "id": "530bddb7-24d3-4094-b2d8-09e1b7381b06",
       "kind": "content",
-      "markdown": "# First Time I Delighted a \"Customer\"\n\n- **Me** — less pain doing the books.\n- My **uncle** — faster, more accurate billing.\n- Problem ->\n- Understanding ->\n- Do Magic incantations ->\n- Uncle saw them as magical\n- Happy Uncle",
-      "title": "First Time I Delighted a \"Customer\"",
-      "body": "- **Me** — less pain doing the books.\n- My **uncle** — faster, more accurate billing.\n- Problem ->\n- Understanding ->\n- Do Magic incantations ->\n- Uncle saw them as magical\n- Happy Uncle",
-      "image_prompt": ""
-    },
-    {
-      "id": "0ce10e4a-ca60-4a4a-a281-f022c5f2c615",
-      "kind": "content",
-      "markdown": "# Research and collaborators",
-      "title": "Research and collaborators",
-      "body": "",
-      "image_prompt": ""
-    },
-    {
-      "id": "5a3cc000-4391-4270-9db4-7c1388053fef",
-      "kind": "content",
-      "markdown": "# My Ph.D. Incantation: Faster Convolution\n\n- My Ph.D. was one giant **magic spell** for speed:\n\n- Start with expensive **filter integrals** in convolution.\n- **Decompose the filter** into a **basis representation**.\n- **Precompute** the integral of each **basis function** with the data.\n- Reuse those precomputed pieces to assemble results quickly.\n- Same math, same answer — dramatically less repeated work.\n\n# Pure magic",
-      "title": "My Ph.D. Incantation: Faster Convolution",
-      "body": "- My Ph.D. was one giant **magic spell** for speed:\n\n- Start with expensive **filter integrals** in convolution.\n- **Decompose the filter** into a **basis representation**.\n- **Precompute** the integral of each **basis function** with the data.\n- Reuse those precomputed pieces to assemble results quickly.\n- Same math, same answer — dramatically less repeated work.\n\n# Pure magic",
-      "image_prompt": ""
+      "markdown": "# 1982 — My first delighted customer\n\n# The magic\n\nFor my uncle: **faster, more accurate billing** — less pain doing the books.\n\nFor me: I delighted a customer!\n\n# I was hooked.",
+      "title": "1982 — My first delighted customer",
+      "body": "# The magic\n\nFor my uncle: **faster, more accurate billing** — less pain doing the books.\n\nFor me: I delighted a customer!\n\n# I was hooked.",
+      "image_prompt": "A young person sits at a desk or workbench beside an older man, both looking at a computer screen displaying billing information or ledger data. The younger person's hands rest on the keyboard while the older man leans in with visible relief and satisfaction on his face, perhaps holding a stack of papers or account books that he's setting down. Around them are scattered business documents, a calculator, and office supplies—the remnants of manual bookkeeping work. The screen glows with organized columns of numbers, representing the transformation from tedious manual calculation to automated accuracy. The spatial relationship emphasizes connection and shared purpose: the mentor figure seeing capability in the builder, the builder experiencing the tangible impact of their work for the first time."
     },
     {
       "id": "409d7b9b-c6c1-4569-b2d9-48d518aec024",
       "kind": "content",
-      "markdown": "# Why I Pivoted to NPR Tools\n\n- Non Photorealistic Rendering\n- After my Ph.D., I decided to build tools for **non-CS people**.\n- Medical imaging felt like a **red sea** to me.\n\n# I wanted to explore how computers could help **artists**.\n- Photorealism was largely solved.\n- It became magic for magic sake\n- No real visual difference.\n- I was more interested in expressive tools that expanded human creativity.",
-      "title": "Why I Pivoted to NPR Tools",
-      "body": "- Non Photorealistic Rendering\n- After my Ph.D., I decided to build tools for **non-CS people**.\n- Medical imaging felt like a **red sea** to me.\n\n# I wanted to explore how computers could help **artists**.\n- Photorealism was largely solved.\n- It became magic for magic sake\n- No real visual difference.\n- I was more interested in expressive tools that expanded human creativity.",
+      "markdown": "# After my PhD — Tools for Artists\n\n# After my PhD — tools for non-CS people\n\nPhotorealism was largely solved — magic for magic's sake. I wanted to build tools that **expanded human creativity**.\n\n# Non-Photorealistic Rendering\n\n**Mario Costa Sousa**'s PhD: simulating **pencil drawing**.\n\nWe worried tools like this might **replace** artists.",
+      "title": "After my PhD — Tools for Artists",
+      "body": "# After my PhD — tools for non-CS people\n\nPhotorealism was largely solved — magic for magic's sake. I wanted to build tools that **expanded human creativity**.\n\n# Non-Photorealistic Rendering\n\n**Mario Costa Sousa**'s PhD: simulating **pencil drawing**.\n\nWe worried tools like this might **replace** artists.",
       "image_prompt": ""
     },
     {
-      "id": "1cfed1e1-b4d9-402a-989f-91ef570ae8c8",
+      "id": "8863e589-fb5b-4bcb-ad4c-c38dc901b6fc",
       "kind": "content",
-      "markdown": "# Mario Costa Sousa, Ph.D. — simulating pencil drawing\n\n- **Mario Costa Sousa** completed a Ph.D. on **simulating pencil drawing**.\n- At first we worried tools like this might **replace** artists.\n- **Desmond Rochfort** — a **pencil artist** — sat on the committee.",
-      "title": "Mario Costa Sousa, Ph.D. — simulating pencil drawing",
-      "body": "- **Mario Costa Sousa** completed a Ph.D. on **simulating pencil drawing**.\n- At first we worried tools like this might **replace** artists.\n- **Desmond Rochfort** — a **pencil artist** — sat on the committee.",
-      "image_prompt": ""
-    },
-    {
-      "id": "5bbf065a-5a45-46ea-b49b-23dcdd5a697e",
-      "kind": "content",
-      "markdown": "# Desmond’s use for the tool\n\n# Desmond Rochfort is a pencil artist.\n\n- We were worried he would be threatened.\n- He taught us a lesson\n\n# He did not like\n- Style exploration, it cost too much\n\n# He could use our simulation\n- To get to the fun part",
-      "title": "Desmond’s use for the tool",
-      "body": "# Desmond Rochfort is a pencil artist.\n\n- We were worried he would be threatened.\n- He taught us a lesson\n\n# He did not like\n- Style exploration, it cost too much\n\n# He could use our simulation\n- To get to the fun part",
+      "markdown": "# Desmond's lesson\n\n# The customer was Desmond\n\n**Desmond Rochfort**, a pencil artist on the committee, set us straight.\n\n# Style exploration was expensive\n- Hours of pencil work to test an idea. \n\n- He could skip to the fun part.\n\n# The lesson\n\nThe customer doesn't want the spell. \n\n# They want what the magic enables them to do next.",
+      "title": "Desmond's lesson",
+      "body": "# The customer was Desmond\n\n**Desmond Rochfort**, a pencil artist on the committee, set us straight.\n\n# Style exploration was expensive\n- Hours of pencil work to test an idea. \n\n- He could skip to the fun part.\n\n# The lesson\n\nThe customer doesn't want the spell. \n\n# They want what the magic enables them to do next.",
       "image_prompt": ""
     },
     {
       "id": "e7d1f1a8-1e2c-494f-951f-58c330ba6b77",
       "kind": "content",
-      "markdown": "# CMU — Game Sketching\n\n- At **Carnegie Mellon**, I worked on **game sketching** — a story that **dropped out** of how I usually tell this arc.\n- The **game designer** would **converse** with the setup; **characters** in the world **reacted** — **early**, almost **LLM-like** interactivity.\n- Under the hood: **six puppeteers** in a **back room**, **listening** and **driving** the characters from **script** — we could **pivot fast** when the conversation changed.\n- The designer **iterated** about **thirty times** in **two weeks** — **three** runs on a **heavy** day.\n- The honest question: **Can we ship this?** **No** — you still have to **implement** the real thing.",
+      "markdown": "# CMU — Game Sketching\n\n# CMU — Game Sketching\n\nThe **game designer** sat down to play.\n\n**Avatars** in the game **reacted** to him — almost **LLM-like** interactivity, before LLMs existed.\n\n# Behind the curtain\n\n**Six students** in a **back room**, listening to the designer and **driving the avatars** from a **script** — pivoting fast when the conversation changed.",
       "title": "CMU — Game Sketching",
-      "body": "- At **Carnegie Mellon**, I worked on **game sketching** — a story that **dropped out** of how I usually tell this arc.\n- The **game designer** would **converse** with the setup; **characters** in the world **reacted** — **early**, almost **LLM-like** interactivity.\n- Under the hood: **six puppeteers** in a **back room**, **listening** and **driving** the characters from **script** — we could **pivot fast** when the conversation changed.\n- The designer **iterated** about **thirty times** in **two weeks** — **three** runs on a **heavy** day.\n- The honest question: **Can we ship this?** **No** — you still have to **implement** the real thing.",
-      "image_prompt": ""
+      "body": "# CMU — Game Sketching\n\nThe **game designer** sat down to play.\n\n**Avatars** in the game **reacted** to him — almost **LLM-like** interactivity, before LLMs existed.\n\n# Behind the curtain\n\n**Six students** in a **back room**, listening to the designer and **driving the avatars** from a **script** — pivoting fast when the conversation changed.",
+      "image_prompt": "a top dowwn image of a person in one room lookdin at a screen with a whole bunch of people in the other room."
     },
     {
-      "id": "64cc806e-fcfc-41a0-8c1d-6cfb4191204b",
+      "id": "f2a61f73-c7c9-4371-bfaf-bca2e41540bd",
       "kind": "content",
-      "markdown": "# From story to curriculum",
-      "title": "From story to curriculum",
-      "body": "",
+      "markdown": "# The producer thought it was playable\n\n# The producer thought the game was playable.\n\nThat was the magic.\n\nHe iterated about **thirty times in two weeks** — **three** runs on a **heavy** day.\n\n# The honest question\n\n**Can we ship this?**\n\n**No** — you still have to **implement** the real thing.",
+      "title": "The producer thought it was playable",
+      "body": "# The producer thought the game was playable.\n\nThat was the magic.\n\nHe iterated about **thirty times in two weeks** — **three** runs on a **heavy** day.\n\n# The honest question\n\n**Can we ship this?**\n\n**No** — you still have to **implement** the real thing.",
       "image_prompt": ""
     },
     {
       "id": "3796416b-05af-466e-b80e-0e4a662e3219",
       "kind": "content",
-      "markdown": "# How the academy pushed back",
-      "title": "How the academy pushed back",
-      "body": "",
+      "markdown": "# Conversing with 10010100101 or xFEA45D is hard\n\nProgramming languages \n- First attempt at helping people\n\n- New tools.\n IDE, tab completion, now LLM\n\n# Each breakthrough is a disturbance in the force:\n\n# The pattern\n\n- That's not real programming\n- You're taking shortcuts\n- Real CS requires suffering",
+      "title": "Conversing with 10010100101 or xFEA45D is hard",
+      "body": "Programming languages \n- First attempt at helping people\n\n- New tools.\n IDE, tab completion, now LLM\n\n# Each breakthrough is a disturbance in the force:\n\n# The pattern\n\n- That's not real programming\n- You're taking shortcuts\n- Real CS requires suffering",
       "image_prompt": "A figure stands at a drafting table or workbench, surrounded by scattered blueprints, sketches, and building models. Behind them, a brick wall or institutional building looms large. The person holds a pencil or tool, studying their work with focus, while in the background other figures gesture in disagreement or turn away. The workspace is filled with tangible objects of creation—half-finished designs, measurement tools, structural prototypes—emphasizing the practical act of building and designing rather than abstract certification. The composition shows the builder persisting at their work despite institutional resistance around them."
+    },
+    {
+      "id": "27e6d712-6387-49a3-903d-6d105bd8aa62",
+      "kind": "content",
+      "markdown": "# Now it's almost daily\n\n# Did I say every few years?\n\nWell, that was then.\n\n# Now it's almost daily.\n\nTry keeping up with the new set of tools.",
+      "title": "Now it's almost daily",
+      "body": "# Did I say every few years?\n\nWell, that was then.\n\n# Now it's almost daily.\n\nTry keeping up with the new set of tools.",
+      "image_prompt": ""
     },
     {
       "id": "2c78bc0a-a3b4-46f3-b764-c31caa559126",
@@ -520,6 +536,14 @@
       "image_prompt": ""
     },
     {
+      "id": "9a2e4bff-bf4d-4787-b748-fff7bb87731c",
+      "kind": "content",
+      "markdown": "# How this talk was built\n\n# How this talk was built.\n\n> **[ Story to come — Juancho fills this in live. ]**\n\nThe slide editor, the JSON deck, the image pipeline — all built in conversation with an LLM, alongside the talk itself.\n\n**I was the customer. The talk you're watching is the magic.**",
+      "title": "How this talk was built",
+      "body": "# How this talk was built.\n\n> **[ Story to come — Juancho fills this in live. ]**\n\nThe slide editor, the JSON deck, the image pipeline — all built in conversation with an LLM, alongside the talk itself.\n\n**I was the customer. The talk you're watching is the magic.**",
+      "image_prompt": ""
+    },
+    {
       "id": "30de3cb1-0c39-4090-a506-ea9eec58bf00",
       "kind": "content",
       "markdown": "# A Student Asked: Vibe Coding vs Us?\n\n- A student asked: **What's the difference between vibe coding and us?**\n- My answer — back to where we started this talk:\n- **Vibe coding** is **product management** with an oracle — describe, accept, ship.\n- **What we do** is **conversational programming** — we **understand the machine**, we **examine** what was produced, **trace** why it works (or fails), and **fix** it with intent.\n- That is the difference between **guessing output** and **building systems** that hold up for real people.",
@@ -581,6 +605,62 @@
       "markdown": "# Back to Building\n\n- **Back to building** — what we keep circling.\n- Industry does not want **A+ students** who can only **recite the spells**.\n- It wants **skilled magicians** who **use** them to **delight customers**.",
       "title": "Back to Building",
       "body": "- **Back to building** — what we keep circling.\n- Industry does not want **A+ students** who can only **recite the spells**.\n- It wants **skilled magicians** who **use** them to **delight customers**.",
+      "image_prompt": ""
+    },
+    {
+      "id": "2c155803-8ca0-4672-a9d6-cc8b4fb991cc",
+      "kind": "content",
+      "markdown": "# 1977\n\n- **John Loader**, maths teacher — got an account at the **University of Sussex**.\n- He taught us programming (I think **FORTRAN**).\n- We filled out **mark-sense cards**.\n- We **mailed them in**.\n- I got mine back — my incantation had been **cursed**.\n- Curse this computer thing.",
+      "title": "1977",
+      "body": "- **John Loader**, maths teacher — got an account at the **University of Sussex**.\n- He taught us programming (I think **FORTRAN**).\n- We filled out **mark-sense cards**.\n- We **mailed them in**.\n- I got mine back — my incantation had been **cursed**.\n- Curse this computer thing.",
+      "image_prompt": ""
+    },
+    {
+      "id": "0ce10e4a-ca60-4a4a-a281-f022c5f2c615",
+      "kind": "content",
+      "markdown": "# Research and collaborators",
+      "title": "Research and collaborators",
+      "body": "",
+      "image_prompt": ""
+    },
+    {
+      "id": "5a3cc000-4391-4270-9db4-7c1388053fef",
+      "kind": "content",
+      "markdown": "# My Ph.D. Incantation: Faster Convolution\n\n- My Ph.D. was one giant **magic spell** for speed:\n\n- Start with expensive **filter integrals** in convolution.\n- **Decompose the filter** into a **basis representation**.\n- **Precompute** the integral of each **basis function** with the data.\n- Reuse those precomputed pieces to assemble results quickly.\n- Same math, same answer — dramatically less repeated work.\n\n# Pure magic",
+      "title": "My Ph.D. Incantation: Faster Convolution",
+      "body": "- My Ph.D. was one giant **magic spell** for speed:\n\n- Start with expensive **filter integrals** in convolution.\n- **Decompose the filter** into a **basis representation**.\n- **Precompute** the integral of each **basis function** with the data.\n- Reuse those precomputed pieces to assemble results quickly.\n- Same math, same answer — dramatically less repeated work.\n\n# Pure magic",
+      "image_prompt": ""
+    },
+    {
+      "id": "e82aae96-dff1-4f99-acd0-bef0031b9739",
+      "kind": "content",
+      "markdown": "# First Time I Delighted a \"Customer\"\n\n- **Me** — less pain doing the books.\n- My **uncle** — faster, more accurate billing.\n- Problem ->\n- Understanding ->\n- Do Magic incantations ->\n- Uncle saw them as magical\n- Happy Uncle",
+      "title": "First Time I Delighted a \"Customer\"",
+      "body": "- **Me** — less pain doing the books.\n- My **uncle** — faster, more accurate billing.\n- Problem ->\n- Understanding ->\n- Do Magic incantations ->\n- Uncle saw them as magical\n- Happy Uncle",
+      "image_prompt": ""
+    },
+    {
+      "id": "1cfed1e1-b4d9-402a-989f-91ef570ae8c8",
+      "kind": "content",
+      "markdown": "# Mario Costa Sousa, Ph.D. — simulating pencil drawing\n\n- **Mario Costa Sousa** completed a Ph.D. on **simulating pencil drawing**.\n- At first we worried tools like this might **replace** artists.\n- **Desmond Rochfort** — a **pencil artist** — sat on the committee.",
+      "title": "Mario Costa Sousa, Ph.D. — simulating pencil drawing",
+      "body": "- **Mario Costa Sousa** completed a Ph.D. on **simulating pencil drawing**.\n- At first we worried tools like this might **replace** artists.\n- **Desmond Rochfort** — a **pencil artist** — sat on the committee.",
+      "image_prompt": ""
+    },
+    {
+      "id": "5bbf065a-5a45-46ea-b49b-23dcdd5a697e",
+      "kind": "content",
+      "markdown": "# Desmond’s use for the tool\n\n# Desmond Rochfort is a pencil artist.\n\n- We were worried he would be threatened.\n- He taught us a lesson\n\n# He did not like\n- Style exploration, it cost too much\n\n# He could use our simulation\n- To get to the fun part",
+      "title": "Desmond’s use for the tool",
+      "body": "# Desmond Rochfort is a pencil artist.\n\n- We were worried he would be threatened.\n- He taught us a lesson\n\n# He did not like\n- Style exploration, it cost too much\n\n# He could use our simulation\n- To get to the fun part",
+      "image_prompt": ""
+    },
+    {
+      "id": "64cc806e-fcfc-41a0-8c1d-6cfb4191204b",
+      "kind": "content",
+      "markdown": "# From story to curriculum",
+      "title": "From story to curriculum",
+      "body": "",
       "image_prompt": ""
     }
   ],

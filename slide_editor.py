@@ -51,7 +51,7 @@ import time
 import tkinter as tk
 import uuid
 from pathlib import Path
-from tkinter import filedialog, messagebox, scrolledtext
+from tkinter import filedialog, font as tkfont, messagebox, scrolledtext
 
 import generator as gen
 import keynote_deck as kd
@@ -246,9 +246,11 @@ def configure_markdown_tags(text_widget: tk.Text, *, base_pt: int = 10) -> None:
     fb = ("TkDefaultFont", base_pt, "bold")
     fi = ("TkDefaultFont", base_pt, "italic")
     fc = ("TkFixedFont", base_pt)
+    fs = tkfont.Font(family="TkDefaultFont", size=base_pt, overstrike=1)
     text_widget.tag_configure("md_base", foreground=SLIDE_TEXT, font=f)
     text_widget.tag_configure("md_bold", foreground=SLIDE_TEXT, font=fb)
     text_widget.tag_configure("md_italic", foreground=SLIDE_TEXT, font=fi)
+    text_widget.tag_configure("md_strike", foreground=SLIDE_TEXT, font=fs)
     text_widget.tag_configure(
         "md_code", foreground="#d7d7df", font=fc, background="#22263d"
     )
@@ -262,7 +264,7 @@ def insert_markdown_lines(text_widget: tk.Text, text: str, *, base_pt: int = 10)
     """Append markdown-ish lines to ``text_widget`` (caller clears first if needed)."""
     configure_markdown_tags(text_widget, base_pt=base_pt)
     lines = text.splitlines() or [""]
-    inline_pat = re.compile(r"(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)")
+    inline_pat = re.compile(r"(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|~~[^~]+~~)")
     for i, line in enumerate(lines):
         stripped = line.strip()
         line_tag = "md_base"
@@ -284,6 +286,8 @@ def insert_markdown_lines(text_widget: tk.Text, text: str, *, base_pt: int = 10)
                 continue
             if part.startswith("**") and part.endswith("**") and len(part) >= 4:
                 text_widget.insert(tk.END, part[2:-2], ("md_bold",))
+            elif part.startswith("~~") and part.endswith("~~") and len(part) >= 5:
+                text_widget.insert(tk.END, part[2:-2], ("md_strike",))
             elif part.startswith("*") and part.endswith("*") and len(part) >= 3:
                 text_widget.insert(tk.END, part[1:-1], ("md_italic",))
             elif part.startswith("`") and part.endswith("`") and len(part) >= 3:
