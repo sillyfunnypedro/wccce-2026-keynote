@@ -1485,6 +1485,39 @@
       "credits": false
     },
     {
+      "id": "daebdf35-9a3d-48c6-875d-672114840366",
+      "kind": "content",
+      "title": [
+        "This Talk Is Open Source"
+      ],
+      "body": [
+        "# github.com/sillyfunnypedro/wccce-2026-keynote",
+        "",
+        "The slides, the editor, the JSON deck, the image generator — all of it.",
+        "",
+        "- Built with **conversational programming**",
+        "- The slide editor is itself a product of the methodology",
+        "- Fork it, break it, make it yours",
+        "",
+        "**Every slide you just saw was authored in this tool.**"
+      ],
+      "markdown": [
+        "# This Talk Is Open Source",
+        "",
+        "# github.com/sillyfunnypedro/wccce-2026-keynote",
+        "",
+        "The slides, the editor, the JSON deck, the image generator — all of it.",
+        "",
+        "- Built with **conversational programming**",
+        "- The slide editor is itself a product of the methodology",
+        "- Fork it, break it, make it yours",
+        "",
+        "**Every slide you just saw was authored in this tool.**"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
       "id": "4abab33a-db3c-4ff3-9cc2-026601a6fbec",
       "kind": "content",
       "markdown": [
