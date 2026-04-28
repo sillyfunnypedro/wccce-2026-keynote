@@ -569,7 +569,7 @@ class SlideRow(tk.Frame):
             self._body_preview.bind("<Key>", lambda _e: "break")
         self._body_preview.pack(fill=tk.BOTH, expand=True, anchor="nw")
         self._fill_body_preview()
-        left.bind("<Configure>", self._on_left_configure)
+
 
         right_wrap = tk.Frame(slide_card, bg=SLIDE_BG)
         right_wrap.grid(row=0, column=1, sticky="ne", padx=(8, 12), pady=12)
@@ -732,10 +732,6 @@ class SlideRow(tk.Frame):
         self._body_preview.delete("1.0", tk.END)
         self._insert_markdown(display)
         self._body_preview.config(state=tk.DISABLED)
-
-    def _on_left_configure(self, event: tk.Event) -> None:
-        wrap = max(int(event.width) - 20, 160)
-        self._title_preview.config(wraplength=wrap)
 
     def _insert_markdown(self, text: str) -> None:
         insert_markdown_lines(self._body_preview, text, base_pt=10)
