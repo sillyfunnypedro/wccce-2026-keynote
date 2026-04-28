@@ -381,7 +381,7 @@ def _strip_leading_title_heading_for_present(markdown: str, slide_title: str) ->
     while j < len(lines) and not lines[j].strip():
         j += 1
     rest = "\n".join(lines[j:]).strip()
-    return rest if rest else "(no body)"
+    return rest if rest else ""
 
 
 def _present_slide_image_path(output_dir: Path, spec: dict) -> Path | None:

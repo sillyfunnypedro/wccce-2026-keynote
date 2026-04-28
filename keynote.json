@@ -1004,20 +1004,98 @@
     {
       "id": "e98a6215-fa52-4fe9-860d-ac4eae3f6cf0",
       "kind": "content",
-      "markdown": [
-        "# 2026 — 5001/5002 (Intro CS + Discrete Math)",
-        "",
-        "- Students received a **large existing codebase** to explore.",
-        "- Project: build educational software that explains a **discrete math** topic.",
-        "- LLMs were encouraged as **tutors** during exploration and implementation."
-      ],
       "title": [
         "2026 — 5001/5002 (Intro CS + Discrete Math)"
       ],
       "body": [
+        "# Intro CS + Discrete Math",
+        "",
+        "A combined course where students build real software from day one.",
         "- Students received a **large existing codebase** to explore.",
-        "- Project: build educational software that explains a **discrete math** topic.",
-        "- LLMs were encouraged as **tutors** during exploration and implementation."
+        "",
+        "- Not a blank slate — they had to **read and understand** before they could build.",
+        "",
+        "# Final project was build a system that illustrates a Discrete Math concept."
+      ],
+      "markdown": [
+        "# 2026 — 5001/5002 (Intro CS + Discrete Math)",
+        "",
+        "# Intro CS + Discrete Math",
+        "",
+        "A combined course where students build real software from day one.",
+        "- Students received a **large existing codebase** to explore.",
+        "",
+        "- Not a blank slate — they had to **read and understand** before they could build.",
+        "",
+        "# Final project was build a system that illustrates a Discrete Math concept."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "4c247e28-e01e-4e44-918b-4537e33cb397",
+      "kind": "content",
+      "title": [
+        "Final I"
+      ],
+      "body": [
+        "# Depth first search"
+      ],
+      "markdown": [
+        "# Final I",
+        "",
+        "# Depth first search"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "040c2aac-cc62-4ff7-9819-3e40ff47eaee",
+      "kind": "content",
+      "title": [
+        "Final II"
+      ],
+      "body": [
+        "# Depth First search done"
+      ],
+      "markdown": [
+        "# Final II",
+        "",
+        "# Depth First search done"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "4baa244a-b637-4f2f-afe9-3319376ac680",
+      "kind": "content",
+      "title": [
+        "Final III"
+      ],
+      "body": [
+        "# Breadth first started."
+      ],
+      "markdown": [
+        "# Final III",
+        "",
+        "# Breadth first started."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "746ad696-bb5a-44df-b0a3-fbbd2a5d8101",
+      "kind": "content",
+      "markdown": [
+        "# Final IV",
+        "",
+        "# Breadth First complete."
+      ],
+      "title": [
+        "Final IV"
+      ],
+      "body": [
+        "# Breadth First complete."
       ],
       "image_prompt": "",
       "credits": false
@@ -1028,13 +1106,13 @@
       "markdown": [
         "# And This Just Because It Is Fun",
         "",
-        "Another student from our intro course. https://youtu.be/Ad7auUm21ko?si=2hWX5vQfopuv9NQp"
+        "Show YouTube video"
       ],
       "title": [
         "And This Just Because It Is Fun"
       ],
       "body": [
-        "Another student from our intro course. https://youtu.be/Ad7auUm21ko?si=2hWX5vQfopuv9NQp"
+        "Show YouTube video"
       ],
       "image_prompt": "",
       "credits": false
@@ -1046,8 +1124,11 @@
         "# 2026 — OO Programming (Shape Editor)",
         "",
         "- Build tasks were small: implement **Square** and **Circle** in ~50 lines each.",
+        "",
         "- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).",
+        "",
         "- Testing literacy was larger still: explain unit tests across ~**2000 lines**.",
+        "",
         "- Goal: tiny feature work plus deep system reading and explanation."
       ],
       "title": [
@@ -1055,8 +1136,11 @@
       ],
       "body": [
         "- Build tasks were small: implement **Square** and **Circle** in ~50 lines each.",
+        "",
         "- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).",
+        "",
         "- Testing literacy was larger still: explain unit tests across ~**2000 lines**.",
+        "",
         "- Goal: tiny feature work plus deep system reading and explanation."
       ],
       "image_prompt": "",
@@ -1150,7 +1234,8 @@
         "# Get them to delight",
         "",
         "",
-        "# Make them Magic Makers"
+        "# Make them Magic Makers",
+        "- Learn the spells in the context of making magic."
       ],
       "title": [
         "Lets bring Magic into the classroom"
@@ -1166,7 +1251,8 @@
         "# Get them to delight",
         "",
         "",
-        "# Make them Magic Makers"
+        "# Make them Magic Makers",
+        "- Learn the spells in the context of making magic."
       ],
       "image_prompt": "Magicians graduating from magic school",
       "credits": false
@@ -1209,6 +1295,7 @@
         "# Thanks",
         "",
         "None of this work happens in isolation.",
+        "",
         "I'm supported by an incredible team here at Khoury.",
         "",
         "",
@@ -1219,16 +1306,55 @@
         "",
         "",
         "",
-        "## Khoury Faculty",
+        "## Khoury Vancouver",
         "",
-        "- **Lino** for being interested in my crazy experiments",
-        "- **Matthias** for decades of inspiration",
-        "- **Ben** for keeping the ship steady",
-        "- **Megan** for always asking the right questions",
-        "- **Amit** for the hallway conversations that turn into papers",
-        "- **Frank** for reminding me that systems matter",
-        "- **Kathleen** for championing the students",
-        "- **Rajmohan** for the whiteboard sessions",
+        "- **Jack**, for bringing philosophy to the fight",
+        "",
+        "- **Yvonne**, for boundless enthusiasm",
+        "",
+        "- **Bethany**, for fighting for this campus",
+        "",
+        "- **Ryan**, for patiently explaining generative AI",
+        "",
+        "- **Lino**, for his passion for new Canadians",
+        "",
+        "- **Hazra**, for the high energy",
+        "",
+        "- **Aanchan**, for being quietly happy",
+        "",
+        "- **Richard**, for energy",
+        "",
+        "- **Ildar**, for being an enthusiastic builder",
+        "",
+        "- **Logan**, for a fierce dry sense of humor",
+        "",
+        "- **Maryam**, for quiet perseverance",
+        "",
+        "- **Neda**, for the curiosity",
+        "",
+        "- **Parsa**, for the bus rides",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "## Family",
+        "",
+        "- **Spouse:** anonymous",
+        "",
+        "- **Spawn 1:** anonymous",
+        "",
+        "- **Spawn 2:** anonymous",
+        "",
+        "- **Spawn 3:** anonymous",
+        "",
+        "- **Mother:** Mommy",
+        "",
+        "- **Father:** Dad",
         "",
         "",
         "",
@@ -1240,14 +1366,33 @@
         "",
         "## And Also…",
         "",
-        "- **The coffee machine on the 3rd floor** for never giving up on me",
-        "- **My rubber duck** for listening without judgment",
-        "- **Stack Overflow circa 2012** for getting me through grad school",
-        "- **The mass.gov pothole reporting app** for teaching me about real users",
-        "- **Whoever keeps restocking the dry-erase markers** — you are the real MVP",
-        "- **The squirrels on Centennial Common** for the daily entertainment",
-        "- **My students** who pretend my jokes are funny",
-        "- **The MBTA** for giving me extra reading time every morning"
+        "- **No one**, for driving the SkyTrain I take to work",
+        "",
+        "- **The rain**, for making sure I never forget my umbrella (or do, every single time)",
+        "",
+        "- **The seagulls on Granville Island**, for the aggressive morning pep talks",
+        "",
+        "- **Granville Street at 2am**, for reminding me that chaos is a valid state",
+        "",
+        "- **The person who keeps stealing my lunch from the office fridge**, you know who you are",
+        "",
+        "- **BC Ferries**, for teaching me that 3 hours is a perfectly normal commute",
+        "",
+        "- **The construction on Broadway**, for giving me time to reflect on my life choices",
+        "",
+        "- **That one raccoon** who lives behind the campus and judges me when I leave late",
+        "",
+        "- **The Seabus**, for the only 12 minutes of peace in my day",
+        "",
+        "- **Vancouver rent**, for motivating me to never, ever stop working",
+        "",
+        "- **The mountains**, for looking beautiful while I sit inside staring at a screen",
+        "",
+        "- **Tim Hortons on Hastings**, for coffee that builds character",
+        "",
+        "- **Whoever named \"Mount Pleasant\"**, because that is aspirational marketing",
+        "",
+        "- **The crows**, for organizing better than most committees I've been on"
       ],
       "title": [
         "Credits"
@@ -1256,6 +1401,7 @@
         "# Thanks",
         "",
         "None of this work happens in isolation.",
+        "",
         "I'm supported by an incredible team here at Khoury.",
         "",
         "",
@@ -1266,16 +1412,55 @@
         "",
         "",
         "",
-        "## Khoury Faculty",
+        "## Khoury Vancouver",
         "",
-        "- **Lino** for being interested in my crazy experiments",
-        "- **Matthias** for decades of inspiration",
-        "- **Ben** for keeping the ship steady",
-        "- **Megan** for always asking the right questions",
-        "- **Amit** for the hallway conversations that turn into papers",
-        "- **Frank** for reminding me that systems matter",
-        "- **Kathleen** for championing the students",
-        "- **Rajmohan** for the whiteboard sessions",
+        "- **Jack**, for bringing philosophy to the fight",
+        "",
+        "- **Yvonne**, for boundless enthusiasm",
+        "",
+        "- **Bethany**, for fighting for this campus",
+        "",
+        "- **Ryan**, for patiently explaining generative AI",
+        "",
+        "- **Lino**, for his passion for new Canadians",
+        "",
+        "- **Hazra**, for the high energy",
+        "",
+        "- **Aanchan**, for being quietly happy",
+        "",
+        "- **Richard**, for energy",
+        "",
+        "- **Ildar**, for being an enthusiastic builder",
+        "",
+        "- **Logan**, for a fierce dry sense of humor",
+        "",
+        "- **Maryam**, for quiet perseverance",
+        "",
+        "- **Neda**, for the curiosity",
+        "",
+        "- **Parsa**, for the bus rides",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "## Family",
+        "",
+        "- **Spouse:** anonymous",
+        "",
+        "- **Spawn 1:** anonymous",
+        "",
+        "- **Spawn 2:** anonymous",
+        "",
+        "- **Spawn 3:** anonymous",
+        "",
+        "- **Mother:** Mommy",
+        "",
+        "- **Father:** Dad",
         "",
         "",
         "",
@@ -1287,14 +1472,33 @@
         "",
         "## And Also…",
         "",
-        "- **The coffee machine on the 3rd floor** for never giving up on me",
-        "- **My rubber duck** for listening without judgment",
-        "- **Stack Overflow circa 2012** for getting me through grad school",
-        "- **The mass.gov pothole reporting app** for teaching me about real users",
-        "- **Whoever keeps restocking the dry-erase markers** — you are the real MVP",
-        "- **The squirrels on Centennial Common** for the daily entertainment",
-        "- **My students** who pretend my jokes are funny",
-        "- **The MBTA** for giving me extra reading time every morning"
+        "- **No one**, for driving the SkyTrain I take to work",
+        "",
+        "- **The rain**, for making sure I never forget my umbrella (or do, every single time)",
+        "",
+        "- **The seagulls on Granville Island**, for the aggressive morning pep talks",
+        "",
+        "- **Granville Street at 2am**, for reminding me that chaos is a valid state",
+        "",
+        "- **The person who keeps stealing my lunch from the office fridge**, you know who you are",
+        "",
+        "- **BC Ferries**, for teaching me that 3 hours is a perfectly normal commute",
+        "",
+        "- **The construction on Broadway**, for giving me time to reflect on my life choices",
+        "",
+        "- **That one raccoon** who lives behind the campus and judges me when I leave late",
+        "",
+        "- **The Seabus**, for the only 12 minutes of peace in my day",
+        "",
+        "- **Vancouver rent**, for motivating me to never, ever stop working",
+        "",
+        "- **The mountains**, for looking beautiful while I sit inside staring at a screen",
+        "",
+        "- **Tim Hortons on Hastings**, for coffee that builds character",
+        "",
+        "- **Whoever named \"Mount Pleasant\"**, because that is aspirational marketing",
+        "",
+        "- **The crows**, for organizing better than most committees I've been on"
       ],
       "image_prompt": "",
       "credits": true
