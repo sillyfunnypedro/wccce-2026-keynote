@@ -2264,12 +2264,12 @@ class SlideEditorApp:
             messagebox.showerror("File", f"Not found:\n{p}")
             return
         try:
-            data = json.loads(p.read_text(encoding="utf-8"))
+            data = kd.load_deck(p)
         except json.JSONDecodeError as e:
             messagebox.showerror("JSON", str(e))
             return
-        if not self._is_deck_json(data):
-            messagebox.showerror("File", "Not a keynote deck (expected frontmatter + slides).")
+        except (ValueError, OSError) as e:
+            messagebox.showerror("File", str(e))
             return
         # Preserve the user's place across reload (external write, manual reload, etc.)
         focus_sid = self._capture_focus_slide_id()

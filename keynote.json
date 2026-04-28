@@ -1483,13 +1483,39 @@
       "id": "0ce10e4a-ca60-4a4a-a281-f022c5f2c615",
       "kind": "content",
       "markdown": [
-        "# Research and collaborators"
+        "# Dogs",
+        "",
+        "# Why Dogs Are the Best",
+        "",
+        "Dogs are loyal, enthusiastic, and never judge your code.",
+        "",
+        "- **Golden Retrievers** — will love you even after a failed deploy",
+        "- **Border Collies** — smarter than most interns",
+        "- **Labrador Retrievers** — will eat your bugs (and your lunch)",
+        "- **German Shepherds** — excellent at guarding production",
+        "- **Corgis** — short but mighty, like good functions",
+        "- **Huskies** — dramatic, like your CI pipeline",
+        "",
+        "Every team needs a dog. It's science."
       ],
       "title": [
-        "Research and collaborators"
+        "Dogs"
       ],
-      "body": [],
-      "image_prompt": "",
+      "body": [
+        "# Why Dogs Are the Best",
+        "",
+        "Dogs are loyal, enthusiastic, and never judge your code.",
+        "",
+        "- **Golden Retrievers** — will love you even after a failed deploy",
+        "- **Border Collies** — smarter than most interns",
+        "- **Labrador Retrievers** — will eat your bugs (and your lunch)",
+        "- **German Shepherds** — excellent at guarding production",
+        "- **Corgis** — short but mighty, like good functions",
+        "- **Huskies** — dramatic, like your CI pipeline",
+        "",
+        "Every team needs a dog. It's science."
+      ],
+      "image_prompt": "A diverse group of people working at computers and whiteboards in an open office or workspace, each accompanied by a different breed of dog sitting or standing nearby. Some dogs rest under desks, others sit attentively beside their humans, and a few interact with team members. The scene captures moments of genuine collaboration—a person reaching down to pet a dog while reviewing code on a monitor, someone laughing with a colleague while a dog watches, another person sketching architecture on a whiteboard with a dog at their side. The dogs are simply present and integrated into the work environment, suggesting they belong there as natural members of the team rather than distractions.",
       "credits": false
     },
     {
