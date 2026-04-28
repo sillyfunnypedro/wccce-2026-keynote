@@ -14,9 +14,6 @@ slide_editor_startup.prof
 # Claude Code agent worktrees / sandbox
 .claude/
 
-# Kiro specs and settings
-.kiro/
-
 # Hypothesis test cache
 .hypothesis/
 
