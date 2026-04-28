@@ -449,6 +449,7 @@ class SlideRow(tk.Frame):
         prompt: str,
         *,
         slide_id: str,
+        credits: bool = False,
         skip_initial_preview: bool = False,
     ):
         super().__init__(master)
@@ -459,10 +460,13 @@ class SlideRow(tk.Frame):
         self._preview_title = title
         self._preview_body = body
         self._prompt_cache = prompt
+        self._credits_cache = bool(credits)
 
         # Editor widgets are built lazily (see ``ensure_editor``); until then these are None.
         self._editor_built = False
         self.title_edit_var = tk.StringVar(value=self._preview_title)
+        self.credits_var = tk.BooleanVar(value=self._credits_cache)
+        self.credits_check: tk.Checkbutton | None = None
         self.title_edit: tk.Entry | None = None
         self.body_edit: scrolledtext.ScrolledText | None = None
         self.txt: scrolledtext.ScrolledText | None = None
@@ -569,7 +573,6 @@ class SlideRow(tk.Frame):
             self._body_preview.bind("<Key>", lambda _e: "break")
         self._body_preview.pack(fill=tk.BOTH, expand=True, anchor="nw")
         self._fill_body_preview()
-        left.bind("<Configure>", self._on_left_configure)
 
         right_wrap = tk.Frame(slide_card, bg=SLIDE_BG)
         right_wrap.grid(row=0, column=1, sticky="ne", padx=(8, 12), pady=12)
@@ -634,6 +637,14 @@ class SlideRow(tk.Frame):
         tk.Label(editor, text="Title", anchor="w").pack(anchor="w", pady=(8, 2))
         self.title_edit = tk.Entry(editor, textvariable=self.title_edit_var, width=42)
         self.title_edit.pack(fill=tk.X, anchor="w")
+        self.credits_check = tk.Checkbutton(
+            editor,
+            text="Credits — scroll markdown up during presentation",
+            variable=self.credits_var,
+            anchor="w",
+            command=lambda: self.app.schedule_autosave(),
+        )
+        self.credits_check.pack(anchor="w", pady=(6, 0))
         tk.Label(editor, text="Content (markdown)", anchor="w").pack(anchor="w", pady=(8, 2))
         self.body_edit = scrolledtext.ScrolledText(
             editor, height=11, width=42, wrap=tk.WORD, font=("TkDefaultFont", 10)
@@ -733,10 +744,6 @@ class SlideRow(tk.Frame):
         self._insert_markdown(display)
         self._body_preview.config(state=tk.DISABLED)
 
-    def _on_left_configure(self, event: tk.Event) -> None:
-        wrap = max(int(event.width) - 20, 160)
-        self._title_preview.config(wraplength=wrap)
-
     def _insert_markdown(self, text: str) -> None:
         insert_markdown_lines(self._body_preview, text, base_pt=10)
 
@@ -744,6 +751,11 @@ class SlideRow(tk.Frame):
         if self.txt is not None:
             return self.txt.get("1.0", "end-1c").strip()
         return (self._prompt_cache or "").strip()
+
+    def get_credits(self) -> bool:
+        if self.credits_check is not None:
+            return bool(self.credits_var.get())
+        return bool(self._credits_cache)
 
     def get_title_text(self) -> str:
         return self.title_edit_var.get().strip()
@@ -1467,6 +1479,30 @@ class SlideEditorApp:
         key_lbl = "API key: OK" if key else "API key: missing"
         tk.Label(opts, text=key_lbl, fg="#080" if key else "#a00").pack(side=tk.RIGHT, padx=8)
 
+        credits_bar = tk.Frame(root)
+        credits_bar.pack(fill=tk.X, padx=8, pady=(0, 4))
+        tk.Label(credits_bar, text="Credits roll —", fg="#246").pack(side=tk.LEFT)
+        tk.Label(credits_bar, text="delay (s):").pack(side=tk.LEFT, padx=(8, 2))
+        self.credits_delay_var = tk.StringVar(
+            value=f"{float(self.deck.get('credits_start_delay_seconds', kd.CREDITS_DELAY_DEFAULT)):g}"
+        )
+        e_delay = tk.Entry(credits_bar, textvariable=self.credits_delay_var, width=6)
+        e_delay.pack(side=tk.LEFT)
+        tk.Label(credits_bar, text="speed (px/s):").pack(side=tk.LEFT, padx=(12, 2))
+        self.credits_speed_var = tk.StringVar(
+            value=f"{float(self.deck.get('credits_scroll_pixels_per_second', kd.CREDITS_SPEED_DEFAULT)):g}"
+        )
+        e_speed = tk.Entry(credits_bar, textvariable=self.credits_speed_var, width=6)
+        e_speed.pack(side=tk.LEFT)
+        tk.Label(
+            credits_bar,
+            text=f"(delay {kd.CREDITS_DELAY_MIN:g}–{kd.CREDITS_DELAY_MAX:g}, speed {kd.CREDITS_SPEED_MIN:g}–{kd.CREDITS_SPEED_MAX:g})",
+            fg="#777",
+        ).pack(side=tk.LEFT, padx=(12, 0))
+        for w in (e_delay, e_speed):
+            w.bind("<FocusOut>", lambda _e: self.schedule_autosave())
+            w.bind("<Return>", lambda _e: self.schedule_autosave())
+
         self.status = tk.StringVar(value=_sync_msg)
         tk.Label(root, textvariable=self.status, anchor="w", relief=tk.GROOVE).pack(
             fill=tk.X, padx=8, pady=(0, 6)
@@ -2069,6 +2105,7 @@ class SlideEditorApp:
                 body,
                 prompt,
                 slide_id=sid,
+                credits=bool(spec.get("credits", False)),
                 skip_initial_preview=True,
             )
             row.pack(fill=tk.X, expand=True, padx=4, pady=10)
@@ -2213,6 +2250,19 @@ class SlideEditorApp:
         self.deck["text_model"] = self.text_model_var.get().strip()
         self.deck["model"] = self.image_model_var.get().strip()
         self.deck["content_guide"] = self.get_content_guide_text()
+        self.deck["credits_start_delay_seconds"] = kd._coerce_float(
+            self.credits_delay_var.get(),
+            kd.CREDITS_DELAY_DEFAULT,
+            kd.CREDITS_DELAY_MIN,
+            kd.CREDITS_DELAY_MAX,
+        )
+        self.deck["credits_scroll_pixels_per_second"] = kd._coerce_float(
+            self.credits_speed_var.get(),
+            kd.CREDITS_SPEED_DEFAULT,
+            kd.CREDITS_SPEED_MIN,
+            kd.CREDITS_SPEED_MAX,
+        )
+        kd.ensure_deck_defaults(self.deck)
         for row in self.rows:
             spec = self.deck["slides"][row.index]
             title = row.get_title_text() or str(spec.get("title", f"Slide {row.index}"))
@@ -2226,6 +2276,7 @@ class SlideEditorApp:
             else:
                 spec["markdown"] = f"# {title}\n\n{body}".strip()
             spec["image_prompt"] = row.get_prompt()
+            spec["credits"] = bool(row.get_credits())
         kd.save_deck(self.deck_path, self.deck)
         self._record_self_mtime()
         self.set_status(
@@ -2281,6 +2332,12 @@ class SlideEditorApp:
         self.deck = data
         self.text_model_var.set(str(data.get("text_model", "anthropic/claude-haiku-4.5")))
         self.image_model_var.set(str(data.get("model", gen.DEFAULT_MODEL)))
+        self.credits_delay_var.set(
+            f"{float(data.get('credits_start_delay_seconds', kd.CREDITS_DELAY_DEFAULT)):g}"
+        )
+        self.credits_speed_var.set(
+            f"{float(data.get('credits_scroll_pixels_per_second', kd.CREDITS_SPEED_DEFAULT)):g}"
+        )
         style_path = gen.resolve_style_path(self.deck, None)
         self.style_full = gen.load_global_style(style_path, self.deck)
         self._sync_content_guide_widget_from_json()
@@ -2317,6 +2374,12 @@ class PresentModeApp:
         self._photo: object | None = None
         self._img_job: str | None = None
         self._pending_image_path: Path | None = None
+        self._credits_after_id: str | None = None
+        self._credits_active: bool = False
+        self._credits_start_t: float = 0.0
+        self._credits_total_px: int = 0
+        self._credits_pad_lines: int = 0
+        self._credits_speed: float = kd.CREDITS_SPEED_DEFAULT
         self.deck: dict
         self.deck_path: Path | None = None
 
@@ -2519,6 +2582,7 @@ class PresentModeApp:
             self._bind_present_keys(child)
 
     def _close_present(self) -> None:
+        self._credits_cancel()
         if self.embedded:
             self.win.destroy()
         else:
@@ -2554,18 +2618,23 @@ class PresentModeApp:
         n = len(self.slides)
         if n == 0:
             return
+        self._credits_cancel()
         self.index = max(0, min(self.index, n - 1))
         spec = self.slides[self.index]
+        is_credits = bool(spec.get("credits", False))
         title = str(spec.get("title", f"Slide {self.index}")).strip() or f"Slide {self.index}"
         self.title_lbl.config(text=title, font=("TkDefaultFont", self._present_title_pt(), "bold"))
 
         md = _strip_leading_title_heading_for_present(_present_slide_markdown(spec, self.index), title)
+        if is_credits:
+            self._credits_pad_lines = 60
+            md = md + ("\n" * self._credits_pad_lines)
         self.md_text.config(state=tk.NORMAL)
         self.md_text.delete("1.0", tk.END)
         insert_markdown_lines(self.md_text, md, base_pt=self._present_body_pt)
         self.md_text.config(state=tk.DISABLED)
 
-        img_path = _present_slide_image_path(self.output_dir, spec)
+        img_path = None if is_credits else _present_slide_image_path(self.output_dir, spec)
         self._pending_image_path = img_path
 
         self.md_frame.grid_forget()
@@ -2603,6 +2672,25 @@ class PresentModeApp:
 
         self.counter_lbl.config(text=f"Slide {self.index + 1} / {n}")
 
+        if is_credits:
+            self.md_text.yview_moveto(0.0)
+            delay_s = kd._coerce_float(
+                self.deck.get("credits_start_delay_seconds", kd.CREDITS_DELAY_DEFAULT),
+                kd.CREDITS_DELAY_DEFAULT,
+                kd.CREDITS_DELAY_MIN,
+                kd.CREDITS_DELAY_MAX,
+            )
+            self._credits_speed = kd._coerce_float(
+                self.deck.get("credits_scroll_pixels_per_second", kd.CREDITS_SPEED_DEFAULT),
+                kd.CREDITS_SPEED_DEFAULT,
+                kd.CREDITS_SPEED_MIN,
+                kd.CREDITS_SPEED_MAX,
+            )
+            self._credits_active = True
+            self._credits_after_id = self.win.after(
+                max(0, int(delay_s * 1000)), self._credits_start_scroll
+            )
+
         if self._on_slide_change is not None:
             sid = str(spec.get("id", "")).strip()
             if sid:
@@ -2610,6 +2698,49 @@ class PresentModeApp:
                     self._on_slide_change(sid)
                 except Exception:
                     LOG.warning("present on_slide_change callback failed", exc_info=True)
+
+    def _credits_cancel(self) -> None:
+        """Stop any pending or running credits animation. Safe to call repeatedly."""
+        self._credits_active = False
+        if self._credits_after_id is not None:
+            try:
+                self.win.after_cancel(self._credits_after_id)
+            except tk.TclError:
+                pass
+            self._credits_after_id = None
+
+    def _credits_start_scroll(self) -> None:
+        self._credits_after_id = None
+        if not self._credits_active:
+            return
+        try:
+            self.win.update_idletasks()
+            raw = self.md_text.count("1.0", "end", "ypixels", return_ints=True)
+            total = int(raw if raw is not None else 0)
+        except (tk.TclError, TypeError, ValueError):
+            total = 0
+        self._credits_total_px = max(total, 1)
+        self._credits_start_t = time.monotonic()
+        self._credits_tick()
+
+    def _credits_tick(self) -> None:
+        self._credits_after_id = None
+        if not self._credits_active:
+            return
+        try:
+            viewport = max(int(self.md_text.winfo_height()), 1)
+        except tk.TclError:
+            viewport = 1
+        total = max(self._credits_total_px, 1)
+        target_max = max(total - viewport, 1)
+        elapsed = time.monotonic() - self._credits_start_t
+        offset = elapsed * max(self._credits_speed, 1.0)
+        if offset >= target_max:
+            self.md_text.yview_moveto(target_max / total)
+            self._credits_active = False
+            return
+        self.md_text.yview_moveto(offset / total)
+        self._credits_after_id = self.win.after(33, self._credits_tick)
 
     def _prev(self) -> None:
         if self.index > 0:
