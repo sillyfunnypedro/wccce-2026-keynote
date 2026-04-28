@@ -31,6 +31,53 @@ from generator import (
 
 DECK_VERSION = 1
 
+CREDITS_DELAY_DEFAULT = 2.0
+CREDITS_SPEED_DEFAULT = 30.0
+CREDITS_DELAY_MIN, CREDITS_DELAY_MAX = 0.0, 60.0
+CREDITS_SPEED_MIN, CREDITS_SPEED_MAX = 5.0, 500.0
+
+
+def _coerce_float(value: object, default: float, lo: float, hi: float) -> float:
+    try:
+        f = float(value)
+    except (TypeError, ValueError):
+        return default
+    if f != f:  # NaN
+        return default
+    return max(lo, min(hi, f))
+
+
+def ensure_deck_defaults(deck: dict) -> bool:
+    """Materialize credits-related fields on the deck and on every slide.
+
+    Returns True if anything was added or normalized (so callers can decide
+    whether to persist the deck back to disk). Idempotent: a fully-normalized
+    deck returns False.
+    """
+    changed = False
+
+    delay_raw = deck.get("credits_start_delay_seconds", CREDITS_DELAY_DEFAULT)
+    delay = _coerce_float(delay_raw, CREDITS_DELAY_DEFAULT, CREDITS_DELAY_MIN, CREDITS_DELAY_MAX)
+    if delay_raw != delay or "credits_start_delay_seconds" not in deck:
+        deck["credits_start_delay_seconds"] = delay
+        changed = True
+
+    speed_raw = deck.get("credits_scroll_pixels_per_second", CREDITS_SPEED_DEFAULT)
+    speed = _coerce_float(speed_raw, CREDITS_SPEED_DEFAULT, CREDITS_SPEED_MIN, CREDITS_SPEED_MAX)
+    if speed_raw != speed or "credits_scroll_pixels_per_second" not in deck:
+        deck["credits_scroll_pixels_per_second"] = speed
+        changed = True
+
+    slides = deck.get("slides")
+    if isinstance(slides, list):
+        for spec in slides:
+            if not isinstance(spec, dict):
+                continue
+            if "credits" not in spec or not isinstance(spec.get("credits"), bool):
+                spec["credits"] = bool(spec.get("credits", False))
+                changed = True
+    return changed
+
 
 def slides_chunks_from_markdown(keynote_path: Path) -> tuple[dict, list[dict]]:
     """Frontmatter plus one ``{kind, markdown}`` per slide (deck order)."""
@@ -75,7 +122,7 @@ def default_deck_shell(frontmatter: dict, slides: list[dict]) -> dict:
         "version": DECK_VERSION,
         "frontmatter": frontmatter,
         "slides": slides,
-        "text_model": "openai/gpt-4o-mini",
+        "text_model": "anthropic/claude-haiku-4.5",
         "model": DEFAULT_MODEL,
         "output_directory": "slide_images",
         "global_style_file": "global_style.md",
@@ -88,6 +135,7 @@ def load_deck(path: Path) -> dict:
     data = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(data.get("slides"), list):
         raise ValueError("Deck must contain a slides[] array")
+    ensure_deck_defaults(data)
     return data
 
 
