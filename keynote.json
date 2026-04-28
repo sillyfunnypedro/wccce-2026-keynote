@@ -71,27 +71,46 @@
       "markdown": [
         "# Back to academia, thinking LLM-forward together",
         "",
-        "I came back to academia excited about how LLMs are reshaping what it means to write code.",
+        "I came back to academia excited about how LLMs are reshaping what it means to build.",
         "",
-        "# I believe we need to teach how to use them",
         "",
-        "- Industry is moving there",
-        "- I want to know how to use them",
-        "- So I can help my students learn",
         "",
-        "# The fun? ",
-        "",
-        "- I get to think through all of this **with my colleagues**. ",
-        "- We're figuring out together",
-        "- Both here at Khoury and with all'y'all"
+        "# I had no idea ",
+        "- how crazy this would become"
       ],
       "title": [
         "Back to academia, thinking LLM-forward together"
       ],
       "body": [
-        "I came back to academia excited about how LLMs are reshaping what it means to write code.",
+        "I came back to academia excited about how LLMs are reshaping what it means to build.",
         "",
-        "# I believe we need to teach how to use them",
+        "",
+        "",
+        "# I had no idea ",
+        "- how crazy this would become"
+      ],
+      "image_prompt": "Me leaving industry with a attache case stuffed with papers labelled questions\n\nIndustry in in the background and i am heading towards the ivory tower which is under attack by AI",
+      "credits": false
+    },
+    {
+      "id": "188c4a57-422c-496f-9e0e-fd9203b61ec0",
+      "kind": "content",
+      "title": [
+        "Back to academia, thinking LLM-forward together (cont.)"
+      ],
+      "body": [
+        "- Industry is moving there",
+        "- I want to know how to use them",
+        "- So I can help my students learn",
+        "",
+        "# The fun? ",
+        "",
+        "- We're figuring out together",
+        "",
+        "- Both here at Khoury and with all'y'all"
+      ],
+      "markdown": [
+        "# Back to academia, thinking LLM-forward together (cont.)",
         "",
         "- Industry is moving there",
         "- I want to know how to use them",
@@ -99,11 +118,11 @@
         "",
         "# The fun? ",
         "",
-        "- I get to think through all of this **with my colleagues**. ",
         "- We're figuring out together",
+        "",
         "- Both here at Khoury and with all'y'all"
       ],
-      "image_prompt": "",
+      "image_prompt": "Everyone is thingking about AI industry and academia.   Its everywhere.",
       "credits": false
     },
     {
@@ -118,7 +137,9 @@
         "# Conversational Programming",
         "- **Collaborative** — engineers and LLMs work as a team.",
         "- The LLM is a **partner**, sparking innovation, not just providing answers.",
-        "- We lead on design, review, testing, and outcomes."
+        "- We lead on design, review, testing, and outcomes.",
+        "",
+        "By the end of this talk, you'll see why this distinction matters."
       ],
       "title": [
         "Vibe Coding vs Conversational Programming"
@@ -130,7 +151,9 @@
         "# Conversational Programming",
         "- **Collaborative** — engineers and LLMs work as a team.",
         "- The LLM is a **partner**, sparking innovation, not just providing answers.",
-        "- We lead on design, review, testing, and outcomes."
+        "- We lead on design, review, testing, and outcomes.",
+        "",
+        "By the end of this talk, you'll see why this distinction matters."
       ],
       "image_prompt": "In a modern office setting, a product manager is engaged in a casual discussion with an engineering team. The manager, seated at a conference table with a laptop open, is animatedly gesturing while explaining a product concept, illustrating the vibe of their approach. On the opposite side, an engineer with a notepad is actively taking notes, participating in the dialogue, and sharing insights. Behind them, sketches of product design and security checklists are pinned on a whiteboard, emphasizing the collaborative environment and focus on security and quality in product development. The composition highlights the dynamic interaction between vibe coding and conversational programming, signifying the importance of collaboration and ownership in building successful products.",
       "credits": false
@@ -139,31 +162,64 @@
       "id": "7a4b9d12-8e3c-4d05-a2f6-1c9e0b4d5e02",
       "kind": "content",
       "markdown": [
-        "# Sundar Picha, CEO — 22 April 2026",
+        "# Sundar Pichai, CEO — 22 April 2026",
         "",
         "#  Google Cloud Next '26",
-        "- **75%** of all new code at **Google** is now **AI-generated and approved by engineers**.",
-        "- **Up from 50%** last fall.",
         "",
-        "# What their engineers do now",
-        "- Orchestrate **fully autonomous digital task forces** of agents.",
-        "- A **complex code migration**: agents + engineers, **~6× faster** than a year ago with engineers alone.",
-        "- **Gemini app on macOS**: idea → **native Swift prototype in days**, built on **Antigravity**."
+        "**75%** of all new code at **Google** is now ",
+        "- **AI-generated and approved by engineers**.",
+        "",
+        "",
+        "**Up from 50%** last fall."
       ],
       "title": [
-        "Sundar Picha, CEO — 22 April 2026"
+        "Sundar Pichai, CEO — 22 April 2026"
       ],
       "body": [
         "#  Google Cloud Next '26",
-        "- **75%** of all new code at **Google** is now **AI-generated and approved by engineers**.",
-        "- **Up from 50%** last fall.",
         "",
-        "# What their engineers do now",
-        "- Orchestrate **fully autonomous digital task forces** of agents.",
-        "- A **complex code migration**: agents + engineers, **~6× faster** than a year ago with engineers alone.",
-        "- **Gemini app on macOS**: idea → **native Swift prototype in days**, built on **Antigravity**."
+        "**75%** of all new code at **Google** is now ",
+        "- **AI-generated and approved by engineers**.",
+        "",
+        "",
+        "**Up from 50%** last fall."
       ],
       "image_prompt": "In a modern office setting, a group of engineers is gathered around a large screen displaying an intricate flowchart of AI-generated code processes. One engineer points to the screen, while others take notes and discuss strategies for integrating AI with human oversight. On a nearby table, laptops are open to different coding platforms, with snippets of AI-generated code visible. In the foreground, a playful model of a robot stands beside a stack of programming books, symbolizing the bridge between traditional coding and AI adoption. The overall composition captures a collaborative atmosphere of innovation and learning.",
+      "credits": false
+    },
+    {
+      "id": "925105c1-63ab-4530-8b5e-2005f3b45066",
+      "kind": "content",
+      "title": [
+        "Sundar Pichai, CEO — 22 April 2026 (cont.)"
+      ],
+      "body": [
+        "# What their engineers do now:",
+        "",
+        "Orchestrate **fully autonomous digital task forces** of agents.",
+        "",
+        "",
+        "A **complex code migration**: agents + engineers, ",
+        "- **~6× faster** than a year ago with engineers alone.",
+        "",
+        "**Gemini app on macOS**: ",
+        "- Idea → **native Swift prototype in days**, built on **Antigravity**."
+      ],
+      "markdown": [
+        "# Sundar Pichai, CEO — 22 April 2026 (cont.)",
+        "",
+        "# What their engineers do now:",
+        "",
+        "Orchestrate **fully autonomous digital task forces** of agents.",
+        "",
+        "",
+        "A **complex code migration**: agents + engineers, ",
+        "- **~6× faster** than a year ago with engineers alone.",
+        "",
+        "**Gemini app on macOS**: ",
+        "- Idea → **native Swift prototype in days**, built on **Antigravity**."
+      ],
+      "image_prompt": "",
       "credits": false
     },
     {
@@ -351,9 +407,7 @@
         "- A **random** target on a **100×100** grid.",
         "- You type **x** and **y**",
         "- it answers with **distance** to the ship.",
-        "- You **close in** until you hit it.",
-        "",
-        "It was 1978."
+        "- You **close in** until you hit it."
       ],
       "title": [
         "1978 — A Game on a Casio"
@@ -364,9 +418,7 @@
         "- A **random** target on a **100×100** grid.",
         "- You type **x** and **y**",
         "- it answers with **distance** to the ship.",
-        "- You **close in** until you hit it.",
-        "",
-        "It was 1978."
+        "- You **close in** until you hit it."
       ],
       "image_prompt": "",
       "credits": false
@@ -460,9 +512,7 @@
       "id": "409d7b9b-c6c1-4569-b2d9-48d518aec024",
       "kind": "content",
       "markdown": [
-        "# After my PhD — Tools for Artists",
-        "",
-        "# After my PhD — tools for non-CS people",
+        "# Tools for Artists",
         "",
         "Photorealism was largely solved — magic for magic's sake. I wanted to build tools that **expanded human creativity**.",
         "",
@@ -470,21 +520,19 @@
         "",
         "**Mario Costa Sousa**'s PhD: simulating **pencil drawing**.",
         "",
-        "We worried tools like this might **replace** artists."
+        "# This might threaten artists?"
       ],
       "title": [
-        "After my PhD — Tools for Artists"
+        "Tools for Artists"
       ],
       "body": [
-        "# After my PhD — tools for non-CS people",
-        "",
         "Photorealism was largely solved — magic for magic's sake. I wanted to build tools that **expanded human creativity**.",
         "",
         "# Non-Photorealistic Rendering",
         "",
         "**Mario Costa Sousa**'s PhD: simulating **pencil drawing**.",
         "",
-        "We worried tools like this might **replace** artists."
+        "# This might threaten artists?"
       ],
       "image_prompt": "",
       "credits": false
@@ -530,6 +578,29 @@
         "# They want what the magic enables them to do next."
       ],
       "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "76cbe4df-6507-4fc9-a3b5-305f76954001",
+      "kind": "content",
+      "title": [
+        "My Life Quest"
+      ],
+      "body": [
+        "Here I identified my life quest.",
+        "",
+        "Use my knowledge of spells to ",
+        "make magic for the ones who cannot spell."
+      ],
+      "markdown": [
+        "# My Life Quest",
+        "",
+        "Here I identified my life quest.",
+        "",
+        "Use my knowledge of spells to ",
+        "make magic for the ones who cannot spell."
+      ],
+      "image_prompt": "Me, tools in hand heading out from wizard school to help the people who are not wizards.",
       "credits": false
     },
     {
@@ -675,23 +746,48 @@
       "credits": false
     },
     {
+      "id": "43628643-4ea2-4a09-a701-e3c9d773be37",
+      "kind": "content",
+      "title": [
+        "Change is difficult"
+      ],
+      "body": [
+        "Some stories."
+      ],
+      "markdown": [
+        "# Change is difficult",
+        "",
+        "Some stories."
+      ],
+      "image_prompt": "people struggling with change.   change is a huge monster comint towards them.",
+      "credits": false
+    },
+    {
       "id": "2c78bc0a-a3b4-46f3-b764-c31caa559126",
       "kind": "content",
       "markdown": [
         "# That Isn't a Real Computer",
         "",
-        "- University of Windsor — I wanted coursework on my **Z-80** instead of the lab **IBM 360**.",
-        "- A professor said I did not have a **real** machine unless it was **32-bit**.",
-        "- **Punch cards** were part of training — that was how you drove the **IBM 360**.",
+        "Assembly programming:",
+        "- I wanted coursework on my **Z-80** instead of the lab **IBM 360**.",
+        "",
+        "- The professor said I did not have a **real** machine unless it was **32-bit**.",
+        "",
+        "- **Punch cards** were part of training — that was how you drove the ~~IBM 360~~ a real computer.",
+        "",
         "- You had to program on **cards** to really be a **magician**."
       ],
       "title": [
         "That Isn't a Real Computer"
       ],
       "body": [
-        "- University of Windsor — I wanted coursework on my **Z-80** instead of the lab **IBM 360**.",
-        "- A professor said I did not have a **real** machine unless it was **32-bit**.",
-        "- **Punch cards** were part of training — that was how you drove the **IBM 360**.",
+        "Assembly programming:",
+        "- I wanted coursework on my **Z-80** instead of the lab **IBM 360**.",
+        "",
+        "- The professor said I did not have a **real** machine unless it was **32-bit**.",
+        "",
+        "- **Punch cards** were part of training — that was how you drove the ~~IBM 360~~ a real computer.",
+        "",
         "- You had to program on **cards** to really be a **magician**."
       ],
       "image_prompt": "A professor pointing at a huge IBM 360 saying real.  in upper left diagonal pane\nin lower left diagonal pane same professor looking at personal computer saying fake",
@@ -701,25 +797,29 @@
       "id": "884cdfb8-d123-478d-b691-322a3f9dd2a0",
       "kind": "content",
       "markdown": [
-        "# A Different Kind of Welcome",
+        "# A Different Kind of Welcome (Dr Caron)",
         "",
-        "Dr. Caron taught Numerical Analysis in 1983. ",
+        "Numerical Analysis",
+        "",
         "- Was curious as to how it would work.",
+        "- He shared my enthusiasm.",
         "- I did all my assignments on my z80",
         "",
         "",
-        "# Benefit, no line up at the card reader."
+        "**Benefit**, no line up at the card reader."
       ],
       "title": [
-        "A Different Kind of Welcome"
+        "A Different Kind of Welcome (Dr Caron)"
       ],
       "body": [
-        "Dr. Caron taught Numerical Analysis in 1983. ",
+        "Numerical Analysis",
+        "",
         "- Was curious as to how it would work.",
+        "- He shared my enthusiasm.",
         "- I did all my assignments on my z80",
         "",
         "",
-        "# Benefit, no line up at the card reader."
+        "**Benefit**, no line up at the card reader."
       ],
       "image_prompt": "me holding my little computer in a pleading way and professor being excited to welcome me to class.",
       "credits": false
@@ -730,25 +830,35 @@
       "markdown": [
         "# The Pattern Didn't Stop",
         "",
-        "#  IDEs: some faculty banned them — unless you used vi and make, it wasn't \"real CS.\"",
-        "- I must confess i was of that opinion, its changed now.",
+        "#  IDEs: some faculty banned them",
+        "- Unless you used vi and make, it wasn't \"real CS.\"",
+        "- I must confess i was of that opinion.",
+        "- I was repeating the Computer card argument.",
         "",
         "# Also in industry",
-        "- Tab completion: a senior engineer wanted it off for juniors — too easy to tell who had memorized the library incantations.",
+        "- Tab completion: a senior engineer wanted it off for juniors ",
+        "- They have to learn the function calls!",
         "",
-        "- Same mistake: confusing ritual with skill — difficulty as a proxy for merit."
+        "# Same mistake: ",
+        "- Confusing ritual with skill ",
+        "- Mastering difficulty vs understanding."
       ],
       "title": [
         "The Pattern Didn't Stop"
       ],
       "body": [
-        "#  IDEs: some faculty banned them — unless you used vi and make, it wasn't \"real CS.\"",
-        "- I must confess i was of that opinion, its changed now.",
+        "#  IDEs: some faculty banned them",
+        "- Unless you used vi and make, it wasn't \"real CS.\"",
+        "- I must confess i was of that opinion.",
+        "- I was repeating the Computer card argument.",
         "",
         "# Also in industry",
-        "- Tab completion: a senior engineer wanted it off for juniors — too easy to tell who had memorized the library incantations.",
+        "- Tab completion: a senior engineer wanted it off for juniors ",
+        "- They have to learn the function calls!",
         "",
-        "- Same mistake: confusing ritual with skill — difficulty as a proxy for merit."
+        "# Same mistake: ",
+        "- Confusing ritual with skill ",
+        "- Mastering difficulty vs understanding."
       ],
       "image_prompt": "",
       "credits": false
@@ -792,11 +902,12 @@
       "id": "3be918fc-120b-47e8-bc33-b1ec8979f334",
       "kind": "content",
       "markdown": [
-        "# Now to the ~~Almost~~ present",
+        "# Now to the (Almost) present",
         "",
         "# From Industry to Classroom",
-        "I transitioned from the tech industry in 2023 after serving as VP of Engineering at Staffbase",
-        "- team of **80 engineers**.  ",
+        "",
+        "I came back in 2023 after serving as VP of Engineering at Staffbase",
+        "- Team of **80 engineers**.  ",
         "",
         "We had **89 repositories** lacking unit test coverage.  ",
         "",
@@ -804,15 +915,16 @@
         "- It excelled in supporting **unit tests**, which was impressive.  ",
         "",
         "**Result:** ",
-        "- led to a **weekly increase in unit tests** across our projects."
+        "- **Weekly increase in unit tests** across our projects."
       ],
       "title": [
-        "Now to the ~~Almost~~ present"
+        "Now to the (Almost) present"
       ],
       "body": [
         "# From Industry to Classroom",
-        "I transitioned from the tech industry in 2023 after serving as VP of Engineering at Staffbase",
-        "- team of **80 engineers**.  ",
+        "",
+        "I came back in 2023 after serving as VP of Engineering at Staffbase",
+        "- Team of **80 engineers**.  ",
         "",
         "We had **89 repositories** lacking unit test coverage.  ",
         "",
@@ -820,7 +932,44 @@
         "- It excelled in supporting **unit tests**, which was impressive.  ",
         "",
         "**Result:** ",
-        "- led to a **weekly increase in unit tests** across our projects."
+        "- **Weekly increase in unit tests** across our projects."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "e9616d19-4488-4e91-9c93-cb5e7e0e8340",
+      "kind": "content",
+      "markdown": [
+        "# Teaching with Magic and Mechanics",
+        "",
+        "Here's what I learned from bringing LLMs into the classroom:",
+        "",
+        "We needed real problems. Not toy exercises. Students needed to actually build things that mattered.",
+        "",
+        "LLMs became the apprenticeship tool. They handle the repetitive incantations—the boilerplate, the pattern matching, the \"spells\" that feel like magic when you're learning.",
+        "",
+        "But here's the thing: students still had to understand the mechanics underneath. They had to know when the generated code was right, when it was garbage, and why.",
+        "",
+        "That's where builders are made. Not from memorizing syntax. But from wrestling with real code, real problems, and learning to wield these powerful tools with intention.",
+        "",
+        "The LLM wasn't the teacher. It was the scaffolding. The student had to become the builder."
+      ],
+      "title": [
+        "Teaching with Magic and Mechanics"
+      ],
+      "body": [
+        "Here's what I learned from bringing LLMs into the classroom:",
+        "",
+        "We needed real problems. Not toy exercises. Students needed to actually build things that mattered.",
+        "",
+        "LLMs became the apprenticeship tool. They handle the repetitive incantations—the boilerplate, the pattern matching, the \"spells\" that feel like magic when you're learning.",
+        "",
+        "But here's the thing: students still had to understand the mechanics underneath. They had to know when the generated code was right, when it was garbage, and why.",
+        "",
+        "That's where builders are made. Not from memorizing syntax. But from wrestling with real code, real problems, and learning to wield these powerful tools with intention.",
+        "",
+        "The LLM wasn't the teacher. It was the scaffolding. The student had to become the builder."
       ],
       "image_prompt": "",
       "credits": false
@@ -986,17 +1135,31 @@
       "markdown": [
         "# 2025 — Game Engine Programming",
         "",
-        "- Students worked across **four languages**.",
-        "- They were **reading systems**, **using systems**, and **building games while learning** those systems.",
-        "- Weekly ritual: **How did we do with LLM?** sharing circle on wins, misses, and adjustments."
+        "Students worked across **four languages**: ",
+        "",
+        "- Python",
+        "- Java",
+        "- C++",
+        "- TypeScript.",
+        "",
+        "**Reading systems**",
+        "**Using systems**",
+        "**Building games while learning**"
       ],
       "title": [
         "2025 — Game Engine Programming"
       ],
       "body": [
-        "- Students worked across **four languages**.",
-        "- They were **reading systems**, **using systems**, and **building games while learning** those systems.",
-        "- Weekly ritual: **How did we do with LLM?** sharing circle on wins, misses, and adjustments."
+        "Students worked across **four languages**: ",
+        "",
+        "- Python",
+        "- Java",
+        "- C++",
+        "- TypeScript.",
+        "",
+        "**Reading systems**",
+        "**Using systems**",
+        "**Building games while learning**"
       ],
       "image_prompt": "",
       "credits": false
@@ -1147,6 +1310,35 @@
       "credits": false
     },
     {
+      "id": "6c4b7202-bfc2-406b-b92a-ca4e187e66eb",
+      "kind": "content",
+      "title": [
+        "Replacing Rote with Rich expiences"
+      ],
+      "body": [
+        "REST ",
+        "- Previous, lecture",
+        "- Now, hands on learning",
+        "",
+        "End to End Testing",
+        "- Previous minimal, referenced in lecture",
+        "- Deep experience"
+      ],
+      "markdown": [
+        "# Replacing Rote with Rich expiences",
+        "",
+        "REST ",
+        "- Previous, lecture",
+        "- Now, hands on learning",
+        "",
+        "End to End Testing",
+        "- Previous minimal, referenced in lecture",
+        "- Deep experience"
+      ],
+      "image_prompt": "Me showing studenst how the machines  workd",
+      "credits": false
+    },
+    {
       "id": "cb69c653-526f-4718-a43e-fa137e053da0",
       "kind": "content",
       "markdown": [
@@ -1154,13 +1346,16 @@
         "",
         "# So we can build things that delight customers",
         "",
-        "- Real people with real problems, who should leave **glad** we existed.",
+        "- Real people that are **glad** we exist.",
         "- Everything else is in service of that.",
         "",
-        "# Theory in service of building",
+        "# Foundations in service of building",
+        "- Absolutely!",
         "- What must graduates **understand**?",
         "- What must we **teach**?",
-        "- **To whom** — future builders, researchers, or specialists — and in what **balance**?"
+        "- **To whom**?",
+        "",
+        "# Not answering these questions here!"
       ],
       "title": [
         "Why Computer Science?"
@@ -1168,15 +1363,18 @@
       "body": [
         "# So we can build things that delight customers",
         "",
-        "- Real people with real problems, who should leave **glad** we existed.",
+        "- Real people that are **glad** we exist.",
         "- Everything else is in service of that.",
         "",
-        "# Theory in service of building",
+        "# Foundations in service of building",
+        "- Absolutely!",
         "- What must graduates **understand**?",
         "- What must we **teach**?",
-        "- **To whom** — future builders, researchers, or specialists — and in what **balance**?"
+        "- **To whom**?",
+        "",
+        "# Not answering these questions here!"
       ],
-      "image_prompt": "",
+      "image_prompt": "People congregating outside the school of magic being super happy that it exists.",
       "credits": false
     },
     {
