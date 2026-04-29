@@ -2019,9 +2019,8 @@ class SlideEditorApp:
     def _scroll_to_slide_id(self, sid: str | None) -> None:
         """Scroll the editor so the row with ``sid`` is at (or near) the viewport top.
 
-        No-op if the deck doesn't contain that slide. Doesn't steal keyboard focus.
-        Expands the target row (and neighbors) before scrolling so the position
-        is correct even when rows are collapsed for the virtual-scroll optimization.
+        Uses a simple fraction-of-total-rows approach that works reliably
+        regardless of which rows are collapsed or expanded.
         """
         if not sid:
             return
@@ -2036,19 +2035,20 @@ class SlideEditorApp:
 
         target = rows[target_idx]
         canvas = self._scroll_canvas
+        n = len(rows)
 
         try:
-            # Expand the target and a window around it; collapse everything else.
-            # This gives us an accurate y-position for the target.
+            # Expand the target and neighbors
             vis_start = max(0, target_idx - 5)
-            vis_end = min(len(rows), target_idx + 8)
-            for i, r in enumerate(rows):
-                if vis_start <= i < vis_end:
-                    r.expand()
-                else:
-                    r.collapse()
+            vis_end = min(n, target_idx + 8)
+            for i in range(vis_start, vis_end):
+                rows[i].expand()
 
             canvas.update_idletasks()
+            canvas.configure(scrollregion=canvas.bbox("all"))
+            canvas.update_idletasks()
+
+            # Now read the actual y position
             bbox = canvas.bbox("all")
             if not bbox:
                 return
@@ -2056,13 +2056,12 @@ class SlideEditorApp:
             if total_h <= 0:
                 return
             y = max(0, target.winfo_y() - 8)
-            canvas.configure(scrollregion=bbox)
             canvas.yview_moveto(max(0.0, min(1.0, y / total_h)))
 
-            # Deferred: re-run full visibility check to expand/collapse based on final viewport
+            # Deferred visibility cleanup
             if self._vis_update_job is not None:
                 self.root.after_cancel(self._vis_update_job)
-            self._vis_update_job = self.root.after(200, self._update_row_visibility)
+            self._vis_update_job = self.root.after(500, self._update_row_visibility)
         except tk.TclError:
             pass
 
@@ -2857,9 +2856,17 @@ class PresentModeApp:
             sid = str(spec.get("id", "")).strip()
             if sid:
                 try:
-                    self._on_slide_change(sid)
+                    # Defer the callback so the presenter finishes rendering first.
+                    self.win.after_idle(lambda s=sid: self._fire_slide_change(s))
                 except Exception:
                     LOG.warning("present on_slide_change callback failed", exc_info=True)
+
+    def _fire_slide_change(self, sid: str) -> None:
+        if self._on_slide_change is not None:
+            try:
+                self._on_slide_change(sid)
+            except Exception:
+                LOG.warning("present on_slide_change callback failed", exc_info=True)
 
     def _credits_cancel(self) -> None:
         """Stop any pending or running credits animation. Safe to call repeatedly."""
