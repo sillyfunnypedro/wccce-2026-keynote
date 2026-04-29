@@ -329,6 +329,18 @@ No boilerplate was hand-typed. No Stack Overflow tabs were open. The conversatio
 
 This repository is the **companion artifact** to the WCCCE 2026 keynote lecture. The talk argues that conversational programming changes what's possible for students and builders — and this slide editor is the proof-of-concept: a real, working desktop application built by talking through what it should do, one feature at a time.
 
+### A real example: the human spots what the LLM can't
+
+Early in development, the editor took about 60 seconds to start up with a 50-slide deck. The LLM had built the slide list by creating each `SlideRow` widget one at a time — and after adding each row, it triggered a full rebuild of the scroll region and re-laid out every existing widget. The result was an O(n²) startup: each of the 50 slides caused all previous slides to be re-measured and repositioned.
+
+The LLM didn't see the problem. It had written each piece of code in isolation — the "add a row" function, the "update scroll region" function — and each piece was correct on its own. The quadratic behavior only emerged from how they composed at scale.
+
+The human noticed the startup was slow, profiled it, and said: *"I think there's some sort of O(n²) thing happening — each slide is being added and then the whole deck is being rebuilt."*
+
+That one observation was enough. The LLM immediately understood the issue, restructured the code to batch-build all rows before updating the scroll region, and deferred thumbnail loading to an idle queue. Startup dropped from ~60 seconds to under 2 seconds.
+
+This is the pattern that makes conversational programming work: the human brings intuition, taste, and the ability to notice when something *feels* wrong. The LLM brings the ability to restructure hundreds of lines of code in seconds once the problem is identified. Neither could have solved it alone as quickly.
+
 ## Forking and Customization
 
 This tool isn't locked to one talk. Fork the repo and make it yours.
