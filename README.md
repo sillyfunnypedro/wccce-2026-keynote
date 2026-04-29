@@ -38,10 +38,29 @@ The editor can generate slide illustrations through the [OpenRouter](https://ope
 1. **Environment variable:**
 
    ```bash
-   export OPENROUTER_API_KEY="sk-or-..."
+   export OPENROUTER_API_KEY="sk-or-v1-your-key-here"
    ```
 
-2. **Key file** — create `.env/OpenRouter.md` in the repo root (the `.env/` directory is already in `.gitignore`). Put your key on a line by itself, or as `key: sk-or-...`.
+2. **Key file** — create a `.env/` directory in the repo root and add a file called `OpenRouter.md`. Put your key on a line by itself:
+
+   ```
+   .env/
+   └── OpenRouter.md
+   ```
+
+   The contents of `OpenRouter.md` should be:
+
+   ```
+   sk-or-v1-your-key-here
+   ```
+
+   Or in `KEY=VALUE` format:
+
+   ```
+   OPENROUTER_API_KEY=sk-or-v1-your-key-here
+   ```
+
+   The `.env/` directory is already in `.gitignore`, so your key will never be committed. The editor also checks `openrouterkey.md` and `OpenRouterKey.md` as alternative filenames.
 
 If no key is configured the editor still works — you just can't generate or preview images.
 
