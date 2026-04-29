@@ -490,6 +490,10 @@ class SlideRow(tk.Frame):
         self.columnconfigure(3, weight=0)
         self.rowconfigure(3, weight=0)
 
+        # Collapse state: start collapsed; visibility tracker will expand visible rows.
+        self._collapsed = True
+        self._slide_card: tk.Frame | None = None  # set in _build_card
+
         if skip_initial_preview:
             self._show_preview_placeholder()
             self._slide_card_text.grid_configure(padx=SLIDE_CARD_TEXT_PADX_NO_IMG)
@@ -510,6 +514,7 @@ class SlideRow(tk.Frame):
 
         slide_card = tk.Frame(self, bg=SLIDE_BG, highlightbackground="#4a4a62", highlightthickness=1)
         slide_card.grid(row=1, column=0, columnspan=3, sticky="ew", pady=(0, 8))
+        self._slide_card = slide_card
         slide_card.columnconfigure(0, weight=1, minsize=280)
         slide_card.columnconfigure(1, weight=0)
 
@@ -716,6 +721,48 @@ class SlideRow(tk.Frame):
             right.grid(row=r, column=1, sticky="ew", padx=(3, 0), pady=2)
         bf.columnconfigure(0, weight=1)
         bf.columnconfigure(1, weight=1)
+
+    def collapse(self) -> None:
+        """Hide the slide card body to reduce height — only title header visible."""
+        if self._collapsed:
+            return
+        self._collapsed = True
+        if self._slide_card is not None:
+            self._slide_card.grid_remove()
+        if self._divider is not None:
+            self._divider.grid_remove()
+        if self._divider_shadow is not None:
+            self._divider_shadow.grid_remove()
+        # Also hide editor/prompt if built
+        if self._editor_frame is not None:
+            self._editor_frame.grid_remove()
+        if self._prompt_label is not None:
+            self._prompt_label.grid_remove()
+        if self.txt is not None:
+            self.txt.grid_remove()
+        if self._button_frame is not None:
+            self._button_frame.grid_remove()
+
+    def expand(self) -> None:
+        """Show the full slide card."""
+        if not self._collapsed:
+            return
+        self._collapsed = False
+        if self._slide_card is not None:
+            self._slide_card.grid()
+        if self._divider is not None:
+            self._divider.grid()
+        if self._divider_shadow is not None:
+            self._divider_shadow.grid()
+        # Also show editor/prompt if built
+        if self._editor_frame is not None:
+            self._editor_frame.grid()
+        if self._prompt_label is not None:
+            self._prompt_label.grid()
+        if self.txt is not None:
+            self.txt.grid()
+        if self._button_frame is not None:
+            self._button_frame.grid()
 
     def _show_preview_placeholder(self) -> None:
         c = self.preview_canvas
@@ -1518,6 +1565,18 @@ class SlideEditorApp:
         sb.pack(side=tk.RIGHT, fill=tk.Y)
         self._scroll_canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
+        # Debounce visibility updates on scroll
+        self._vis_update_job: str | None = None
+
+        def _on_scroll_changed(*args):
+            """Called when the scrollbar or yview changes — debounce visibility updates."""
+            sb.set(*args)
+            if self._vis_update_job is not None:
+                root.after_cancel(self._vis_update_job)
+            self._vis_update_job = root.after(100, self._update_row_visibility)
+
+        self._scroll_canvas.configure(yscrollcommand=_on_scroll_changed)
+
         self.inner = tk.Frame(self._scroll_canvas)
         self._inner_win = self._scroll_canvas.create_window((0, 0), window=self.inner, anchor="nw")
 
@@ -1868,7 +1927,55 @@ class SlideEditorApp:
         self._apply_scroll_region()
 
     def _apply_scroll_region(self) -> None:
-        self._scroll_canvas.configure(scrollregion=self._scroll_canvas.bbox("all"))
+        bbox = self._scroll_canvas.bbox("all")
+        self._scroll_canvas.configure(scrollregion=bbox)
+        self._update_row_visibility()
+
+    def _update_row_visibility(self) -> None:
+        """Collapse rows outside the viewport, expand rows inside it.
+
+        This keeps the total inner-frame height manageable for Tk's canvas,
+        which has practical rendering limits on macOS (~32k px).
+        """
+        if not self.rows:
+            return
+        canvas = self._scroll_canvas
+        try:
+            canvas_h = canvas.winfo_height()
+            # Get the current scroll position in pixels
+            yview = canvas.yview()
+            bbox = canvas.bbox("all")
+            if not bbox or canvas_h <= 1:
+                return
+            total_h = bbox[3] - bbox[1]
+            view_top = int(yview[0] * total_h)
+            view_bot = int(yview[1] * total_h)
+            # Add generous margin so rows expand before they scroll into view
+            margin = canvas_h
+            vis_top = max(0, view_top - margin)
+            vis_bot = view_bot + margin
+        except tk.TclError:
+            return
+
+        changed = False
+        for row in self.rows:
+            try:
+                ry = row.winfo_y()
+                rh = row.winfo_height()
+            except tk.TclError:
+                continue
+            row_top = ry
+            row_bot = ry + rh
+            visible = (row_bot >= vis_top) and (row_top <= vis_bot)
+            if visible and row._collapsed:
+                row.expand()
+                changed = True
+            elif not visible and not row._collapsed:
+                row.collapse()
+                changed = True
+        if changed:
+            # Defer scroll region update to after geometry settles
+            canvas.after_idle(lambda: canvas.configure(scrollregion=canvas.bbox("all")))
 
     def _capture_focus_slide_id(self) -> str | None:
         """Best-guess id of the slide the user is "on" right now.
@@ -2123,7 +2230,32 @@ class SlideEditorApp:
         )
         # Set initial scroll region so all rows are reachable before thumbnails load.
         self._apply_scroll_region()
+        # Expand only visible rows; collapse the rest to keep total height manageable.
+        for row in self.rows:
+            row.collapse()
+        self.root.after_idle(self._expand_initial_visible)
         self._schedule_row_thumbnail_refresh()
+
+    def _expand_initial_visible(self) -> None:
+        """After initial layout, expand the first screenful of rows."""
+        canvas = self._scroll_canvas
+        try:
+            canvas_h = canvas.winfo_height()
+        except tk.TclError:
+            canvas_h = 800
+        # Expand rows until we fill roughly 2 screens worth
+        budget = canvas_h * 2
+        used = 0
+        for row in self.rows:
+            row.expand()
+            try:
+                row.update_idletasks()
+                used += row.winfo_reqheight()
+            except tk.TclError:
+                used += 400
+            if used > budget:
+                break
+        self._apply_scroll_region()
 
     def _perf_minimal_idle_done(self) -> None:
         """Minimal-rows mode: report layout-settled time, then exit if profiling."""
