@@ -9,8 +9,8 @@ Usage:
   python generate_slides.py --input keynote.json --output slides.pptx
   python generate_slides.py --images slide_images/
 
-Image column (right, **square**): each slide uses ``slide_images/{id}.png`` first, then
-``00.png``, ``01.png``, … in order. Missing files get a gray placeholder.
+Image column (right, **square**): each slide uses ``slide_images/{id}.png``.
+Missing files get a gray placeholder.
 """
 
 import argparse
@@ -133,22 +133,18 @@ def footer_bar(slide, text: str):
 def add_slide_image_column(
     slide, slide_index: int, image_dir: Path | None, slide_id: str | None = None
 ):
-    """Right column: square image ``{slide_id}.png`` (deck) or legacy ``{nn}.png``, else placeholder."""
+    """Right column: square image ``{slide_id}.png`` (UUID-based lookup), else gray placeholder."""
     left, top, iw, ih = IMG_LEFT, IMG_TOP, IMG_W, IMG_H
     path: Path | None = None
     if image_dir is not None and image_dir.is_dir():
-        candidates: list[Path] = []
         if slide_id:
             sid = slide_id.strip()
             if sid:
                 for ext in (".png", ".jpg", ".jpeg", ".webp"):
-                    candidates.append(image_dir / f"{sid}{ext}")
-        for ext in (".png", ".jpg", ".jpeg", ".webp"):
-            candidates.append(image_dir / f"{slide_index:02d}{ext}")
-        for cand in candidates:
-            if cand.is_file():
-                path = cand
-                break
+                    cand = image_dir / f"{sid}{ext}"
+                    if cand.is_file():
+                        path = cand
+                        break
     if path is not None:
         slide.shapes.add_picture(str(path), left, top, width=iw, height=ih)
         return
@@ -465,7 +461,7 @@ def main():
         "--images",
         default=None,
         metavar="DIR",
-        help="Square images: {slide id}.png first, else 00.png … in slide order",
+        help="Square images: {slide id}.png (UUID-based lookup)",
     )
     args = parser.parse_args()
 
@@ -475,8 +471,7 @@ def main():
 
     if input_path.suffix.lower() != ".json":
         print(
-            f"Error: --input must be a .json deck (got {input_path}). "
-            "Import markdown with: python keynote_deck.py import talk.md keynote.json",
+            f"Error: --input must be a .json deck (got {input_path}).",
             file=sys.stderr,
         )
         return

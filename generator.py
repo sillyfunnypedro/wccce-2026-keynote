@@ -13,7 +13,7 @@ API key: `OPENROUTER_API_KEY` or `.env/OpenRouter.md` (see `load_api_key`).
 Usage:
   python generator.py --deck keynote.json --dry-run
 
-Markdown → JSON (one-time): ``python keynote_deck.py import talk.md keynote.json``
+Markdown → JSON: see ``keynote_deck.py`` for deck format details.
 
 GUI (per-slide preview, LLM suggest, render):
   python slide_editor.py --deck keynote.json
@@ -41,7 +41,7 @@ DEFAULT_CONTENT_GUIDE = (
     "computer science as the preparation of builders, not just certified CS graduates."
 )
 
-# Used only if no global_style file exists and the deck has no inline style_prompt
+# Used only if no global_style file exists
 DEFAULT_STYLE_FALLBACK = """\
 Output: 1024x1024 pixels, square 1:1 aspect ratio.
 Black-and-white ink with crosshatching; medieval + modern tech blend; whimsical; no text."""
@@ -422,21 +422,12 @@ def resolve_style_path(deck: dict, cli_style: Path | None) -> Path:
 
 
 def load_global_style(style_path: Path, deck: dict) -> str:
-    """Read global style from markdown file, falling back to the deck's inline
-    ``style_prompt`` (legacy) or a built-in fallback."""
+    """Read global style from the markdown file, falling back to a built-in default."""
     if style_path.is_file():
         text = style_path.read_text(encoding="utf-8").strip()
         if text:
             return text
         print(f"Warning: {style_path} is empty; using fallback style.", file=sys.stderr)
-
-    legacy = str(deck.get("style_prompt", "")).strip()
-    if legacy:
-        print(
-            f"Warning: using deck \"style_prompt\" (deprecated). Prefer {style_path.name}.",
-            file=sys.stderr,
-        )
-        return legacy
 
     print(
         f"Warning: no style file at {style_path}; using DEFAULT_STYLE_FALLBACK.",
@@ -827,7 +818,6 @@ def main() -> None:
 
     if not args.deck.is_file():
         print(f"Error: deck not found: {args.deck}", file=sys.stderr)
-        print("Create with: python keynote_deck.py import talk.md keynote.json", file=sys.stderr)
         sys.exit(1)
 
     import keynote_deck as kd
