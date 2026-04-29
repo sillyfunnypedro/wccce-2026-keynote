@@ -2020,6 +2020,8 @@ class SlideEditorApp:
         """Scroll the editor so the row with ``sid`` is at (or near) the viewport top.
 
         No-op if the deck doesn't contain that slide. Doesn't steal keyboard focus.
+        Expands the target row (and neighbors) before scrolling so the position
+        is correct even when rows are collapsed for the virtual-scroll optimization.
         """
         if not sid:
             return
@@ -2027,10 +2029,16 @@ class SlideEditorApp:
         target = next((r for r in rows if r.slide_id == sid), None)
         if target is None:
             return
+
+        # Expand the target and a few neighbors so the scroll position is meaningful.
+        target_idx = next((i for i, r in enumerate(rows) if r.slide_id == sid), None)
+        if target_idx is not None:
+            for i in range(max(0, target_idx - 2), min(len(rows), target_idx + 5)):
+                rows[i].expand()
+
         canvas = self._scroll_canvas
         try:
             canvas.update_idletasks()
-            self._apply_scroll_region()
             bbox = canvas.bbox("all")
             if not bbox:
                 return
@@ -2039,6 +2047,11 @@ class SlideEditorApp:
                 return
             y = max(0, target.winfo_y() - 8)
             canvas.yview_moveto(max(0.0, min(1.0, y / total_h)))
+            canvas.configure(scrollregion=bbox)
+            # Trigger visibility update to collapse rows that are now off-screen
+            if self._vis_update_job is not None:
+                self.root.after_cancel(self._vis_update_job)
+            self._vis_update_job = self.root.after(200, self._update_row_visibility)
         except tk.TclError:
             pass
 
