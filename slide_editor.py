@@ -624,6 +624,10 @@ class SlideRow(tk.Frame):
         bind = getattr(self.app, "_bind_scroll_handlers", None)
         if bind is not None:
             bind(self)
+        # Update scroll region after new widgets change the inner frame height.
+        apply = getattr(self.app, "_apply_scroll_region", None)
+        if apply is not None:
+            self.after_idle(apply)
 
     def _on_card_activate(self, _event: tk.Event | None = None) -> None:
         self.ensure_editor()
@@ -2117,6 +2121,8 @@ class SlideEditorApp:
             file=sys.stderr,
             flush=True,
         )
+        # Set initial scroll region so all rows are reachable before thumbnails load.
+        self._apply_scroll_region()
         self._schedule_row_thumbnail_refresh()
 
     def _perf_minimal_idle_done(self) -> None:
