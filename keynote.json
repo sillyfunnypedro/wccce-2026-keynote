@@ -405,8 +405,11 @@
         "# Programmable calculator.",
         "",
         "- A **random** target on a **100×100** grid.",
+        "",
         "- You type **x** and **y**",
-        "- it answers with **distance** to the ship.",
+        "",
+        "- It answers with **distance** to the ship.",
+        "",
         "- You **close in** until you hit it."
       ],
       "title": [
@@ -416,8 +419,11 @@
         "# Programmable calculator.",
         "",
         "- A **random** target on a **100×100** grid.",
+        "",
         "- You type **x** and **y**",
-        "- it answers with **distance** to the ship.",
+        "",
+        "- It answers with **distance** to the ship.",
+        "",
         "- You **close in** until you hit it."
       ],
       "image_prompt": "",
@@ -458,11 +464,15 @@
         "",
         "# 1981-1985 — Lead-Acid Batteries Tonolli",
         "",
-        "My uncle broke down **forklift batteries** for recycling. We weighed cells (50–160 kg), counted, tallied, billed Tonolli.",
+        "My uncle broke down **forklift batteries** for recycling. ",
+        "- Battery cells weighed cells (50–160 kg)",
+        "- Contained 12,18,24,36 cells",
         "",
         "# The spell (in 1982)",
         "",
-        "**BASIC on a TRS-80 Model I.** End-of-day totals, saved, auditable if we mistyped."
+        "**BASIC on a TRS-80 Model I.** ",
+        "-End-of-day totals, ",
+        "-Saved, auditable if we mistyped."
       ],
       "title": [
         "Tonolli at the battery yard"
@@ -470,11 +480,15 @@
       "body": [
         "# 1981-1985 — Lead-Acid Batteries Tonolli",
         "",
-        "My uncle broke down **forklift batteries** for recycling. We weighed cells (50–160 kg), counted, tallied, billed Tonolli.",
+        "My uncle broke down **forklift batteries** for recycling. ",
+        "- Battery cells weighed cells (50–160 kg)",
+        "- Contained 12,18,24,36 cells",
         "",
         "# The spell (in 1982)",
         "",
-        "**BASIC on a TRS-80 Model I.** End-of-day totals, saved, auditable if we mistyped."
+        "**BASIC on a TRS-80 Model I.** ",
+        "-End-of-day totals, ",
+        "-Saved, auditable if we mistyped."
       ],
       "image_prompt": "",
       "credits": false
@@ -487,9 +501,12 @@
         "",
         "# The magic",
         "",
-        "For my uncle: **faster, more accurate billing** — less pain doing the books.",
+        "For my uncle: ",
+        "- **Faster, more accurate billing**.",
+        "- Less pain doing the books.",
         "",
-        "For me: I delighted a customer!",
+        "For me: ",
+        "- I delighted a customer!",
         "",
         "# I was hooked."
       ],
@@ -499,13 +516,16 @@
       "body": [
         "# The magic",
         "",
-        "For my uncle: **faster, more accurate billing** — less pain doing the books.",
+        "For my uncle: ",
+        "- **Faster, more accurate billing**.",
+        "- Less pain doing the books.",
         "",
-        "For me: I delighted a customer!",
+        "For me: ",
+        "- I delighted a customer!",
         "",
         "# I was hooked."
       ],
-      "image_prompt": "A young person sits at a desk or workbench beside an older man, both looking at a computer screen displaying billing information or ledger data. The younger person's hands rest on the keyboard while the older man leans in with visible relief and satisfaction on his face, perhaps holding a stack of papers or account books that he's setting down. Around them are scattered business documents, a calculator, and office supplies—the remnants of manual bookkeeping work. The screen glows with organized columns of numbers, representing the transformation from tedious manual calculation to automated accuracy. The spatial relationship emphasizes connection and shared purpose: the mentor figure seeing capability in the builder, the builder experiencing the tangible impact of their work for the first time.",
+      "image_prompt": "me at my computer with my uncle beaming after he had a tally sheet in his hand",
       "credits": false
     },
     {
@@ -518,9 +538,10 @@
         "",
         "# Non-Photorealistic Rendering",
         "",
-        "**Mario Costa Sousa**'s PhD: simulating **pencil drawing**.",
+        "**Mario Costa Sousa**'s PhD: ",
+        "- Simulating **pencil drawing**.",
         "",
-        "# This might threaten artists?"
+        "# Would this threaten artists?"
       ],
       "title": [
         "Tools for Artists"
@@ -530,9 +551,10 @@
         "",
         "# Non-Photorealistic Rendering",
         "",
-        "**Mario Costa Sousa**'s PhD: simulating **pencil drawing**.",
+        "**Mario Costa Sousa**'s PhD: ",
+        "- Simulating **pencil drawing**.",
         "",
-        "# This might threaten artists?"
+        "# Would this threaten artists?"
       ],
       "image_prompt": "",
       "credits": false
@@ -543,8 +565,6 @@
       "markdown": [
         "# Desmond's lesson",
         "",
-        "# The customer was Desmond",
-        "",
         "**Desmond Rochfort**, a pencil artist on the committee, set us straight.",
         "",
         "# Style exploration was expensive",
@@ -556,14 +576,12 @@
         "",
         "The customer doesn't want the spell. ",
         "",
-        "# They want what the magic enables them to do next."
+        "They want '*what the magic enables them to do next*'."
       ],
       "title": [
         "Desmond's lesson"
       ],
       "body": [
-        "# The customer was Desmond",
-        "",
         "**Desmond Rochfort**, a pencil artist on the committee, set us straight.",
         "",
         "# Style exploration was expensive",
@@ -575,7 +593,7 @@
         "",
         "The customer doesn't want the spell. ",
         "",
-        "# They want what the magic enables them to do next."
+        "They want '*what the magic enables them to do next*'."
       ],
       "image_prompt": "",
       "credits": false
@@ -590,7 +608,7 @@
         "Here I identified my life quest.",
         "",
         "Use my knowledge of spells to ",
-        "make magic for the ones who cannot spell."
+        "make magic for the ones who cannot spell. [sic.]"
       ],
       "markdown": [
         "# My Life Quest",
@@ -598,7 +616,7 @@
         "Here I identified my life quest.",
         "",
         "Use my knowledge of spells to ",
-        "make magic for the ones who cannot spell."
+        "make magic for the ones who cannot spell. [sic.]"
       ],
       "image_prompt": "Me, tools in hand heading out from wizard school to help the people who are not wizards.",
       "credits": false
@@ -617,7 +635,10 @@
         "",
         "# Behind the curtain",
         "",
-        "**Six students** in a **back room**, listening to the designer and **driving the avatars** from a **script** — pivoting fast when the conversation changed."
+        "**Six students** in a **back room**",
+        "- listening to the designer",
+        "- **driving the avatars** from a **script** ",
+        "- pivoting fast when the conversation changed."
       ],
       "title": [
         "CMU — Game Sketching"
@@ -631,7 +652,10 @@
         "",
         "# Behind the curtain",
         "",
-        "**Six students** in a **back room**, listening to the designer and **driving the avatars** from a **script** — pivoting fast when the conversation changed."
+        "**Six students** in a **back room**",
+        "- listening to the designer",
+        "- **driving the avatars** from a **script** ",
+        "- pivoting fast when the conversation changed."
       ],
       "image_prompt": "a top dowwn image of a person in one room lookdin at a screen with a whole bunch of people in the other room.",
       "credits": false
@@ -646,13 +670,13 @@
         "",
         "That was the magic.",
         "",
-        "He iterated about **thirty times in two weeks** — **three** runs on a **heavy** day.",
+        "We iterated about **thirty times in two weeks** — **three** runs on a **heavy** day.",
         "",
         "# The honest question",
         "",
         "**Can we ship this?**",
         "",
-        "**No** — you still have to **implement** the real thing."
+        "**No** — you have to **implement** the game."
       ],
       "title": [
         "The producer thought it was playable"
@@ -662,15 +686,15 @@
         "",
         "That was the magic.",
         "",
-        "He iterated about **thirty times in two weeks** — **three** runs on a **heavy** day.",
+        "We iterated about **thirty times in two weeks** — **three** runs on a **heavy** day.",
         "",
         "# The honest question",
         "",
         "**Can we ship this?**",
         "",
-        "**No** — you still have to **implement** the real thing."
+        "**No** — you have to **implement** the game."
       ],
-      "image_prompt": "",
+      "image_prompt": "A man pulls back a curtain to expose a bunch of people sitting at terminals.",
       "credits": false
     },
     {
@@ -720,25 +744,25 @@
       "id": "27e6d712-6387-49a3-903d-6d105bd8aa62",
       "kind": "content",
       "markdown": [
-        "# Now it's almost daily",
-        "",
         "# Did I say every few years?",
+        "",
+        "# HA!",
         "",
         "Well, that was then.",
         "",
-        "# Now it's almost daily.",
+        "# Now it's ~~almost daily~~, real time",
         "",
         "Try keeping up with the new set of tools."
       ],
       "title": [
-        "Now it's almost daily"
+        "Did I say every few years?"
       ],
       "body": [
-        "# Did I say every few years?",
+        "# HA!",
         "",
         "Well, that was then.",
         "",
-        "# Now it's almost daily.",
+        "# Now it's ~~almost daily~~, real time",
         "",
         "Try keeping up with the new set of tools."
       ],
@@ -768,8 +792,9 @@
       "markdown": [
         "# That Isn't a Real Computer",
         "",
-        "Assembly programming:",
-        "- I wanted coursework on my **Z-80** instead of the lab **IBM 360**.",
+        "Assembly programming: (Yup I am old)",
+        "",
+        "- I wanted to work on my **Z-80** instead of the lab **IBM 360**.",
         "",
         "- The professor said I did not have a **real** machine unless it was **32-bit**.",
         "",
@@ -781,8 +806,9 @@
         "That Isn't a Real Computer"
       ],
       "body": [
-        "Assembly programming:",
-        "- I wanted coursework on my **Z-80** instead of the lab **IBM 360**.",
+        "Assembly programming: (Yup I am old)",
+        "",
+        "- I wanted to work on my **Z-80** instead of the lab **IBM 360**.",
         "",
         "- The professor said I did not have a **real** machine unless it was **32-bit**.",
         "",
@@ -832,7 +858,8 @@
         "",
         "#  IDEs: some faculty banned them",
         "- Unless you used vi and make, it wasn't \"real CS.\"",
-        "- I must confess i was of that opinion.",
+        "",
+        "- I must confess I was of that crowd.",
         "- I was repeating the Computer card argument.",
         "",
         "# Also in industry",
@@ -849,7 +876,8 @@
       "body": [
         "#  IDEs: some faculty banned them",
         "- Unless you used vi and make, it wasn't \"real CS.\"",
-        "- I must confess i was of that opinion.",
+        "",
+        "- I must confess I was of that crowd.",
         "- I was repeating the Computer card argument.",
         "",
         "# Also in industry",
@@ -878,7 +906,12 @@
         "- Teaching CS was teaching **the spells**",
         "",
         "# You know the spells",
-        "- **That**, to him, **was** computer science — **done**."
+        "- **That**, to him, **was** computer science ",
+        "",
+        "# Fait accompli",
+        "# Finito",
+        "# Completo",
+        "# Совершившийся факт"
       ],
       "title": [
         "A Colleague, Early in My Career"
@@ -893,7 +926,12 @@
         "- Teaching CS was teaching **the spells**",
         "",
         "# You know the spells",
-        "- **That**, to him, **was** computer science — **done**."
+        "- **That**, to him, **was** computer science ",
+        "",
+        "# Fait accompli",
+        "# Finito",
+        "# Completo",
+        "# Совершившийся факт"
       ],
       "image_prompt": "",
       "credits": false
@@ -1172,25 +1210,29 @@
       ],
       "body": [
         "# Intro CS + Discrete Math",
+        "- Co-taught with Ildar Akhmetov",
         "",
         "A combined course where students build real software from day one.",
         "- Students received a **large existing codebase** to explore.",
         "",
         "- Not a blank slate — they had to **read and understand** before they could build.",
         "",
-        "# Final project was build a system that illustrates a Discrete Math concept."
+        "# Final project brief:",
+        "- Build a system that illustrates a Discrete Math concept."
       ],
       "markdown": [
         "# 2026 — 5001/5002 (Intro CS + Discrete Math)",
         "",
         "# Intro CS + Discrete Math",
+        "- Co-taught with Ildar Akhmetov",
         "",
         "A combined course where students build real software from day one.",
         "- Students received a **large existing codebase** to explore.",
         "",
         "- Not a blank slate — they had to **read and understand** before they could build.",
         "",
-        "# Final project was build a system that illustrates a Discrete Math concept."
+        "# Final project brief:",
+        "- Build a system that illustrates a Discrete Math concept."
       ],
       "image_prompt": "",
       "credits": false
@@ -1199,13 +1241,13 @@
       "id": "4c247e28-e01e-4e44-918b-4537e33cb397",
       "kind": "content",
       "title": [
-        "Final I"
+        "Lewis: Final I [Omogbare Ekpenga]"
       ],
       "body": [
         "# Depth first search"
       ],
       "markdown": [
-        "# Final I",
+        "# Lewis: Final I [Omogbare Ekpenga]",
         "",
         "# Depth first search"
       ],
@@ -1267,12 +1309,12 @@
       "id": "9d77d12c-fbd5-4765-81c6-dbdb1e79b9cc",
       "kind": "content",
       "markdown": [
-        "# And This Just Because It Is Fun",
+        "# Aaron Dudar",
         "",
         "Show YouTube video"
       ],
       "title": [
-        "And This Just Because It Is Fun"
+        "Aaron Dudar"
       ],
       "body": [
         "Show YouTube video"
@@ -1286,7 +1328,10 @@
       "markdown": [
         "# 2026 — OO Programming (Shape Editor)",
         "",
-        "- Build tasks were small: implement **Square** and **Circle** in ~50 lines each.",
+        "Build tasks: implement:",
+        "- **Square**",
+        "- **Circle** ",
+        "- Roughly ~50 lines each.",
         "",
         "- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).",
         "",
@@ -1298,7 +1343,10 @@
         "2026 — OO Programming (Shape Editor)"
       ],
       "body": [
-        "- Build tasks were small: implement **Square** and **Circle** in ~50 lines each.",
+        "Build tasks: implement:",
+        "- **Square**",
+        "- **Circle** ",
+        "- Roughly ~50 lines each.",
         "",
         "- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).",
         "",
@@ -1313,7 +1361,7 @@
       "id": "6c4b7202-bfc2-406b-b92a-ca4e187e66eb",
       "kind": "content",
       "title": [
-        "Replacing Rote with Rich expiences"
+        "Replacing Rote with Rich experiences"
       ],
       "body": [
         "REST ",
@@ -1325,7 +1373,7 @@
         "- Deep experience"
       ],
       "markdown": [
-        "# Replacing Rote with Rich expiences",
+        "# Replacing Rote with Rich experiences",
         "",
         "REST ",
         "- Previous, lecture",
@@ -1383,7 +1431,7 @@
       "markdown": [
         "# Vibe vs Conversational",
         "",
-        "This slide editor is mostly vibe LLM produced ",
+        "This slide editor is conversationally LLM produced ",
         "",
         "FOR **S** in SLIDES",
         "-  layout.insert(**S**).layout()",
@@ -1400,7 +1448,7 @@
         "Vibe vs Conversational"
       ],
       "body": [
-        "This slide editor is mostly vibe LLM produced ",
+        "This slide editor is conversationally LLM produced ",
         "",
         "FOR **S** in SLIDES",
         "-  layout.insert(**S**).layout()",
@@ -1433,7 +1481,8 @@
         "",
         "",
         "# Make them Magic Makers",
-        "- Learn the spells in the context of making magic."
+        "- Learn spells.",
+        "- While making magic."
       ],
       "title": [
         "Lets bring Magic into the classroom"
@@ -1450,7 +1499,8 @@
         "",
         "",
         "# Make them Magic Makers",
-        "- Learn the spells in the context of making magic."
+        "- Learn spells.",
+        "- While making magic."
       ],
       "image_prompt": "Magicians graduating from magic school",
       "credits": false
@@ -1459,29 +1509,48 @@
       "id": "b234d7ad-276e-4014-b6de-265de40a376d",
       "kind": "content",
       "markdown": [
-        "# Let's Build",
+        "# Dr Richard Caron",
         "",
         "# Dr Richard Caron",
-        "- **1983** — numerical analysis: Never before have we been so capable of **computing numbers**, **our job** is to ensure they are **correct**.",
+        "- **1983** — numerical analysis:",
+        "- Never before have we been so capable of **computing numbers so many numbers**",
         "",
-        "# Me (with respect to Dr Caron)",
-        "- Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.",
-        "",
-        "# Let us practice building."
+        "- **Our job** is to ensure they are **correct**."
       ],
+      "title": [
+        "Dr Richard Caron"
+      ],
+      "body": [
+        "# Dr Richard Caron",
+        "- **1983** — numerical analysis:",
+        "- Never before have we been so capable of **computing numbers so many numbers**",
+        "",
+        "- **Our job** is to ensure they are **correct**."
+      ],
+      "image_prompt": "Me saluting Dr. Caron",
+      "credits": false
+    },
+    {
+      "id": "34dddea5-d1fe-4763-ab55-b4ec95720808",
+      "kind": "content",
       "title": [
         "Let's Build"
       ],
       "body": [
-        "# Dr Richard Caron",
-        "- **1983** — numerical analysis: Never before have we been so capable of **computing numbers**, **our job** is to ensure they are **correct**.",
+        "# Me (with respect to Dr Caron)",
+        "- Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.",
+        "",
+        "# Let us practice building."
+      ],
+      "markdown": [
+        "# Let's Build",
         "",
         "# Me (with respect to Dr Caron)",
         "- Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.",
         "",
         "# Let us practice building."
       ],
-      "image_prompt": "Me saluting Dr. Caron",
+      "image_prompt": "",
       "credits": false
     },
     {
