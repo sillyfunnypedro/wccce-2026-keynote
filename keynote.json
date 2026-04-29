@@ -71,7 +71,7 @@
       "markdown": [
         "# Back to academia, thinking LLM-forward together",
         "",
-        "I came back to academia excited about how LLMs are reshaping what it means to build.",
+        "I came back to academia excited about how LLMs are reshaping what it means to learn.",
         "",
         "",
         "",
@@ -82,7 +82,7 @@
         "Back to academia, thinking LLM-forward together"
       ],
       "body": [
-        "I came back to academia excited about how LLMs are reshaping what it means to build.",
+        "I came back to academia excited about how LLMs are reshaping what it means to learn.",
         "",
         "",
         "",
@@ -1465,6 +1465,39 @@
       "credits": false
     },
     {
+      "id": "daebdf35-9a3d-48c6-875d-672114840366",
+      "kind": "content",
+      "title": [
+        "This Talk Is Open Source"
+      ],
+      "body": [
+        "# github.com/sillyfunnypedro/wccce-2026-keynote",
+        "",
+        "The slides, the editor, the JSON deck, the image generator — all of it.",
+        "",
+        "- Built with **conversational programming**",
+        "- The slide editor is itself a product of the methodology",
+        "- Fork it, break it, make it yours",
+        "",
+        "**Every slide you just saw was authored in this tool.**"
+      ],
+      "markdown": [
+        "# This Talk Is Open Source",
+        "",
+        "# github.com/sillyfunnypedro/wccce-2026-keynote",
+        "",
+        "The slides, the editor, the JSON deck, the image generator — all of it.",
+        "",
+        "- Built with **conversational programming**",
+        "- The slide editor is itself a product of the methodology",
+        "- Fork it, break it, make it yours",
+        "",
+        "**Every slide you just saw was authored in this tool.**"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
       "id": "0352a509-8b64-4c48-839b-2e2789faff37",
       "kind": "content",
       "markdown": [
@@ -1511,9 +1544,11 @@
       "markdown": [
         "# Dr Richard Caron",
         "",
-        "# Dr Richard Caron",
-        "- **1983** — numerical analysis:",
-        "- Never before have we been so capable of **computing numbers so many numbers**",
+        "# 1983 — numerical analysis:",
+        "",
+        "Opened class with this statement:",
+        "",
+        "- *Never before have we been so capable of computing numbers, oh so many numbers!*",
         "",
         "- **Our job** is to ensure they are **correct**."
       ],
@@ -1521,69 +1556,100 @@
         "Dr Richard Caron"
       ],
       "body": [
-        "# Dr Richard Caron",
-        "- **1983** — numerical analysis:",
-        "- Never before have we been so capable of **computing numbers so many numbers**",
+        "# 1983 — numerical analysis:",
+        "",
+        "Opened class with this statement:",
+        "",
+        "- *Never before have we been so capable of computing numbers, oh so many numbers!*",
         "",
         "- **Our job** is to ensure they are **correct**."
       ],
-      "image_prompt": "Me saluting Dr. Caron",
+      "image_prompt": "A person at a conveyor belt with numbers coming donw them. the person sits at a 'correctness station'",
       "credits": false
     },
     {
       "id": "34dddea5-d1fe-4763-ab55-b4ec95720808",
       "kind": "content",
       "title": [
-        "Let's Build"
+        "With deep respect for Dr. Caron"
       ],
       "body": [
-        "# Me (with respect to Dr Caron)",
-        "- Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.",
+        "*Never before have we been able to generate so much code *",
         "",
-        "# Let us practice building."
+        "**Oooooh sooooo much code.**",
+        "",
+        "**Our job** is to teach our students to do that **correctly**."
       ],
       "markdown": [
-        "# Let's Build",
+        "# With deep respect for Dr. Caron",
         "",
-        "# Me (with respect to Dr Caron)",
-        "- Never before have we been able to **generate so much code**. **Our job** is to teach our students to do that **correctly**.",
+        "*Never before have we been able to generate so much code *",
         "",
-        "# Let us practice building."
+        "**Oooooh sooooo much code.**",
+        "",
+        "**Our job** is to teach our students to do that **correctly**."
       ],
-      "image_prompt": "",
+      "image_prompt": "A person sitting at a conveyor belt with heaps of computer code coming down the conveyor belt.  They have a tape measure in hand andthey are measuring the code.  To the side there is a correct, and failed bucket.",
       "credits": false
     },
     {
-      "id": "daebdf35-9a3d-48c6-875d-672114840366",
+      "id": "bd369165-0b35-4105-8898-137acf506907",
       "kind": "content",
       "title": [
-        "This Talk Is Open Source"
+        "Let's Be Builders"
       ],
       "body": [
-        "# github.com/sillyfunnypedro/wccce-2026-keynote",
+        "When we embrace and use the tools",
         "",
-        "The slides, the editor, the JSON deck, the image generator — all of it.",
+        "We can give magic to our students.",
         "",
-        "- Built with **conversational programming**",
-        "- The slide editor is itself a product of the methodology",
-        "- Fork it, break it, make it yours",
+        "They see the magic",
         "",
-        "**Every slide you just saw was authored in this tool.**"
+        "They become builders/magicians"
       ],
       "markdown": [
-        "# This Talk Is Open Source",
+        "# Let's Be Builders",
         "",
-        "# github.com/sillyfunnypedro/wccce-2026-keynote",
+        "When we embrace and use the tools",
         "",
-        "The slides, the editor, the JSON deck, the image generator — all of it.",
+        "We can give magic to our students.",
         "",
-        "- Built with **conversational programming**",
-        "- The slide editor is itself a product of the methodology",
-        "- Fork it, break it, make it yours",
+        "They see the magic",
         "",
-        "**Every slide you just saw was authored in this tool.**"
+        "They become builders/magicians"
       ],
-      "image_prompt": "",
+      "image_prompt": "A person in a magic studio with heaps of spells and incantations surrunding them and a sign above their shop.  \"Magic Here!\"",
+      "credits": false
+    },
+    {
+      "id": "b55321a1-bbd5-4ab5-8c45-3a4e223c3e60",
+      "kind": "content",
+      "markdown": [
+        "# (つ✧ω✧)つ",
+        "",
+        "Every one of you is here because:",
+        "",
+        "- You care about the students",
+        "- You want them succeed",
+        "",
+        "Why else would we be here.",
+        "",
+        "# THANK YOU"
+      ],
+      "title": [
+        "(つ✧ω✧)つ"
+      ],
+      "body": [
+        "Every one of you is here because:",
+        "",
+        "- You care about the students",
+        "- You want them succeed",
+        "",
+        "Why else would we be here.",
+        "",
+        "# THANK YOU"
+      ],
+      "image_prompt": "a  master wizard with his arm around a novice",
       "credits": false
     },
     {

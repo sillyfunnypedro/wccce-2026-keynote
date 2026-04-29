@@ -1573,7 +1573,7 @@ class SlideEditorApp:
             sb.set(*args)
             if self._vis_update_job is not None:
                 root.after_cancel(self._vis_update_job)
-            self._vis_update_job = root.after(100, self._update_row_visibility)
+            self._vis_update_job = root.after(300, self._update_row_visibility)
 
         self._scroll_canvas.configure(yscrollcommand=_on_scroll_changed)
 
@@ -1951,7 +1951,7 @@ class SlideEditorApp:
             view_top = int(yview[0] * total_h)
             view_bot = int(yview[1] * total_h)
             # Add generous margin so rows expand before they scroll into view
-            margin = canvas_h
+            margin = canvas_h * 3
             vis_top = max(0, view_top - margin)
             vis_bot = view_bot + margin
         except tk.TclError:
@@ -2026,18 +2026,28 @@ class SlideEditorApp:
         if not sid:
             return
         rows = getattr(self, "rows", None) or []
-        target = next((r for r in rows if r.slide_id == sid), None)
-        if target is None:
+        target_idx = None
+        for i, r in enumerate(rows):
+            if r.slide_id == sid:
+                target_idx = i
+                break
+        if target_idx is None:
             return
 
-        # Expand the target and a few neighbors so the scroll position is meaningful.
-        target_idx = next((i for i, r in enumerate(rows) if r.slide_id == sid), None)
-        if target_idx is not None:
-            for i in range(max(0, target_idx - 2), min(len(rows), target_idx + 5)):
-                rows[i].expand()
-
+        target = rows[target_idx]
         canvas = self._scroll_canvas
+
         try:
+            # Expand the target and a window around it; collapse everything else.
+            # This gives us an accurate y-position for the target.
+            vis_start = max(0, target_idx - 5)
+            vis_end = min(len(rows), target_idx + 8)
+            for i, r in enumerate(rows):
+                if vis_start <= i < vis_end:
+                    r.expand()
+                else:
+                    r.collapse()
+
             canvas.update_idletasks()
             bbox = canvas.bbox("all")
             if not bbox:
@@ -2046,9 +2056,10 @@ class SlideEditorApp:
             if total_h <= 0:
                 return
             y = max(0, target.winfo_y() - 8)
-            canvas.yview_moveto(max(0.0, min(1.0, y / total_h)))
             canvas.configure(scrollregion=bbox)
-            # Trigger visibility update to collapse rows that are now off-screen
+            canvas.yview_moveto(max(0.0, min(1.0, y / total_h)))
+
+            # Deferred: re-run full visibility check to expand/collapse based on final viewport
             if self._vis_update_job is not None:
                 self.root.after_cancel(self._vis_update_job)
             self._vis_update_job = self.root.after(200, self._update_row_visibility)
@@ -2257,7 +2268,7 @@ class SlideEditorApp:
         except tk.TclError:
             canvas_h = 800
         # Expand rows until we fill roughly 2 screens worth
-        budget = canvas_h * 2
+        budget = canvas_h * 4
         used = 0
         for row in self.rows:
             row.expand()
