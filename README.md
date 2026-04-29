@@ -358,14 +358,6 @@ Start with a minimal `keynote.json`:
 
 Then open it in the editor and use **Insert above** to add slides.
 
-Alternatively, if you have a markdown file with `---` slide separators, import it:
-
-```bash
-python keynote_deck.py import your-talk.md your-deck.json
-```
-
-This creates a deck with one slide per section, each with a fresh UUID.
-
 ### Customize the visual style
 
 Edit `global_style.md` to change the art direction for all generated images. The current file defines an XKCD-style black-and-white line drawing aesthetic — replace it with whatever suits your talk.
@@ -377,13 +369,3 @@ python generate_slides.py --input keynote.json --output slides.pptx --images sli
 ```
 
 This builds a `.pptx` file with your slide content and images. The exporter uses the `kind` field to pick layouts (title slides, content slides, quote slides).
-
-### Migrate numbered images to UUID filenames
-
-If you have images named `00.png`, `01.png`, etc. (from an older workflow), migrate them:
-
-```bash
-python keynote_deck.py migrate-images keynote.json slide_images/
-```
-
-This copies `NN.png` → `{slide-id}.png` in deck order without deleting the originals.
