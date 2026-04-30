@@ -64,18 +64,18 @@
       "body": [
         "# This was not planned",
         "",
-        "This talk is really about **course design** — ",
-        "- How can we use the current environment",
-        "- To deliver engaging learning opportunities."
+        "Talked about **course design**",
+        "",
+        "I will follow this same theme."
       ],
       "markdown": [
         "# Humbly Following Cinda",
         "",
         "# This was not planned",
         "",
-        "This talk is really about **course design** — ",
-        "- How can we use the current environment",
-        "- To deliver engaging learning opportunities."
+        "Talked about **course design**",
+        "",
+        "I will follow this same theme."
       ],
       "image_prompt": "",
       "credits": false
@@ -114,61 +114,38 @@
       "credits": false
     },
     {
-      "id": "3f26df8b-61b9-4cfb-9eb6-7796406882ab",
-      "kind": "content",
-      "markdown": [
-        "# Back to academia, thinking LLM-forward together",
-        "",
-        "I came back to academia excited about how LLMs are reshaping what it means to learn.",
-        "",
-        "",
-        "",
-        "# I had no idea ",
-        "- how crazy this would become"
-      ],
-      "title": [
-        "Back to academia, thinking LLM-forward together"
-      ],
-      "body": [
-        "I came back to academia excited about how LLMs are reshaping what it means to learn.",
-        "",
-        "",
-        "",
-        "# I had no idea ",
-        "- how crazy this would become"
-      ],
-      "image_prompt": "Me leaving industry with a attache case stuffed with papers labelled questions\n\nIndustry in in the background and i am heading towards the ivory tower which is under attack by AI",
-      "credits": false
-    },
-    {
       "id": "188c4a57-422c-496f-9e0e-fd9203b61ec0",
       "kind": "content",
       "title": [
-        "Back to academia, thinking LLM-forward together (cont.)"
+        "How do we use the LLM landscape to help learners"
       ],
       "body": [
         "- Industry is moving there",
-        "- I want to know how to use them",
+        "- I want to know how to use LLMs",
         "- So I can help my students learn",
         "",
         "# The fun? ",
         "",
         "- We're figuring out together",
         "",
-        "- Both here at Khoury and with all'y'all"
+        "- Both here at Khoury",
+        "",
+        "- And with all'y'all"
       ],
       "markdown": [
-        "# Back to academia, thinking LLM-forward together (cont.)",
+        "# How do we use the LLM landscape to help learners",
         "",
         "- Industry is moving there",
-        "- I want to know how to use them",
+        "- I want to know how to use LLMs",
         "- So I can help my students learn",
         "",
         "# The fun? ",
         "",
         "- We're figuring out together",
         "",
-        "- Both here at Khoury and with all'y'all"
+        "- Both here at Khoury",
+        "",
+        "- And with all'y'all"
       ],
       "image_prompt": "Everyone is thingking about AI industry and academia.   Its everywhere.",
       "credits": false
@@ -179,29 +156,31 @@
       "markdown": [
         "# Vibe Coding vs Conversational Programming",
         "",
-        "# Vibe Coding",
-        "- **No CS knowledge needed** — just describe the vibe and see what happens.",
+        "# Vibe Coding **No CS needed**",
+        "- Just see what happens.",
         "",
         "# Conversational Programming",
-        "- **Collaborative** — engineers and LLMs work as a team.",
-        "- The LLM is a **partner**, sparking innovation, not just providing answers.",
-        "- We lead on design, review, testing, and outcomes.",
+        "- Engineers and LLMs work as a team.",
         "",
-        "By the end of this talk, you'll see why this distinction matters."
+        "Our students will:",
+        "- design, ",
+        "- review",
+        "- and test outcomes."
       ],
       "title": [
         "Vibe Coding vs Conversational Programming"
       ],
       "body": [
-        "# Vibe Coding",
-        "- **No CS knowledge needed** — just describe the vibe and see what happens.",
+        "# Vibe Coding **No CS needed**",
+        "- Just see what happens.",
         "",
         "# Conversational Programming",
-        "- **Collaborative** — engineers and LLMs work as a team.",
-        "- The LLM is a **partner**, sparking innovation, not just providing answers.",
-        "- We lead on design, review, testing, and outcomes.",
+        "- Engineers and LLMs work as a team.",
         "",
-        "By the end of this talk, you'll see why this distinction matters."
+        "Our students will:",
+        "- design, ",
+        "- review",
+        "- and test outcomes."
       ],
       "image_prompt": "In a modern office setting, a product manager is engaged in a casual discussion with an engineering team. The manager, seated at a conference table with a laptop open, is animatedly gesturing while explaining a product concept, illustrating the vibe of their approach. On the opposite side, an engineer with a notepad is actively taking notes, participating in the dialogue, and sharing insights. Behind them, sketches of product design and security checklists are pinned on a whiteboard, emphasizing the collaborative environment and focus on security and quality in product development. The composition highlights the dynamic interaction between vibe coding and conversational programming, signifying the importance of collaboration and ownership in building successful products.",
       "credits": false
@@ -444,6 +423,33 @@
         "Well it is magic."
       ],
       "image_prompt": "A magician casting a spell before an audience who is enthralled.",
+      "credits": false
+    },
+    {
+      "id": "2c155803-8ca0-4672-a9d6-cc8b4fb991cc",
+      "kind": "content",
+      "markdown": [
+        "# 1977",
+        "",
+        "- **John Loader**, maths teacher — got an account at the **University of Sussex**.",
+        "- He taught us programming (I think **FORTRAN**).",
+        "- We filled out **mark-sense cards**.",
+        "- We **mailed them in**.",
+        "- I got mine back — my incantation had been **cursed**.",
+        "- Curse this computer thing."
+      ],
+      "title": [
+        "1977"
+      ],
+      "body": [
+        "- **John Loader**, maths teacher — got an account at the **University of Sussex**.",
+        "- He taught us programming (I think **FORTRAN**).",
+        "- We filled out **mark-sense cards**.",
+        "- We **mailed them in**.",
+        "- I got mine back — my incantation had been **cursed**.",
+        "- Curse this computer thing."
+      ],
+      "image_prompt": "",
       "credits": false
     },
     {
@@ -1187,6 +1193,91 @@
       "credits": false
     },
     {
+      "id": "014d8eb7-62a7-42f7-a8b0-2874beef2097",
+      "kind": "content",
+      "title": [
+        "Graphics — Course Cadence"
+      ],
+      "body": [
+        "# In class",
+        "- Software renderer — built from scratch together",
+        "",
+        "# Projects and homework",
+        "- OpenGL — the real hardware pipeline",
+        "",
+        "# LLM helped me prepare each class code harness",
+        "- I could focus on teaching, not boilerplate"
+      ],
+      "markdown": [
+        "# Graphics — Course Cadence",
+        "",
+        "# In class",
+        "- Software renderer — built from scratch together",
+        "",
+        "# Projects and homework",
+        "- OpenGL — the real hardware pipeline",
+        "",
+        "# LLM helped me prepare each class code harness",
+        "- I could focus on teaching, not boilerplate"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "937e1914-3e5d-408e-a6d4-33d8661a52f1",
+      "kind": "content",
+      "title": [
+        "Graphics — What They Built"
+      ],
+      "body": [
+        "- Triangle shading",
+        "",
+        "- Transformations",
+        "",
+        "- Camera transformation",
+        "",
+        "- Scenes",
+        "",
+        "All in the software renderer first, then again in OpenGL."
+      ],
+      "markdown": [
+        "# Graphics — What They Built",
+        "",
+        "- Triangle shading",
+        "",
+        "- Transformations",
+        "",
+        "- Camera transformation",
+        "",
+        "- Scenes",
+        "",
+        "All in the software renderer first, then again in OpenGL."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "c186bcd3-4fcc-4ca2-b34a-da58bdc2e56e",
+      "kind": "content",
+      "title": [
+        "Graphics — The Result"
+      ],
+      "body": [
+        "Students had **fewer questions about OpenGL** because they understood **why** the data had to be set up in such a meticulous way.",
+        "",
+        "The software renderer made the hardware pipeline make sense."
+      ],
+      "markdown": [
+        "# Graphics — The Result",
+        "",
+        "Students had **fewer questions about OpenGL** because they understood **why** the data had to be set up in such a meticulous way.",
+        "",
+        "The software renderer made the hardware pipeline make sense."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
       "id": "a26362d3-08e7-4245-8f4e-0db9a0891bf3",
       "kind": "content",
       "markdown": [
@@ -1222,10 +1313,64 @@
       "credits": false
     },
     {
+      "id": "c72fec52-e6f1-401f-b211-548506d27fe1",
+      "kind": "content",
+      "title": [
+        "SE — The Problem"
+      ],
+      "body": [
+        "In a previous course, lecture material was in TypeScript.",
+        "",
+        "Students never exercised the option to use Python.",
+        "",
+        "They thought **REST = TypeScript**."
+      ],
+      "markdown": [
+        "# SE — The Problem",
+        "",
+        "In a previous course, lecture material was in TypeScript.",
+        "",
+        "Students never exercised the option to use Python.",
+        "",
+        "They thought **REST = TypeScript**."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "42119cc8-2071-4122-8dfd-2b090bfc4dca",
+      "kind": "content",
+      "title": [
+        "SE — The Result"
+      ],
+      "body": [
+        "Students were **incredibly engaged**.",
+        "",
+        "In class they partitioned the problem, picked their languages, and solved it.",
+        "",
+        "In the final project I saw **different languages for the backend** — Go, Python, Rust, C#.",
+        "",
+        "The myth was busted."
+      ],
+      "markdown": [
+        "# SE — The Result",
+        "",
+        "Students were **incredibly engaged**.",
+        "",
+        "In class they partitioned the problem, picked their languages, and solved it.",
+        "",
+        "In the final project I saw **different languages for the backend** — Go, Python, Rust, C#.",
+        "",
+        "The myth was busted."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
       "id": "944535fe-6203-4fed-a5c1-e8c7bb8b6b92",
       "kind": "content",
       "markdown": [
-        "# See It In Action",
+        "# See It In Action (Carlos Semeho Edorh)",
         "",
         "Carlos built a game engine across four languages. Python, Java, C++, TypeScript — all of it.",
         "",
@@ -1236,7 +1381,7 @@
         "That's what builders do. They take what they're learning and make something that works."
       ],
       "title": [
-        "See It In Action"
+        "See It In Action (Carlos Semeho Edorh)"
       ],
       "body": [
         "Carlos built a game engine across four languages. Python, Java, C++, TypeScript — all of it.",
@@ -1281,6 +1426,80 @@
         "**Reading systems**",
         "**Using systems**",
         "**Building games while learning**"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "0b99e17a-524c-402b-b130-becdb60e915b",
+      "kind": "content",
+      "title": [
+        "Game Engine — Foundations"
+      ],
+      "body": [
+        "- Lesson 00: Start",
+        "- Lesson 10: Timer",
+        "- Lesson 15: Heads-Up Display",
+        "- Lesson 18: Baby GameObject",
+        "- Lesson 20: Baby Movement",
+        "- Lesson 25: Behavior Abstraction",
+        "- Lesson 30: Event System",
+        "- Lesson 31: Components",
+        "- Lesson 32: ECS",
+        "- Lesson 33: Event System (refined)",
+        "- Lesson 34: Collision System"
+      ],
+      "markdown": [
+        "# Game Engine — Foundations",
+        "",
+        "- Lesson 00: Start",
+        "- Lesson 10: Timer",
+        "- Lesson 15: Heads-Up Display",
+        "- Lesson 18: Baby GameObject",
+        "- Lesson 20: Baby Movement",
+        "- Lesson 25: Behavior Abstraction",
+        "- Lesson 30: Event System",
+        "- Lesson 31: Components",
+        "- Lesson 32: ECS",
+        "- Lesson 33: Event System (refined)",
+        "- Lesson 34: Collision System"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "e2e4140d-724a-4a63-994e-0e6b3c23a777",
+      "kind": "content",
+      "title": [
+        "Game Engine — Advanced"
+      ],
+      "body": [
+        "- Lesson 41: Clean Events",
+        "- Lesson 45: Space Partitioning",
+        "- Lesson 50: ECS Cleanup",
+        "- Lesson 60: Match3",
+        "- Lesson 70: Physics",
+        "- Lesson 75: Audio",
+        "- Lesson 78: Network",
+        "- Lesson 80: Test-Driven ECS",
+        "- Lesson 99: Final Project",
+        "",
+        "Four languages. One engine. Students **reading, using, and building** the whole way."
+      ],
+      "markdown": [
+        "# Game Engine — Advanced",
+        "",
+        "- Lesson 41: Clean Events",
+        "- Lesson 45: Space Partitioning",
+        "- Lesson 50: ECS Cleanup",
+        "- Lesson 60: Match3",
+        "- Lesson 70: Physics",
+        "- Lesson 75: Audio",
+        "- Lesson 78: Network",
+        "- Lesson 80: Test-Driven ECS",
+        "- Lesson 99: Final Project",
+        "",
+        "Four languages. One engine. Students **reading, using, and building** the whole way."
       ],
       "image_prompt": "",
       "credits": false
@@ -1406,6 +1625,43 @@
       "credits": false
     },
     {
+      "id": "7f3db5e1-76a4-4897-aa09-3044b8324ddb",
+      "kind": "content",
+      "title": [
+        "5001/5002 — Student Projects"
+      ],
+      "body": [
+        "# Paint Wars",
+        "- Recursion and flood fill",
+        "- Students implemented the recursion and could play against each other",
+        "",
+        "# DnD Card Selector",
+        "- Probabilities and Monte Carlo",
+        "- Students got to understand probability through simulation",
+        "",
+        "# Dijkstra Real-Time Delivery",
+        "- Real-time delivery routing in Vancouver",
+        "- Students could see their delivery truck running in real time"
+      ],
+      "markdown": [
+        "# 5001/5002 — Student Projects",
+        "",
+        "# Paint Wars",
+        "- Recursion and flood fill",
+        "- Students implemented the recursion and could play against each other",
+        "",
+        "# DnD Card Selector",
+        "- Probabilities and Monte Carlo",
+        "- Students got to understand probability through simulation",
+        "",
+        "# Dijkstra Real-Time Delivery",
+        "- Real-time delivery routing in Vancouver",
+        "- Students could see their delivery truck running in real time"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
       "id": "c10fad7d-99ae-4c0b-a078-6c1e40100221",
       "kind": "content",
       "markdown": [
@@ -1436,6 +1692,121 @@
         "- Testing literacy was larger still: explain unit tests across ~**2000 lines**.",
         "",
         "- Goal: tiny feature work plus deep system reading and explanation."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "2906e379-ed9a-44a2-9ba0-5057f45d6bcb",
+      "kind": "content",
+      "title": [
+        "OO — 2D Minecraft"
+      ],
+      "body": [
+        "# Final project: 2D Minecraft",
+        "- MVC understanding",
+        "",
+        "# Part 1",
+        "- Implement the model for the blocks",
+        "- Automatic runners so students could see their code running",
+        "",
+        "# Part 2",
+        "- Implement keyboard and mouse input",
+        "- **Without modifying the model**",
+        "- Controller could only accept **game events**, not input events",
+        "- Map mouse click to one of **UIOJKL** if offset was 1, none elsewhere"
+      ],
+      "markdown": [
+        "# OO — 2D Minecraft",
+        "",
+        "# Final project: 2D Minecraft",
+        "- MVC understanding",
+        "",
+        "# Part 1",
+        "- Implement the model for the blocks",
+        "- Automatic runners so students could see their code running",
+        "",
+        "# Part 2",
+        "- Implement keyboard and mouse input",
+        "- **Without modifying the model**",
+        "- Controller could only accept **game events**, not input events",
+        "- Map mouse click to one of **UIOJKL** if offset was 1, none elsewhere"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "46614046-f68c-47ec-9233-e1252c4784f1",
+      "kind": "content",
+      "title": [
+        "OO — Code Walk"
+      ],
+      "body": [
+        "Students were responsible for explaining how events in mouse and keyboard impacted the game.",
+        "",
+        "The full chain: input → event mapping → controller → model → view.",
+        "",
+        "No shortcuts. They had to trace it."
+      ],
+      "markdown": [
+        "# OO — Code Walk",
+        "",
+        "Students were responsible for explaining how events in mouse and keyboard impacted the game.",
+        "",
+        "The full chain: input → event mapping → controller → model → view.",
+        "",
+        "No shortcuts. They had to trace it."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "f7b4932d-db78-480a-94c6-ee4345450fb0",
+      "kind": "content",
+      "title": [
+        "OO — Adapters and Strategy (placeholder)"
+      ],
+      "body": [
+        "Placeholder — adapters and strategy assignment details to come."
+      ],
+      "markdown": [
+        "# OO — Adapters and Strategy (placeholder)",
+        "",
+        "Placeholder — adapters and strategy assignment details to come."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "60ce7a9c-4c6d-420c-8c92-44700ad2da75",
+      "kind": "content",
+      "title": [
+        "OO — Adapters and Strategy II (placeholder)"
+      ],
+      "body": [
+        "Placeholder — more details to come."
+      ],
+      "markdown": [
+        "# OO — Adapters and Strategy II (placeholder)",
+        "",
+        "Placeholder — more details to come."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "823de9d1-bd44-463e-bc28-ac6b1eccb8e6",
+      "kind": "content",
+      "title": [
+        "OO — Adapters and Strategy III (placeholder)"
+      ],
+      "body": [
+        "Placeholder — more details to come."
+      ],
+      "markdown": [
+        "# OO — Adapters and Strategy III (placeholder)",
+        "",
+        "Placeholder — more details to come."
       ],
       "image_prompt": "",
       "credits": false
@@ -2274,33 +2645,6 @@
         "- **Back to building** — what we keep circling.",
         "- Industry does not want **A+ students** who can only **recite the spells**.",
         "- It wants **skilled magicians** who **use** them to **delight customers**."
-      ],
-      "image_prompt": "",
-      "credits": false
-    },
-    {
-      "id": "2c155803-8ca0-4672-a9d6-cc8b4fb991cc",
-      "kind": "content",
-      "markdown": [
-        "# 1977",
-        "",
-        "- **John Loader**, maths teacher — got an account at the **University of Sussex**.",
-        "- He taught us programming (I think **FORTRAN**).",
-        "- We filled out **mark-sense cards**.",
-        "- We **mailed them in**.",
-        "- I got mine back — my incantation had been **cursed**.",
-        "- Curse this computer thing."
-      ],
-      "title": [
-        "1977"
-      ],
-      "body": [
-        "- **John Loader**, maths teacher — got an account at the **University of Sussex**.",
-        "- He taught us programming (I think **FORTRAN**).",
-        "- We filled out **mark-sense cards**.",
-        "- We **mailed them in**.",
-        "- I got mine back — my incantation had been **cursed**.",
-        "- Curse this computer thing."
       ],
       "image_prompt": "",
       "credits": false
