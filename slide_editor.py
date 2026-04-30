@@ -1603,6 +1603,8 @@ class SlideEditorApp:
 
         root.bind_all("<Up>", lambda _e: self._navigate(-1))
         root.bind_all("<Down>", lambda _e: self._navigate(1))
+        root.bind_all("<Left>", lambda _e: self._navigate(-1))
+        root.bind_all("<Right>", lambda _e: self._navigate(1))
 
         self.root.after_idle(self._bootstrap_slide_rows)
         self.root.update_idletasks()
