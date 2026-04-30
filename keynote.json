@@ -39,12 +39,43 @@
         "Land Acknowledgment"
       ],
       "body": [
+        "-",
+        "",
+        "",
         "We acknowledge that the land on which we gather is the unceded territory of the Coast Salish Peoples, including the territories of the xʷməθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh (Squamish), and səl̓ílwətaɬ (Tsleil-Waututh) Nations."
       ],
       "markdown": [
         "# Land Acknowledgment",
         "",
+        "-",
+        "",
+        "",
         "We acknowledge that the land on which we gather is the unceded territory of the Coast Salish Peoples, including the territories of the xʷməθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh (Squamish), and səl̓ílwətaɬ (Tsleil-Waututh) Nations."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "f6516e9f-de80-4a03-a4f3-14f5a58a48b5",
+      "kind": "content",
+      "title": [
+        "Humbly Following Cinda"
+      ],
+      "body": [
+        "# This was not planned",
+        "",
+        "This talk is really about **course design** — ",
+        "- How can we use the current environment",
+        "- To deliver engaging learning opportunities."
+      ],
+      "markdown": [
+        "# Humbly Following Cinda",
+        "",
+        "# This was not planned",
+        "",
+        "This talk is really about **course design** — ",
+        "- How can we use the current environment",
+        "- To deliver engaging learning opportunities."
       ],
       "image_prompt": "",
       "credits": false
@@ -1191,6 +1222,35 @@
       "credits": false
     },
     {
+      "id": "944535fe-6203-4fed-a5c1-e8c7bb8b6b92",
+      "kind": "content",
+      "markdown": [
+        "# See It In Action",
+        "",
+        "Carlos built a game engine across four languages. Python, Java, C++, TypeScript — all of it.",
+        "",
+        "He didn't just learn the theory. He shipped something real.",
+        "",
+        "Check it out: dotman.edcartech.com",
+        "",
+        "That's what builders do. They take what they're learning and make something that works."
+      ],
+      "title": [
+        "See It In Action"
+      ],
+      "body": [
+        "Carlos built a game engine across four languages. Python, Java, C++, TypeScript — all of it.",
+        "",
+        "He didn't just learn the theory. He shipped something real.",
+        "",
+        "Check it out: dotman.edcartech.com",
+        "",
+        "That's what builders do. They take what they're learning and make something that works."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
       "id": "8b3b0619-254b-477d-aaef-ded5df8bded9",
       "kind": "content",
       "markdown": [
@@ -1824,7 +1884,9 @@
         "",
         "- **Whoever named \"Mount Pleasant\"**, because that is aspirational marketing",
         "",
-        "- **The crows**, for organizing better than most committees I've been on"
+        "- **The crows**, for organizing better than most committees I've been on",
+        "",
+        "- 📎 **Paperclip**, for holding things together"
       ],
       "title": [
         "Credits"
@@ -1957,7 +2019,9 @@
         "",
         "- **Whoever named \"Mount Pleasant\"**, because that is aspirational marketing",
         "",
-        "- **The crows**, for organizing better than most committees I've been on"
+        "- **The crows**, for organizing better than most committees I've been on",
+        "",
+        "- 📎 **Paperclip**, for holding things together"
       ],
       "image_prompt": "",
       "credits": true
