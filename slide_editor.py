@@ -1020,6 +1020,32 @@ class SlideRow(tk.Frame):
             )
             self._slide_card_text.grid_configure(padx=SLIDE_CARD_TEXT_PADX_NO_IMG)
 
+    def reload_slide(self, spec: dict, index: int) -> None:
+        """Populate this widget with data from a different slide spec (in-place navigation)."""
+        self.index = index
+        self.slide_id = str(spec.get("id", "")).strip()
+        self._preview_title = str(spec.get("title", f"Slide {index}"))
+        self._preview_body = str(spec.get("body", ""))
+        self._prompt_cache = str(spec.get("image_prompt", ""))
+        self._credits_cache = bool(spec.get("credits", False))
+
+        self.title_edit_var.set(self._preview_title)
+        self._top_title_label.config(text=self._title_line())
+        self._render_title_preview()
+        self._fill_body_preview()
+
+        if self._editor_built:
+            if self.body_edit is not None:
+                self.body_edit.config(state=tk.NORMAL)
+                self.body_edit.delete("1.0", tk.END)
+                self.body_edit.insert("1.0", self._preview_body)
+            if self.txt is not None:
+                self.txt.delete("1.0", tk.END)
+                self.txt.insert("1.0", self._prompt_cache)
+            self.credits_var.set(self._credits_cache)
+
+        self.refresh_preview()
+
     def _on_suggest(self) -> None:
         key = gen.load_api_key()
         if not key:
@@ -1438,17 +1464,7 @@ class SlideEditorApp:
     ):
         _init_scroll_debug_log()
         _log_scroll(f"app start cwd={Path.cwd()} log={SCROLL_DEBUG_FILE}")
-        self._last_probe_log = 0.0
-        self._drag_last_y: int | None = None
         self._autosave_after_id: str | None = None
-        self._thumb_refresh_job: str | None = None
-        self._thumb_refresh_i = 0
-        self._thumb_refresh_t0 = 0.0
-        self._bulk_thumb_refresh = False
-        self._editor_build_job: str | None = None
-        self._editor_build_i = 0
-        self._editor_build_t0 = 0.0
-        self._bulk_editor_build = False
         self._last_self_mtime_ns: int | None = None
         self._external_check_job: str | None = None
         self._external_check_interval_ms = 2000
@@ -1559,180 +1575,33 @@ class SlideEditorApp:
             fill=tk.X, padx=8, pady=(0, 6)
         )
 
-        self._scroll_canvas = tk.Canvas(root, highlightthickness=0)
-        sb = tk.Scrollbar(root, orient=tk.VERTICAL, command=self._scroll_canvas.yview)
-        self._scroll_canvas.configure(yscrollcommand=sb.set)
-        sb.pack(side=tk.RIGHT, fill=tk.Y)
-        self._scroll_canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        # Navigation bar: Prev / Next buttons + slide counter + scrub slider
+        nav_bar = tk.Frame(root)
+        nav_bar.pack(fill=tk.X, padx=8, pady=(0, 4))
+        tk.Button(nav_bar, text="◀ Prev", command=lambda: self._navigate(-1), width=8).pack(side=tk.LEFT)
+        tk.Button(nav_bar, text="Next ▶", command=lambda: self._navigate(1), width=8).pack(side=tk.LEFT, padx=(4, 0))
+        self._slide_counter = tk.StringVar(value="")
+        tk.Label(nav_bar, textvariable=self._slide_counter, font=("TkDefaultFont", 11)).pack(side=tk.LEFT, padx=(16, 8))
+        self._scale_updating = False
+        self._slide_scale = tk.Scale(
+            nav_bar,
+            from_=0,
+            to=0,
+            orient=tk.HORIZONTAL,
+            showvalue=False,
+            command=self._on_scale_change,
+        )
+        self._slide_scale.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 8))
 
-        # Debounce visibility updates on scroll
-        self._vis_update_job: str | None = None
-
-        def _on_scroll_changed(*args):
-            """Called when the scrollbar or yview changes — debounce visibility updates."""
-            sb.set(*args)
-            if self._vis_update_job is not None:
-                root.after_cancel(self._vis_update_job)
-            self._vis_update_job = root.after(300, self._update_row_visibility)
-
-        self._scroll_canvas.configure(yscrollcommand=_on_scroll_changed)
-
-        self.inner = tk.Frame(self._scroll_canvas)
-        self._inner_win = self._scroll_canvas.create_window((0, 0), window=self.inner, anchor="nw")
-
-        def _scroll(event):
-            c = self._scroll_canvas
-            delta = getattr(event, "delta", 0)
-            num = getattr(event, "num", None)
-            if sys.platform == "darwin":
-                # Magic Mouse / trackpad can send tiny delta values (e.g. +/-1).
-                if delta:
-                    steps = int(-1 * (delta / 120))
-                    if steps == 0:
-                        steps = -1 if delta > 0 else 1
-                else:
-                    steps = 0
-                _log_scroll(f"event platform=darwin delta={delta} num={num} steps={steps}")
-                if steps:
-                    c.yview_scroll(steps, "units")
-            else:
-                if event.num == 4:
-                    _log_scroll(f"event platform=other delta={delta} num={num} steps=-1")
-                    c.yview_scroll(-1, "units")
-                elif event.num == 5:
-                    _log_scroll(f"event platform=other delta={delta} num={num} steps=1")
-                    c.yview_scroll(1, "units")
-                elif delta:
-                    steps = int(-1 * (delta / 120))
-                    if steps == 0:
-                        steps = -1 if delta > 0 else 1
-                    _log_scroll(f"event platform=other delta={delta} num={num} steps={steps}")
-                    c.yview_scroll(steps, "units")
-                else:
-                    _log_scroll(f"event ignored platform=other delta={delta} num={num}")
-            return "break"
-
-        def _middle_up(_event):
-            # Convenience: middle-click anywhere on a slide scrolls upward.
-            _log_scroll("middle-click scroll up steps=-5")
-            self._scroll_canvas.yview_scroll(-5, "units")
-            return "break"
-
-        def _probe_input(event):
-            if not _scroll_debug_enabled():
-                return None
-            # Throttle only extremely noisy move/drag style events.
-            noisy = str(getattr(event, "type", "")).lower() in {"motion", "mousemove"}
-            now = time.monotonic()
-            if noisy and now - self._last_probe_log < 0.2:
-                return None
-            self._last_probe_log = now
-            cls = "?"
-            if hasattr(event, "widget"):
-                w = event.widget
-                if hasattr(w, "winfo_class"):
-                    cls = w.winfo_class()
-                elif isinstance(w, str):
-                    # Some Tk callbacks can pass widget path strings.
-                    try:
-                        cls = self.root.nametowidget(w).winfo_class()
-                    except Exception:
-                        cls = "?"
-            _log_scroll(
-                "probe "
-                f"type={getattr(event, 'type', '?')} "
-                f"widget={cls} "
-                f"delta={getattr(event, 'delta', 0)} "
-                f"num={getattr(event, 'num', None)} "
-                f"state={getattr(event, 'state', None)}"
-            )
-            return None
-
-        def _can_drag_scroll(widget: tk.Widget) -> bool:
-            # Keep text-entry widgets untouched so editing still feels native.
-            return widget.winfo_class() in {"Frame", "Canvas", "Label"}
-
-        def _drag_start(event):
-            if not _can_drag_scroll(event.widget):
-                return None
-            self._drag_last_y = int(getattr(event, "y_root", 0))
-            _log_scroll(f"drag start widget={event.widget.winfo_class()} y={self._drag_last_y}")
-            return None
-
-        def _drag_motion(event):
-            if self._drag_last_y is None or not _can_drag_scroll(event.widget):
-                return None
-            y = int(getattr(event, "y_root", 0))
-            dy = y - self._drag_last_y
-            # Positive dy means pointer moved down; content should scroll up and vice versa.
-            steps = int(-dy / 6)
-            if steps:
-                self._scroll_canvas.yview_scroll(steps, "units")
-                self._drag_last_y = y
-                _log_scroll(f"drag scroll dy={dy} steps={steps} widget={event.widget.winfo_class()}")
-                return "break"
-            return None
-
-        def _drag_end(event):
-            if self._drag_last_y is not None and _can_drag_scroll(event.widget):
-                _log_scroll(f"drag end widget={event.widget.winfo_class()} y={getattr(event, 'y_root', 0)}")
-            self._drag_last_y = None
-            return None
-
-        def _bind_scroll_handlers(widget: tk.Widget) -> None:
-            # Capture-tag runs BEFORE widget/class bindings (Text class can swallow wheel events).
-            tags = widget.bindtags()
-            if "WheelCapture" not in tags:
-                widget.bindtags(("WheelCapture",) + tags)
-                LOG.debug("bindtags WheelCapture widget=%s", widget.winfo_class())
-            if _can_drag_scroll(widget):
-                widget.bind("<ButtonPress-1>", _drag_start, add="+")
-                widget.bind("<B1-Motion>", _drag_motion, add="+")
-                widget.bind("<ButtonRelease-1>", _drag_end, add="+")
-            for child in widget.winfo_children():
-                _bind_scroll_handlers(child)
-
-        # Bind capture class once (applies to any widget that has WheelCapture in bindtags).
-        self.root.bind_class("WheelCapture", "<MouseWheel>", _scroll)
-        self.root.bind_class("WheelCapture", "<Button-4>", _scroll)
-        self.root.bind_class("WheelCapture", "<Button-5>", _scroll)
-        self.root.bind_class("WheelCapture", "<Button-2>", _middle_up)
-        self.root.bind_class("WheelCapture", "<ButtonPress-1>", _probe_input)
-        self.root.bind_class("WheelCapture", "<ButtonRelease-1>", _probe_input)
-        self.root.bind_class("WheelCapture", "<ButtonPress-2>", _probe_input)
-        self.root.bind_class("WheelCapture", "<ButtonRelease-2>", _probe_input)
-        # Do not bind Enter/Leave/Focus* to _probe_input: building the slide tree fires
-        # thousands of those events; with --debug each one opened scroll_debug.log (70s+ stalls).
-
-        self._scroll_canvas.bind("<Enter>", lambda _e: self._scroll_canvas.focus_set())
-        self._scroll_canvas.bind("<MouseWheel>", _scroll)
-        self._scroll_canvas.bind("<Button-4>", _scroll)
-        self._scroll_canvas.bind("<Button-5>", _scroll)
-        self.root.bind_all("<MouseWheel>", _scroll, add="+")
-        self.root.bind_all("<Shift-MouseWheel>", _scroll, add="+")
-        self.root.bind_all("<Option-MouseWheel>", _scroll, add="+")
-        self.root.bind_all("<Control-MouseWheel>", _scroll, add="+")
-        self.root.bind_all("<Button-4>", _scroll, add="+")
-        self.root.bind_all("<Button-5>", _scroll, add="+")
-        self.root.bind_all("<Button-2>", _middle_up, add="+")
-
-        def _on_canvas_configure(event):
-            self._scroll_canvas.itemconfig(self._inner_win, width=event.width)
-
-        self.inner.bind("<Configure>", self._on_inner_configure)
-        self._scroll_canvas.bind("<Configure>", _on_canvas_configure)
-        _bind_scroll_handlers(self._scroll_canvas)
-        _bind_scroll_handlers(self.inner)
-        self._bind_scroll_handlers = _bind_scroll_handlers
+        self._slide_container = tk.Frame(root)
+        self._slide_container.pack(fill=tk.BOTH, expand=True, padx=4, pady=4)
 
         self.rows: list[SlideRow] = []
-        tk.Label(
-            self.inner,
-            text="Loading slides…",
-            fg=SLIDE_DIM,
-            bg=SLIDE_BG,
-            font=("TkDefaultFont", 12),
-        ).pack(anchor=tk.NW, padx=24, pady=40)
+        self.current_idx = 0
+
+        root.bind_all("<Up>", lambda _e: self._navigate(-1))
+        root.bind_all("<Down>", lambda _e: self._navigate(1))
+
         self.root.after_idle(self._bootstrap_slide_rows)
         self.root.update_idletasks()
 
@@ -1816,7 +1685,7 @@ class SlideEditorApp:
                 fullscreen=False,
                 embedded=True,
                 start_index=start_index,
-                on_slide_change=self._scroll_to_slide_id,
+                on_slide_change=self._jump_to_slide_id,
             )
         except ValueError as e:
             messagebox.showerror("Present", str(e), parent=self.root)
@@ -1896,174 +1765,80 @@ class SlideEditorApp:
         slides = self.deck.get("slides")
         return slides if isinstance(slides, list) else []
 
-    def _cancel_thumb_refresh_scheduler(self) -> None:
-        if self._thumb_refresh_job is not None:
-            try:
-                self.root.after_cancel(self._thumb_refresh_job)
-            except tk.TclError:
-                pass
-            self._thumb_refresh_job = None
-        if self._bulk_thumb_refresh:
-            self._bulk_thumb_refresh = False
-            self._apply_scroll_region()
+    def _capture_focus_slide_id(self) -> str | None:
+        """Return the slide id currently shown in the editor."""
+        if self.rows:
+            return self.rows[0].slide_id or None
+        return None
 
-    def _cancel_editor_build_scheduler(self) -> None:
-        if self._editor_build_job is not None:
-            try:
-                self.root.after_cancel(self._editor_build_job)
-            except tk.TclError:
-                pass
-            self._editor_build_job = None
-        if self._bulk_editor_build:
-            self._bulk_editor_build = False
-            self._apply_scroll_region()
-
-    def _on_inner_configure(self, _event=None) -> None:
-        # During thumbnail refresh / background editor build each preview/widget resize fires
-        # <Configure>; bbox("all") on a large inner window is O(tree) and dominated startup
-        # (~1s × slide count) even with a warm disk cache. Defer scrollregion until bursts end.
-        if self._bulk_thumb_refresh or self._bulk_editor_build:
-            return
-        self._apply_scroll_region()
-
-    def _apply_scroll_region(self) -> None:
-        bbox = self._scroll_canvas.bbox("all")
-        self._scroll_canvas.configure(scrollregion=bbox)
-        self._update_row_visibility()
-
-    def _update_row_visibility(self) -> None:
-        """Collapse rows outside the viewport, expand rows inside it.
-
-        This keeps the total inner-frame height manageable for Tk's canvas,
-        which has practical rendering limits on macOS (~32k px).
-        """
+    def _flush_current_to_deck(self) -> None:
+        """Write the current row's edits back into self.deck["slides"] without saving to disk."""
         if not self.rows:
             return
-        canvas = self._scroll_canvas
-        try:
-            canvas_h = canvas.winfo_height()
-            # Get the current scroll position in pixels
-            yview = canvas.yview()
-            bbox = canvas.bbox("all")
-            if not bbox or canvas_h <= 1:
-                return
-            total_h = bbox[3] - bbox[1]
-            view_top = int(yview[0] * total_h)
-            view_bot = int(yview[1] * total_h)
-            # Add generous margin so rows expand before they scroll into view
-            margin = canvas_h * 3
-            vis_top = max(0, view_top - margin)
-            vis_bot = view_bot + margin
-        except tk.TclError:
+        row = self.rows[0]
+        slides = self._current_slides()
+        if row.index < 0 or row.index >= len(slides):
             return
+        spec = slides[row.index]
+        title = row.get_title_text() or str(spec.get("title", f"Slide {row.index}"))
+        body = row.get_body_text()
+        spec["title"] = title
+        spec["body"] = body
+        kind = str(spec.get("kind", "content")).strip().lower()
+        if kind == "quote":
+            quote_lines = [ln.strip() for ln in body.splitlines() if ln.strip()]
+            spec["markdown"] = "\n\n".join(f"# {ln}" for ln in quote_lines) if quote_lines else f"# {title}"
+        else:
+            spec["markdown"] = f"# {title}\n\n{body}".strip()
+        spec["image_prompt"] = row.get_prompt()
+        spec["credits"] = bool(row.get_credits())
 
-        changed = False
-        for row in self.rows:
-            try:
-                ry = row.winfo_y()
-                rh = row.winfo_height()
-            except tk.TclError:
-                continue
-            row_top = ry
-            row_bot = ry + rh
-            visible = (row_bot >= vis_top) and (row_top <= vis_bot)
-            if visible and row._collapsed:
-                row.expand()
-                changed = True
-            elif not visible and not row._collapsed:
-                row.collapse()
-                changed = True
-        if changed:
-            # Defer scroll region update to after geometry settles
-            canvas.after_idle(lambda: canvas.configure(scrollregion=canvas.bbox("all")))
+    def _on_scale_change(self, value: str) -> None:
+        """Called by the scrub slider; navigate to the selected slide."""
+        if self._scale_updating:
+            return
+        idx = int(float(value))
+        if idx != self.current_idx:
+            self._flush_current_to_deck()
+            self._show_slide(idx)
+            self.schedule_autosave()
 
-    def _capture_focus_slide_id(self) -> str | None:
-        """Best-guess id of the slide the user is "on" right now.
+    def _navigate(self, delta: int) -> None:
+        """Move forward or backward by delta slides, flushing current edits first."""
+        slides = self._current_slides()
+        if not slides:
+            return
+        self._flush_current_to_deck()
+        new_idx = max(0, min(self.current_idx + delta, len(slides) - 1))
+        if new_idx == self.current_idx and self.rows:
+            return
+        self._show_slide(new_idx)
+        self.schedule_autosave()
 
-        Preference order: (1) the row that contains keyboard focus, (2) the topmost
-        row that's scrolled into view. Used so reload + presenter-sync can re-anchor
-        on the same slide even if its index shifts.
-        """
-        rows = getattr(self, "rows", None) or []
-        if not rows:
-            return None
-        try:
-            focused = self.root.focus_get()
-        except (KeyError, tk.TclError):
-            focused = None
-        if focused is not None:
-            w: tk.Misc | None = focused
-            while w is not None and not isinstance(w, SlideRow):
-                w = getattr(w, "master", None)
-            if isinstance(w, SlideRow) and w.slide_id:
-                return w.slide_id
-        canvas = self._scroll_canvas
-        try:
-            canvas.update_idletasks()
-            view_top = canvas.canvasy(0)
-        except tk.TclError:
-            return rows[0].slide_id or None
-        best: str | None = rows[0].slide_id or None
-        for r in rows:
-            try:
-                y = r.winfo_y()
-            except tk.TclError:
-                continue
-            if y <= view_top + 8:
-                if r.slide_id:
-                    best = r.slide_id
-            else:
-                break
-        return best
+    def _show_slide(self, idx: int) -> None:
+        """Display the slide at idx, reusing the single SlideRow widget."""
+        slides = self._current_slides()
+        if not slides:
+            return
+        idx = max(0, min(idx, len(slides) - 1))
+        self.current_idx = idx
+        spec = slides[idx]
+        self._slide_counter.set(f"Slide {idx + 1} / {len(slides)}")
+        self._scale_updating = True
+        self._slide_scale.set(idx)
+        self._scale_updating = False
+        if self.rows:
+            self.rows[0].reload_slide(spec, idx)
 
-    def _scroll_to_slide_id(self, sid: str | None) -> None:
-        """Scroll the editor so the row with ``sid`` is at (or near) the viewport top.
-
-        Uses a simple fraction-of-total-rows approach that works reliably
-        regardless of which rows are collapsed or expanded.
-        """
+    def _jump_to_slide_id(self, sid: str | None) -> None:
+        """Navigate to the slide with the given id."""
         if not sid:
             return
-        rows = getattr(self, "rows", None) or []
-        target_idx = None
-        for i, r in enumerate(rows):
-            if r.slide_id == sid:
-                target_idx = i
-                break
-        if target_idx is None:
-            return
-
-        target = rows[target_idx]
-        canvas = self._scroll_canvas
-        n = len(rows)
-
-        try:
-            # Expand the target and neighbors
-            vis_start = max(0, target_idx - 5)
-            vis_end = min(n, target_idx + 8)
-            for i in range(vis_start, vis_end):
-                rows[i].expand()
-
-            canvas.update_idletasks()
-            canvas.configure(scrollregion=canvas.bbox("all"))
-            canvas.update_idletasks()
-
-            # Now read the actual y position
-            bbox = canvas.bbox("all")
-            if not bbox:
+        slides = self._current_slides()
+        for i, s in enumerate(slides):
+            if isinstance(s, dict) and str(s.get("id", "")) == sid:
+                self._show_slide(i)
                 return
-            total_h = bbox[3] - bbox[1]
-            if total_h <= 0:
-                return
-            y = max(0, target.winfo_y() - 8)
-            canvas.yview_moveto(max(0.0, min(1.0, y / total_h)))
-
-            # Deferred visibility cleanup
-            if self._vis_update_job is not None:
-                self.root.after_cancel(self._vis_update_job)
-            self._vis_update_job = self.root.after(500, self._update_row_visibility)
-        except tk.TclError:
-            pass
 
     def _finish_startup_profile_if_active(self) -> None:
         if self._startup_profiler is None:
@@ -2099,186 +1874,40 @@ class SlideEditorApp:
             # mainloop immediately (this path is only for automated profiling).
             self.root.after(150, self.root.quit)
 
-    def _schedule_row_thumbnail_refresh(self) -> None:
-        """Load all list previews in one ``after_idle`` slice.
-
-        Returning to ``mainloop`` between each slide (e.g. ``after(1)`` per row) lets macOS Tk run a
-        full display/layout pass per image; wall time was ~1s × slide count while Python (cProfile)
-        stayed ~1–2s total. One idle callback keeps compositor work batched.
-        """
-        self._cancel_thumb_refresh_scheduler()
-        self._thumb_refresh_i = 0
-        self._thumb_refresh_t0 = time.monotonic()
-        self._bulk_thumb_refresh = True
-        self._thumb_refresh_job = self.root.after_idle(self._thumb_refresh_advance)
-
-    def _thumb_refresh_advance(self) -> None:
-        self._thumb_refresh_job = None
-        n = len(self.rows)
-        if self._thumb_refresh_i >= n:
-            self._bulk_thumb_refresh = False
-            self._apply_scroll_region()
-            self._schedule_editor_build()
-            return
-        while self._thumb_refresh_i < n:
-            self.rows[self._thumb_refresh_i].refresh_preview()
-            self._thumb_refresh_i += 1
-        self._bulk_thumb_refresh = False
-        self._apply_scroll_region()
-        dt = time.monotonic() - self._thumb_refresh_t0
-        print(
-            f"[startup] thumbnails: {dt:.2f}s ({n} rows)",
-            file=sys.stderr,
-            flush=True,
-        )
-        if _scroll_debug_enabled():
-            _log_scroll(f"slide preview thumbnails finished in {dt:.2f}s ({n} slides)")
-        self._schedule_editor_build()
-
-    def _schedule_editor_build(self) -> None:
-        """Build each row's editor pane in the background, one per idle tick.
-
-        Startup shows all slide cards (title + body preview + image) immediately; editor
-        widgets (``Entry`` + two ``ScrolledText``s + six ``Button``s per row) are heavy on
-        macOS Tk (~1 s/row of layout/compositing). Spreading them across idle ticks keeps
-        the UI responsive while the queue drains.
-        """
-        if _PERF_COLLAPSED_ROWS:
-            # Diagnostic: never build editors. Finish startup profile now.
-            self._finish_startup_profile_if_active()
-            return
-        self._cancel_editor_build_scheduler()
-        self._editor_build_i = 0
-        self._editor_build_t0 = time.monotonic()
-        self._bulk_editor_build = True
-        # ``after(1, …)`` rather than ``after_idle`` so scroll/click events queued by the
-        # user interleave between rows instead of being starved by the idle queue.
-        self._editor_build_job = self.root.after(1, self._editor_build_advance)
-
-    def _editor_build_advance(self) -> None:
-        self._editor_build_job = None
-        n = len(self.rows)
-        if self._editor_build_i >= n:
-            self._bulk_editor_build = False
-            self._apply_scroll_region()
-            dt = time.monotonic() - self._editor_build_t0
-            print(
-                f"[startup] editors: {dt:.2f}s ({n} rows)",
-                file=sys.stderr,
-                flush=True,
-            )
-            startup_t0 = getattr(self, "_startup_wall_t0", None)
-            if startup_t0 is not None:
-                print(
-                    f"[startup] total: {time.monotonic() - startup_t0:.2f}s",
-                    file=sys.stderr,
-                    flush=True,
-                )
-            if _scroll_debug_enabled():
-                _log_scroll(f"editor build finished in {dt:.2f}s ({n} rows)")
-            self._finish_startup_profile_if_active()
-            return
-        row = self.rows[self._editor_build_i]
-        try:
-            row.ensure_editor()
-        except Exception as e:  # build should be robust; one bad row shouldn't stall queue
-            LOG.warning("ensure_editor failed for row %d: %s", self._editor_build_i, e)
-        self._editor_build_i += 1
-        self._editor_build_job = self.root.after(1, self._editor_build_advance)
-
     def _rebuild_rows(self) -> None:
-        self._bulk_thumb_refresh = False
-        self._cancel_thumb_refresh_scheduler()
-        self._cancel_editor_build_scheduler()
-        build_t0 = time.monotonic()
-        for child in list(self.inner.winfo_children()):
+        """Destroy the current SlideRow (if any) and create one for self.current_idx."""
+        for child in list(self._slide_container.winfo_children()):
             child.destroy()
         self.rows = []
         slides = self._current_slides()
-        if self._perf_minimal_rows:
-            for i, spec in enumerate(slides):
-                if not isinstance(spec, dict):
-                    continue
-                title = str(spec.get("title", f"Slide {i}"))
-                lbl = tk.Label(
-                    self.inner,
-                    text=f"[{i:02d}]  {title}",
-                    anchor="w",
-                    justify="left",
-                    font=("TkDefaultFont", 12),
-                    padx=8,
-                    pady=6,
-                )
-                lbl.pack(fill=tk.X, expand=True, padx=4, pady=2)
-            self._bind_scroll_handlers(self.inner)
-            self._last_build_wall_s = time.monotonic() - build_t0
-            print(
-                f"[startup] widgets: {self._last_build_wall_s:.2f}s"
-                f" ({len(slides)} minimal rows)",
-                file=sys.stderr,
-                flush=True,
-            )
-            self._apply_scroll_region()
-            self.root.after_idle(self._perf_minimal_idle_done)
+        if not slides:
             return
-        for i, spec in enumerate(slides):
-            if not isinstance(spec, dict):
-                continue
-            title = str(spec.get("title", f"Slide {i}"))
-            body = str(spec.get("body", ""))
-            prompt = str(spec.get("image_prompt", ""))
-            sid = str(spec.get("id", "")).strip()
-            if not sid:
-                # Deck slides must have a stable id; surface the bad row instead of silently skipping.
-                raise ValueError(f"Slide [{i:02d}] is missing a non-empty 'id' in the deck.")
-            row = SlideRow(
-                self.inner,
-                self,
-                i,
-                title,
-                body,
-                prompt,
-                slide_id=sid,
-                credits=bool(spec.get("credits", False)),
-                skip_initial_preview=True,
-            )
-            row.pack(fill=tk.X, expand=True, padx=4, pady=10)
-            self.rows.append(row)
-        self._bind_scroll_handlers(self.inner)
-        self._last_build_wall_s = time.monotonic() - build_t0
-        print(
-            f"[startup] widgets: {self._last_build_wall_s:.2f}s ({len(self.rows)} rows)",
-            file=sys.stderr,
-            flush=True,
+        self.current_idx = max(0, min(self.current_idx, len(slides) - 1))
+        self._scale_updating = True
+        self._slide_scale.config(to=max(0, len(slides) - 1))
+        self._slide_scale.set(self.current_idx)
+        self._scale_updating = False
+        spec = slides[self.current_idx]
+        if not isinstance(spec, dict):
+            return
+        sid = str(spec.get("id", "")).strip()
+        if not sid:
+            raise ValueError(f"Slide [{self.current_idx:02d}] is missing a non-empty 'id' in the deck.")
+        row = SlideRow(
+            self._slide_container,
+            self,
+            self.current_idx,
+            str(spec.get("title", f"Slide {self.current_idx}")),
+            str(spec.get("body", "")),
+            str(spec.get("image_prompt", "")),
+            slide_id=sid,
+            credits=bool(spec.get("credits", False)),
         )
-        # Set initial scroll region so all rows are reachable before thumbnails load.
-        self._apply_scroll_region()
-        # Expand only visible rows; collapse the rest to keep total height manageable.
-        for row in self.rows:
-            row.collapse()
-        self.root.after_idle(self._expand_initial_visible)
-        self._schedule_row_thumbnail_refresh()
-
-    def _expand_initial_visible(self) -> None:
-        """After initial layout, expand the first screenful of rows."""
-        canvas = self._scroll_canvas
-        try:
-            canvas_h = canvas.winfo_height()
-        except tk.TclError:
-            canvas_h = 800
-        # Expand rows until we fill roughly 2 screens worth
-        budget = canvas_h * 4
-        used = 0
-        for row in self.rows:
-            row.expand()
-            try:
-                row.update_idletasks()
-                used += row.winfo_reqheight()
-            except tk.TclError:
-                used += 400
-            if used > budget:
-                break
-        self._apply_scroll_region()
+        row.pack(fill=tk.X, expand=True, padx=4, pady=10)
+        row.ensure_editor()
+        self.rows.append(row)
+        self._slide_counter.set(f"Slide {self.current_idx + 1} / {len(slides)}")
+        self._finish_startup_profile_if_active()
 
     def _perf_minimal_idle_done(self) -> None:
         """Minimal-rows mode: report layout-settled time, then exit if profiling."""
@@ -2343,6 +1972,7 @@ class SlideEditorApp:
                 "image_prompt": "",
             }
             slides_now.insert(insert_at, new_slide)
+            self.current_idx = insert_at
             self._rebuild_rows()
             self.save_deck(autosave=True)
             self.set_status(f"Inserted new slide above [{insert_at:02d}].")
@@ -2402,6 +2032,7 @@ class SlideEditorApp:
         if not messagebox.askyesno("Delete slide", f"Delete slide [{index:02d}] \"{label}\"?"):
             return
         slides.pop(index)
+        self.current_idx = max(0, min(self.current_idx, len(slides) - 1))
         self._rebuild_rows()
         self.save_deck(autosave=True)
         self.set_status(f"Deleted slide [{index:02d}].")
@@ -2505,8 +2136,7 @@ class SlideEditorApp:
         self._rebuild_rows()
         self._record_self_mtime()
         if focus_sid is not None:
-            # Defer until row geometry settles; otherwise winfo_y() is stale/zero.
-            self.root.after_idle(lambda sid=focus_sid: self._scroll_to_slide_id(sid))
+            self._jump_to_slide_id(focus_sid)
         self.set_status(f"Reloaded {self.deck_path.name}.")
 
 
