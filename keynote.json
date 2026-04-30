@@ -432,24 +432,55 @@
         "# 1977",
         "",
         "- **John Loader**, maths teacher — got an account at the **University of Sussex**.",
+        "",
         "- He taught us programming (I think **FORTRAN**).",
         "- We filled out **mark-sense cards**.",
-        "- We **mailed them in**.",
-        "- I got mine back — my incantation had been **cursed**.",
-        "- Curse this computer thing."
+        "- We **mailed them in**."
       ],
       "title": [
         "1977"
       ],
       "body": [
         "- **John Loader**, maths teacher — got an account at the **University of Sussex**.",
+        "",
         "- He taught us programming (I think **FORTRAN**).",
         "- We filled out **mark-sense cards**.",
-        "- We **mailed them in**.",
-        "- I got mine back — my incantation had been **cursed**.",
-        "- Curse this computer thing."
+        "- We **mailed them in**."
       ],
       "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "947fa2c4-836f-4365-87f3-15b19998ed35",
+      "kind": "content",
+      "title": [
+        "I Didn't Understand the Magic"
+      ],
+      "body": [
+        "I got mine back",
+        "",
+        "",
+        "",
+        " my incantation had been **cursed**.",
+        "",
+        "- Curse this computer thing.",
+        "",
+        "No magic! (yet)"
+      ],
+      "markdown": [
+        "# I Didn't Understand the Magic",
+        "",
+        "I got mine back",
+        "",
+        "",
+        "",
+        " my incantation had been **cursed**.",
+        "",
+        "- Curse this computer thing.",
+        "",
+        "No magic! (yet)"
+      ],
+      "image_prompt": "me with a paper that says syntax error on it sad while all the other students are happy with their successful pring outs",
       "credits": false
     },
     {
@@ -522,8 +553,6 @@
         "- Battery cells weighed cells (50–160 kg)",
         "- Contained 12,18,24,36 cells",
         "",
-        "# The spell (in 1982)",
-        "",
         "**BASIC on a TRS-80 Model I.** ",
         "-End-of-day totals, ",
         "-Saved, auditable if we mistyped."
@@ -537,8 +566,6 @@
         "My uncle broke down **forklift batteries** for recycling. ",
         "- Battery cells weighed cells (50–160 kg)",
         "- Contained 12,18,24,36 cells",
-        "",
-        "# The spell (in 1982)",
         "",
         "**BASIC on a TRS-80 Model I.** ",
         "-End-of-day totals, ",
@@ -673,82 +700,6 @@
         "make magic for the ones who cannot spell. [sic.]"
       ],
       "image_prompt": "Me, tools in hand heading out from wizard school to help the people who are not wizards.",
-      "credits": false
-    },
-    {
-      "id": "e7d1f1a8-1e2c-494f-951f-58c330ba6b77",
-      "kind": "content",
-      "markdown": [
-        "# CMU — Game Sketching",
-        "",
-        "# CMU — Game Sketching",
-        "",
-        "The **game designer** sat down to play.",
-        "",
-        "**Avatars** in the game **reacted** to him — almost **LLM-like** interactivity, before LLMs existed.",
-        "",
-        "# Behind the curtain",
-        "",
-        "**Six students** in a **back room**",
-        "- listening to the designer",
-        "- **driving the avatars** from a **script** ",
-        "- pivoting fast when the conversation changed."
-      ],
-      "title": [
-        "CMU — Game Sketching"
-      ],
-      "body": [
-        "# CMU — Game Sketching",
-        "",
-        "The **game designer** sat down to play.",
-        "",
-        "**Avatars** in the game **reacted** to him — almost **LLM-like** interactivity, before LLMs existed.",
-        "",
-        "# Behind the curtain",
-        "",
-        "**Six students** in a **back room**",
-        "- listening to the designer",
-        "- **driving the avatars** from a **script** ",
-        "- pivoting fast when the conversation changed."
-      ],
-      "image_prompt": "a top dowwn image of a person in one room lookdin at a screen with a whole bunch of people in the other room.",
-      "credits": false
-    },
-    {
-      "id": "f2a61f73-c7c9-4371-bfaf-bca2e41540bd",
-      "kind": "content",
-      "markdown": [
-        "# The producer thought it was playable",
-        "",
-        "# The producer thought the game was playable.",
-        "",
-        "That was the magic.",
-        "",
-        "We iterated about **thirty times in two weeks** — **three** runs on a **heavy** day.",
-        "",
-        "# The honest question",
-        "",
-        "**Can we ship this?**",
-        "",
-        "**No** — you have to **implement** the game."
-      ],
-      "title": [
-        "The producer thought it was playable"
-      ],
-      "body": [
-        "# The producer thought the game was playable.",
-        "",
-        "That was the magic.",
-        "",
-        "We iterated about **thirty times in two weeks** — **three** runs on a **heavy** day.",
-        "",
-        "# The honest question",
-        "",
-        "**Can we ship this?**",
-        "",
-        "**No** — you have to **implement** the game."
-      ],
-      "image_prompt": "A man pulls back a curtain to expose a bunch of people sitting at terminals.",
       "credits": false
     },
     {
@@ -1120,6 +1071,39 @@
         "- Learning opportunity"
       ],
       "image_prompt": "A student sits at a workstation surrounded by dense, sprawling architecture blueprints and schematics covering the desk and walls—representing complex system diagrams and code structures. They're hunched forward, actively writing test cases on paper or typing at their computer, clearly wrestling with something substantial. In the foreground, tangible \"lifelines\" hang nearby—reference materials, mentor notes, debugging tools—within reach but requiring deliberate effort to grab. The overall composition shows someone fully submerged in genuine, intricate work rather than simplified practice problems, with the safety net visible but not automatic.",
+      "credits": false
+    },
+    {
+      "id": "c7d19ddc-3135-4af5-8402-a79485cfeaa8",
+      "kind": "content",
+      "title": [
+        "Critical Thinking vs Vibe Coding"
+      ],
+      "body": [
+        "The purpose of the assignment was to encourage **critical thinking** about the tests.",
+        "",
+        "**9 out of 10** students came to me to ask if it was OK to remove the bad test.",
+        "",
+        "**One student** simply asked ChatGPT to make the tests run.",
+        "",
+        "I did not LLM proof this assignment on purpose.",
+        "",
+        "Vibe coding shown to be insuficient."
+      ],
+      "markdown": [
+        "# Critical Thinking vs Vibe Coding",
+        "",
+        "The purpose of the assignment was to encourage **critical thinking** about the tests.",
+        "",
+        "**9 out of 10** students came to me to ask if it was OK to remove the bad test.",
+        "",
+        "**One student** simply asked ChatGPT to make the tests run.",
+        "",
+        "I did not LLM proof this assignment on purpose.",
+        "",
+        "Vibe coding shown to be insuficient."
+      ],
+      "image_prompt": "",
       "credits": false
     },
     {
