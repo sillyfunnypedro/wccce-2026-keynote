@@ -1580,6 +1580,8 @@ class SlideEditorApp:
         nav_bar.pack(fill=tk.X, padx=8, pady=(0, 4))
         tk.Button(nav_bar, text="◀ Prev", command=lambda: self._navigate(-1), width=8).pack(side=tk.LEFT)
         tk.Button(nav_bar, text="Next ▶", command=lambda: self._navigate(1), width=8).pack(side=tk.LEFT, padx=(4, 0))
+        tk.Button(nav_bar, text="▲", command=lambda: self._navigate(-1), width=3).pack(side=tk.LEFT, padx=(8, 0))
+        tk.Button(nav_bar, text="▼", command=lambda: self._navigate(1), width=3).pack(side=tk.LEFT, padx=(2, 0))
         self._slide_counter = tk.StringVar(value="")
         tk.Label(nav_bar, textvariable=self._slide_counter, font=("TkDefaultFont", 11)).pack(side=tk.LEFT, padx=(16, 8))
         self._scale_updating = False
