@@ -1,5 +1,6 @@
 __pycache__/
 *.py[cod]
+logs/
 
 .env/
 *.key
@@ -16,5 +17,8 @@ slide_editor_startup.prof
 
 # Hypothesis test cache
 .hypothesis/
+
+# Presentation timing logs
+logs/
 
 ~$*.pptx

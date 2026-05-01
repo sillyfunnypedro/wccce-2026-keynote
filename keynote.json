@@ -33,29 +33,6 @@
       "credits": false
     },
     {
-      "id": "8a65a599-b95f-452c-8f9b-1bf1f9b9ea75",
-      "kind": "content",
-      "title": [
-        "Land Acknowledgment"
-      ],
-      "body": [
-        "-",
-        "",
-        "",
-        "We acknowledge that the land on which we gather is the unceded territory of the Coast Salish Peoples, including the territories of the xʷməθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh (Squamish), and səl̓ílwətaɬ (Tsleil-Waututh) Nations."
-      ],
-      "markdown": [
-        "# Land Acknowledgment",
-        "",
-        "-",
-        "",
-        "",
-        "We acknowledge that the land on which we gather is the unceded territory of the Coast Salish Peoples, including the territories of the xʷməθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh (Squamish), and səl̓ílwətaɬ (Tsleil-Waututh) Nations."
-      ],
-      "image_prompt": "",
-      "credits": false
-    },
-    {
       "id": "f6516e9f-de80-4a03-a4f3-14f5a58a48b5",
       "kind": "content",
       "title": [
@@ -245,6 +222,39 @@
         "",
         "**Gemini app on macOS**: ",
         "- Idea → **native Swift prototype in days**, built on **Antigravity**."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "d677e2cf-1f4b-47a4-a1b6-ccbc758f2121",
+      "kind": "content",
+      "title": [
+        "Youri Voet — Yesterday"
+      ],
+      "body": [
+        "Engineers will not go away.",
+        "",
+        "They need to:",
+        "",
+        "1. **Read** code",
+        "2. **Understand** code",
+        "3. **Write** code",
+        "",
+        "Notice the order."
+      ],
+      "markdown": [
+        "# Youri Voet — Yesterday",
+        "",
+        "Engineers will not go away.",
+        "",
+        "They need to:",
+        "",
+        "1. **Read** code",
+        "2. **Understand** code",
+        "3. **Write** code",
+        "",
+        "Notice the order."
       ],
       "image_prompt": "",
       "credits": false
@@ -897,6 +907,35 @@
       "credits": false
     },
     {
+      "id": "a8c0a8f8-7dc8-40fe-b096-28d9b05a41d0",
+      "kind": "content",
+      "markdown": [
+        "# The Magic Is in the Making",
+        "",
+        "Yeah, knowing the spells matters. ",
+        "",
+        "We can now bring real magic into the classroom",
+        "",
+        "# It is not difficult",
+        "- It is straight forward",
+        "- We just have to build it"
+      ],
+      "title": [
+        "The Magic Is in the Making"
+      ],
+      "body": [
+        "Yeah, knowing the spells matters. ",
+        "",
+        "We can now bring real magic into the classroom",
+        "",
+        "# It is not difficult",
+        "- It is straight forward",
+        "- We just have to build it"
+      ],
+      "image_prompt": "A sage encouraging others to pracitce magic in a most enthusastic way",
+      "credits": false
+    },
+    {
       "id": "a59301cc-5869-4b6a-b2ba-be981c5aeba5",
       "kind": "content",
       "markdown": [
@@ -942,6 +981,35 @@
       "credits": false
     },
     {
+      "id": "e74b5617-6d5a-4d13-98f4-74209a66b1be",
+      "kind": "content",
+      "markdown": [
+        "# Why Stop at Spells?",
+        "",
+        "# Bring real-world magic into the classroom now.",
+        "- Let students master spells through active application.",
+        "- Deploy AI tools to handle boilerplate implementation.",
+        "- Scope projects to solve actual human problems.",
+        "",
+        "- Teach them to build things that matter.",
+        "# Focus on architectural intent over rote memorization."
+      ],
+      "title": [
+        "Why Stop at Spells?"
+      ],
+      "body": [
+        "# Bring real-world magic into the classroom now.",
+        "- Let students master spells through active application.",
+        "- Deploy AI tools to handle boilerplate implementation.",
+        "- Scope projects to solve actual human problems.",
+        "",
+        "- Teach them to build things that matter.",
+        "# Focus on architectural intent over rote memorization."
+      ],
+      "image_prompt": "A call to action scene",
+      "credits": false
+    },
+    {
       "id": "3be918fc-120b-47e8-bc33-b1ec8979f334",
       "kind": "content",
       "markdown": [
@@ -958,7 +1026,9 @@
         "- It excelled in supporting **unit tests**, which was impressive.  ",
         "",
         "**Result:** ",
-        "- **Weekly increase in unit tests** across our projects."
+        "- **Weekly increase in unit tests** across our projects.",
+        "",
+        "The most **Excited** I have been about programming."
       ],
       "title": [
         "Now to the (Almost) present"
@@ -975,9 +1045,36 @@
         "- It excelled in supporting **unit tests**, which was impressive.  ",
         "",
         "**Result:** ",
-        "- **Weekly increase in unit tests** across our projects."
+        "- **Weekly increase in unit tests** across our projects.",
+        "",
+        "The most **Excited** I have been about programming."
       ],
       "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "e86fc607-00ac-4839-92d8-581d53e6b97a",
+      "kind": "content",
+      "markdown": [
+        "# Why I Came Back to Teaching",
+        "",
+        "Rethink Training: LLMs changed the industry; we must change how we teach builders.",
+        "",
+        "Just teaching spells will not cut it",
+        "",
+        "Real-World Agency: This is the most exciting time for software; students should tackle real problems with professional tools, not \"toy\" tasks."
+      ],
+      "title": [
+        "Why I Came Back to Teaching"
+      ],
+      "body": [
+        "Rethink Training: LLMs changed the industry; we must change how we teach builders.",
+        "",
+        "Just teaching spells will not cut it",
+        "",
+        "Real-World Agency: This is the most exciting time for software; students should tackle real problems with professional tools, not \"toy\" tasks."
+      ],
+      "image_prompt": "Students being given real tools",
       "credits": false
     },
     {
@@ -986,7 +1083,7 @@
       "markdown": [
         "# We Must Teach CS Fundamentals",
         "",
-        "We must teach CS fundamentals.",
+        "# ABSOLUTELY",
         "",
         "We are no longer constrained to having students write small programs.",
         "",
@@ -998,7 +1095,7 @@
         "We Must Teach CS Fundamentals"
       ],
       "body": [
-        "We must teach CS fundamentals.",
+        "# ABSOLUTELY",
         "",
         "We are no longer constrained to having students write small programs.",
         "",
@@ -1043,37 +1140,6 @@
       "credits": false
     },
     {
-      "id": "87a9d1e3-b29b-406c-acd9-9d73268876b0",
-      "kind": "content",
-      "markdown": [
-        "# Diving Deep into Testing",
-        "",
-        "- Immerse students in **real code** — not toy examples.",
-        "",
-        "- They sink or swim. Then we throw lifelines.",
-        "",
-        "- Forces them to think about **large, complex systems**.",
-        "",
-        "# Complexity leads to struggle",
-        "- Learning opportunity"
-      ],
-      "title": [
-        "Diving Deep into Testing"
-      ],
-      "body": [
-        "- Immerse students in **real code** — not toy examples.",
-        "",
-        "- They sink or swim. Then we throw lifelines.",
-        "",
-        "- Forces them to think about **large, complex systems**.",
-        "",
-        "# Complexity leads to struggle",
-        "- Learning opportunity"
-      ],
-      "image_prompt": "A student sits at a workstation surrounded by dense, sprawling architecture blueprints and schematics covering the desk and walls—representing complex system diagrams and code structures. They're hunched forward, actively writing test cases on paper or typing at their computer, clearly wrestling with something substantial. In the foreground, tangible \"lifelines\" hang nearby—reference materials, mentor notes, debugging tools—within reach but requiring deliberate effort to grab. The overall composition shows someone fully submerged in genuine, intricate work rather than simplified practice problems, with the safety net visible but not automatic.",
-      "credits": false
-    },
-    {
       "id": "c7d19ddc-3135-4af5-8402-a79485cfeaa8",
       "kind": "content",
       "title": [
@@ -1110,9 +1176,7 @@
       "id": "298ac503-9342-40af-b83a-534bd3e8c41a",
       "kind": "content",
       "markdown": [
-        "# 2024 — Beginning of Agentic Work",
-        "",
-        "# Computer Graphics",
+        "# 2024 — Computer Graphics",
         "",
         "# Teach cutting-edge hardware  ",
         "- OpenGL is messy ",
@@ -1124,11 +1188,9 @@
         "- No relevance to the industry"
       ],
       "title": [
-        "2024 — Beginning of Agentic Work"
+        "2024 — Computer Graphics"
       ],
       "body": [
-        "# Computer Graphics",
-        "",
         "# Teach cutting-edge hardware  ",
         "- OpenGL is messy ",
         "- Highlevel gets lost in the tedium",
@@ -1172,37 +1234,6 @@
         "- Figure out how the hardware does it",
         "- Build large worlds fun.",
         "- Helper code from me"
-      ],
-      "image_prompt": "",
-      "credits": false
-    },
-    {
-      "id": "014d8eb7-62a7-42f7-a8b0-2874beef2097",
-      "kind": "content",
-      "title": [
-        "Graphics — Course Cadence"
-      ],
-      "body": [
-        "# In class",
-        "- Software renderer — built from scratch together",
-        "",
-        "# Projects and homework",
-        "- OpenGL — the real hardware pipeline",
-        "",
-        "# LLM helped me prepare each class code harness",
-        "- I could focus on teaching, not boilerplate"
-      ],
-      "markdown": [
-        "# Graphics — Course Cadence",
-        "",
-        "# In class",
-        "- Software renderer — built from scratch together",
-        "",
-        "# Projects and homework",
-        "- OpenGL — the real hardware pipeline",
-        "",
-        "# LLM helped me prepare each class code harness",
-        "- I could focus on teaching, not boilerplate"
       ],
       "image_prompt": "",
       "credits": false
@@ -1262,6 +1293,39 @@
       "credits": false
     },
     {
+      "id": "c72fec52-e6f1-401f-b211-548506d27fe1",
+      "kind": "content",
+      "title": [
+        "2025 — Software Engineering"
+      ],
+      "body": [
+        "In a previous course(2024), lecture material was in TypeScript.",
+        "",
+        "Students never exercised the option to use Python.",
+        "",
+        "Students complained at having to write a backend in NodeTS.",
+        "",
+        "They thought **REST = TypeScript**.",
+        "",
+        "I never specified the language"
+      ],
+      "markdown": [
+        "# 2025 — Software Engineering",
+        "",
+        "In a previous course(2024), lecture material was in TypeScript.",
+        "",
+        "Students never exercised the option to use Python.",
+        "",
+        "Students complained at having to write a backend in NodeTS.",
+        "",
+        "They thought **REST = TypeScript**.",
+        "",
+        "I never specified the language"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
       "id": "a26362d3-08e7-4245-8f4e-0db9a0891bf3",
       "kind": "content",
       "markdown": [
@@ -1274,7 +1338,7 @@
         "# Lets bust that Myth.",
         "- I gave TS and Python server.",
         "",
-        "# Build your own",
+        "# Build your own in a language you have never used.",
         "",
         "- GO, Perl, C#, Rust, PHP (in class)"
       ],
@@ -1289,7 +1353,7 @@
         "# Lets bust that Myth.",
         "- I gave TS and Python server.",
         "",
-        "# Build your own",
+        "# Build your own in a language you have never used.",
         "",
         "- GO, Perl, C#, Rust, PHP (in class)"
       ],
@@ -1297,86 +1361,38 @@
       "credits": false
     },
     {
-      "id": "c72fec52-e6f1-401f-b211-548506d27fe1",
-      "kind": "content",
-      "title": [
-        "SE — The Problem"
-      ],
-      "body": [
-        "In a previous course, lecture material was in TypeScript.",
-        "",
-        "Students never exercised the option to use Python.",
-        "",
-        "They thought **REST = TypeScript**."
-      ],
-      "markdown": [
-        "# SE — The Problem",
-        "",
-        "In a previous course, lecture material was in TypeScript.",
-        "",
-        "Students never exercised the option to use Python.",
-        "",
-        "They thought **REST = TypeScript**."
-      ],
-      "image_prompt": "",
-      "credits": false
-    },
-    {
       "id": "42119cc8-2071-4122-8dfd-2b090bfc4dca",
       "kind": "content",
       "title": [
-        "SE — The Result"
+        "Software Engineering: The Result"
       ],
       "body": [
         "Students were **incredibly engaged**.",
         "",
         "In class they partitioned the problem, picked their languages, and solved it.",
         "",
-        "In the final project I saw **different languages for the backend** — Go, Python, Rust, C#.",
+        "In the final project I saw **different languages for the backend**",
+        "- Python",
+        "- Typescript",
+        "- Java",
         "",
-        "The myth was busted."
+        "Lesson learned."
       ],
       "markdown": [
-        "# SE — The Result",
+        "# Software Engineering: The Result",
         "",
         "Students were **incredibly engaged**.",
         "",
         "In class they partitioned the problem, picked their languages, and solved it.",
         "",
-        "In the final project I saw **different languages for the backend** — Go, Python, Rust, C#.",
+        "In the final project I saw **different languages for the backend**",
+        "- Python",
+        "- Typescript",
+        "- Java",
         "",
-        "The myth was busted."
+        "Lesson learned."
       ],
-      "image_prompt": "",
-      "credits": false
-    },
-    {
-      "id": "944535fe-6203-4fed-a5c1-e8c7bb8b6b92",
-      "kind": "content",
-      "markdown": [
-        "# See It In Action (Carlos Semeho Edorh)",
-        "",
-        "Carlos built a game engine across four languages. Python, Java, C++, TypeScript — all of it.",
-        "",
-        "He didn't just learn the theory. He shipped something real.",
-        "",
-        "Check it out: dotman.edcartech.com",
-        "",
-        "That's what builders do. They take what they're learning and make something that works."
-      ],
-      "title": [
-        "See It In Action (Carlos Semeho Edorh)"
-      ],
-      "body": [
-        "Carlos built a game engine across four languages. Python, Java, C++, TypeScript — all of it.",
-        "",
-        "He didn't just learn the theory. He shipped something real.",
-        "",
-        "Check it out: dotman.edcartech.com",
-        "",
-        "That's what builders do. They take what they're learning and make something that works."
-      ],
-      "image_prompt": "",
+      "image_prompt": "students preseintg final projects in Python TS and Java,  Professor dancing with joy",
       "credits": false
     },
     {
@@ -1489,6 +1505,45 @@
       "credits": false
     },
     {
+      "id": "944535fe-6203-4fed-a5c1-e8c7bb8b6b92",
+      "kind": "content",
+      "markdown": [
+        "# See It In Action (Carlos Semeho Edorh)",
+        "",
+        "Carlos built a game engine TypeScript, and demonstrated it by rebuilding PacMan",
+        "",
+        "Check it out: *dotman.edcartech.com*",
+        "",
+        "Carlos did a complete refactor ",
+        "- He had implemented using OO",
+        "- Ran into trouble",
+        "- Applied Entity Component System( ECS )",
+        "",
+        "Carlos went from Vibe coding to Conversational",
+        "",
+        "Then was able to iterate quickly (go play his games)"
+      ],
+      "title": [
+        "See It In Action (Carlos Semeho Edorh)"
+      ],
+      "body": [
+        "Carlos built a game engine TypeScript, and demonstrated it by rebuilding PacMan",
+        "",
+        "Check it out: *dotman.edcartech.com*",
+        "",
+        "Carlos did a complete refactor ",
+        "- He had implemented using OO",
+        "- Ran into trouble",
+        "- Applied Entity Component System( ECS )",
+        "",
+        "Carlos went from Vibe coding to Conversational",
+        "",
+        "Then was able to iterate quickly (go play his games)"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
       "id": "e98a6215-fa52-4fe9-860d-ac4eae3f6cf0",
       "kind": "content",
       "title": [
@@ -1521,6 +1576,120 @@
         "- Build a system that illustrates a Discrete Math concept."
       ],
       "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "7f3db5e1-76a4-4897-aa09-3044b8324ddb",
+      "kind": "content",
+      "title": [
+        "Paint Wars"
+      ],
+      "body": [
+        "# Paint Wars",
+        "- Recursion and flood fill",
+        "- Students implemented the recursion and could play against each other",
+        "",
+        "This was the starter code.",
+        "",
+        "- Inductive proof of how much a bomb costs, and recursive flood fill.",
+        "",
+        "# Most boring game ever",
+        "",
+        "# All of them nailed ",
+        "- inductive proof.",
+        "- recursive flood fill."
+      ],
+      "markdown": [
+        "# Paint Wars",
+        "",
+        "# Paint Wars",
+        "- Recursion and flood fill",
+        "- Students implemented the recursion and could play against each other",
+        "",
+        "This was the starter code.",
+        "",
+        "- Inductive proof of how much a bomb costs, and recursive flood fill.",
+        "",
+        "# Most boring game ever",
+        "",
+        "# All of them nailed ",
+        "- inductive proof.",
+        "- recursive flood fill."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "2659541e-d767-4a37-9805-20a2299647bf",
+      "kind": "content",
+      "title": [
+        "DnD Card Selector"
+      ],
+      "body": [
+        "# DnD Card Selector",
+        "- Probabilities and Monte Carlo",
+        "- Students got to understand probability through simulation"
+      ],
+      "markdown": [
+        "# DnD Card Selector",
+        "",
+        "# DnD Card Selector",
+        "- Probabilities and Monte Carlo",
+        "- Students got to understand probability through simulation"
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "cf834d12-f851-4d78-9b3a-1cdede0bfc3e",
+      "kind": "content",
+      "title": [
+        "Dijkstra Real-Time Delivery"
+      ],
+      "body": [
+        "# Dijkstra Real-Time Delivery",
+        "- Real-time delivery routing in Vancouver",
+        "- Students could see their delivery truck running in real time",
+        "",
+        "# Tried to make it a competition between teams",
+        "",
+        "Tied for most boring game ever."
+      ],
+      "markdown": [
+        "# Dijkstra Real-Time Delivery",
+        "",
+        "# Dijkstra Real-Time Delivery",
+        "- Real-time delivery routing in Vancouver",
+        "- Students could see their delivery truck running in real time",
+        "",
+        "# Tried to make it a competition between teams",
+        "",
+        "Tied for most boring game ever."
+      ],
+      "image_prompt": "",
+      "credits": false
+    },
+    {
+      "id": "3a21ddec-eb7a-4bc5-9717-9fedca7fc4ef",
+      "kind": "content",
+      "markdown": [
+        "# Final project.",
+        "",
+        "The brief was simple: ",
+        "- create a Python program that helps a student understand a discrete math concept.",
+        "",
+        "Here are two of the projects."
+      ],
+      "title": [
+        "Final project."
+      ],
+      "body": [
+        "The brief was simple: ",
+        "- create a Python program that helps a student understand a discrete math concept.",
+        "",
+        "Here are two of the projects."
+      ],
+      "image_prompt": "A professor sends students off into the wild to perform feats",
       "credits": false
     },
     {
@@ -1609,40 +1778,179 @@
       "credits": false
     },
     {
-      "id": "7f3db5e1-76a4-4897-aa09-3044b8324ddb",
+      "id": "c162a26a-b45e-45fd-a0ed-70f665fefb93",
       "kind": "content",
       "title": [
-        "5001/5002 — Student Projects"
+        "CS-0042 Odd combination of languages"
       ],
       "body": [
-        "# Paint Wars",
-        "- Recursion and flood fill",
-        "- Students implemented the recursion and could play against each other",
+        "Welcome back to class",
         "",
-        "# DnD Card Selector",
-        "- Probabilities and Monte Carlo",
-        "- Students got to understand probability through simulation",
+        "Last thing we talked about was *for* loops",
         "",
-        "# Dijkstra Real-Time Delivery",
-        "- Real-time delivery routing in Vancouver",
-        "- Students could see their delivery truck running in real time"
+        "- While loops allow more subtle control",
+        "",
+        "# Introducing this in ",
+        "- Java, Assembler,and Erlang"
       ],
       "markdown": [
-        "# 5001/5002 — Student Projects",
+        "# CS-0042 Odd combination of languages",
         "",
-        "# Paint Wars",
-        "- Recursion and flood fill",
-        "- Students implemented the recursion and could play against each other",
+        "Welcome back to class",
         "",
-        "# DnD Card Selector",
-        "- Probabilities and Monte Carlo",
-        "- Students got to understand probability through simulation",
+        "Last thing we talked about was *for* loops",
         "",
-        "# Dijkstra Real-Time Delivery",
-        "- Real-time delivery routing in Vancouver",
-        "- Students could see their delivery truck running in real time"
+        "- While loops allow more subtle control",
+        "",
+        "# Introducing this in ",
+        "- Java, Assembler,and Erlang"
+      ],
+      "image_prompt": "A whole audience with final exams in their hands opening them in anticipation",
+      "credits": false
+    },
+    {
+      "id": "0efaa641-8a4b-49df-8cc9-fe9338e32d49",
+      "kind": "content",
+      "markdown": [
+        "# Memorable events",
+        "",
+        "We can use the tools to create memorable events.",
+        "",
+        "I am pretty sure you will all remember",
+        "",
+        "",
+        "# Erlang has no while loops"
+      ],
+      "title": [
+        "Memorable events"
+      ],
+      "body": [
+        "We can use the tools to create memorable events.",
+        "",
+        "I am pretty sure you will all remember",
+        "",
+        "",
+        "# Erlang has no while loops"
+      ],
+      "image_prompt": "A student with a thought bubble that is remembering a lecture",
+      "credits": false
+    },
+    {
+      "id": "983dd796-02a9-45e6-9af6-72b8379b3dcb",
+      "kind": "content",
+      "title": [
+        "2026 — OO Principles Using Java"
+      ],
+      "body": [
+        "My latest class.",
+        "",
+        "Small Cohort",
+        "",
+        "This followed the experience with ",
+        "- Intro CS",
+        "- Discrete Math"
+      ],
+      "image_prompt": "Me teaching OO principles to students in a circle",
+      "credits": false,
+      "markdown": [
+        "# 2026 — OO Principles Using Java",
+        "",
+        "My latest class.",
+        "",
+        "Small Cohort",
+        "",
+        "This followed the experience with ",
+        "- Intro CS",
+        "- Discrete Math"
+      ]
+    },
+    {
+      "id": "6512b0a7-33ca-4e51-81d7-1dc42eeb8205",
+      "kind": "content",
+      "title": [
+        "OO — Flipped Class Structure"
+      ],
+      "body": [
+        "# Flipped classroom",
+        "",
+        "- **Videos** — watch before class",
+        "- **Individual quiz** — check understanding",
+        "- **Team quiz** — bring up issues, discuss",
+        "- **Workbook** — hands-on practice",
+        "- **Presentation** — share and explain"
+      ],
+      "image_prompt": "A classroom flipped up side down",
+      "credits": false,
+      "markdown": [
+        "# OO — Flipped Class Structure",
+        "",
+        "# Flipped classroom",
+        "",
+        "- **Videos** — watch before class",
+        "- **Individual quiz** — check understanding",
+        "- **Team quiz** — bring up issues, discuss",
+        "- **Workbook** — hands-on practice",
+        "- **Presentation** — share and explain"
+      ]
+    },
+    {
+      "id": "c7739050-9510-4b7a-afc2-ba00b71b5b4c",
+      "kind": "content",
+      "title": [
+        "OO — AI Preparations"
+      ],
+      "body": [
+        "# AI-enhanced course materials",
+        "",
+        "- **LLM Summary** — I took the video transcripts and ran them through Claude",
+        "- **LLM Study Guide** — I asked for and reviewed a study guide (a RAG over the course content)",
+        "",
+        "Students got AI-generated summaries and study guides that I had vetted."
       ],
       "image_prompt": "",
+      "credits": false,
+      "markdown": [
+        "# OO — AI Preparations",
+        "",
+        "# AI-enhanced course materials",
+        "",
+        "- **LLM Summary** — I took the video transcripts and ran them through Claude",
+        "- **LLM Study Guide** — I asked for and reviewed a study guide (a RAG over the course content)",
+        "",
+        "Students got AI-generated summaries and study guides that I had vetted."
+      ]
+    },
+    {
+      "id": "af0ec762-f936-4539-a108-4a9d245eeb58",
+      "kind": "content",
+      "markdown": [
+        "# The Workbook: Learning by Building",
+        "",
+        "Each class was a self contained exercise.",
+        "",
+        "Github classroom for distribution",
+        "",
+        "Printed workbook.",
+        "- Must be team work",
+        "- Only one computer open",
+        "",
+        "Class ended with each team presenting one of the phases."
+      ],
+      "title": [
+        "The Workbook: Learning by Building"
+      ],
+      "body": [
+        "Each class was a self contained exercise.",
+        "",
+        "Github classroom for distribution",
+        "",
+        "Printed workbook.",
+        "- Must be team work",
+        "- Only one computer open",
+        "",
+        "Class ended with each team presenting one of the phases."
+      ],
+      "image_prompt": "A team of students working. three of them in the team.  two working on paper workbooks and one furiously typing on the computer.",
       "credits": false
     },
     {
@@ -1658,9 +1966,9 @@
         "",
         "- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).",
         "",
-        "- Testing literacy was larger still: explain unit tests across ~**2000 lines**.",
+        "- Test literacy was larger still: explain unit tests across ~**2000 lines**.",
         "",
-        "- Goal: tiny feature work plus deep system reading and explanation."
+        "- Goal: Focused feature requiring system reading and explanation."
       ],
       "title": [
         "2026 — OO Programming (Shape Editor)"
@@ -1673,9 +1981,9 @@
         "",
         "- Understanding tasks were large: code-walk **ObjectHolder** and **Canvas** (~500 and ~800 lines).",
         "",
-        "- Testing literacy was larger still: explain unit tests across ~**2000 lines**.",
+        "- Test literacy was larger still: explain unit tests across ~**2000 lines**.",
         "",
-        "- Goal: tiny feature work plus deep system reading and explanation."
+        "- Goal: Focused feature requiring system reading and explanation."
       ],
       "image_prompt": "",
       "credits": false
@@ -1740,57 +2048,6 @@
         "The full chain: input → event mapping → controller → model → view.",
         "",
         "No shortcuts. They had to trace it."
-      ],
-      "image_prompt": "",
-      "credits": false
-    },
-    {
-      "id": "f7b4932d-db78-480a-94c6-ee4345450fb0",
-      "kind": "content",
-      "title": [
-        "OO — Adapters and Strategy (placeholder)"
-      ],
-      "body": [
-        "Placeholder — adapters and strategy assignment details to come."
-      ],
-      "markdown": [
-        "# OO — Adapters and Strategy (placeholder)",
-        "",
-        "Placeholder — adapters and strategy assignment details to come."
-      ],
-      "image_prompt": "",
-      "credits": false
-    },
-    {
-      "id": "60ce7a9c-4c6d-420c-8c92-44700ad2da75",
-      "kind": "content",
-      "title": [
-        "OO — Adapters and Strategy II (placeholder)"
-      ],
-      "body": [
-        "Placeholder — more details to come."
-      ],
-      "markdown": [
-        "# OO — Adapters and Strategy II (placeholder)",
-        "",
-        "Placeholder — more details to come."
-      ],
-      "image_prompt": "",
-      "credits": false
-    },
-    {
-      "id": "823de9d1-bd44-463e-bc28-ac6b1eccb8e6",
-      "kind": "content",
-      "title": [
-        "OO — Adapters and Strategy III (placeholder)"
-      ],
-      "body": [
-        "Placeholder — more details to come."
-      ],
-      "markdown": [
-        "# OO — Adapters and Strategy III (placeholder)",
-        "",
-        "Placeholder — more details to come."
       ],
       "image_prompt": "",
       "credits": false
@@ -1916,6 +2173,43 @@
         "-  O(n) vs O(n^2)"
       ],
       "image_prompt": "person wresling with computer\n\nThat fix took me an hour.",
+      "credits": false
+    },
+    {
+      "id": "8b702d1b-e731-4520-aa82-9b23b0419f29",
+      "kind": "content",
+      "markdown": [
+        "# We (Computer Scientists) really do matter",
+        "",
+        "The LLM got stuck on a problem: rendering all the panels at once was slow and clunky.",
+        "",
+        "It kept proposing bigger solutions, ",
+        "- more layers, ",
+        "- more complexity.",
+        "- collapsing off screen panels",
+        "",
+        "Then i said: what if we just... ",
+        "- Render one panel? ",
+        "",
+        "# Now it is a joy to use"
+      ],
+      "title": [
+        "We (Computer Scientists) really do matter"
+      ],
+      "body": [
+        "The LLM got stuck on a problem: rendering all the panels at once was slow and clunky.",
+        "",
+        "It kept proposing bigger solutions, ",
+        "- more layers, ",
+        "- more complexity.",
+        "- collapsing off screen panels",
+        "",
+        "Then i said: what if we just... ",
+        "- Render one panel? ",
+        "",
+        "# Now it is a joy to use"
+      ],
+      "image_prompt": "Engineer telling the computer what to do.  The computer is labelled LLM",
       "credits": false
     },
     {

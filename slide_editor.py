@@ -1601,10 +1601,42 @@ class SlideEditorApp:
         self.rows: list[SlideRow] = []
         self.current_idx = 0
 
-        root.bind_all("<Up>", lambda _e: self._navigate(-1))
-        root.bind_all("<Down>", lambda _e: self._navigate(1))
-        root.bind_all("<Left>", lambda _e: self._navigate(-1))
-        root.bind_all("<Right>", lambda _e: self._navigate(1))
+        # Click on background (canvas, frames, labels) moves focus to the canvas
+        # so arrow keys navigate slides instead of staying trapped in a text widget.
+        def _defocus_text(event):
+            w = event.widget
+            try:
+                cls = w.winfo_class() if hasattr(w, 'winfo_class') else ''
+            except tk.TclError:
+                cls = ''
+            if cls not in ('Text', 'Entry', 'TEntry', 'Spinbox'):
+                try:
+                    self._scroll_canvas.focus_set()
+                except (tk.TclError, AttributeError):
+                    pass
+        root.bind_all("<Button-1>", _defocus_text, add="+")
+
+        def _nav_if_not_editing(event, delta):
+            """Only navigate slides if focus is NOT in an editable text input widget."""
+            w = event.widget
+            try:
+                cls = w.winfo_class() if hasattr(w, 'winfo_class') else ''
+                # Check if it's an editable text widget (not disabled/read-only)
+                if cls in ('Entry', 'TEntry', 'Spinbox'):
+                    return  # always let Entry/Spinbox handle arrows
+                if cls == 'Text':
+                    # Only skip navigation if the Text widget is editable
+                    state = str(w.cget('state'))
+                    if state != 'disabled':
+                        return  # editable Text — let it handle arrows
+            except (tk.TclError, AttributeError):
+                pass
+            self._navigate(delta)
+
+        root.bind_all("<Up>", lambda e: _nav_if_not_editing(e, -1))
+        root.bind_all("<Down>", lambda e: _nav_if_not_editing(e, 1))
+        root.bind_all("<Left>", lambda e: _nav_if_not_editing(e, -1))
+        root.bind_all("<Right>", lambda e: _nav_if_not_editing(e, 1))
 
         self.root.after_idle(self._bootstrap_slide_rows)
         self.root.update_idletasks()
@@ -1980,6 +2012,8 @@ class SlideEditorApp:
             self._rebuild_rows()
             self.save_deck(autosave=True)
             self.set_status(f"Inserted new slide above [{insert_at:02d}].")
+            # Scroll to the new slide so it's visible after rebuild
+            self.root.after_idle(lambda sid=new_slide["id"]: self._jump_to_slide_id(sid))
             dlg.destroy()
 
         def _on_create() -> None:
@@ -2040,6 +2074,11 @@ class SlideEditorApp:
         self._rebuild_rows()
         self.save_deck(autosave=True)
         self.set_status(f"Deleted slide [{index:02d}].")
+        # Scroll to the nearest slide after deletion
+        if slides and index < len(slides):
+            sid = slides[min(index, len(slides) - 1)].get("id", "")
+            if sid:
+                self.root.after_idle(lambda s=sid: self._jump_to_slide_id(s))
 
     def save_deck(self, *, autosave: bool = False) -> None:
         """Flush in-memory edits back to ``keynote.json``."""
@@ -2290,6 +2329,14 @@ class PresentModeApp:
             anchor="w",
         )
         self.counter_lbl.pack(side=tk.LEFT)
+
+        # Timer setup (label placed in nav bar below)
+        target_minutes = self._present_settings.get("target_time", 45)
+        if not isinstance(target_minutes, (int, float)):
+            target_minutes = 45
+        self._timer_target_s = float(target_minutes) * 60.0
+        self._timer_start = time.monotonic()
+
         tk.Label(foot, textvariable=self._hint, font=("TkDefaultFont", 10), fg=SLIDE_DIM, bg=SLIDE_BG).pack(
             side=tk.RIGHT, fill=tk.X, expand=True, anchor="e"
         )
@@ -2298,16 +2345,54 @@ class PresentModeApp:
         nav.pack(fill=tk.X, pady=(0, 8))
         tk.Button(nav, text="← Previous", command=self._prev).pack(side=tk.LEFT, padx=6)
         tk.Button(nav, text="Next →", command=self._next).pack(side=tk.LEFT, padx=6)
+
+        # Countdown timer — between Next and Reload
+        self._timer_lbl = tk.Label(
+            nav,
+            text="",
+            font=("TkDefaultFont", 14, "bold"),
+            fg=SLIDE_DIM,
+            bg=SLIDE_BG,
+        )
+        self._timer_lbl.pack(side=tk.LEFT, expand=True)
+        self._timer_tick()
+
         quit_label = "Back to editor" if embedded else "Quit"
         tk.Button(nav, text=quit_label, command=self._close_present).pack(side=tk.RIGHT, padx=12)
         tk.Button(nav, text="Reload", command=self._reload_from_disk, width=8).pack(side=tk.RIGHT, padx=(0, 6))
 
         self._bind_present_keys(win)
 
-        if embedded and hasattr(win, "protocol"):
-            win.protocol("WM_DELETE_WINDOW", self._close_present)
+        # Initialize timing log for this presentation session
+        self._init_timing_log()
 
         self._show_slide()
+
+    # ── Presentation timing log ──────────────────────────────────────────────
+
+    def _init_timing_log(self) -> None:
+        """Create logs/ directory and start a new timing log for this session."""
+        import datetime
+        log_dir = SCRIPT_DIR / "logs"
+        log_dir.mkdir(exist_ok=True)
+        self._timing_log_path = log_dir / "time.log"
+        self._timing_session_start = time.monotonic()
+        ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with open(self._timing_log_path, "a", encoding="utf-8") as f:
+            f.write(f"\n--- Session started: {ts} ---\n")
+
+    def _log_slide_event(self, slide_index: int, slide_title: str) -> None:
+        """Log a slide navigation event with elapsed time."""
+        if not hasattr(self, '_timing_log_path'):
+            return
+        elapsed = time.monotonic() - self._timing_session_start
+        minutes = int(elapsed // 60)
+        seconds = int(elapsed % 60)
+        try:
+            with open(self._timing_log_path, "a", encoding="utf-8") as f:
+                f.write(f"{minutes:02d}:{seconds:02d}  [{slide_index:02d}]  {slide_title}\n")
+        except OSError:
+            pass
 
     def _present_title_pt(self) -> int:
         return max(14, min(34, int(round(self._present_body_pt * 1.35 + 3))))
@@ -2329,6 +2414,33 @@ class PresentModeApp:
     def _persist_present_settings(self) -> None:
         self._present_settings["present_body_pt"] = int(self._present_body_pt)
         _save_settings(self._present_settings)
+
+    def _timer_tick(self) -> None:
+        """Update the countdown timer every second."""
+        try:
+            elapsed = time.monotonic() - self._timer_start
+            remaining_s = max(0, self._timer_target_s - elapsed)
+            remaining_min = remaining_s / 60.0
+            minutes = int(remaining_min)
+            seconds = int(remaining_s) % 60
+
+            if remaining_s <= 0:
+                self._timer_lbl.config(text="TIME", fg="#ff3333", font=("TkDefaultFont", 22, "bold"))
+            elif remaining_min < 5:
+                self._timer_lbl.config(
+                    text=f"{minutes}:{seconds:02d}",
+                    fg="#ff3333",
+                    font=("TkDefaultFont", 20, "bold"),
+                )
+            else:
+                self._timer_lbl.config(
+                    text=f"{minutes} min",
+                    fg=SLIDE_DIM,
+                    font=("TkDefaultFont", 14, "bold"),
+                )
+            self.win.after(1000, self._timer_tick)
+        except tk.TclError:
+            pass  # window closed
 
     def _reload_from_disk(self) -> None:
         """Re-read ``keynote.json`` from disk; keep slide index when possible."""
@@ -2419,6 +2531,9 @@ class PresentModeApp:
         is_credits = bool(spec.get("credits", False))
         title = str(spec.get("title", f"Slide {self.index}")).strip() or f"Slide {self.index}"
         self.title_lbl.config(text=title, font=("TkDefaultFont", self._present_title_pt(), "bold"))
+
+        # Log slide navigation for timing report
+        self._log_slide_event(self.index, title)
 
         md = _strip_leading_title_heading_for_present(_present_slide_markdown(spec, self.index), title)
         if is_credits:
